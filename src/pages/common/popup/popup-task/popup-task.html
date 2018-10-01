@@ -1,0 +1,32 @@
+<!--
+  Generated template for the PopupTaskPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>공정 검색</ion-title>
+    <button ion-button (click) = "closeModal()">Close</button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click) = "retrive()">조회</button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>공정분류</ion-col>
+      <ion-col col-4>공정코드</ion-col>
+      <ion-col col-4>공정명</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+      <ion-col col-4>{{r.TASK_NAME2}}</ion-col>
+      <ion-col col-4>{{r.TASK_CODE}}</ion-col>
+      <ion-col col-4>{{r.TASK_NAME1}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

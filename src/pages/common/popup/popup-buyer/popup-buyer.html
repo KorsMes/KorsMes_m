@@ -1,0 +1,65 @@
+<!--
+  Generated template for the PopupBuyerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>협력업체 검색</ion-title>
+    <button ion-button (click) = "closeModal()">Close</button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>거래처코드</ion-col>
+      <ion-col col-3><ion-input [(ngModel)] = "by_cd"></ion-input></ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-checkbox color="primary" checked="1" [(ngModel)] = "use_gubun"></ion-checkbox>
+          <ion-label>미사용거래처포함</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>거래처명</ion-col>
+      <ion-col col-3><ion-input [(ngModel)] = "by_nm"></ion-input></ion-col>
+      <ion-col col-3>대표자명</ion-col>
+      <ion-col col-3><ion-input [(ngModel)] = "by_prsn"></ion-input></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>사업자번호</ion-col>
+      <ion-col col-3><ion-input [(ngModel)] = "bu_cd"></ion-input></ion-col>
+      <ion-col col-3>담당자명</ion-col>
+      <ion-col col-3><ion-input [(ngModel)] = "ven_user"></ion-input></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <button ion-button (click) = "retrive()">조회</button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>코드</ion-col>
+      <ion-col col-2>거래처명</ion-col>
+      <ion-col col-2>사업자번호</ion-col>
+      <ion-col col-2>대표자</ion-col>
+      <ion-col col-2>담당자</ion-col>
+      <ion-col col-2>전화번호</ion-col>
+      <ion-col col-12>주소</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+      <ion-col col-2>{{r.BY_CD}}</ion-col>
+      <ion-col col-2>{{r.BY_NM}}</ion-col>
+      <ion-col col-2>{{r.BU_CD}}</ion-col>
+      <ion-col col-2>{{r.BY_PRSN}}</ion-col>
+      <ion-col col-2>{{r.VEN_USER}}</ion-col>
+      <ion-col col-2>{{r.BY_TEL_NO}}</ion-col>
+      <ion-col col-12>{{r.BY_ADDR}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

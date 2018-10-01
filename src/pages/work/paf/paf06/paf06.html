@@ -1,0 +1,93 @@
+<!--
+  Generated template for the Paf06Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>구매단가발행</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  <button ion-button (click) = "condition_yn('')">전체</button>
+  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+  <br>
+  <ion-grid *ngIf="searchCondition">
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getItnbr_popup()">
+          <ion-label color="primary">품목코드</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getItnbr_popup()">
+          <ion-label>{{itnbr_nm}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="itnbr_nm" (click) = "Clear_itnbr('')">X</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getBuyer_popup()">
+          <ion-label color="primary">협력업체</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getBuyer_popup()">
+          <ion-label>{{by_nm}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="by_nm" (click) = "Clear_buyer('')">X</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <br>
+
+  <ion-grid class="listgrid">
+    <ion-row>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>협력업체</ion-col>
+      <ion-col col-2>조달구분</ion-col>
+      <ion-col col-2>통화</ion-col>
+      <ion-col col-2>외화단가</ion-col>
+      <ion-col col-2>종전단가</ion-col>
+      <ion-col col-2>원화단가</ion-col>
+      <ion-col col-2>적용일자</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r.ITNBR}}</ion-col>
+      <ion-col col-2>{{r.ITEM_NAME_K}}</ion-col>
+      <ion-col col-2>{{r.NORM1}}</ion-col>
+      <ion-col col-2>{{r.PUR_UM}}</ion-col>
+      <ion-col col-2>{{r.VENDOR_NAME}}</ion-col>
+      <ion-col col-2>{{r.SUPPLY}}</ion-col>
+      <ion-col col-2>{{r.CURRENCY}}</ion-col>
+      <ion-col col-2>{{r.TEMP_PRICE}}</ion-col>
+      <ion-col col-2>{{r.PAST_PRICE}}</ion-col>
+      <ion-col col-2>{{r.LAST_PRICE}}</ion-col>
+      <ion-col col-2>{{r.START_DATE}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+`

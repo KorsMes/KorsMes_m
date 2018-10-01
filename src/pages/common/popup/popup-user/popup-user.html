@@ -1,0 +1,52 @@
+<!--
+  Generated template for the PopupUserPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>사용자 검색</ion-title>
+    <button ion-button (click) = "closeModal()">Close</button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getDept_popup()">
+          <ion-label color="primary">부서코드</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getDept_popup()">
+          <ion-label>{{dept_nm}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="dept_nm" (click) = "Clear_Dept('')">X</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <button ion-button (click) = "retrive()">조회</button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>사번</ion-col>
+      <ion-col col-3>성명</ion-col>
+      <ion-col col-3>부서</ion-col>
+      <ion-col col-3>부서명칭</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+      <ion-col col-3>{{r.USER_ID}}</ion-col>
+      <ion-col col-3>{{r.USER_NM}}</ion-col>
+      <ion-col col-3>{{r.DEPT_CD}}</ion-col>
+      <ion-col col-3>{{r.DEPT_NM}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

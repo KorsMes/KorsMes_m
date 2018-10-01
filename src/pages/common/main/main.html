@@ -1,0 +1,50 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>main</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+왔냐?
+
+  <button ion-button full (click) = "doLogout()">Log Out</button>
+</ion-content>
+-->
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>K o r s</ion-title>
+  </ion-navbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3 (click) = "quickPage('PAF06', '구매단가발행')">구매단가</ion-col>
+      <ion-col col-3 (click) = "quickPage('PDA12', '지출내역 발행')">전표관리</ion-col>
+      <ion-col col-3 (click) = "quickPage('SCB10', '견적서 발행(을지)')">견적관리</ion-col>
+      <ion-col col-3 (click) = "quickPage('SEA12', 'PJT 수주내역 조회')">영업관리</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 >목표예산</ion-col>
+      <ion-col col-3 >구매발주</ion-col>
+      <ion-col col-3 >자재관리</ion-col>
+      <ion-col col-3 (click) = "quickPage('PHA03', '월별 수입검사현황')">품질관리</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button (click)="goPage()">간다</button>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</ion-content>

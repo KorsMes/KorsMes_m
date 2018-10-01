@@ -1,0 +1,19 @@
+page-popup-itnbr2 {
+
+  margin:0; padding:0;
+
+  ion-header { height: 40px; background-color: #F6EBBC; color: black; font-size: 15px; display : flex; align-items : center; }
+  .right_div { position:absolute; right:0px; }
+  .left_div { position:absolute; left: 10px; }
+  .header_btn { width:33px; height:33px; }
+
+  ion-row { height: 45px; }
+  ion-col { height: 45px; vertical-align: middle; }
+
+  ion-item { font-size: 10px; }
+  ion-select { max-width: 100%; text-align: center; }
+
+  ion-card-header { background-color: #F6EBBC; }
+  ion-card-content { font-size: 10px; }
+
+}

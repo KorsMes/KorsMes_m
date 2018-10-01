@@ -1,0 +1,7 @@
+{
+  "name": "kors_mes_m",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

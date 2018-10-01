@@ -1,0 +1,164 @@
+<!--
+  Generated template for the PopupItnbr2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <div class="left_div">
+      물품코드 검색
+    </div>
+    <div class="right_div">
+      <button class="header_btn" ion-button (click) = "closeModal()">X</button>
+    </div>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-card-header (click) = "testabc()">
+      검색조건
+    </ion-card-header>
+    <ion-card-content *ngIf="test">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <ion-label>
+              제품군
+            </ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-select [(ngModel)]="itcls_cd" interface="popover">
+              <ion-option value="">전체</ion-option>
+              <ion-option value="{{i.ITCLS_CD}}" *ngFor = "let i of itcls_list">{{i.ITCLS_NM}}</ion-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-4>
+            <ion-label>
+              내외자구분
+            </ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-select [(ngModel)]="mccod_cd" interface="popover">
+              <ion-option value="">전체</ion-option>
+              <ion-option value="{{i.MCCOD_CD}}" *ngFor = "let i of mccod_list">{{i.MCCOD_NM}}</ion-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-4>
+            <ion-label>
+              품목형태
+            </ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-select [(ngModel)]="itemtype_cd" interface="popover">
+              <ion-option value="">전체</ion-option>
+              <ion-option value="{{i.ITEMTYPE_CD}}" *ngFor = "let i of itemtype_list">{{i.ITEMTYPE_NM}}</ion-option>
+            </ion-select>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-3>
+            <ion-label>
+              품번
+            </ion-label>
+          </ion-col>
+          <ion-col col-3>
+            <ion-input placeholder="item_cd" [(ngModel)] = "item_cd"></ion-input>
+          </ion-col>
+
+          <ion-col col-3>
+            <ion-label>
+              형명
+            </ion-label>
+          </ion-col>
+          <ion-col col-3>
+            <ion-input placeholder="jijic" [(ngModel)] = "jijic"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-3>
+            <ion-label>
+              품명
+            </ion-label>
+          </ion-col>
+          <ion-col col-3>
+            <ion-input placeholder="item_nm" [(ngModel)] = "item_nm"></ion-input>
+          </ion-col>
+
+          <ion-col col-3>
+            <ion-label>
+              물품분류
+            </ion-label>
+          </ion-col>
+          <ion-col col-3>
+            <ion-input placeholder="itcls_pro" [(ngModel)] = "itcls_pro"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-3>
+            <ion-label>
+              규격
+            </ion-label>
+          </ion-col>
+          <ion-col col-3>
+            <ion-input placeholder="spec1" [(ngModel)] = "spec1"></ion-input>
+          </ion-col>
+
+          <ion-col col-3>
+            <ion-label>
+              제조회사
+            </ion-label>
+          </ion-col>
+          <ion-col col-3>
+            <ion-input placeholder="jejos" [(ngModel)] = "jejos"></ion-input>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+  <button ion-button (click) = "retrive()">조회</button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>품번</ion-col>
+      <ion-col col-2>품명</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>형명</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>품목형태</ion-col>
+      <ion-col col-2>표준단가</ion-col>
+      <ion-col col-2>통화</ion-col>
+      <ion-col col-2>내외자</ion-col>
+      <ion-col col-2>제조회사</ion-col>
+      <ion-col col-2>등록일</ion-col>
+      <ion-col col-2>물품분류</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+      <ion-col col-2>{{r.ITNBR}}</ion-col>
+      <ion-col col-2>{{r.NAME}}</ion-col>
+      <ion-col col-2>{{r.SPEC1}}</ion-col>
+      <ion-col col-2>{{r.JIJIC}}</ion-col>
+      <ion-col col-2>{{r.STOCK_UM}}</ion-col>
+      <ion-col col-2>{{r.ITEM_TYPE}}</ion-col>
+      <ion-col col-2>{{r.UNPRC}}</ion-col>
+      <ion-col col-2>{{r.TUNCU}}</ion-col>
+      <ion-col col-2>{{r.MCCOD}}</ion-col>
+      <ion-col col-2>{{r.BY_NM}}</ion-col>
+      <ion-col col-2>{{r.CREATE_DATE}}</ion-col>
+      <ion-col col-2>{{r.PROFORMA_ITCLS}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

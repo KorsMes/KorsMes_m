@@ -1,0 +1,84 @@
+<!--
+  Generated template for the Pdb13Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>월 발주현황</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click) = "condition_yn('')">전체</button>
+  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+  <br>
+  <ion-grid *ngIf="searchCondition">
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getPjtno_popup1()">
+          <ion-label color="primary">PJT번호</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getPjtno_popup1()">
+          <ion-label>{{pjtnm1}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="pjtnm1" (click) = "Clear_Pjtno1('')">X</button>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getPjtno_popup2()">
+          <ion-label>{{pjtnm2}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="pjtnm2" (click) = "Clear_Pjtno2('')">X</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getPurno_popup()">
+          <ion-label color="primary">발주번호</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getPurno_popup()">
+          <ion-label>{{purno}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="purno" (click) = "Clear_Purno('')">X</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getItnbr2_popup()">
+          <ion-label color="primary">품목코드</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getItnbr2_popup()">
+          <ion-label>{{itnbr_nm2}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="itnbr_cd2" (click) = "Clear_Itnbr2('')">X</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+</ion-content>

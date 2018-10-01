@@ -1,0 +1,62 @@
+<!--
+  Generated template for the MainTemplatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>mainTemplate</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+123
+</ion-content>
+-->
+
+<ion-menu [content] = "content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Kors Mes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1(p, 'idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}" class="a">
+        <h4>
+          {{p.title}}
+          <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+        </h4>
+        <ion-list *ngIf="isLevel1Shown('idx'+i)">
+          <ion-item *ngFor="let s of p.subPages; let i2=index" text-wrap (click)="toggleLevel2(s, 'idx'+i+'idx'+i2)" [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}" class="b">
+            <h4>
+              {{s.title}}
+              <ion-icon color="success" item-right [name]="isLevel2Shown('idx'+i+'idx'+i2) ? 'arrow-dropdown' : 'arrow-dropright'"  *ngIf="s.thirdPages"></ion-icon>
+            </h4>
+            <ion-list *ngIf="isLevel2Shown('idx'+i+'idx'+i2)">
+              <ion-item *ngFor="let m of s.thirdPages" text-wrap (click)="toggleLevel3(m)" class="c">
+                {{m.title}}
+              </ion-item>
+            </ion-list>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <ion-item *ngFor = "let u of userInfo">
+        <div>{{u.ID}}</div>
+      </ion-item>
+      <ion-item>
+        <button ion-button full (click) = "doLogout()">Log Out</button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
