@@ -5,14 +5,103 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>PHA03</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>월별 수입검사현황</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <button ion-button (click) = "condition_yn('')">전체</button>
+  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+  <br>
 
-</ion-content>
+<ion-grid *ngIf="searchCondition">
+  <ion-row>
+    <ion-col col-2 class="company_plant">회사</ion-col>
+    <ion-col col-4>
+      <ion-item>
+        <ion-label>{{company_cd}}</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-2 class="company_plant">공장</ion-col>
+    <ion-col col-4>
+      <ion-item>
+        <ion-label>{{plant_cd}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-col col-4 >검사일자</ion-col>
+  <ion-col col-4>
+    <ion-item>
+      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date1"></ion-datetime>
+    </ion-item>
+  </ion-col>
+  <ion-col col-4>
+    <ion-item>
+      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date2"></ion-datetime>
+    </ion-item>
+  </ion-col>
+
+  <ion-row>
+    <ion-col col-4>
+      <ion-item (click) = "getItnbr2_popup()">
+        <ion-label color="primary">품목코드</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-7>
+      <ion-item (click) = "getItnbr2_popup()">
+        <ion-label>{{itnbr_nm2}}</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1>
+      <button ion-button *ngIf="itnbr_cd2" (click) = "Clear_Itnbr2('')">X</button>
+    </ion-col>
+  </ion-row>
+
+  -
+
+  <ion-row>
+    <ion-col col-7>
+      <ion-item (click) = "getItnbr3_popup()">
+        <ion-label>{{itnbr_nm3}}</ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1>
+      <button ion-button *ngIf="itnbr_cd3" (click) = "Clear_Itnbr3('')">X</button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-content padding>
+  <br>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+  <br>
+  <ion-grid class="listgrid">
+    <ion-row>
+      <ion-col col-2>협력업체</ion-col>
+      <ion-col col-2>검사일</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>검사의뢰수량</ion-col>
+      <ion-col col-2>검사수량</ion-col>
+      <ion-col col-2>합격수량</ion-col>
+      <ion-col col-2>불량수량</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r.VENDOR_NAME}}</ion-col>
+      <ion-col col-2>{{r.INSP_DATE}}</ion-col>
+      <ion-col col-2>{{r.ITEM}}</ion-col>
+      <ion-col col-2>{{r.STOCK}}</ion-col>
+      <ion-col col-2>{{r.DELV_QTY}}</ion-col>
+      <ion-col col-2>{{r.INSP_QTY}}</ion-col>
+      <ion-col col-2>{{r.IQC_QTY}}</ion-col>
+      <ion-col col-2>{{r.ERR_QTY}}</ion-col>
+    </ion-row>
+  </ion-grid>
