@@ -47,6 +47,7 @@ export class PHB04 {
   /* 조회결과 */
   public result;
 
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
