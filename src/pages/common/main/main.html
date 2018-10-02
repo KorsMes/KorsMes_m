@@ -44,7 +44,20 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="goPage()">간다</button>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <ion-card *ngFor="let r of result">
+    <ion-grid>
+      <ion-row>
+        <ion-col>{{r.PJTNO}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{r.PJTNM}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{r.PJAMT}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{r.NADAT}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { AlertProvider } from '../../../providers/alert';
-
+import { ApiProvider } from '../../../providers/api';
 
 import { HomePage } from '../home/home';
 
@@ -20,14 +20,39 @@ import { HomePage } from '../home/home';
   templateUrl: 'main.html',
 })
 export class MainPage {
-
   userInfo: any;
+
+  /* 조회조건 */
+  public company_cd;
+  public plant_cd;
+
+  /* 조회결과 */
+  public result;
 
   constructor(
                 public navController: NavController,
                 public navParams: NavParams,
                 public storage: Storage,
-                public alertProvider: AlertProvider) {
+                public alertProvider: AlertProvider,
+                public apiProvider:ApiProvider,
+                public modalController: ModalController) {
+
+                this.storage.get("[COMPANY]").then((data1) => {
+                  this.company_cd = data1.company_cd;
+                  this.storage.get("[PLANT]").then((data2) => {
+                    this.plant_cd = data2.plant_cd;
+
+                    let api_url = "/sea/sea12_list1";
+                    let param = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd});
+
+                    this.apiProvider.data_api(api_url, param)
+                    .then(data => {
+                      this.result = data;
+                    });
+                  });
+                });
+
+
 
 
   }
