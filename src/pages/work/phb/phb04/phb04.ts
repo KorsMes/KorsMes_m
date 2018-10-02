@@ -30,12 +30,22 @@ export class PHB04 {
   public searchCondition;
 
   /* 조건검색 */
+  public company_cd;
+  public plant_cd;
+
+  public date1 = new Date(new Date().getFullYear() - 1).toISOString();  //검사일자 from
+  public date2 = new Date().toISOString();      //검사일자 to
+
   public task_cd; //공정코드
   public task_nm; //공정명
 
   public pjtno; //불합격 PJT번호
   public pjtnm; //불합격 PJT명
 
+  public lot_no; //Lot_No
+
+  /* 조회결과 */
+  public result;
 
   constructor(
                 public navCtrl: NavController,
@@ -55,6 +65,14 @@ export class PHB04 {
                       this.acc_btn_print = data[n].ACC_BTN_PRINT;
                     }
                   }
+                });
+
+                this.storage.get("[COMPANY]").then((data) => {
+                    this.company_cd = data.company_cd;
+                });
+
+                this.storage.get("[PLANT]").then((data) => {
+                    this.plant_cd = data.plant_cd;
                 });
   }
 
@@ -105,5 +123,27 @@ export class PHB04 {
     });
     modal.present();
   }
+
+ //조회
+  retrive(){
+
+    //필수 조회조건 체크
+    if(this.date1 > this.date2){
+      this.alertProvider.call_alert("조회", "검사일자, 시작일보다 종료일이 작습니다.", "확인");
+      return;
+    }
+    let api_url = "/phb/phb04_list";
+    let param = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.mo_no, task_cd: this.task_cd, lot_no: this.lot_no} );
+    this.apiProvider.data_api(api_url, param)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+      }else{
+        this.result = data;
+      }
+    });
+  }
+
+
 
 }

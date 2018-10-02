@@ -18,7 +18,63 @@
   <button ion-button (click) = "condition_yn('')">전체</button>
   <button ion-button (click) = "condition_yn('true')">조건검색</button>
   <br>
+
+
+  <ion-row *ngIf="searchCondition">
+
+    <ion-row>
+      <ion-col col-2 class="company_plant">회사</ion-col>
+      <ion-col col-4>
+        <ion-item>
+          <ion-label>{{company_cd}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 class="company_plant">공장</ion-col>
+      <ion-col col-4>
+        <ion-item>
+          <ion-label>{{plant_cd}}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-col col-4 >검사일자</ion-col>
+    <ion-col col-4>
+      <ion-item>
+        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date1"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4>
+      <ion-item>
+        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date2"></ion-datetime>
+      </ion-item>
+    </ion-col>
+
+    <ion-row>
+      <ion-col col-4>LOT_NO</ion-col>
+      <ion-col col-3>
+        <ion-input placeholder="LOT_NO" [(ngModel)] = "lot_no"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-row>
+
   <ion-grid *ngIf="searchCondition">
+    <ion-row>
+      <ion-col col-4>
+        <ion-item (click) = "getPjtno_list3_popup()">
+          <ion-label color="primary">불합격 PJT번호</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-7>
+        <ion-item (click) = "getPjtno_list3_popup()">
+          <ion-label>{{pjtnm}}</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-1>
+        <button ion-button *ngIf="pjtnm" (click) = "Clear_Pjtno_list3('')">X</button>
+      </ion-col>
+    </ion-row>
+
     <ion-row>
       <ion-col col-4>
         <ion-item (click) = "getTask_popup()">
@@ -34,23 +90,6 @@
         <button ion-button *ngIf="task_nm" (click) = "Clear_Task('')">X</button>
       </ion-col>
     </ion-row>
-
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "getPjtno_list3_popup()">
-          <ion-label color="primary">불합격 PJT번호</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "getPjtno_list3_popup()">
-          <ion-label>{{pjtnm}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="pjtnm" (click) = "Clear_Pjtno_list3('')">X</button>
-      </ion-col>
-    </ion-row>
   </ion-grid>
   <br>
   <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
@@ -58,4 +97,50 @@
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+  <br>
+  <ion-grid class="listgrid">
+    <ion-row>
+      <ion-col col-2>PJT번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>LOT_NO</ion-col>
+      <ion-col col-2>검사일자</ion-col>
+      <ion-col col-2>검사번호</ion-col>
+      <ion-col col-2>검사구분</ion-col>
+      <ion-col col-2>공정</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>의뢰수량</ion-col>
+      <ion-col col-2>검사수량</ion-col>
+      <ion-col col-2>불량수량</ion-col>
+      <ion-col col-2>검사자</ion-col>
+      <ion-col col-2>검사종류</ion-col>
+      <ion-col col-2>불량항목</ion-col>
+      <ion-col col-2>조치구분</ion-col>
+      <ion-col col-2>검사결과</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r.MO_NO}}</ion-col>
+      <ion-col col-2>{{r.PJTNO_NM}}</ion-col>
+      <ion-col col-2>{{r.LOT_NO}}</ion-col>
+      <ion-col col-2>{{r.QC_DATE}}</ion-col>
+      <ion-col col-2>{{r.QC_NO}}</ion-col>
+      <ion-col col-2>{{r.GUBUN}}</ion-col>
+      <ion-col col-2>{{r.VENDOR}}</ion-col>
+      <ion-col col-2>{{r.ITEM}}</ion-col>
+      <ion-col col-2>{{r.ITEM_NAME_K}}</ion-col>
+      <ion-col col-2>{{r.NORM1}}</ion-col>
+      <ion-col col-2>{{r.QCREQ_QTY}}</ion-col>
+      <ion-col col-2>{{r.QC_QTY}}</ion-col>
+      <ion-col col-2>{{r.ERR_QTY}}</ion-col>
+      <ion-col col-2>{{r.CREATE_BY}}</ion-col>
+      <ion-col col-2>{{r.INS_KIND}}</ion-col>
+      <ion-col col-2>{{r.ERR_TAG}}</ion-col>
+      <ion-col col-2>{{r.ERR_ACT}}</ion-col>
+      <ion-col col-2>{{r.QC_RESULT}}</ion-col>
+      <ion-col col-2>{{r.REMARKS}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
