@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the Pdh04Page page.
@@ -30,6 +31,7 @@ export class PDH04 {
   public searchCondition;
 
   /* 조건검색 */
+  public g_user;
   public pdtno1;
   public pdtnm1;
 
@@ -45,6 +47,7 @@ export class PDH04 {
               public navParams: NavParams,
               public storage: Storage,
               public modalController: ModalController,
+              public commoncodeProvider: CommoncodeProvider,
               public alertProvider: AlertProvider,
               public apiProvider: ApiProvider) {
 
@@ -59,6 +62,9 @@ export class PDH04 {
                   }
                 }
               });
+
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
 
   }
 

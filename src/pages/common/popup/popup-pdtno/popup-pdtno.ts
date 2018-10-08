@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupPdtnoPage page.
@@ -22,12 +23,16 @@ export class PopupPdtnoPage {
   public date = new Date();
 
   //조회조건
-  public company_cd;
+  public g_user;
+  public g_company; //회사정보
+  public g_plant; //공장정보
+
   public plant_cd;
+
   public pjtno;
   public pjtnm;
-  public date1 = new Date(new Date().getFullYear() - 10).toISOString();
-  public date2 = new Date().toISOString();
+  public date1 = new Date().getUTCFullYear()+"-"+"01-01"; //수주일자fr
+  public date2 = new Date().toISOString(); //수주일자to
 
   //조회결과
   public result;
@@ -37,16 +42,19 @@ export class PopupPdtnoPage {
               public navParams: NavParams,
               public apiProvider: ApiProvider,
               public alertProvider: AlertProvider,
+              public commoncodeProvider: CommoncodeProvider,
               public viewController: ViewController,
               public storage: Storage) {
 
-              this.storage.get("[COMPANY]").then((data) => {
-                this.company_cd = data.company_cd;
-              });
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
 
-              this.storage.get("[PLANT]").then((data) => {
-                this.plant_cd = data.plant_cd;
-              });
+              //회사코드 가져오기
+              this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+              //공장코드 가져오기
+              this.g_plant = this.commoncodeProvider.getPlantInfo();
+              this.plant_cd = this.g_plant[0].PLANT;
   }
 
   ionViewDidLoad() {
@@ -65,7 +73,7 @@ export class PopupPdtnoPage {
     }
 
     let api_url = "/common/popup/pdtno_list";
-    let param = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, pjtno: this.pjtno, pjtnm: this.pjtnm});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, pjtno: this.pjtno, pjtnm: this.pjtnm, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){

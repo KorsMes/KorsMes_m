@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupDeptPage page.
@@ -18,6 +19,8 @@ import { AlertProvider } from '../../../../providers/alert';
 })
 export class PopupDeptPage {
 
+  public g_user;
+
   //소속부서 조회 결과 (리스트)
   public result;
 
@@ -26,7 +29,11 @@ export class PopupDeptPage {
               public navParams: NavParams,
               public apiProvider: ApiProvider,
               public alertProvider: AlertProvider,
+              public commoncodeProvider: CommoncodeProvider,
               public viewController: ViewController) {
+
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
   }
 
   ionViewDidLoad() {
@@ -37,7 +44,7 @@ export class PopupDeptPage {
   //조회
   retrive(){
     let api_url = "/common/popup/dept_list";
-    let param = JSON.stringify({a: 'abc'});
+    let param = JSON.stringify({c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
            .then(data => {
              if(Object.keys(data).length === 0){

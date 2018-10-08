@@ -20,45 +20,39 @@
 
 <ion-grid *ngIf="searchCondition">
   <ion-row>
-    <ion-col col-2 class="company_plant">회사</ion-col>
-    <ion-col col-4>
-      <ion-item>
-        <ion-label>{{company_cd}}</ion-label>
-      </ion-item>
-    </ion-col>
-    <ion-col col-2 class="company_plant">공장</ion-col>
-    <ion-col col-4>
-      <ion-item>
-        <ion-label>{{plant_cd}}</ion-label>
-      </ion-item>
+    <ion-col col-2>공장코드</ion-col>
+    <ion-col col-10>
+      <ion-select [(ngModel)]="plant_cd" interface="popover">
+        <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+      </ion-select>
     </ion-col>
   </ion-row>
 
   <ion-col col-4 >검사일자</ion-col>
   <ion-col col-4>
     <ion-item>
-      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date1"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
     </ion-item>
   </ion-col>
   <ion-col col-4>
     <ion-item>
-      <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date2"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
     </ion-item>
   </ion-col>
 
   <ion-row>
     <ion-col col-4>
-      <ion-item (click) = "getItnbr2_popup()">
+      <ion-item (click) = "PopupItnbr2()">
         <ion-label color="primary">품목코드</ion-label>
       </ion-item>
     </ion-col>
     <ion-col col-7>
-      <ion-item (click) = "getItnbr2_popup()">
+      <ion-item (click) = "PopupItnbr2()">
         <ion-label>{{itnbr_nm2}}</ion-label>
       </ion-item>
     </ion-col>
     <ion-col col-1>
-      <button ion-button *ngIf="itnbr_cd2" (click) = "Clear_Itnbr2('')">X</button>
+      <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
     </ion-col>
   </ion-row>
 
@@ -66,12 +60,12 @@
 
   <ion-row>
     <ion-col col-7>
-      <ion-item (click) = "getItnbr3_popup()">
+      <ion-item (click) = "PopupItnbr3()">
         <ion-label>{{itnbr_nm3}}</ion-label>
       </ion-item>
     </ion-col>
     <ion-col col-1>
-      <button ion-button *ngIf="itnbr_cd3" (click) = "Clear_Itnbr3('')">X</button>
+      <button ion-button *ngIf="itnbr_nm3" (click) = "clear_itnbr3('')">X</button>
     </ion-col>
   </ion-row>
 </ion-grid>

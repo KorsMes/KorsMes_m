@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the Scb10Page page.
@@ -30,17 +31,27 @@ export class SCB10 {
   public searchCondition;
 
   /* 조건검색 */
-  public pjt_no;
-  public pjt_nm;
+  public g_user;
+  public g_company; //회사정보
+  public g_plant; //공장정보
+
+  public plant_cd;
+  public pjt_no; //프로젝트번호
+  public pjt_nm; //프로젝트명
+
+  /* 조회 결과 */
+  public result;
 
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
                 public storage: Storage,
                 public modalController: ModalController,
+                public commoncodeProvider: CommoncodeProvider,
                 public alertProvider: AlertProvider,
                 public apiProvider: ApiProvider) {
 
+                //버튼권한
                 this.storage.get("[PAGE_AUTH]").then((data) => {
                   for(var n in data){
                     if("SCB10" == data[n].PGM_ID){
@@ -52,6 +63,16 @@ export class SCB10 {
                     }
                   }
                 });
+
+                //로그인정보 가져오기
+                this.g_user = this.commoncodeProvider.getUserInfo();
+
+                //회사코드 가져오기
+                this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+                //공장코드 가져오기
+                this.g_plant = this.commoncodeProvider.getPlantInfo();
+                this.plant_cd = this.g_plant[0].PLANT;
   }
 
   ionViewDidLoad() {
@@ -59,6 +80,7 @@ export class SCB10 {
   }
 
 
+  //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
       this.pjt_no = null;
@@ -68,24 +90,35 @@ export class SCB10 {
   }
 
   //조회조건 프로젝트번호 초기화
-  Clear_Pjtno(){
+  clear_pjtno(){
     this.pjt_no = null;
     this.pjt_nm = null;
   }
 
-  //거래처 팝업
-  getPjtno_popup(){
+  //프로젝트번호 팝업
+  PopupPjtno(){
     var modal = this.modalController.create('PopupPjtnoPage');
     modal.onDidDismiss(data => {
-      this.pjt_no = data.pjt_no;
-      this.pjt_nm = data.pjt_nm;
+      this.pjt_no = data.pjtno;
+      this.pjt_nm = data.pjtnm;
     });
     modal.present();
   }
 
   //조회
   retrive(){
+    let api_url = "/scb/scb10_list";
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjt_no, c_code: this.g_user.c_code})
 
+    this.apiProvider.data_api(api_url, param)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+      }else{
+        this.searchCondition = "";
+      }
+      this.result = data;
+    })
   }
 
 }

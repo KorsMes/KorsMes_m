@@ -18,17 +18,17 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getDept_popup()">
+        <ion-item (click) = "PopupDept()">
           <ion-label color="primary">부서코드</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getDept_popup()">
+        <ion-item (click) = "PopupDept()">
           <ion-label>{{dept_nm}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="dept_nm" (click) = "Clear_Dept('')">X</button>
+        <button ion-button *ngIf="dept_nm" (click) = "clear_dept('')">X</button>
       </ion-col>
     </ion-row>
   </ion-grid>

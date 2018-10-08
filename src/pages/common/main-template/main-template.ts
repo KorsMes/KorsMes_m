@@ -9,6 +9,7 @@ import { HomePage } from '../home/home';
 import { SidemenuListProvider } from '../../../providers/sidemenu-list';
 import { AlertProvider } from '../../../providers/alert';
 import { ApiProvider } from '../../../providers/api';
+import { CommoncodeProvider } from '../../../providers/commoncode';
 
 /**
  * Generated class for the MainTemplatePage page.
@@ -31,6 +32,9 @@ export class MainTemplatePage {
 
   user_id: any;
 
+  public userInfo; //로그인정보
+
+
   showLevel1 = null;
   showLevel2 = null;
 
@@ -42,98 +46,33 @@ export class MainTemplatePage {
               public menuController: MenuController,
               public sidemenuListProvider: SidemenuListProvider,
               public alertProvider: AlertProvider,
-              public apiProvider: ApiProvider) {
+              public apiProvider: ApiProvider,
+              public commoncodeProvider: CommoncodeProvider) {
 
               /* 전체 페이지 정보 가져오기 */
               this.pages = sidemenuListProvider.getSideMenus();
+              /* 로그인정보 가져오기 */
+              this.userInfo = this.commoncodeProvider.getUserInfo();
 
               /* 페이지 정보 및 권한 정보 가져오기 */
-              this.storage.get("[USERINFO]").then((result) => {
-                let api_url = "/common/getMenus";
-                let param = JSON.stringify({user_id: result.USER_ID, user_pswd: result.USER_PSWD});
-                this.apiProvider.data_api(api_url, param)
-                .then(data => {
+              let api_url = "/common/getMenus";
+              let param = JSON.stringify({user_id: this.userInfo.user_id, user_pswd: this.userInfo.user_pswd, c_code: this.userInfo.c_code});
+              this.apiProvider.data_api(api_url, param)
+              .then(data => {
+                this.page_auth = data;
 
-                  this.page_auth = data;
-
-                  //프로그램 권한 저장소 저장
-                  this.storage.remove("[PAGE_AUTH]");
-                  this.storage.set('[PAGE_AUTH]', data);
-
-                  /* 사이드메뉴(페이지&권한 정보) 세팅 */
-                  for(var s in this.pages){
-                    console.log("메뉴A : " + this.pages[s].title);
-
-                    if(this.pages[s].component !== undefined){
-                      for(var w = 0; w < Object.keys(data).length; w++){
-
-                        if(this.pages[s].component === data[w].PAGE){
-                          this.pages[s].acc_btn_add = data[w].ACC_BTN_ADD;
-                          this.pages[s].acc_btn_save = data[w].ACC_BTN_SAVE;
-                          this.pages[s].acc_btn_delete = data[w].ACC_BTN_DELETE;
-                          this.pages[s].acc_btn_retrive = data[w].ACC_BTN_RETRIVE;
-                          this.pages[s].acc_btn_print = data[w].ACC_BTN_PRINT;
-                          //console.log("페이지 : " + this.pages[s].title);
-                        }
-                      }
-                    }
-
-                    if(this.pages[s].subPages !== undefined){
-                      for(var t in this.pages[s].subPages){
-
-                        if(this.pages[s].subPages[t].component !== undefined){
-                          for(let w = 0; w < Object.keys(data).length; w++){
-
-                            if(this.pages[s].subPages[t].component === data[w].PAGE){
-                              this.pages[s].subPages[t].acc_btn_add = data[w].ACC_BTN_ADD;
-                              this.pages[s].subPages[t].acc_btn_save = data[w].ACC_BTN_SAVE;
-                              this.pages[s].subPages[t].acc_btn_delete = data[w].ACC_BTN_DELETE;
-                              this.pages[s].subPages[t].acc_btn_retrive = data[w].ACC_BTN_RETRIVE;
-                              this.pages[s].subPages[t].acc_btn_print = data[w].ACC_BTN_PRINT;
-                              //console.log("메뉴A - 페이지 : " + this.pages[s].subPages[t].title);
-                            }
-                          }
-                        }
-
-                        if(this.pages[s].subPages[t].thirdPages !== undefined){
-                          for(let k in this.pages[s].subPages[t].thirdPages){
-                            if(this.pages[s].subPages[t].thirdPages[k].component !== undefined){
-                              for(let w = 0; w < Object.keys(data).length; w++){
-
-                                if(this.pages[s].subPages[t].thirdPages[k].component === data[w].PAGE){
-                                  this.pages[s].subPages[t].thirdPages[k].acc_btn_add = data[w].ACC_BTN_ADD;
-                                  this.pages[s].subPages[t].thirdPages[k].acc_btn_save = data[w].ACC_BTN_SAVE;
-                                  this.pages[s].subPages[t].thirdPages[k].acc_btn_delete = data[w].ACC_BTN_DELETE;
-                                  this.pages[s].subPages[t].thirdPages[k].acc_btn_retrive = data[w].ACC_BTN_RETRIVE;
-                                  this.pages[s].subPages[t].thirdPages[k].acc_btn_print = data[w].ACC_BTN_PRINT;
-                                  //console.log("메뉴A - 메뉴B - 페이지 : " + this.pages[s].subPages[t].thirdPages[k].title);
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-
-                });
+                //프로그램 권한 저장소 저장
+                this.storage.remove("[PAGE_AUTH]");
+                this.storage.set('[PAGE_AUTH]', data);
               });
-
-
-
-
   }
 
   ionViewDidLoad() {
-    this.storage.get("[USERINFO]").then((result) => {
-      if(result !== null){
-        this.user_id = result.USER_ID;
-      }else{
-        this.navController.setRoot(HomePage);
-      }
-    });
+    this.userInfo = this.commoncodeProvider.getUserInfo();
+    if(this.userInfo === null){
+      this.navController.setRoot(HomePage);
+    }
   }
-
 
   isLevel1Shown(idx) {
     return this.showLevel1 === idx;
@@ -179,7 +118,6 @@ export class MainTemplatePage {
     var auth_check = false;
 
     for(var w in this.page_auth){
-
       if(page.component === this.page_auth[w].PGM_ID){
         console.log(page.component + " ::: " +this.page_auth[w].PGM_ID);
         auth_check = true;
@@ -189,6 +127,7 @@ export class MainTemplatePage {
 
     if(auth_check){
       //param : 프로그램 버튼 권한
+      console.log(page.component);
       this.nav.push(page.component);
     }else{
       this.alertProvider.call_alert("접근", page.title + "의 권한이 없습니다.", "확인");

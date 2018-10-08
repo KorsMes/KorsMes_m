@@ -47,8 +47,8 @@
           </ion-item>
         </ion-list>
       </ion-item>
-      <ion-item *ngFor = "let u of userInfo">
-        <div>{{u.ID}}</div>
+      <ion-item>
+        <div>{{userInfo.user_id}}</div>
       </ion-item>
       <ion-item>
         <button ion-button full (click) = "doLogout()">Log Out</button>

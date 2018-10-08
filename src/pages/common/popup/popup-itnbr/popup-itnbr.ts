@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupItnbrPage page.
@@ -23,12 +24,13 @@ export class PopupItnbrPage {
   public iform_list;
 
   //조회조건
+  public g_user;
+  public g_company; //회사정보
   public itnbr = ""; //품목코드
   public itnbr_nm = ""; //품목명칭
   public spec1 = ""; //규격1
   public jijic = ""; //재질/형명
   public iform = ""; // 품목형태
-  public company_cd; //회사코드
 
   //품목코드 조회 결과 (리스트)
   public result;
@@ -38,19 +40,22 @@ export class PopupItnbrPage {
               public navParams: NavParams,
               public apiProvider: ApiProvider,
               public alertProvider: AlertProvider,
+              public commoncodeProvider: CommoncodeProvider,
               public viewController: ViewController,
               public storage: Storage) {
 
+
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
+
+              //회사코드 가져오기
+              this.g_company = this.commoncodeProvider.getCompanyInfo();
+
               let api_url = "/common/component/getIform";
-              let param = JSON.stringify({a:'abc'});
+              let param = JSON.stringify({c_code: this.g_user.c_code});
               this.apiProvider.data_api(api_url, param)
               .then(data => {
                 this.iform_list = data;
-              });
-
-
-              this.storage.get("[COMPANY]").then((data) => {
-                  this.company_cd = data.company_cd;
               });
   }
 
@@ -61,7 +66,7 @@ export class PopupItnbrPage {
   //조회
   retrive(){
     let api_url = "/common/popup/itnbr";
-    let param = JSON.stringify({itnbr: this.itnbr, itnbr_nm: this.itnbr_nm, spec1: this.spec1, jijic: this.jijic, iform: this.iform, company_cd: this.company_cd});
+    let param = JSON.stringify({itnbr: this.itnbr, itnbr_nm: this.itnbr_nm, spec1: this.spec1, jijic: this.jijic, iform: this.iform, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -75,7 +80,7 @@ export class PopupItnbrPage {
   //리스트 선택 시
   selectItem(selData){
     let data = {
-      itnbr: selData.ITNBR,
+      itnbr_cd: selData.ITNBR,
       itnbr_nm: selData.ITDSC
     }
     this.viewController.dismiss(data);
@@ -84,7 +89,7 @@ export class PopupItnbrPage {
   //팝업 닫기
   closeModal(){
     let data = {
-      itnbr : '',
+      itnbr_cd : '',
       itnbr_nm : ''
     }
     this.viewController.dismiss(data);

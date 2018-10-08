@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupBuyerPage page.
@@ -19,12 +20,13 @@ import { AlertProvider } from '../../../../providers/alert';
 export class PopupBuyerPage {
 
   //조회조건
-  public by_cd;
-  public by_nm;
-  public bu_cd
-  public by_prsn;
-  public ven_user;
-  public use_gubun;
+  public g_user;
+  public by_cd; //거래처코드
+  public by_nm; //거래처명
+  public bu_cd; //사업자번호
+  public by_prsn; //대표자명
+  public ven_user; //담당자명
+  public use_gubun; //미사용거래처포함 여부
 
   //조회결과
   public result;
@@ -34,7 +36,11 @@ export class PopupBuyerPage {
               public navParams: NavParams,
               public viewController: ViewController,
               public alertProvider: AlertProvider,
-              public apiProvider: ApiProvider) {
+              public apiProvider: ApiProvider,
+              public commoncodeProvider: CommoncodeProvider) {
+
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
   }
 
   ionViewDidLoad() {
@@ -44,7 +50,7 @@ export class PopupBuyerPage {
   //조회
   retrive(){
     let api_url = "/common/popup/buyer";
-    let param = JSON.stringify({by_cd: this.by_cd, by_nm: this.by_nm, bu_cd: this.bu_cd, by_prsn: this.by_prsn, ven_user: this.ven_user, use_gubun: this.use_gubun});
+    let param = JSON.stringify({by_cd: this.by_cd, by_nm: this.by_nm, bu_cd: this.bu_cd, by_prsn: this.by_prsn, ven_user: this.ven_user, use_gubun: this.use_gubun, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -59,8 +65,8 @@ export class PopupBuyerPage {
   //리스트 선택 시
   selectItem(selData){
     let data = {
-      by_cd: selData.BY_CD,
-      by_nm: selData.BY_NM
+      cust_cd: selData.BY_CD,
+      cust_nm: selData.BY_NM
     }
     this.viewController.dismiss(data);
   }
@@ -68,8 +74,8 @@ export class PopupBuyerPage {
   //팝업 닫기
   closeModal(){
     let data = {
-      by_cd : '',
-      by_nm : ''
+      cust_cd : '',
+      cust_nm : ''
     }
     this.viewController.dismiss(data);
   }

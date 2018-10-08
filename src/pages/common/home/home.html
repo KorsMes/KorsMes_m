@@ -8,12 +8,26 @@
 
 <ion-content padding>
   <ion-list>
+    <ion-row>
+      <ion-col col-2>회사명</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="selCompanyCode" interface="popover">
+          <ion-option value="{{c.company_code}}" *ngFor = "let c of companyInfo">{{c.company_name}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
     <ion-item>
       <ion-input placeholder="Username" [(ngModel)] = "user_id"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-input placeholder="Password" type="password" [(ngModel)] = "user_pswd"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>로그인유지</ion-label>
+      <ion-checkbox color="primary" checked="1" [(ngModel)] = "retain_flag"></ion-checkbox>
     </ion-item>
   </ion-list>
 

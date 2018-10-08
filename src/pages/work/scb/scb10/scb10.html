@@ -22,18 +22,26 @@
   <br>
   <ion-grid *ngIf="searchCondition">
     <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getPjtno_popup()">
+        <ion-item (click) = "PopupPjtno()">
           <ion-label color="primary">프로젝트번호</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getPjtno_popup()">
+        <ion-item (click) = "PopupPjtno()">
           <ion-label>{{pjt_nm}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="pjt_nm" (click) = "Clear_Pjtno('')">X</button>
+        <button ion-button *ngIf="pjt_nm" (click) = "clear_pjtno('')">X</button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -21,32 +21,32 @@
   <ion-grid *ngIf="searchCondition">
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getUser_popup()">
+        <ion-item (click) = "PopupUser()">
           <ion-label color="primary">기안자</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getUser_popup()">
+        <ion-item (click) = "PopupUser()">
           <ion-label>{{user_nm}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="user_nm" (click) = "Clear_User('')">X</button>
+        <button ion-button *ngIf="user_nm" (click) = "clear_user('')">X</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getBuyer_popup()">
+        <ion-item (click) = "PopupBuyer()">
           <ion-label color="primary">거래처</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getBuyer_popup()">
-          <ion-label>{{by_nm}}</ion-label>
+        <ion-item (click) = "PopupBuyer()">
+          <ion-label>{{cust_nm}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="by_nm" (click) = "Clear_buyer('')">X</button>
+        <button ion-button *ngIf="cust_nm" (click) = "clear_buyer('')">X</button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController, ModalController } 
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupUserPage page.
@@ -19,6 +20,7 @@ import { AlertProvider } from '../../../../providers/alert';
 export class PopupUserPage {
 
   //조회조건
+  public g_user;
   public dept_cd; //소속부서
   public dept_nm; //소속부서명칭
 
@@ -30,8 +32,12 @@ export class PopupUserPage {
               public navParams: NavParams,
               public apiProvider: ApiProvider,
               public alertProvider: AlertProvider,
+              public commoncodeProvider: CommoncodeProvider,
               public viewController: ViewController,
               public modalController: ModalController) {
+
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
   }
 
   ionViewDidLoad() {
@@ -39,13 +45,13 @@ export class PopupUserPage {
   }
 
   //조회조건 부서코드 초기화
-  Clear_Dept(){
+  clear_dept(){
     this.dept_cd = null;
     this.dept_nm = null;
   }
 
   //부서코드 팝업
-  getDept_popup(){
+  PopupDept(){
     var modal = this.modalController.create('PopupDeptPage');
     modal.onDidDismiss(data => {
       this.dept_cd = data.dept_cd;
@@ -57,7 +63,7 @@ export class PopupUserPage {
   //조회
   retrive(){
     let api_url = "/common/popup/user_list";
-    let param = JSON.stringify({dept_cd : this.dept_cd});
+    let param = JSON.stringify({dept_cd : this.dept_cd, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the Sfa05Page page.
@@ -29,14 +30,17 @@ export class SFA05 {
   public searchCondition;
 
   /* 조건검색 */
-  public company_cd;
+  public g_user;
+  public g_company; //회사정보
+  public g_plant; //공장정보
+
   public plant_cd;
-  public date_fr;
-  public date_to;
-  public dptno;
-  public dptnm;
-  public cust_cd;
-  public cust_nm;
+  public date_fr = new Date().getUTCFullYear()+"-"+"01-01"; //매출기간from
+  public date_to = new Date().toISOString(); //매출기간to
+  public dptno; //부서코드
+  public dptnm; //부서명
+  public cust_cd; //거래처코드
+  public cust_nm; //거래처명
 
   /* 조회결과 */
   public result1; //상세현황
@@ -53,9 +57,11 @@ export class SFA05 {
               public navParams: NavParams,
               public storage: Storage,
               public modalController: ModalController,
+              public commoncodeProvider: CommoncodeProvider,
               public alertProvider: AlertProvider,
               public apiProvider: ApiProvider) {
 
+              //버튼권한
               this.storage.get("[PAGE_AUTH]").then((data) => {
                 for(var n in data){
                   if("SFA05" == data[n].PGM_ID){
@@ -68,25 +74,26 @@ export class SFA05 {
                 }
               });
 
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
 
-              this.storage.get("[COMPANY]").then((data) => {
-                this.company_cd = data.company_cd;
-              });
+              //회사코드 가져오기
+              this.g_company = this.commoncodeProvider.getCompanyInfo();
 
-              this.storage.get("[PLANT]").then((data) => {
-                this.plant_cd = data.plant_cd;
-              });
+              //공장코드 가져오기
+              this.g_plant = this.commoncodeProvider.getPlantInfo();
+              this.plant_cd = this.g_plant[0].PLANT;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Sfa05Page');
   }
 
-
+  //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.date_fr = "";
-      this.date_to = "";
+      this.date_fr = new Date().getUTCFullYear()+"-"+"01-01";
+      this.date_to = new Date().toISOString();
       this.dptno = "";
       this.dptnm = "";
       this.cust_cd = "";
@@ -97,20 +104,20 @@ export class SFA05 {
 
 
   //조회조건 부서 초기화
-  Clear_Dept(){
+  clear_dept(){
     this.dptno = null;
     this.dptnm = null;
   }
 
   //조회조건 거래처 초기화
-  Clear_buyer(){
+  clear_buyer(){
     this.cust_cd = null;
     this.cust_nm = null;
   }
 
 
   //부서 팝업
-  getDept_popup(){
+  PopupDept(){
     var modal = this.modalController.create('PopupDeptPage');
     modal.onDidDismiss(data => {
       this.dptno = data.dept_cd;
@@ -120,11 +127,11 @@ export class SFA05 {
   }
 
   //거래처 팝업
-  getBuyer_popup(){
+  PopupBuyer(){
     var modal = this.modalController.create('PopupBuyerPage');
     modal.onDidDismiss(data => {
-      this.cust_cd = data.by_cd;
-      this.cust_nm = data.by_nm;
+      this.cust_cd = data.cust_cd;
+      this.cust_nm = data.cust_nm;
     });
     modal.present();
   }
@@ -135,7 +142,7 @@ export class SFA05 {
 
     //상세현황
     let api_url1 = "/sfa/sfa05_list1";
-    let param1 = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd, date_fr: this.date_fr, date_to: this.date_to, dptno: this.dptno, cust_cd: this.cust_cd});
+    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date_fr: this.date_fr, date_to: this.date_to, dptno: this.dptno, cust_cd: this.cust_cd, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url1, param1)
     .then(data => {
@@ -151,7 +158,7 @@ export class SFA05 {
 
     //거래처별
     let api_url2 = "/sfa/sfa05_list2";
-    let param2 = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd, date_fr: this.date_fr, date_to: this.date_to, dptno: this.dptno, cust_cd: this.cust_cd});
+    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date_fr: this.date_fr, date_to: this.date_to, dptno: this.dptno, cust_cd: this.cust_cd, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url2, param2)
     .then(data => {
@@ -167,7 +174,7 @@ export class SFA05 {
 
     //부서별
     let api_url3 = "/sfa/sfa05_list3";
-    let param3 = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd, date_fr: this.date_fr, date_to: this.date_to, dptno: this.dptno, cust_cd: this.cust_cd});
+    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date_fr: this.date_fr, date_to: this.date_to, dptno: this.dptno, cust_cd: this.cust_cd, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url3, param3)
     .then(data => {

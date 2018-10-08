@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { AlertProvider } from '../../../providers/alert';
 import { ApiProvider } from '../../../providers/api';
+import { CommoncodeProvider } from '../../../providers/commoncode';
 
 import { HomePage } from '../home/home';
 
@@ -21,6 +22,8 @@ import { HomePage } from '../home/home';
 })
 export class MainPage {
   userInfo: any;
+  public companyInfo;
+  public g_user;
 
   /* 조회조건 */
   public company_cd;
@@ -35,36 +38,28 @@ export class MainPage {
                 public storage: Storage,
                 public alertProvider: AlertProvider,
                 public apiProvider:ApiProvider,
-                public modalController: ModalController) {
+                public modalController: ModalController,
+                public commoncodeProvider: CommoncodeProvider) {
 
-                this.storage.get("[COMPANY]").then((data1) => {
-                  this.company_cd = data1.company_cd;
-                  this.storage.get("[PLANT]").then((data2) => {
-                    this.plant_cd = data2.plant_cd;
+                this.companyInfo = this.commoncodeProvider.getCompanyInfo();
+                this.g_user = this.commoncodeProvider.getUserInfo();
 
-                    let api_url = "/sea/sea12_list1";
-                    let param = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd});
+                let api_url = "/sea/sea12_list1";
+                let param = JSON.stringify({company_cd: this.companyInfo[0].COMPANY, plant_cd:'', c_code: this.g_user});
 
-                    this.apiProvider.data_api(api_url, param)
-                    .then(data => {
-                      this.result = data;
-                    });
-                  });
+                this.apiProvider.data_api(api_url, param)
+                .then(data => {
+                  this.result = data;
+
+                  return;
                 });
-
-
-
-
   }
 
   ionViewDidLoad() {
-    this.storage.get("[USERINFO]").then((result) => {
-      if(result !== null){
-        this.userInfo = result;
-      }else{
-        this.navController.setRoot(HomePage);
-      }
-    });
+    this.userInfo = this.commoncodeProvider.getUserInfo();
+    if(this.userInfo === null){
+      this.navController.setRoot(HomePage);
+    }
   }
 
   quickPage(page, pagetitle){

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupPurnoPage page.
@@ -20,7 +21,10 @@ import { AlertProvider } from '../../../../providers/alert';
 export class PopupPurnoPage {
 
   //조회조건
-  public company_cd;
+  public g_user;
+  public g_company; //회사정보
+  public g_plant; //공장정보
+
   public plant_cd;
 
   //조회결과
@@ -37,15 +41,18 @@ export class PopupPurnoPage {
               public modalController: ModalController,
               public apiProvider: ApiProvider,
               public alertProvider: AlertProvider,
+              public commoncodeProvider: CommoncodeProvider,
               public storage: Storage) {
 
-              this.storage.get("[COMPANY]").then((data) => {
-                this.company_cd = data.company_cd;
-              });
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
 
-              this.storage.get("[PLANT]").then((data) => {
-                this.plant_cd = data.plant_cd;
-              });
+              //회사코드 가져오기
+              this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+              //공장코드 가져오기
+              this.g_plant = this.commoncodeProvider.getPlantInfo();
+              this.plant_cd = this.g_plant[0].PLANT;
   }
 
   ionViewDidLoad() {
@@ -55,7 +62,7 @@ export class PopupPurnoPage {
   //조회
   retrive(){
     let api_url = "/common/popup/purno_list";
-    let param = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){

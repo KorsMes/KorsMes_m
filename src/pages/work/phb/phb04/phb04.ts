@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the Phb04Page page.
@@ -30,11 +31,14 @@ export class PHB04 {
   public searchCondition;
 
   /* 조건검색 */
-  public company_cd;
+  public g_user;
+  public g_company; //회사정보
+  public g_plant; //공장정보
+
   public plant_cd;
 
-  public date1 = new Date(new Date().getFullYear() - 1).toISOString();  //검사일자 from
-  public date2 = new Date().toISOString();      //검사일자 to
+  public date1 = new Date().getUTCFullYear()+"-"+"01-01"; //검사일자 from
+  public date2 = new Date().toISOString(); //검사일자 to
 
   public task_cd; //공정코드
   public task_nm; //공정명
@@ -53,9 +57,11 @@ export class PHB04 {
                 public navParams: NavParams,
                 public storage: Storage,
                 public modalController: ModalController,
+                public commoncodeProvider: CommoncodeProvider,
                 public alertProvider: AlertProvider,
                 public apiProvider: ApiProvider) {
 
+                //버튼권한
                 this.storage.get("[PAGE_AUTH]").then((data) => {
                   for(var n in data){
                     if("PHD04" == data[n].PGM_ID){
@@ -68,39 +74,46 @@ export class PHB04 {
                   }
                 });
 
-                this.storage.get("[COMPANY]").then((data) => {
-                    this.company_cd = data.company_cd;
-                });
+                //로그인정보 가져오기
+                this.g_user = this.commoncodeProvider.getUserInfo();
 
-                this.storage.get("[PLANT]").then((data) => {
-                    this.plant_cd = data.plant_cd;
-                });
+                //회사코드 가져오기
+                this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+                //공장코드 가져오기
+                this.g_plant = this.commoncodeProvider.getPlantInfo();
+                this.plant_cd = this.g_plant[0].PLANT;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Phb04Page');
   }
 
-
+  //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.pjtno = null;
-      this.pjtnm = null;
+      this.date1 = new Date().getUTCFullYear()+"-"+"01-01";
+      this.date2 = new Date().toISOString();
 
-      this.task_cd = null;
-      this.task_nm = null;
+      this.lot_no = "";
+
+      this.pjtno = "";
+      this.pjtnm = "";
+
+      this.task_cd = "";
+      this.task_nm = "";
     }
     this.searchCondition = yn;
   }
 
   //조회조건 불합격PJT번호 정보 초기화
-  Clear_Pjtno_list3(){
+  clear_pjtno3(){
     this.pjtno = null;
     this.pjtnm = null;
   }
 
   //불합격PJT번호 팝업
-  getPjtno_list3_popup(){
+  PopupPjtno3(){
     var modal = this.modalController.create('PopupPjtno3Page');
     modal.onDidDismiss(data => {
       this.pjtno = data.pjtno;
@@ -110,13 +123,13 @@ export class PHB04 {
   }
 
  //조회조건 공정 정보 초기화
-  Clear_Task(){
+  clear_task(){
     this.task_cd = null;
     this.task_nm = null;
   }
 
   //공정 팝업
-  getTask_popup(){
+  PopupTask(){
     var modal = this.modalController.create('PopupTaskPage');
     modal.onDidDismiss(data => {
       this.task_cd = data.task_cd;
@@ -134,7 +147,7 @@ export class PHB04 {
       return;
     }
     let api_url = "/phb/phb04_list";
-    let param = JSON.stringify({company_cd: this.company_cd, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.mo_no, task_cd: this.task_cd, lot_no: this.lot_no} );
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.pjtno, task_cd: this.task_cd, lot_no: this.lot_no, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){

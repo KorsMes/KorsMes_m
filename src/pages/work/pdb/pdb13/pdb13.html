@@ -20,58 +20,123 @@
   <br>
   <ion-grid *ngIf="searchCondition">
     <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getPjtno_popup1()">
+        <ion-item (click) = "PopupPjtno1()">
           <ion-label color="primary">PJT번호</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getPjtno_popup1()">
+        <ion-item (click) = "PopupPjtno1()">
           <ion-label>{{pjtnm1}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="pjtnm1" (click) = "Clear_Pjtno1('')">X</button>
+        <button ion-button *ngIf="pjtnm1" (click) = "clear_pjtno1('')">X</button>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getPjtno_popup2()">
+        <ion-item (click) = "PopupPjtno2()">
           <ion-label>{{pjtnm2}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="pjtnm2" (click) = "Clear_Pjtno2('')">X</button>
+        <button ion-button *ngIf="pjtnm2" (click) = "clear_pjtno2('')">X</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getPurno_popup()">
+        <ion-item (click) = "PopupPurno1()">
           <ion-label color="primary">발주번호</ion-label>
         </ion-item>
       </ion-col>
+
       <ion-col col-7>
-        <ion-item (click) = "getPurno_popup()">
-          <ion-label>{{purno}}</ion-label>
+        <ion-item (click) = "PopupPurno1()">
+          <ion-label>{{purno1}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="purno" (click) = "Clear_Purno('')">X</button>
+        <button ion-button *ngIf="purno1" (click) = "clear_purno1('')">X</button>
+      </ion-col>
+
+      <ion-col col-7>
+        <ion-item (click) = "PopupPurno2()">
+          <ion-label>{{purno2}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="purno2" (click) = "clear_purno2('')">X</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getItnbr2_popup()">
+        <ion-item (click) = "PopupItnbr1()">
           <ion-label color="primary">품목코드</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getItnbr2_popup()">
+        <ion-item (click) = "PopupItnbr1()">
+          <ion-label>{{itnbr_nm1}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button *ngIf="itnbr_nm1" (click) = "clear_itnbr1('')">X</button>
+      </ion-col>
+
+      <ion-col col-7>
+        <ion-item (click) = "PopupItnbr2()">
           <ion-label>{{itnbr_nm2}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="itnbr_cd2" (click) = "Clear_Itnbr2('')">X</button>
+        <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-label>발주일자</ion-label>
+      </ion-col>
+      <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>-
+      </ion-col>
+      <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-label>품목구분</ion-label>
+      </ion-col>
+      <ion-col col-8>
+        <ion-list radio-group [(ngModel)]="itnbr_gu">
+          <ion-item>
+            <ion-label>전기</ion-label>
+            <ion-radio value="B"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>기구</ion-label>
+            <ion-radio value="C"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>기타</ion-label>
+            <ion-radio value="D"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>전체</ion-label>
+            <ion-radio value="A"></ion-radio>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -81,4 +146,186 @@
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <ion-item>
+    <button ion-button (click) = "changeTab('1')">P/O별 발주상세내역</button>
+    <button ion-button (click) = "changeTab('2')">업체별 발주집계표</button>
+  </ion-item>
+
+  <ion-item>
+    <button ion-button (click) = "changeTab('3')">PJT별 발주집계표</button>
+    <button ion-button (click) = "changeTab('4')">품목별 발주 집계표</button>
+  </ion-item>
+
+  <ion-item>
+    <button ion-button (click) = "changeTab('5')">업체별 발주내역 총집계표</button>
+    <button ion-button (click) = "changeTab('6')">PJT별 발주내역 총집계표</button>
+  </ion-item>
+
+  <ion-grid *ngIf="Tab1">
+    <ion-row>
+      <ion-col col-2>발주번호</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>조달구분</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>업체</ion-col>
+      <ion-col col-2>명칭</ion-col>
+      <ion-col col-2>발주일자</ion-col>
+      <ion-col col-2>순번</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>납기일자</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>PJT번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>차수</ion-col>
+      <ion-col col-2>변경내역</ion-col>
+      <ion-col col-2>할당수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>발주형태</ion-col>
+      <ion-col col-2>지불방법</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r1.PJTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNM}}</ion-col>
+      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{r1.SODAT}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
+      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+      <ion-col col-2>{{r1.PJAMT}}</ion-col>
+      <ion-col col-2>{{r1.NADAT}}</ion-col>
+      <ion-col col-2>{{r1.DPTNO}}</ion-col>
+      <ion-col col-2>{{r1.EPNO}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab2">
+    <ion-row>
+      <ion-col col-2>업체</ion-col>
+      <ion-col col-2>명칭</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r1.PJTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNM}}</ion-col>
+      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{r1.SODAT}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
+      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+      <ion-col col-2>{{r1.PJAMT}}</ion-col>
+      <ion-col col-2>{{r1.NADAT}}</ion-col>
+      <ion-col col-2>{{r1.DPTNO}}</ion-col>
+      <ion-col col-2>{{r1.EPNO}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab3">
+    <ion-row>
+      <ion-col col-2>PJT번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r1.PJTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNM}}</ion-col>
+      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{r1.SODAT}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
+      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+      <ion-col col-2>{{r1.PJAMT}}</ion-col>
+      <ion-col col-2>{{r1.NADAT}}</ion-col>
+      <ion-col col-2>{{r1.DPTNO}}</ion-col>
+      <ion-col col-2>{{r1.EPNO}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab4">
+    <ion-row>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>할당수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r1.PJTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNM}}</ion-col>
+      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{r1.SODAT}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
+      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+      <ion-col col-2>{{r1.PJAMT}}</ion-col>
+      <ion-col col-2>{{r1.NADAT}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab5">
+    <ion-row>
+      <ion-col col-2>업체</ion-col>
+      <ion-col col-2>명칭</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>재고사용금액</ion-col>
+      <ion-col col-2>원발주금액</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r1.PJTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNM}}</ion-col>
+      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{r1.SODAT}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
+      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab6">
+    <ion-row>
+      <ion-col col-2>pjt번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>재고사용금액</ion-col>
+      <ion-col col-2>원발주금액</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>합계금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+      <ion-col col-2>{{r1.PJTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNM}}</ion-col>
+      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{r1.SODAT}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR}}</ion-col>
+      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
+      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
+

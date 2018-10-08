@@ -18,33 +18,33 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getUser_popup()">
+        <ion-item (click) = "PopupUser()">
           <ion-label color="primary">담당자</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getUser_popup()">
+        <ion-item (click) = "PopupUser()">
           <ion-label>{{user_1}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="user_1" (click) = "Clear_User('')">X</button>
+        <button ion-button *ngIf="user_1" (click) = "clear_user('')">X</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getBalju_popup()">
+        <ion-item (click) = "PopupBuyer()">
           <ion-label color="primary">발주처</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getBalju_popup()">
+        <ion-item (click) = "PopupBuyer()">
           <ion-label>{{balju_1}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="balju_1" (click) = "Clear_Balju('')">X</button>
+        <button ion-button *ngIf="balju_1" (click) = "clear_buyer('')">X</button>
       </ion-col>
     </ion-row>
 
@@ -61,12 +61,12 @@
       <ion-col col-4>견적의뢰일자</ion-col>
       <ion-col col-4>
         <ion-item>
-          <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date1"></ion-datetime>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col col-4>
         <ion-item>
-          <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date2"></ion-datetime>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>

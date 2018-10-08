@@ -16,14 +16,12 @@ import { HomePage } from '../pages/common/home/home';
 import { MainTemplatePage } from '../pages/common/main-template/main-template';
 import { MainPage } from '../pages/common/main/main';
 
-/* WORK TAB PAGES */
-import { SEA12TAB1 } from '../pages/work/sea/sea12-tab1/sea12-tab1';
-import { SEA12TAB2 } from '../pages/work/sea/sea12-tab2/sea12-tab2';
-import { SEA12TAB3 } from '../pages/work/sea/sea12-tab3/sea12-tab3';
-
 import { AlertProvider } from '../providers/alert';
 import { ApiProvider } from '../providers/api';
 import { SidemenuListProvider } from '../providers/sidemenu-list';
+import { CompanyProvider } from '../providers/company';
+import { CommoncodeProvider } from '../providers/commoncode';
+
 
 @NgModule({
   declarations: [
@@ -31,28 +29,20 @@ import { SidemenuListProvider } from '../providers/sidemenu-list';
     HomePage,
     MainTemplatePage,
     MainPage,
-
-    SEA12TAB1,
-    SEA12TAB2,
-    SEA12TAB3
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     MainTemplatePage,
-    MainPage,
-
-    SEA12TAB1,
-    SEA12TAB2,
-    SEA12TAB3
+    MainPage
   ],
   providers: [
     StatusBar,
@@ -60,7 +50,10 @@ import { SidemenuListProvider } from '../providers/sidemenu-list';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AlertProvider,
     ApiProvider,
-    SidemenuListProvider
-  ]
+    SidemenuListProvider,
+    CompanyProvider,
+    CommoncodeProvider
+  ],
 })
-export class AppModule {}
+export class AppModule {
+}

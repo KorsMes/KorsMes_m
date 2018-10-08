@@ -20,34 +20,42 @@
   <br>
   <ion-grid *ngIf="searchCondition">
     <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getDept_popup()">
+        <ion-item (click) = "PopupDept()">
           <ion-label color="primary">부서</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getDept_popup()">
+        <ion-item (click) = "PopupDept()">
           <ion-label>{{dptnm}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="dptnm" (click) = "Clear_Dept('')">X</button>
+        <button ion-button *ngIf="dptnm" (click) = "clear_dept('')">X</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "getBuyer_popup()">
+        <ion-item (click) = "PopupBuyer()">
           <ion-label color="primary">협력업체</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "getBuyer_popup()">
+        <ion-item (click) = "PopupBuyer()">
           <ion-label>{{cust_nm}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="cust_nm" (click) = "Clear_buyer('')">X</button>
+        <button ion-button *ngIf="cust_nm" (click) = "clear_buyer('')">X</button>
       </ion-col>
     </ion-row>
 
@@ -72,10 +80,10 @@
         <ion-label>매출기간</ion-label>
       </ion-col>
       <ion-col col-4>
-        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date_fr"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>
       </ion-col>
       <ion-col col-4>
-        <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="date_to"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
       </ion-col>
     </ion-row>
   </ion-grid>

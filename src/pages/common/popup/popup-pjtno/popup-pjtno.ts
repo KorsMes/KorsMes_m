@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupPjtnoPage page.
@@ -25,16 +26,17 @@ export class PopupPjtnoPage {
   public date = new Date();
 
   //조회조건
+  public g_user;
+  public g_company; //회사정보
   public cust_cd;
   public cust_nm;
-  public date1 = new Date(new Date().getFullYear() - 10).toISOString();
-  public date2 = new Date().toISOString();
+  public date1 = new Date().getUTCFullYear()+"-"+"01-01"; //견적의뢰일자fr
+  public date2 = new Date().toISOString(); //견적의뢰일자to
   public status = 0;
   public user;
   public user_1;
   public balju;
   public balju_1;
-  public company_cd;
 
 
 
@@ -51,18 +53,21 @@ export class PopupPjtnoPage {
                 public viewController: ViewController,
                 public apiProvider: ApiProvider,
                 public alertProvider: AlertProvider,
+                public commoncodeProvider: CommoncodeProvider,
                 public modalController: ModalController,
                 public storage: Storage) {
 
+                //로그인정보 가져오기
+                this.g_user = this.commoncodeProvider.getUserInfo();
+
+                //회사코드 가져오기
+                this.g_company = this.commoncodeProvider.getCompanyInfo();
+
                 let api_url = "/common/component/getStatus";
-                let param = JSON.stringify({a:'abc'});
+                let param = JSON.stringify({c_code: this.g_user.c_code});
                 this.apiProvider.data_api(api_url, param)
                 .then(data => {
                   this.status_list = data;
-                });
-
-                this.storage.get("[COMPANY]").then((data) => {
-                  this.company_cd = data.company_cd;
                 });
 
   }
@@ -73,13 +78,13 @@ export class PopupPjtnoPage {
 
 
   //조회조건 담당자 초기화
-  Clear_User(){
+  clear_user(){
     this.user = null;
     this.user_1 = null;
   }
 
   //담당자 팝업
-  getUser_popup(){
+  PopupUser(){
     var modal = this.modalController.create('PopupUserPage');
     modal.onDidDismiss(data => {
       this.user = data.user_id;
@@ -91,17 +96,17 @@ export class PopupPjtnoPage {
 
 
   //조회조건 발주처 초기화
-  Clear_Balju(){
+  clear_buyer(){
     this.balju = null;
     this.balju_1 = null;
   }
 
   //발주처 팝업
-  getBalju_popup(){
+  PopupBuyer(){
     var modal = this.modalController.create('PopupBuyerPage');
     modal.onDidDismiss(data => {
-      this.balju = data.by_cd;
-      this.balju_1 = data.by_nm;
+      this.balju = data.cust_cd;
+      this.balju_1 = data.cust_nm;
     });
     modal.present();
   }
@@ -116,7 +121,7 @@ export class PopupPjtnoPage {
     }
 
     let api_url = "/common/popup/pjtno_list";
-    let param = JSON.stringify({user: this.user, date1: this.date1, date2: this.date2, status: this.status, balju: this.balju, pjtno: this.cust_cd, pjtnm: this.cust_nm, company_cd: this.company_cd});
+    let param = JSON.stringify({user: this.user, date1: this.date1, date2: this.date2, status: this.status, balju: this.balju, pjtno: this.cust_cd, pjtnm: this.cust_nm, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){

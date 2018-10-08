@@ -17,15 +17,23 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4>PJT BOM 확정일</ion-col>
       <ion-col col-4>
         <ion-item>
-          <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="pjtno_fr"></ion-datetime>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="pjtno_fr"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col col-4>
         <ion-item>
-          <ion-datetime displayFormat="YYYY/MM/DD" [(ngModel)]="pjtno_to"></ion-datetime>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="pjtno_to"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>

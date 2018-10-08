@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the Pda12Page page.
@@ -30,11 +31,12 @@ export class PDA12 {
   public searchCondition;
 
   /* 조건검색 */
+  public g_user;
   public user_id; //사번
   public user_nm; //성명
 
-  public by_cd; //거래처코드
-  public by_nm; //거래처명
+  public cust_cd; //거래처코드
+  public cust_nm; //거래처명
 
 
 
@@ -46,6 +48,7 @@ export class PDA12 {
               public navParams: NavParams,
               public storage: Storage,
               public modalController: ModalController,
+              public commoncodeProvider: CommoncodeProvider,
               public alertProvider: AlertProvider,
               public apiProvider: ApiProvider) {
 
@@ -60,6 +63,9 @@ export class PDA12 {
                   }
                 }
               });
+
+              //로그인정보 가져오기
+              this.g_user = this.commoncodeProvider.getUserInfo();
   }
 
   ionViewDidLoad() {
@@ -71,26 +77,26 @@ export class PDA12 {
       this.user_id = null;
       this.user_nm = null;
 
-      this.by_cd = null;
-      this.by_nm = null;
+      this.cust_cd = null;
+      this.cust_nm = null;
     }
     this.searchCondition = yn;
   }
 
   //조회조건 사용자정보 초기화
-  Clear_User(){
+  clear_user(){
     this.user_id = null;
     this.user_nm = null;
   }
 
   //조회조건 거래처 초기화
-  Clear_buyer(){
-    this.by_cd = null;
-    this.by_nm = null;
+  clear_buyer(){
+    this.cust_cd = null;
+    this.cust_nm = null;
   }
 
   //사용자 팝업
-  getUser_popup(){
+  PopupUser(){
     var modal = this.modalController.create('PopupUserPage');
     modal.onDidDismiss(data => {
       this.user_id = data.user_id;
@@ -100,11 +106,11 @@ export class PDA12 {
   }
 
   //거래처 팝업
-  getBuyer_popup(){
+  PopupBuyer(){
     var modal = this.modalController.create('PopupBuyerPage');
     modal.onDidDismiss(data => {
-      this.by_cd = data.by_cd;
-      this.by_nm = data.by_nm;
+      this.cust_cd = data.cust_cd;
+      this.cust_nm = data.cust_nm;
     });
     modal.present();
   }
@@ -112,7 +118,7 @@ export class PDA12 {
   //조회
   retrive(){
     let api_url = "/pda/pda12_list";
-    let param = JSON.stringify({user_id: this.user_id});
+    let param = JSON.stringify({user_id: this.user_id, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {

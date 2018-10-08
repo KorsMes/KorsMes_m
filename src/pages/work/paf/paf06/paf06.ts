@@ -4,8 +4,8 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
-//import { PAF06DETAIL } from '../paf06-detail/paf06-detail';
 
 /**
  * Generated class for the Paf06Page page.
@@ -32,24 +32,30 @@ export class PAF06 {
   public searchCondition;
 
   /* 조건검색 */
-  public company_cd;
-  public itnbr;
-  public itnbr_nm;
+  public g_user;
+  public g_company; //회사정보
+  public itnbr_cd; //품목코드
+  public itnbr_nm; //품목명
+  public cust_cd; //협력업체코드
+  public cust_nm; //협력업체명
 
-  public by_cd;
-  public by_nm;
+  public commonCode1; //단위
 
   /* 조회결과 */
   public result;
+
 
   constructor(
                 public navController: NavController,
                 public navParams: NavParams,
                 public storage: Storage,
                 public modalController: ModalController,
+                public commoncodeProvider: CommoncodeProvider,
                 public alertProvider: AlertProvider,
-                public apiProvider: ApiProvider) {
+                public apiProvider: ApiProvider,
+                public commonfilterPipe: CommoncodeProvider) {
 
+                //버튼권한
                 this.storage.get("[PAGE_AUTH]").then((data) => {
                   for(var n in data){
                     if("PAF06" == data[n].PGM_ID){
@@ -62,56 +68,61 @@ export class PAF06 {
                   }
                 });
 
+                //로그인정보 가져오기
+                this.g_user = this.commoncodeProvider.getUserInfo();
 
-                this.storage.get("[COMPANY]").then((data) => {
-                    this.company_cd = data.company_cd;
-                });
+                //회사코드 가져오기
+                this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+                //단위 가져오기
+                this.commonCode1 = this.commoncodeProvider.getCommonCode1();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Paf06Page');
   }
 
+  //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.itnbr = null;
+      this.itnbr_cd = null;
       this.itnbr_nm = null;
 
-      this.by_cd = null;
-      this.by_nm = null;
+      this.cust_cd = null;
+      this.cust_nm = null;
     }
     this.searchCondition = yn;
   }
 
   //조회조건 품목코드 초기화
-  Clear_itnbr(){
-    this.itnbr = null;
+  clear_itnbr(){
+    this.itnbr_cd = null;
     this.itnbr_nm = null;
   }
 
   //조회조건 협력업체 초기화
-  Clear_buyer(){
-    this.by_cd = null;
-    this.by_nm = null;
+  clear_buyer(){
+    this.cust_cd = null;
+    this.cust_nm = null;
   }
 
 
   //품목코드 팝업
-  getItnbr_popup(){
+  PopupItnbr(){
     var modal = this.modalController.create('PopupItnbrPage');
     modal.onDidDismiss(data => {
-      this.itnbr = data.itnbr;
+      this.itnbr_cd = data.itnbr_cd;
       this.itnbr_nm = data.itnbr_nm;
     });
     modal.present();
   }
 
   //협력업체 팝업
-  getBuyer_popup(){
+  PopupBuyer(){
     var modal = this.modalController.create('PopupBuyerPage');
     modal.onDidDismiss(data => {
-      this.by_cd = data.by_cd;
-      this.by_nm = data.by_nm;
+      this.cust_cd = data.cust_cd;
+      this.cust_nm = data.cust_nm;
     });
     modal.present();
   }
@@ -119,27 +130,18 @@ export class PAF06 {
   //조회
   retrive(){
     let api_url = "/paf/paf06_list";
-    let param = JSON.stringify({itnbr: this.itnbr, by_cd: this.by_cd, company_cd:this.company_cd});
+    let param = JSON.stringify({itnbr: this.itnbr_cd, by_cd: this.cust_cd, company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }else{
-        this.result = data;
         this.searchCondition = "";
       }
+      this.result = data;
     });
   }
-
-  //상세 프로그램
-  /*goDetail(idx){
-    console.log(idx);
-    this.navController.push('PAF06DETAIL', {
-      ilst : this.result,
-      index : idx
-    });
-  }*/
 
   add(){
 
@@ -156,5 +158,6 @@ export class PAF06 {
   print(){
 
   }
+
 
 }

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the PopupItnbr2Page page.
@@ -20,7 +21,8 @@ import { AlertProvider } from '../../../../providers/alert';
 export class PopupItnbr2Page {
 
   //조회조건
-  public company_cd; //회사코드
+  public g_user;
+  public g_company; //회사정보
 
   public itcls_list; //제품군 select box
   public mccod_list; //내외자구분 select box
@@ -49,15 +51,19 @@ export class PopupItnbr2Page {
                 public apiProvider: ApiProvider,
                 public alertProvider: AlertProvider,
                 public modalController: ModalController,
+                public commoncodeProvider: CommoncodeProvider,
                 public storage: Storage) {
 
-                this.storage.get("[COMPANY]").then((data) => {
-                  this.company_cd = data.company_cd;
-                });
+
+                //로그인정보 가져오기
+                this.g_user = this.commoncodeProvider.getUserInfo();
+
+                //회사코드 가져오기
+                this.g_company = this.commoncodeProvider.getCompanyInfo();
 
                 //제품군 리스트 select box
                 let api_url1 = "/common/component/getItcls";
-                let param1 = JSON.stringify({a:"abc"});
+                let param1 = JSON.stringify({c_code: this.g_user.c_code});
                 this.apiProvider.data_api(api_url1, param1)
                 .then(data => {
                   this.itcls_list = data;
@@ -65,7 +71,7 @@ export class PopupItnbr2Page {
 
                 //내외자구분 리스트 select box
                 let api_url2 = "/common/component/getMccod";
-                let param2 = JSON.stringify({a:"abc"});
+                let param2 = JSON.stringify({c_code: this.g_user.c_code});
                 this.apiProvider.data_api(api_url2, param2)
                 .then(data => {
                   this.mccod_list = data;
@@ -73,11 +79,12 @@ export class PopupItnbr2Page {
 
                 //품목형태 리스트 select box
                 let api_url3 = "/common/component/getItemtype";
-                let param3 = JSON.stringify({a:"abc"});
+                let param3 = JSON.stringify({c_code: this.g_user.c_code});
                 this.apiProvider.data_api(api_url3, param3)
                 .then(data => {
                   this.itemtype_list = data;
                 });
+
   }
 
   ionViewDidLoad() {
@@ -91,7 +98,7 @@ export class PopupItnbr2Page {
   retrive(){
     let api_url = "/common/popup/itnbr_list2";
     let param = JSON.stringify({
-                                  company_cd: this.company_cd,
+                                  company_cd: this.g_company[0].COMPANY,
                                   item_cd: this.item_cd,
                                   jijic: this.jijic,
                                   item_nm: this.item_nm,
@@ -100,16 +107,20 @@ export class PopupItnbr2Page {
                                   jejos: this.jejos,
                                   itcls_cd: this.itcls_cd,
                                   mccod_cd: this.mccod_cd,
-                                  itemtype_cd: this.itemtype_cd
+                                  itemtype_cd: this.itemtype_cd,
+                                  c_code: this.g_user.c_code
                                });
-    this.apiProvider.data_api(api_url, param)
-    .then(data => {
-      if(Object.keys(data).length === 0){
-        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-      }else{
-        this.result = data;
-      }
-    });
+                              this.apiProvider.data_api(api_url, param)
+                              .then(data => {
+                                if(Object.keys(data).length === 0){
+                                  this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+                                }else{
+                                  this.result = data;
+                                }
+                              });
+
+                              //회사코드 가져오기
+                              this.g_company = this.commoncodeProvider.getCompanyInfo();
   }
 
   //리스트 선택 시
