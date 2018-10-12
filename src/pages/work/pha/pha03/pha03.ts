@@ -66,6 +66,7 @@ export class PHA03 {
                       this.acc_btn_print = data[n].ACC_BTN_PRINT;
                     }
                   }
+
                 });
 
                 //로그인정보 가져오기
