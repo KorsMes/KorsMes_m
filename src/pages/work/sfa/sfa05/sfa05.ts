@@ -42,6 +42,10 @@ export class SFA05 {
   public cust_cd; //거래처코드
   public cust_nm; //거래처명
 
+  public commonCode8; //부서
+  public commonCode12; //매출담당
+  public commonCode13; //거래처
+
   /* 조회결과 */
   public result1; //상세현황
   public result2; //거래처별
@@ -83,6 +87,15 @@ export class SFA05 {
               //공장코드 가져오기
               this.g_plant = this.commoncodeProvider.getPlantInfo();
               this.plant_cd = this.g_plant[0].PLANT;
+
+              //부서 가져오기
+              this.commonCode8 = this.commoncodeProvider.getCommonCode8();
+
+              //매출담당 가져오기
+              this.commonCode12 = this.commoncodeProvider.getCommonCode12();
+
+              //거래처 가져오기
+              this.commonCode13 = this.commoncodeProvider.getCommonCode13();
   }
 
   ionViewDidLoad() {

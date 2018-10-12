@@ -40,9 +40,13 @@ export class PAF06 {
   public cust_nm; //협력업체명
 
   public commonCode1; //단위
+  public commonCode2; //조달구분
 
   /* 조회결과 */
   public result;
+
+  /* infiniteScroll */
+  public page = 1;
 
 
   constructor(
@@ -52,8 +56,7 @@ export class PAF06 {
                 public modalController: ModalController,
                 public commoncodeProvider: CommoncodeProvider,
                 public alertProvider: AlertProvider,
-                public apiProvider: ApiProvider,
-                public commonfilterPipe: CommoncodeProvider) {
+                public apiProvider: ApiProvider) {
 
                 //버튼권한
                 this.storage.get("[PAGE_AUTH]").then((data) => {
@@ -76,6 +79,9 @@ export class PAF06 {
 
                 //단위 가져오기
                 this.commonCode1 = this.commoncodeProvider.getCommonCode1();
+
+                //조달구분 가져오기
+                this.commonCode2 = this.commoncodeProvider.getCommonCode2();
   }
 
   ionViewDidLoad() {
@@ -128,9 +134,12 @@ export class PAF06 {
   }
 
   //조회
-  retrive(){
+  retrive(infiniteScroll){
+    if(infiniteScroll === undefined){
+      this.page = 1;
+    }
     let api_url = "/paf/paf06_list";
-    let param = JSON.stringify({itnbr: this.itnbr_cd, by_cd: this.cust_cd, company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code});
+    let param = JSON.stringify({itnbr: this.itnbr_cd, by_cd: this.cust_cd, company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, page: this.page});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
@@ -140,7 +149,20 @@ export class PAF06 {
         this.searchCondition = "";
       }
       this.result = data;
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
     });
+  }
+
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    this.retrive(infiniteScroll);
+
+    if (this.page === this.maximumPages) {
+      infiniteScroll.enable(false);
+    }
   }
 
   add(){

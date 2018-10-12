@@ -83,6 +83,12 @@ export class MyApp {
               this.commoncodeProvider.setCommonCode27(result.c_code); //상태
               this.commoncodeProvider.setCommonCode28(result.c_code); //품목구분
               this.commoncodeProvider.setCommonCode29(result.c_code); //입고유형
+              this.commoncodeProvider.setCommonCode30(result.c_code); //상태
+              this.commoncodeProvider.setCommonCode31(result.c_code); //조치구분
+              this.commoncodeProvider.setCommonCode32(result.c_code); //검사결과
+              this.commoncodeProvider.setCommonCode33(result.c_code); //불량항목
+              this.commoncodeProvider.setCommonCode34(result.c_code); //검사종류
+              this.commoncodeProvider.setCommonCode35(result.c_code); //검사구분
 
               this.rootPage = MainTemplatePage;
             }

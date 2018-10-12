@@ -109,6 +109,12 @@ export class HomePage {
         this.commoncodeProvider.setCommonCode27(this.c_code); //상태
         this.commoncodeProvider.setCommonCode28(this.c_code); //품목구분
         this.commoncodeProvider.setCommonCode29(this.c_code); //입고유형
+        this.commoncodeProvider.setCommonCode30(this.c_code); //상태
+        this.commoncodeProvider.setCommonCode31(this.c_code); //조치구분
+        this.commoncodeProvider.setCommonCode32(this.c_code); //검사결과
+        this.commoncodeProvider.setCommonCode33(this.c_code); //불량항목
+        this.commoncodeProvider.setCommonCode34(this.c_code); //검사종류
+        this.commoncodeProvider.setCommonCode35(this.c_code); //검사구분
 
 
         //로그인 유지 시 로그인데이터(쿠키) 생성

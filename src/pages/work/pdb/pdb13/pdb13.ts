@@ -243,18 +243,91 @@ export class PDB13 {
         this.searchCondition = "";
       }
       this.result1 = data;
-    })
+    });
+
+    //업체별 발주집계표
+    let api_url2 = "/pdb/pdb13_list2";
+    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    this.apiProvider.data_api(api_url2, param2)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        if(this.Tab2 === "2"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+      }else{
+        this.searchCondition = "";
+      }
+      this.result2 = data;
+    });
+
+    //PJT별 발주집계표
+    let api_url3 = "/pdb/pdb13_list3";
+    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    this.apiProvider.data_api(api_url3, param3)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        if(this.Tab3 === "3"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+      }else{
+        this.searchCondition = "";
+      }
+      this.result3 = data;
+    });
+
+    //품목별 발주 집계표
+    let api_url4 = "/pdb/pdb13_list4";
+    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    this.apiProvider.data_api(api_url4, param4)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        if(this.Tab4 === "4"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+      }else{
+        this.searchCondition = "";
+      }
+      this.result4 = data;
+    });
+
+    //업체별 발주내역 총집계표
+    let api_url5 = "/pdb/pdb13_list5";
+    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    this.apiProvider.data_api(api_url5, param5)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        if(this.Tab5 === "5"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+      }else{
+        this.searchCondition = "";
+      }
+      this.result5 = data;
+    });
+
+    //PJT별 발주내역 총집계표
+    let api_url6 = "/pdb/pdb13_list6";
+    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    this.apiProvider.data_api(api_url6, param6)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        if(this.Tab6 === "6"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+      }else{
+        this.searchCondition = "";
+      }
+      this.result6 = data;
+    });
   }
 
   //탭 페이지 조회
   subRetrive(idx){
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
-
     if(idx === "1"){
       //P/O별 발주상세내역
       let api_url1 = "/pdb/pdb13_list1";
-
-      this.apiProvider.data_api(api_url1, param)
+      let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      this.apiProvider.data_api(api_url1, param1)
       .then(data => {
         if(Object.keys(data).length === 0){
           if(this.Tab1 === "1"){
@@ -268,8 +341,8 @@ export class PDB13 {
     }else if(idx === "2"){
       //업체별 발주집계표
       let api_url2 = "/pdb/pdb13_list2";
-
-      this.apiProvider.data_api(api_url2, param)
+      let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      this.apiProvider.data_api(api_url2, param2)
       .then(data => {
         if(Object.keys(data).length === 0){
           if(this.Tab2 === "2"){
@@ -279,12 +352,12 @@ export class PDB13 {
           this.searchCondition = "";
         }
         this.result1 = data;
-      })
+      });
     }else if(idx === "3"){
       //PJT별 발주집계표
       let api_url3 = "/pdb/pdb13_list3";
-
-      this.apiProvider.data_api(api_url3, param)
+      let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      this.apiProvider.data_api(api_url3, param3)
       .then(data => {
         if(Object.keys(data).length === 0){
           if(this.Tab3 === "3"){
@@ -298,8 +371,8 @@ export class PDB13 {
     }else if(idx === "4"){
       //품목별 발주 집계표
       let api_url4 = "/pdb/pdb13_list4";
-
-      this.apiProvider.data_api(api_url4, param)
+      let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      this.apiProvider.data_api(api_url4, param4)
       .then(data => {
         if(Object.keys(data).length === 0){
           if(this.Tab4 === "4"){
@@ -313,8 +386,8 @@ export class PDB13 {
     }else if(idx === "5"){
       //업체별 발주내역 총집계표
       let api_url5 = "/pdb/pdb13_list5";
-
-      this.apiProvider.data_api(api_url5, param)
+      let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      this.apiProvider.data_api(api_url5, param5)
       .then(data => {
         if(Object.keys(data).length === 0){
           if(this.Tab5 === "5"){
@@ -328,8 +401,8 @@ export class PDB13 {
     }else if(idx === "6"){
       //PJT별 발주내역 총집계표
       let api_url6 = "/pdb/pdb13_list6";
-
-      this.apiProvider.data_api(api_url6, param)
+      let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      this.apiProvider.data_api(api_url6, param6)
       .then(data => {
         if(Object.keys(data).length === 0){
           if(this.Tab6 === "6"){
@@ -389,5 +462,6 @@ export class PDB13 {
       this.Tab6 = showIdx;
     }
   }
+
 
 }

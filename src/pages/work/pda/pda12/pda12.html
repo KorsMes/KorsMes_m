@@ -20,6 +20,43 @@
   <br>
   <ion-grid *ngIf="searchCondition">
     <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>상태</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="status_cd" interface="popover">
+          <ion-option value="" selected>전체</ion-option>
+          <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode30">{{p.NAME1}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>계정과목</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="acnt_cd" interface="popover">
+          <ion-option value="" selected>전체</ion-option>
+          <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode6">{{p.NAME1}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>
+        <ion-label>
+          지출내용
+        </ion-label>
+      </ion-col>
+      <ion-col col-10>
+        <ion-input placeholder="exp_remarks" [(ngModel)] = "exp_remarks"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
       <ion-col col-4>
         <ion-item (click) = "PopupUser()">
           <ion-label color="primary">기안자</ion-label>
@@ -34,6 +71,19 @@
         <button ion-button *ngIf="user_nm" (click) = "clear_user('')">X</button>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-label>기안일자</ion-label>
+      </ion-col>
+      <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>
+      </ion-col>
+      <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
+      </ion-col>
+    </ion-row>
+
     <ion-row>
       <ion-col col-4>
         <ion-item (click) = "PopupBuyer()">
@@ -56,4 +106,32 @@
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <br>
+
+  <ion-grid class="listgrid">
+    <ion-row>
+      <ion-col col-2>기안자</ion-col>
+      <ion-col col-2>No.</ion-col>
+      <ion-col col-2>지출일자</ion-col>
+      <ion-col col-2>계정과목</ion-col>
+      <ion-col col-2>지출내용</ion-col>
+      <ion-col col-2>거래처</ion-col>
+      <ion-col col-2>지출금액</ion-col>
+      <ion-col col-2>증빙자료</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-2>{{commonCode15 | commonfilter: r.SABN : 'commonCode15'}}</ion-col>
+      <ion-col col-2>{{r.SEQ}}</ion-col>
+      <ion-col col-2>{{r.EXP_DATE}}</ion-col>
+      <ion-col col-2>{{commonCode6 | commonfilter: r.AC_CD : 'commonCode6'}}</ion-col>
+      <ion-col col-2>{{r.EXP_REMARKS}}</ion-col>
+      <ion-col col-2>{{r.CUST_NM}}</ion-col>
+      <ion-col col-2>{{r.AMT}}</ion-col>
+      <ion-col col-2>{{r.PRO_FLAG}}</ion-col>
+      <ion-col col-2>{{r.REMARKS}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

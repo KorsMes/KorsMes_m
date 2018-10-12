@@ -122,19 +122,19 @@
         <ion-list radio-group [(ngModel)]="itnbr_gu">
           <ion-item>
             <ion-label>전기</ion-label>
-            <ion-radio value="B"></ion-radio>
+            <ion-radio value="E"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>기구</ion-label>
-            <ion-radio value="C"></ion-radio>
+            <ion-radio value="M"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>기타</ion-label>
-            <ion-radio value="D"></ion-radio>
+            <ion-radio value="C"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>전체</ion-label>
-            <ion-radio value="A"></ion-radio>
+            <ion-radio value="%"></ion-radio>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -188,17 +188,28 @@
       <ion-col col-2>지불방법</ion-col>
     </ion-row>
     <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
-      <ion-col col-2>{{r1.SODAT}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
-      <ion-col col-2>{{r1.PJQTY}}</ion-col>
-      <ion-col col-2>{{r1.PJAMT}}</ion-col>
-      <ion-col col-2>{{r1.NADAT}}</ion-col>
-      <ion-col col-2>{{r1.DPTNO}}</ion-col>
-      <ion-col col-2>{{r1.EPNO}}</ion-col>
+      <ion-col col-2>{{r1.PUR_NO}}</ion-col>
+      <ion-col col-2>{{r1.ITEM}}</ion-col>
+      <ion-col col-2>{{r1.ITEM_NAME}}</ion-col>
+      <ion-col col-2>{{r1.SUPL_CLASS}}</ion-col>
+      <ion-col col-2>{{r1.UOM}}</ion-col>
+      <ion-col col-2>{{r1.VENDOR}}</ion-col>
+      <ion-col col-2>{{r1.BY_NM}}</ion-col>
+      <ion-col col-2>{{r1.PUR_DATE}}</ion-col>
+      <ion-col col-2>{{r1.PUR_SEQ}}</ion-col>
+      <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
+      <ion-col col-2>{{r1.PUR_PRICE}}</ion-col>
+      <ion-col col-2>{{r1.PUR_AMT}}</ion-col>
+      <ion-col col-2>{{r1.DELV_DATE}}</ion-col>
+      <ion-col col-2>{{r1.NORM}}</ion-col>
+      <ion-col col-2>{{r1.PDTNO}}</ion-col>
+      <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
+      <ion-col col-2>{{r1.DRSEQ}}</ion-col>
+      <ion-col col-2>{{r1.DRDSC}}</ion-col>
+      <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
+      <ion-col col-2>{{r1.NEGO_PRICE}}</ion-col>
+      <ion-col col-2>{{r1.PUR_TYPE}}</ion-col>
+      <ion-col col-2>{{r1.PAY_METHOD}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -216,18 +227,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
-      <ion-col col-2>{{r1.SODAT}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
-      <ion-col col-2>{{r1.PJQTY}}</ion-col>
-      <ion-col col-2>{{r1.PJAMT}}</ion-col>
-      <ion-col col-2>{{r1.NADAT}}</ion-col>
-      <ion-col col-2>{{r1.DPTNO}}</ion-col>
-      <ion-col col-2>{{r1.EPNO}}</ion-col>
+    <ion-row *ngFor="let r2 of result2; let i=index" ><!--(click) = "goDetail(i)"-->
     </ion-row>
   </ion-grid>
 
@@ -245,18 +245,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
-      <ion-col col-2>{{r1.SODAT}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
-      <ion-col col-2>{{r1.PJQTY}}</ion-col>
-      <ion-col col-2>{{r1.PJAMT}}</ion-col>
-      <ion-col col-2>{{r1.NADAT}}</ion-col>
-      <ion-col col-2>{{r1.DPTNO}}</ion-col>
-      <ion-col col-2>{{r1.EPNO}}</ion-col>
+    <ion-row *ngFor="let r3 of result3; let i=index" ><!--(click) = "goDetail(i)"-->
     </ion-row>
   </ion-grid>
 
@@ -272,16 +261,7 @@
       <ion-col col-2>NEGO단가</ion-col>
       <ion-col col-2>NEGO금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
-      <ion-col col-2>{{r1.SODAT}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
-      <ion-col col-2>{{r1.PJQTY}}</ion-col>
-      <ion-col col-2>{{r1.PJAMT}}</ion-col>
-      <ion-col col-2>{{r1.NADAT}}</ion-col>
+    <ion-row *ngFor="let r4 of result4; let i=index" ><!--(click) = "goDetail(i)"-->
     </ion-row>
   </ion-grid>
 
@@ -295,14 +275,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
-      <ion-col col-2>{{r1.SODAT}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
-      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+    <ion-row *ngFor="let r5 of result5; let i=index" ><!--(click) = "goDetail(i)"-->
     </ion-row>
   </ion-grid>
 
@@ -316,16 +289,12 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>합계금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
-      <ion-col col-2>{{r1.SODAT}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR}}</ion-col>
-      <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
-      <ion-col col-2>{{r1.PJQTY}}</ion-col>
+    <ion-row *ngFor="let r6 of result6; let i=index" ><!--(click) = "goDetail(i)"-->
     </ion-row>
   </ion-grid>
 
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 

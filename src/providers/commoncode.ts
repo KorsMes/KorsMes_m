@@ -49,6 +49,12 @@ export class CommoncodeProvider {
   public commonCode27; //상태
   public commonCode28; //품목구분
   public commonCode29; //입고유형
+  public commonCode30; //상태
+  public commonCode31; //조치구분
+  public commonCode32; //검사결과
+  public commonCode33; //불량항목
+  public commonCode34; //검사종류
+  public commonCode35; //검사구분
 
 
 
@@ -561,6 +567,102 @@ export class CommoncodeProvider {
     });
   }
 
+  //상태
+  setCommonCode30(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode30";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode30 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //조치구분
+  setCommonCode31(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode31";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode31 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //검사결과
+  setCommonCode32(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode32";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode32 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //불량항목
+  setCommonCode33(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode33";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode33 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //검사종류
+  setCommonCode34(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode34";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode34 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //검사구분
+  setCommonCode35(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode35";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode35 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
 
   //단위 가져오기
   getCommonCode1(){
@@ -678,7 +780,30 @@ export class CommoncodeProvider {
   getCommonCode29(){
     return this.commonCode29;
   }
-
+  //상태
+  getCommonCode30(){
+    return this.commonCode30;
+  }
+  //조치구분
+  getCommonCode31(){
+    return this.commonCode31;
+  }
+  //검사결과
+  getCommonCode32(){
+    return this.commonCode32;
+  }
+  //불량항목
+  getCommonCode33(){
+    return this.commonCode33;
+  }
+  //검사종류
+  getCommonCode34(){
+    return this.commonCode34;
+  }
+  //검사구분
+  getCommonCode35(){
+    return this.commonCode35;
+  }
 
   /* 공통모듈 SET END */
 

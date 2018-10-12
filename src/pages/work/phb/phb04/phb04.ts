@@ -19,6 +19,13 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'phb04.html',
 })
 export class PHB04 {
+  /* 통합코드 */
+  public commonCode12; //검사자
+  public commonCode31; //조치구분
+  public commonCode32; //검사결과
+  public commonCode33; //불량항목
+  public commonCode34; //검사종류
+  public commonCode35; //검사구분
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -83,6 +90,24 @@ export class PHB04 {
                 //공장코드 가져오기
                 this.g_plant = this.commoncodeProvider.getPlantInfo();
                 this.plant_cd = this.g_plant[0].PLANT;
+
+                //검사자 가져오기
+                this.commonCode12 = this.commoncodeProvider.getCommonCode12();
+
+                //조치구분 가져오기
+                this.commonCode31 = this.commoncodeProvider.getCommonCode31();
+
+                //검사결과 가져오기
+                this.commonCode32 = this.commoncodeProvider.getCommonCode32();
+
+                //불량항목 가져오기
+                this.commonCode33 = this.commoncodeProvider.getCommonCode33();
+
+                //검사종류 가져오기
+                this.commonCode34 = this.commoncodeProvider.getCommonCode34();
+
+                //검사구분 가져오기
+                this.commonCode35 = this.commoncodeProvider.getCommonCode35();
   }
 
   ionViewDidLoad() {

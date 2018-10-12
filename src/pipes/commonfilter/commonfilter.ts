@@ -15,8 +15,6 @@ export class CommonfilterPipe implements PipeTransform {
   transform(items, value, code): any {
     let re = "";
 
-    console.log("code : " + code + " : " + value);
-
     //단위
     if(code === "commonCode1"){
       for(let item in items){
@@ -275,6 +273,75 @@ export class CommonfilterPipe implements PipeTransform {
         if(items[item].CODE === value){
           re = items[item].NAME1;
         }
+      }
+    }
+
+    //상태
+    if(code === "commonCode30"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //조치구분
+    if(code === "commonCode31"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //검사결과
+    if(code === "commonCode32"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //불량항목
+    if(code === "commonCode33"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //검사종류
+    if(code === "commonCode34"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //검사구분
+    if(code === "commonCode35"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+
+
+
+
+
+
+    //SCB10 GRID - 단가
+    if(code === "filter1"){
+      if(value > 1){
+        re = "SETS";
+      }else{
+        re = "SET";
       }
     }
 

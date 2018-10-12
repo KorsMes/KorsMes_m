@@ -24,7 +24,9 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>K o r s</ion-title>
+    <ion-title>
+      <img alt="logo" src={{company_logo}}>
+    </ion-title>
   </ion-navbar>
 
   <ion-grid>
@@ -35,9 +37,9 @@
       <ion-col col-3 (click) = "quickPage('SEA12', 'PJT 수주내역 조회')">영업관리</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-3 >목표예산</ion-col>
-      <ion-col col-3 >구매발주</ion-col>
-      <ion-col col-3 >자재관리</ion-col>
+      <ion-col col-3 (click) = "quickPage('PDH04', '목표기초원가 발행')">목표예산</ion-col>
+      <ion-col col-3 (click) = "quickPage('PDB13', '월 발주현황')">구매발주</ion-col>
+      <ion-col col-3 (click) = "quickPage('PEA03', '부품 입고대기 현황')">자재관리</ion-col>
       <ion-col col-3 (click) = "quickPage('PHA03', '월별 수입검사현황')">품질관리</ion-col>
     </ion-row>
   </ion-grid>
@@ -60,4 +62,8 @@
       </ion-row>
     </ion-grid>
   </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

@@ -32,6 +32,12 @@ export class MainPage {
   /* 조회결과 */
   public result;
 
+  /* title img */
+  public company_logo;
+
+  /* infiniteScroll */
+  public page = 1;
+
   constructor(
                 public navController: NavController,
                 public navParams: NavParams,
@@ -44,8 +50,10 @@ export class MainPage {
                 this.companyInfo = this.commoncodeProvider.getCompanyInfo();
                 this.g_user = this.commoncodeProvider.getUserInfo();
 
+                this.company_logo = "../../../assets/imgs/company_logo/"+this.g_user.c_code+".png";
+
                 let api_url = "/sea/sea12_list1";
-                let param = JSON.stringify({company_cd: this.companyInfo[0].COMPANY, plant_cd:'', c_code: this.g_user});
+                let param = JSON.stringify({company_cd: this.companyInfo[0].COMPANY, plant_cd:'', c_code: this.g_user.c_code, page: this.page});
 
                 this.apiProvider.data_api(api_url, param)
                 .then(data => {
@@ -79,6 +87,31 @@ export class MainPage {
         this.alertProvider.call_alert("접근", pagetitle + "의 권한이 없습니다.", "확인");
       }
     });
+  }
+
+  retrive(infiniteScroll){
+    if(infiniteScroll === undefined){
+      this.page = 1;
+    }
+    let api_url = "/sea/sea12_list1";
+    let param = JSON.stringify({company_cd: this.companyInfo[0].COMPANY, plant_cd:'', c_code: this.g_user.c_code, page: this.page});
+
+    this.apiProvider.data_api(api_url, param)
+    .then(data => {
+      this.result = data;
+      if (infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    });
+  }
+
+  loadMore(infiniteScroll) {
+    this.page++;
+    this.retrive(infiniteScroll);
+
+    if (this.page === this.maximumPages) {
+      infiniteScroll.enable(false);
+    }
   }
 
 }

@@ -46,7 +46,7 @@
     <ion-row>
       <ion-col col-4>
         <ion-item (click) = "PopupBuyer()">
-          <ion-label color="primary">협력업체</ion-label>
+          <ion-label color="primary">거래처</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
@@ -78,16 +78,16 @@
       <ion-col col-8>
         <ion-list radio-group [(ngModel)]="opt">
           <ion-item>
+            <ion-label>전체</ion-label>
+            <ion-radio value="A"></ion-radio>
+          </ion-item>
+          <ion-item>
             <ion-label>승인</ion-label>
             <ion-radio value="Y"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>미승인</ion-label>
             <ion-radio value="N"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>전체</ion-label>
-            <ion-radio value="A"></ion-radio>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -123,7 +123,7 @@
     <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
       <ion-col col-2>{{r1.PJTNO}}</ion-col>
       <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter: r1.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r1.SODAT}}</ion-col>
       <ion-col col-2>{{r1.ITNBR}}</ion-col>
       <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
@@ -166,10 +166,10 @@
     <ion-row *ngFor="let r3 of result3; let i=index" >
       <ion-col col-2>{{r3.DPTNO}}</ion-col>
       <ion-col col-2>{{commonCode14 | commonfilter: r3.DPTNO : 'commonCode14'}}</ion-col>
-      <ion-col col-2>{{r3.EPNO}}</ion-col>
+      <ion-col col-2>{{commonCode15 | commonfilter: r3.EPNO : 'commonCode15'}}</ion-col>
       <ion-col col-2>{{r3.PJQTY}}</ion-col>
       <ion-col col-2>{{r3.PJAMT}}</ion-col>
-      <ion-col col-2>비고</ion-col>
+      <ion-col col-2></ion-col>
     </ion-row>
   </ion-grid>
 

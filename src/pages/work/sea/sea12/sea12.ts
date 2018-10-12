@@ -35,6 +35,7 @@ export class SEA12 {
   public searchCondition;
 
   /* 조건검색 */
+  public g_user;
   public g_company; //회사정보
   public g_plant; //공장정보
 
@@ -49,7 +50,6 @@ export class SEA12 {
   public opt = "A"; //승인여부 (A:전체/ Y:승인/ N:미승인)
 
   /* 조회결과 */
-  public g_user;
   public result1; //상세
   public result2; //업체별
   public result3; //부서별
@@ -151,6 +151,7 @@ export class SEA12 {
     });
     modal.present();
   }
+
 
   //조회
   retrive(){

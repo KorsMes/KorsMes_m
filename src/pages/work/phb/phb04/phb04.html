@@ -121,7 +121,7 @@
       <ion-col col-2>{{r.LOT_NO}}</ion-col>
       <ion-col col-2>{{r.QC_DATE}}</ion-col>
       <ion-col col-2>{{r.QC_NO}}</ion-col>
-      <ion-col col-2>{{r.GUBUN}}</ion-col>
+      <ion-col col-2>{{commonCode35 | commonfilter: r.GUBUN : 'commonCode35'}}</ion-col>
       <ion-col col-2>{{r.VENDOR}}</ion-col>
       <ion-col col-2>{{r.ITEM}}</ion-col>
       <ion-col col-2>{{r.ITEM_NAME_K}}</ion-col>
@@ -129,11 +129,11 @@
       <ion-col col-2>{{r.QCREQ_QTY}}</ion-col>
       <ion-col col-2>{{r.QC_QTY}}</ion-col>
       <ion-col col-2>{{r.ERR_QTY}}</ion-col>
-      <ion-col col-2>{{r.CREATE_BY}}</ion-col>
-      <ion-col col-2>{{r.INS_KIND}}</ion-col>
-      <ion-col col-2>{{r.ERR_TAG}}</ion-col>
-      <ion-col col-2>{{r.ERR_ACT}}</ion-col>
-      <ion-col col-2>{{r.QC_RESULT}}</ion-col>
+      <ion-col col-2>{{commonCode12 | commonfilter: r.CREATE_BY : 'commonCode12'}}</ion-col>
+      <ion-col col-2>{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
+      <ion-col col-2>{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
+      <ion-col col-2>{{commonCode31 | commonfilter: r.ERR_ACT : 'commonCode31'}}</ion-col>
+      <ion-col col-2>{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
       <ion-col col-2>{{r.REMARKS}}</ion-col>
     </ion-row>
   </ion-grid>

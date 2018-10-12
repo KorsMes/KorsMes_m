@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Slides } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,10 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pdh04.html',
 })
 export class PDH04 {
+  @ViewChild(Slides) slides: Slides;
+  public active_slide_index;
+  /* 통합코드 */
+  public commonCode1; //부서
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -32,6 +36,10 @@ export class PDH04 {
 
   /* 조건검색 */
   public g_user;
+  public g_company;
+  public g_plant;
+
+  public plant_cd;
   public pdtno1;
   public pdtnm1;
 
@@ -39,8 +47,12 @@ export class PDH04 {
   public pdtnm2;
 
   /* 조회결과 */
-  public result;
+  public result1;
+  public result2;
 
+  /* 탭 페이지 */
+  public Tab1 = "1";
+  public Tab2;
 
   constructor(
               public navCtrl: NavController,
@@ -51,9 +63,10 @@ export class PDH04 {
               public alertProvider: AlertProvider,
               public apiProvider: ApiProvider) {
 
+              //버튼권한
               this.storage.get("[PAGE_AUTH]").then((data) => {
                 for(var n in data){
-                  if("PAF06" == data[n].PGM_ID){
+                  if("PDH04" == data[n].PGM_ID){
                     this.acc_btn_add = data[n].ACC_BTN_ADD;
                     this.acc_btn_save = data[n].ACC_BTN_SAVE;
                     this.acc_btn_delete = data[n].ACC_BTN_DELETE;
@@ -66,10 +79,28 @@ export class PDH04 {
               //로그인정보 가져오기
               this.g_user = this.commoncodeProvider.getUserInfo();
 
+              //회사코드 가져오기
+              this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+              //공장코드 가져오기
+              this.g_plant = this.commoncodeProvider.getPlantInfo();
+              this.plant_cd = this.g_plant[0].PLANT;
+
+              //단위 가져오기
+              this.commonCode1 = this.commoncodeProvider.getCommonCode1();
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Pdh04Page');
+  }
+
+  ionViewDidEnter(){
+    this.slides.slideTo(this.active_slide_index);
+  }
+
+  goToSlide(index){
+    this.slides.slideTo(index, 0);
   }
 
 
@@ -84,19 +115,19 @@ export class PDH04 {
     this.searchCondition = yn;
   }
 
-  //조회조건 PDTNO 초기화
-  Clear_Pdtnm1(){
+  //조회조건 PDTNO1 초기화
+  Clear_pdtno1(){
     this.pdtno1 = null;
     this.pdtnm1 = null;
   }
 
-  Clear_Pdtnm2(){
+  Clear_pdtno2(){
     this.pdtno2 = null;
     this.pdtnm2 = null;
   }
 
   //PDTNO 팝업
-  getPdtno_popup1(){
+  PopupPdtno1(){
     var modal = this.modalController.create('PopupPdtnoPage');
     modal.onDidDismiss(data => {
       this.pdtno1 = data.pjtno;
@@ -105,13 +136,62 @@ export class PDH04 {
     modal.present();
   }
 
-  getPdtno_popup2(){
+  PopupPdtno2(){
     var modal = this.modalController.create('PopupPdtnoPage');
     modal.onDidDismiss(data => {
       this.pdtno2 = data.pjtno;
       this.pdtnm2 = data.pjtnm;
     });
     modal.present();
+  }
+
+
+  //조회
+  retrive(){
+
+    //자재투입 계획서(갑지)
+    let api_url1 = "/pdh/pdh04_list1";
+    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pdtno1, pjtno_to: this.pdtno2, c_code: this.g_user.c_code});
+
+    this.apiProvider.data_api(api_url1, param1)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        if(this.Tab1 === "1"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+      }else{
+        this.searchCondition = "";
+      }
+      this.result1 = data;
+    });
+
+    //자재투입 계획서(을지)
+    let api_url2 = "/pdh/pdh04_list2";
+    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pdtno1, pjtno_to: this.pdtno2, c_code: this.g_user.c_code});
+
+    this.apiProvider.data_api(api_url2, param2)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+      }else{
+        this.searchCondition = "";
+      }
+      this.result2 = data;
+    });
+  }
+
+  //탭페이지 전환
+  changeTab(showIdx){
+    if(showIdx === "1"){
+      this.Tab1 = showIdx;
+      this.Tab2 = "";
+    }else if(showIdx === "2"){
+      this.Tab2 = showIdx;
+      this.Tab1 = "";
+    }
+  }
+
+  slideChanged(){
+    this.slides.getActiveIndex();
   }
 
 

@@ -51,4 +51,27 @@
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <br>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>그룹</ion-col>
+      <ion-col col-2>품명 및 규격</ion-col>
+      <ion-col col-2>수량</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>단가</ion-col>
+      <ion-col col-2>금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-2>{{r.GRPNO}} - {{r.PNLNO}}</ion-col>
+      <ion-col col-2>{{r.ITDSC}}</ion-col>
+      <ion-col col-2>{{r.SOQTY1}}</ion-col>
+      <ion-col col-2>{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>
+      <ion-col col-2>{{r.SOWPRC1}}</ion-col>
+      <ion-col col-2>{{r.SOWAMT1}}</ion-col>
+      <ion-col col-2>{{r.NORM1}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

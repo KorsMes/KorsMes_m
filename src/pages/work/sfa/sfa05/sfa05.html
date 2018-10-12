@@ -46,7 +46,7 @@
     <ion-row>
       <ion-col col-4>
         <ion-item (click) = "PopupBuyer()">
-          <ion-label color="primary">협력업체</ion-label>
+          <ion-label color="primary">거래처</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
@@ -56,22 +56,6 @@
       </ion-col>
       <ion-col col-1>
         <button ion-button *ngIf="cust_nm" (click) = "clear_buyer('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-2>
-        <ion-label>회사</ion-label>
-      </ion-col>
-      <ion-col col-4>
-        <ion-label>{{company_cd}}</ion-label>
-      </ion-col>
-
-      <ion-col col-2>
-        <ion-label>공장</ion-label>
-      </ion-col>
-      <ion-col col-4>
-        <ion-label>{{plant_cd}}</ion-label>
       </ion-col>
     </ion-row>
 
@@ -113,15 +97,15 @@
     <ion-row *ngFor="let r1 of result1; let i=index" >
       <ion-col col-2>{{r1.PJTNO}}</ion-col>
       <ion-col col-2>{{r1.PJTNM}}</ion-col>
-      <ion-col col-2>{{r1.CVCOD}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter: r1.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r1.JDATA}}</ion-col>
       <ion-col col-2>{{r1.JUPO1}}{{r1.JUPO2}}</ion-col> <!-- CHECK -->
       <ion-col col-2>{{r1.GRITN}}</ion-col>
       <ion-col col-2>{{r1.QTY2}}</ion-col>
       <ion-col col-2>{{r1.AMT2}}</ion-col>
       <ion-col col-2>{{r1.VAT}}</ion-col>
-      <ion-col col-2>{{r1.DPTNO}}</ion-col>
-      <ion-col col-2>{{r1.EMPNO}}</ion-col>
+      <ion-col col-2>{{commonCode8 | commonfilter: r1.DPTNO : 'commonCode8'}}</ion-col>
+      <ion-col col-2>{{commonCode12 | commonfilter: r1.EMPNO : 'commonCode12'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -137,7 +121,7 @@
     </ion-row>
     <ion-row *ngFor="let r2 of result2; let i=index" >
       <ion-col col-2>{{r2.CVCOD}}</ion-col>
-      <ion-col col-2>{{r2.CVCOD_1}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter: r2.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r2.QTY2}}</ion-col>
       <ion-col col-2>{{r2.AMT2}}</ion-col>
       <ion-col col-2>{{r2.VAT}}</ion-col>
@@ -158,8 +142,8 @@
     </ion-row>
     <ion-row *ngFor="let r3 of result3; let i=index" >
       <ion-col col-2>{{r3.DPTNO}}</ion-col>
-      <ion-col col-2>{{r3.DPTNO_1}}</ion-col>
-      <ion-col col-2>{{r3.EMPNO}}</ion-col>
+      <ion-col col-2>{{commonCode8 | commonfilter: r3.DPTNO : 'commonCode8'}}</ion-col>
+      <ion-col col-2>{{commonCode12 | commonfilter: r3.EMPNO : 'commonCode12'}}</ion-col>
       <ion-col col-2>{{r3.QTY2}}</ion-col>
       <ion-col col-2>{{r3.AMT2}}</ion-col>
       <ion-col col-2>{{r3.VAT}}</ion-col>

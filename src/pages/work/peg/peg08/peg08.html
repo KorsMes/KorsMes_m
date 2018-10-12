@@ -5,14 +5,233 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>PEG08</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>자재수불 집계표</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <button ion-button (click) = "condition_yn('')">전체</button>
+  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+  <br>
+  <ion-grid *ngIf="searchCondition">
+    <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-label>조회년월</ion-label>
+      </ion-col>
+      <ion-col col-8>
+        <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="yyyymm"></ion-datetime>
+      </ion-col>
+      <ion-col col-8>
+        <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="yyyymm2"></ion-datetime>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <br>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <ion-item>
+    <button ion-button (click) = "changeTab('1')">월별/자재별 수불집계표</button>
+    <button ion-button (click) = "changeTab('2')">월별 금액집계표</button>
+  </ion-item>
+  <ion-item>
+    <button ion-button (click) = "changeTab('3')">마감(전)집계표</button>
+    <button ion-button (click) = "changeTab('4')">마감(후)집계표</button>
+  </ion-item>
+  <ion-item>
+    <button ion-button (click) = "changeTab('5')">실사용 재고리스트</button>
+    <button ion-button (click) = "changeTab('6')">기간별/자재별 수불집계표</button>
+  </ion-item>
+
+  <ion-grid *ngIf="Tab1">
+    <ion-row>
+      <ion-col col-2>품번</ion-col>
+      <ion-col col-2>품명</ion-col>
+      <ion-col col-2>제조사</ion-col>
+      <ion-col col-2>이동평균단가</ion-col>
+      <ion-col col-2>이월수량</ion-col>
+      <ion-col col-2>입고수량</ion-col>
+      <ion-col col-2>출고수량</ion-col>
+      <ion-col col-2>재고수량</ion-col>
+      <ion-col col-2>재질/형명</ion-col>
+      <ion-col col-2>금액</ion-col>
+      <ion-col col-2>입고금액</ion-col>
+      <ion-col col-2>출고금액</ion-col>
+      <ion-col col-2>재고금액</ion-col>
+      <ion-col col-2>규격</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r1 of result1; let i=index" >
+      <ion-col col-2>{{r1.ITEM}}</ion-col>
+      <ion-col col-2>{{r1.ITEM_NAME_K}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter: r1.JEJOS : 'commonCode13'}}</ion-col>
+      <ion-col col-2>{{(r1.BASIC_AMT + r1.DEPS_AMT) / (r1.BASIC_QTY + r1.DEPS_QTY)}}</ion-col>
+      <ion-col col-2>{{r1.BASIC_QTY}}</ion-col>
+      <ion-col col-2>{{r1.DEPS_QTY}}</ion-col>
+      <ion-col col-2>{{r1.OUT_QTY}}</ion-col>
+      <ion-col col-2>{{r1.STOCK_QTY}}</ion-col>
+      <ion-col col-2>{{r1.JIJIC}}</ion-col>
+      <ion-col col-2>{{r1.BASIC_AMT}}</ion-col>
+      <ion-col col-2>{{r1.DEPS_AMT}}</ion-col>
+      <ion-col col-2>{{r1.OUT_AMT}}</ion-col>
+      <ion-col col-2>{{r1.STOCK_AMT}}</ion-col>
+      <ion-col col-2>{{r1.SPEC1}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab2">
+    <ion-row>
+      <ion-col col-2>월</ion-col>
+      <ion-col col-2>기초금액</ion-col>
+      <ion-col col-2>입고금액</ion-col>
+      <ion-col col-2>입고금액Vat</ion-col>
+      <ion-col col-2>입고금액합계</ion-col>
+      <ion-col col-2>출고금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r2 of result2; let i=index" >
+      <ion-col col-2>{{r2.YYYYMM}}</ion-col>
+      <ion-col col-2>{{r2.BASIC_AMT}}</ion-col>
+      <ion-col col-2>{{r2.DEPS_AMT}}</ion-col>
+      <ion-col col-2>{{r2.VAT}}</ion-col>
+      <ion-col col-2>{{(r2.DEPS_AMT + r2.VAT)}}</ion-col>
+      <ion-col col-2>{{r2.OUT_AMT}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab3">
+    <ion-row>
+      <ion-col col-2>거래처</ion-col>
+      <ion-col col-2>거래처명</ion-col>
+      <ion-col col-2>사업자등록번호</ion-col>
+      <ion-col col-2>전화번호</ion-col>
+      <ion-col col-2>대표자명</ion-col>
+      <ion-col col-2>내자금액</ion-col>
+      <ion-col col-2>내자Vat</ion-col>
+      <ion-col col-2>외자금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r3 of result3; let i=index" >
+      <ion-col col-2>{{r3.PEA01_HIS_VENDOR}}</ion-col>
+      <ion-col col-2>{{r3.SAA_BUYER_BY_NM}}</ion-col>
+      <ion-col col-2>{{r3.SAA_BUYER_BU_CD}}</ion-col>
+      <ion-col col-2>{{r3.SAA_BUYER_BY_TEL_NO}}</ion-col>
+      <ion-col col-2>{{r3.SAA_BUYER_BY_PRSN}}</ion-col>
+      <ion-col col-2>{{r3.TOT_1}}</ion-col>
+      <ion-col col-2>{{r3.TOT_1_R}}</ion-col>
+      <ion-col col-2>{{r3.TOT_2}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab4">
+    <ion-row>
+      <ion-col col-2>거래처</ion-col>
+      <ion-col col-2>거래처명</ion-col>
+      <ion-col col-2>사업장</ion-col>
+      <ion-col col-2>사업자등록번호</ion-col>
+      <ion-col col-2>전화번호</ion-col>
+      <ion-col col-2>대표자명</ion-col>
+      <ion-col col-2>내자금액</ion-col>
+      <ion-col col-2>내자Vat</ion-col>
+      <ion-col col-2>외자금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r4 of result4; let i=index" >
+      <ion-col col-2>{{r4.PEH01_MST_VENDOR}}</ion-col>
+      <ion-col col-2>{{r4.SAA_BUYER_BY_NM}}</ion-col>
+      <ion-col col-2>{{r4.TAX_WORK}}</ion-col>
+      <ion-col col-2>{{r4.SAA_BUYER_BU_CD}}</ion-col>
+      <ion-col col-2>{{r4.SAA_BUYER_BY_TEL_NO}}</ion-col>
+      <ion-col col-2>{{r4.SAA_BUYER_BY_PRSN}}</ion-col>
+      <ion-col col-2>{{r4.TOT_1}}</ion-col>
+      <ion-col col-2>{{r4.TOT_1_R}}</ion-col>
+      <ion-col col-2>{{r4.TOT_2}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab5">
+    <ion-row>
+      <ion-col col-2>품번</ion-col>
+      <ion-col col-2>품명</ion-col>
+      <ion-col col-2>제조사</ion-col>
+      <ion-col col-2>이동평균단가</ion-col>
+      <ion-col col-2>이월수량</ion-col>
+      <ion-col col-2>입고수량</ion-col>
+      <ion-col col-2>출고수량</ion-col>
+      <ion-col col-2>재고수량</ion-col>
+      <ion-col col-2>재질/형명</ion-col>
+      <ion-col col-2>금액</ion-col>
+      <ion-col col-2>입고금액</ion-col>
+      <ion-col col-2>출고금액</ion-col>
+      <ion-col col-2>재고금액</ion-col>
+      <ion-col col-2>규격</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r5 of result5; let i=index" >
+      <ion-col col-2>{{r5.ITEM}}</ion-col>
+      <ion-col col-2>{{r5.ITEM_NAME_K}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter: r5.JEJOS : 'commonCode13'}}</ion-col>
+      <ion-col col-2>{{(r5.BASIC_AMT + r5.DEPS_AMT) / (r5.BASIC_QTY + r5.DEPS_QTY)}}</ion-col>
+      <ion-col col-2>{{r5.BASIC_QTY}}</ion-col>
+      <ion-col col-2>{{r5.DEPS_QTY}}</ion-col>
+      <ion-col col-2>{{r5.OUT_QTY}}</ion-col>
+      <ion-col col-2>{{r5.STOCK_QTY}}</ion-col>
+      <ion-col col-2>{{r5.JIJIC}}</ion-col>
+      <ion-col col-2>{{r5.BASIC_AMT}}</ion-col>
+      <ion-col col-2>{{r5.DEPS_AMT}}</ion-col>
+      <ion-col col-2>{{r5.OUT_AMT}}</ion-col>
+      <ion-col col-2>{{r5.STOCK_AMT}}</ion-col>
+      <ion-col col-2>{{r5.NORM1}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab6">
+    <ion-row>
+      <ion-col col-2>품번</ion-col>
+      <ion-col col-2>품명</ion-col>
+      <ion-col col-2>제조사</ion-col>
+      <ion-col col-2>이동평균단가</ion-col>
+      <ion-col col-2>이월수량</ion-col>
+      <ion-col col-2>입고수량</ion-col>
+      <ion-col col-2>출고수량</ion-col>
+      <ion-col col-2>재고수량</ion-col>
+      <ion-col col-2>재질/형명</ion-col>
+      <ion-col col-2>금액</ion-col>
+      <ion-col col-2>입고금액</ion-col>
+      <ion-col col-2>출고금액</ion-col>
+      <ion-col col-2>재고금액</ion-col>
+      <ion-col col-2>규격</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r6 of result6; let i=index" >
+      <ion-col col-2>{{r6.ITEM}}</ion-col>
+      <ion-col col-2>{{r6.ITEM_NAME_K}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter: r6.JEJOS : 'commonCode13'}}</ion-col>
+      <ion-col col-2>{{(r6.BASIC_AMT + r6.DEPS_AMT) / (r6.BASIC_QTY + r6.DEPS_QTY)}}</ion-col>
+      <ion-col col-2>{{r6.BASIC_QTY}}</ion-col>
+      <ion-col col-2>{{r6.DEPS_QTY}}</ion-col>
+      <ion-col col-2>{{r6.OUT_QTY}}</ion-col>
+      <ion-col col-2>{{r6.STOCK_QTY}}</ion-col>
+      <ion-col col-2>{{r6.JIJIC}}</ion-col>
+      <ion-col col-2>{{r6.BASIC_AMT}}</ion-col>
+      <ion-col col-2>{{r6.DEPS_AMT}}</ion-col>
+      <ion-col col-2>{{r6.OUT_AMT}}</ion-col>
+      <ion-col col-2>{{r6.STOCK_AMT}}</ion-col>
+      <ion-col col-2>{{r6.NORM1}}</ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

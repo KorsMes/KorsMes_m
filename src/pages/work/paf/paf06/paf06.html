@@ -81,7 +81,7 @@
       <ion-col col-2>{{r.NORM1}}</ion-col>
       <ion-col col-2>{{commonCode1 | commonfilter: r.PUR_UM : 'commonCode1'}}</ion-col>
       <ion-col col-2>{{r.VENDOR_NAME}}</ion-col>
-      <ion-col col-2>{{r.SUPPLY}}</ion-col>
+      <ion-col col-2>{{commonCode2 | commonfilter: r.SUPPLY : 'commonCode2'}}</ion-col>
       <ion-col col-2>{{r.CURRENCY}}</ion-col>
       <ion-col col-2>{{r.TEMP_PRICE}}</ion-col>
       <ion-col col-2>{{r.PAST_PRICE}}</ion-col>
@@ -90,4 +90,7 @@
     </ion-row>
   </ion-grid>
 
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

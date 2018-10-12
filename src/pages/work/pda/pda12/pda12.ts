@@ -20,6 +20,10 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 })
 export class PDA12 {
 
+  public commonCode30; //상태
+  public commonCode6; //계정과목
+  public commonCode15; //사용자
+
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
   public acc_btn_save;
@@ -32,11 +36,20 @@ export class PDA12 {
 
   /* 조건검색 */
   public g_user;
-  public user_id; //사번
-  public user_nm; //성명
+  public g_company; //회사정보
+  public g_plant; //공장정보
+  public user_id; //사번(기안자)
+  public user_nm; //성명(기안자)
+  public status_cd; //상태
+  public acnt_cd; //계정과목
+  public plant_cd; //공장코드
+  public exp_remarks; //지출내용
 
-  public cust_cd; //거래처코드
-  public cust_nm; //거래처명
+  public date_fr = new Date().getUTCFullYear()+"-"+"01-01"; //기안일자from
+  public date_to = new Date().toISOString(); //기안일자to
+
+  public cust_cd; //거래처코드(거래처)
+  public cust_nm; //거래처명(거래처)
 
 
 
@@ -66,6 +79,20 @@ export class PDA12 {
 
               //로그인정보 가져오기
               this.g_user = this.commoncodeProvider.getUserInfo();
+
+              //회사코드 가져오기
+              this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+              //공장코드 가져오기
+              this.g_plant = this.commoncodeProvider.getPlantInfo();
+              this.plant_cd = this.g_plant[0].PLANT;
+
+              //상태 가져오기
+              this.commonCode30 = this.commoncodeProvider.getCommonCode30();
+              //계정과목 가져오기
+              this.commonCode6 = this.commoncodeProvider.getCommonCode6();
+              //사용자 가져오기
+              this.commonCode15 = this.commoncodeProvider.getCommonCode15();
   }
 
   ionViewDidLoad() {
@@ -116,18 +143,22 @@ export class PDA12 {
   }
 
   //조회
-  retrive(){
+  retrive(infiniteScroll){
+    if(infiniteScroll === undefined){
+      this.page = 1;
+    }
+
     let api_url = "/pda/pda12_list";
-    let param = JSON.stringify({user_id: this.user_id, c_code: this.g_user.c_code});
+    let param = JSON.stringify({c_code: this.g_user.c_code, cmpy_cd: this.g_company[0].COMPANY, act_unit: this.plant_cd, sabn: this.user_id, drf_date_fr: this.date_fr, drf_date_to: this.date_to, status: this.status_cd, exp_remarks: this.exp_remarks, cust_nm: this.cust_nm, ac_cd: this.acnt_cd});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }else{
-        this.result = data;
         this.searchCondition = "";
       }
+      this.result = data;
     });
   }
 
