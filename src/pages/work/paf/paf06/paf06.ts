@@ -41,6 +41,7 @@ export class PAF06 {
 
   public commonCode1; //단위
   public commonCode2; //조달구분
+  public commonCode3; //통화
 
   /* 조회결과 */
   public result;
@@ -82,6 +83,8 @@ export class PAF06 {
 
                 //조달구분 가져오기
                 this.commonCode2 = this.commoncodeProvider.getCommonCode2();
+                //통화 가져오기
+                this.commonCode3 = this.commoncodeProvider.getCommonCode3();
   }
 
   ionViewDidLoad() {
@@ -159,10 +162,6 @@ export class PAF06 {
   loadMore(infiniteScroll) {
     this.page++;
     this.retrive(infiniteScroll);
-
-    if (this.page === this.maximumPages) {
-      infiniteScroll.enable(false);
-    }
   }
 
   add(){

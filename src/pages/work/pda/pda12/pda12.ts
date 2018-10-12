@@ -40,7 +40,7 @@ export class PDA12 {
   public g_plant; //공장정보
   public user_id; //사번(기안자)
   public user_nm; //성명(기안자)
-  public status_cd; //상태
+  public status_cd = '2'; //상태
   public acnt_cd; //계정과목
   public plant_cd; //공장코드
   public exp_remarks; //지출내용
@@ -50,8 +50,6 @@ export class PDA12 {
 
   public cust_cd; //거래처코드(거래처)
   public cust_nm; //거래처명(거래처)
-
-
 
   /* 조회결과 */
   public result;
@@ -106,6 +104,8 @@ export class PDA12 {
 
       this.cust_cd = null;
       this.cust_nm = null;
+
+      this.status_cd = '2';
     }
     this.searchCondition = yn;
   }
@@ -114,12 +114,6 @@ export class PDA12 {
   clear_user(){
     this.user_id = null;
     this.user_nm = null;
-  }
-
-  //조회조건 거래처 초기화
-  clear_buyer(){
-    this.cust_cd = null;
-    this.cust_nm = null;
   }
 
   //사용자 팝업
@@ -132,22 +126,8 @@ export class PDA12 {
     modal.present();
   }
 
-  //거래처 팝업
-  PopupBuyer(){
-    var modal = this.modalController.create('PopupBuyerPage');
-    modal.onDidDismiss(data => {
-      this.cust_cd = data.cust_cd;
-      this.cust_nm = data.cust_nm;
-    });
-    modal.present();
-  }
-
   //조회
-  retrive(infiniteScroll){
-    if(infiniteScroll === undefined){
-      this.page = 1;
-    }
-
+  retrive(){
     let api_url = "/pda/pda12_list";
     let param = JSON.stringify({c_code: this.g_user.c_code, cmpy_cd: this.g_company[0].COMPANY, act_unit: this.plant_cd, sabn: this.user_id, drf_date_fr: this.date_fr, drf_date_to: this.date_to, status: this.status_cd, exp_remarks: this.exp_remarks, cust_nm: this.cust_nm, ac_cd: this.acnt_cd});
 

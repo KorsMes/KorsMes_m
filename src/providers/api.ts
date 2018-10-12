@@ -22,6 +22,7 @@ export class ApiProvider {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         resolve(res);
+        console.log(res);
       }, (err) =>{
         reject(err);
         console.log(err);

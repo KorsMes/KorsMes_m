@@ -49,6 +49,11 @@ export class HomePage {
 
 
   doLogin(){
+    if(this.selCompanyCode == null || this.selCompanyCode == ""){
+      this.alertProvider.call_alert("로그인", "회사를 선택해주세요.", "확인");
+      return;
+    }
+
     if(this.user_id == null || this.user_id == "" || this.user_pswd == null || this.user_pswd == ""){
       this.user_id = null;
       this.user_pswd = null;

@@ -38,6 +38,7 @@ export class PopupPjtnoPage {
   public balju;
   public balju_1;
 
+  public tmp_status;
 
 
   //조회결과
@@ -120,8 +121,14 @@ export class PopupPjtnoPage {
       return;
     }
 
+    if(this.status == 0){
+      this.tmp_status = "";
+    }else{
+      this.tmp_status = this.status;
+    }
+
     let api_url = "/common/popup/pjtno_list";
-    let param = JSON.stringify({user: this.user, date1: this.date1, date2: this.date2, status: this.status, balju: this.balju, pjtno: this.cust_cd, pjtnm: this.cust_nm, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code});
+    let param = JSON.stringify({user: this.user, date1: this.date1, date2: this.date2, status: this.tmp_status, balju: this.balju, pjtno: this.cust_cd, pjtnm: this.cust_nm, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){

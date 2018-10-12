@@ -31,7 +31,6 @@
       <ion-col col-2>상태</ion-col>
       <ion-col col-10>
         <ion-select [(ngModel)]="status_cd" interface="popover">
-          <ion-option value="" selected>전체</ion-option>
           <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode30">{{p.NAME1}}</ion-option>
         </ion-select>
       </ion-col>
@@ -86,17 +85,14 @@
 
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "PopupBuyer()">
+        <ion-item>
           <ion-label color="primary">거래처</ion-label>
         </ion-item>
       </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupBuyer()">
-          <ion-label>{{cust_nm}}</ion-label>
+      <ion-col col-8>
+        <ion-item>
+          <ion-input type="text" [(ngModel)] = "cust_nm"></ion-input>
         </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="cust_nm" (click) = "clear_buyer('')">X</button>
       </ion-col>
     </ion-row>
   </ion-grid>
