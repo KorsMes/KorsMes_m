@@ -5,14 +5,51 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>PDD06</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>자재투입 상세분석표</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+<!--  <ion-row>
+    <ion-col col-2>회사</ion-col>
+    <ion-col col-10>{{p.COMPANY}}</ion-col>
+  </ion-row>-->
+  <ion-row>
+    <ion-col col-2>공장코드</ion-col>
+    <ion-col col-10>
+      <ion-select [(ngModel)]="plant_cd" interface="popover">
+        <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <ion-card>
+   <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+<!--  <ion-grid class="listgrid">
+    <ion-row>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-2>{{r.AMT}}</ion-col>
+    </ion-row>
+  </ion-grid>-->
 
 </ion-content>

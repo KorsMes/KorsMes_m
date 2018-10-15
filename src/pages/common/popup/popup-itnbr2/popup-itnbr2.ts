@@ -39,10 +39,13 @@ export class PopupItnbr2Page {
   public mccod_cd = ""; //내외자구분
   public itemtype_cd = ""; //품목형태
 
-  public test;
+  public searchyn;
 
   //조회결과
   public result;
+
+  /* infiniteScroll */
+  public page = 1;
 
   constructor(
                 public navCtrl: NavController,
@@ -95,7 +98,10 @@ export class PopupItnbr2Page {
 
 
   //조회
-  retrive(){
+  retrive(infiniteScroll){
+    if(infiniteScroll === undefined){
+      this.page = 1;
+    }
     let api_url = "/common/popup/itnbr_list2";
     let param = JSON.stringify({
                                   company_cd: this.g_company[0].COMPANY,
@@ -108,19 +114,30 @@ export class PopupItnbr2Page {
                                   itcls_cd: this.itcls_cd,
                                   mccod_cd: this.mccod_cd,
                                   itemtype_cd: this.itemtype_cd,
-                                  c_code: this.g_user.c_code
+                                  c_code: this.g_user.c_code,
+                                  page: this.page
                                });
                               this.apiProvider.data_api(api_url, param)
                               .then(data => {
                                 if(Object.keys(data).length === 0){
                                   this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
                                 }else{
-                                  this.result = data;
+                                  this.searchyn = "";
+                                }
+                                this.result = data;
+                                if (infiniteScroll) {
+                                  infiniteScroll.complete();
                                 }
                               });
 
                               //회사코드 가져오기
                               this.g_company = this.commoncodeProvider.getCompanyInfo();
+  }
+
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    this.retrive(infiniteScroll);
   }
 
   //리스트 선택 시
@@ -142,11 +159,11 @@ export class PopupItnbr2Page {
   }
 
 
-  testabc(){
-    if(this.test === "0"){
-      this.test = "";
+  searchCondition(){
+    if(this.searchyn === "0"){
+      this.searchyn = "";
     }else{
-      this.test = "0";
+      this.searchyn = "0";
     }
   }
 

@@ -65,7 +65,7 @@
       <ion-col col-2>비고</ion-col>
     </ion-row>
     <ion-row *ngFor="let r of result; let i=index" >
-      <ion-col col-2>{{r.GRPNO}} - {{r.PNLNO}}</ion-col>
+      <ion-col col-2>{{r.GRPNO}}</ion-col>
       <ion-col col-2>{{r.ITDSC}}</ion-col>
       <ion-col col-2>{{r.SOQTY1}}</ion-col>
       <ion-col col-2>{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>

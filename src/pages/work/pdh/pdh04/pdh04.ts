@@ -172,6 +172,9 @@ export class PDH04 {
     this.apiProvider.data_api(api_url2, param2)
     .then(data => {
       if(Object.keys(data).length === 0){
+        if(this.Tab2 === "2"){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
       }else{
         this.searchCondition = "";
       }
