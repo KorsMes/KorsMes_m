@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
 import { CommoncodeProvider } from '../../../../providers/commoncode';
+
+ import { Chart } from 'chart.js';
 
 /**
  * Generated class for the Pda12Page page.
@@ -53,6 +55,13 @@ export class PDA12 {
 
   /* 조회결과 */
   public result;
+
+
+  @ViewChild('barCanvas') barCanvas;
+
+  barChart: any;
+
+
 
   constructor(
               public navCtrl: NavController,
@@ -139,6 +148,23 @@ export class PDA12 {
         this.searchCondition = "";
       }
       this.result = data;
+
+      let chartdata = this.result.map(item => item.AMT);
+      let chartlabel = this.result.map(item => item.CUST_NM);
+
+      this.barChart = new Chart(this.barCanvas.nativeElement, {
+
+              type: 'bar',
+              data: {
+                  labels: chartlabel,
+                  datasets: [{
+                      label: '수주건별 자재투입 현황 분석표',
+                      data: chartdata
+                  }]
+              }
+
+          });
+
     });
   }
 
