@@ -34,6 +34,9 @@ export class PDD06 {
   public g_company;
   public g_plant;
 
+  public plant_cd; //공장코드
+
+
   public date_fr = new Date().getUTCFullYear()+"-"+"01"; //기안일자from
 
 
@@ -101,13 +104,15 @@ export class PDD06 {
         }
         this.result1 = data;
 
+        let chartlabel1 = this.result1.map(item => item.PJTNO);
         let chartdata1 = this.result1.map(item => item.AMT);
-        let chartlabel1 = this.result1.map(item => item.GBN_NM);
+        //let chartlabel1 = this.result1.map(item => item.GBN_NM);
+
 
           this.barChart = new Chart(this.barCanvas.nativeElement, {
                   type: 'bar',
                   data: {
-                      labels: ['수주금액', '목표예산', '요구금액', '발주금액', '재고사용', '자재합계'],
+                      labels: chartlabel1,
                       datasets: [{
                           label: '수주건별 자재투입 현황 분석표',
                           data: chartdata1
@@ -127,15 +132,15 @@ export class PDD06 {
         }
         this.result2 = data;
 
-        let chartdata2 = this.result2.map(item => item.MONTH);
-        let chartlabel2 = this.result2.map(item => item.AMT);
+        let chartlabel2 = this.result2.map(item =>item.MONTH);
+        let chartdata2 = this.result2.map(item => item.AMT);
 
 
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
                 type: 'line',
                 data: {
-                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월',],
+                    labels: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
                     datasets: [{
                         label: '월별 자재투입 현황 분석표',
                         data: chartdata2
@@ -155,10 +160,6 @@ export class PDD06 {
         this.Tab2 = showIdx;
         this.Tab1 = "";
       }
-    }
-
-    slideChanged(){
-      this.slides.getActiveIndex();
     }
 
 }
