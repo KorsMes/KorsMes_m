@@ -22,6 +22,8 @@ import { SidemenuListProvider } from '../providers/sidemenu-list';
 import { CompanyProvider } from '../providers/company';
 import { CommoncodeProvider } from '../providers/commoncode';
 
+import { PipesModule } from '../pipes/pipes.module';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { CommoncodeProvider } from '../providers/commoncode';
     IonicStorageModule.forRoot(),
     HttpClientModule,
     HttpModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

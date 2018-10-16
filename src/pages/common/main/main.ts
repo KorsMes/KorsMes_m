@@ -22,12 +22,21 @@ import { HomePage } from '../home/home';
 })
 export class MainPage {
   userInfo: any;
-  public companyInfo;
+  public g_company;
   public g_user;
+  public g_plant;
 
   /* 조회조건 */
   public company_cd;
   public plant_cd;
+
+  public fr_yymm = new Date().getUTCFullYear()+"-"+"01-01"; //수주년월
+  public to_yymm = new Date().toISOString(); //수주년월
+
+  public pjtno; //pjt번호
+  public pjtnm; //pjt명
+
+  public status; //견적상태
 
   /* 조회결과 */
   public result;
@@ -44,13 +53,20 @@ export class MainPage {
                 public modalController: ModalController,
                 public commoncodeProvider: CommoncodeProvider) {
 
-                this.companyInfo = this.commoncodeProvider.getCompanyInfo();
+                //로그인정보 가져오기
                 this.g_user = this.commoncodeProvider.getUserInfo();
+
+                //회사코드 가져오기
+                this.g_company = this.commoncodeProvider.getCompanyInfo();
+
+                //공장코드 가져오기
+                this.g_plant = this.commoncodeProvider.getPlantInfo();
+                this.plant_cd = this.g_plant[0].PLANT;
 
                 this.company_logo = "../../../assets/imgs/company_logo/"+this.g_user.c_code+".png";
 
-                let api_url = "/sea/sea12_list1";
-                let param = JSON.stringify({company_cd: this.companyInfo[0].COMPANY, plant_cd:'', c_code: this.g_user.c_code});
+                let api_url = "/sea/sea02_list";
+                let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
 
                 this.apiProvider.data_api(api_url, param)
                 .then(data => {
@@ -87,8 +103,8 @@ export class MainPage {
   }
 
   retrive(){
-    let api_url = "/sea/sea12_list1";
-    let param = JSON.stringify({company_cd: this.companyInfo[0].COMPANY, plant_cd:'', c_code: this.g_user.c_code});
+    let api_url = "/sea/sea02_list";
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {

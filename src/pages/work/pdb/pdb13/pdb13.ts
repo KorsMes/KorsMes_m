@@ -463,5 +463,24 @@ export class PDB13 {
     }
   }
 
+  //상세팝업1
+  openDetail1(obj: any){
+    this.modalController.create('Pdb13detail1Page', {obj: obj}).present();
+  }
+
+  //상세팝업2
+  openDetail2(obj: any){
+    this.modalController.create('Pdb13detail2Page', {obj: obj}).present();
+  }
+
+  //상세팝업3
+  openDetail3(obj: any){
+    this.modalController.create('Pdb13detail3Page', {obj: obj}).present();
+  }
+
+  //상세팝업4
+  openDetail4(obj: any){
+    this.modalController.create('Pdb13detail4Page', {obj: obj}).present();
+  }
 
 }
