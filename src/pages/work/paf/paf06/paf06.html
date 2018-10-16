@@ -85,7 +85,7 @@
       <ion-col col-2>{{commonCode3 | commonfilter: r.CURRENCY : 'commonCode3'}}</ion-col>
       <ion-col col-2>{{r.TEMP_PRICE}}</ion-col>
       <ion-col col-2>{{r.PAST_PRICE}}</ion-col>
-      <ion-col col-2>{{r.LAST_PRICE}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r.LAST_PRICE : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r.START_DATE}}</ion-col>
     </ion-row>
   </ion-grid>

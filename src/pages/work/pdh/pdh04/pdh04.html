@@ -91,23 +91,23 @@
             </ion-row>
             <ion-row>
               <ion-col col-2>수주금액</ion-col>
-              <ion-col col-2>{{r1.ORDER_AMT}}</ion-col>
+              <ion-col col-2>{{'' | commonfilter : r1.ORDER_AMT: 'money_filter'}}</ion-col>
               <ion-col col-2>구매목표금액</ion-col>
-              <ion-col col-2>{{r1.TOTAL_AMT}}</ion-col>
+              <ion-col col-2>{{'' | commonfilter : r1.TOTAL_AMT: 'money_filter'}}</ion-col>
               <ion-col col-2>{{(r1.TOTAL_AMT / r1.ORDER_AMT *100)}}</ion-col>
               <ion-col col-2>최종목표금액</ion-col>
-              <ion-col col-2>{{r1.LASTTOTAL_AMT}}</ion-col>
+              <ion-col col-2>{{'' | commonfilter : r1.LASTTOTAL_AMT: 'money_filter'}}</ion-col>
               <ion-col col-2>{{(r1.LASTTOTAL_AMT / r1.ORDER_AMT) * 100}}</ion-col>
             </ion-row>
             <ion-row>
               <ion-col col-2>재고사용금액</ion-col>
-              <ion-col col-2>{{r1.ALLO_AMT}}</ion-col>
+              <ion-col col-2>{{'' | commonfilter : r1.ALLO_AMT: 'money_filter'}}</ion-col>
               <ion-col col-2>{{(r1.ALLO_AMT / r1.ORDER_AMT) * 100}}</ion-col>
               <ion-col col-2>발주금액</ion-col>
-              <ion-col col-2>{{r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT}}</ion-col>
+              <ion-col col-2>{{'' | commonfilter : r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT: 'money_filter'}}</ion-col>
               <ion-col col-2>{{((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100}}</ion-col>
               <ion-col col-2>총자재금액(재고+발주)</ion-col>
-              <ion-col col-2>{{r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT)}}</ion-col>
+              <ion-col col-2>{{'' | commonfilter : r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT): 'money_filter'}}</ion-col>
               <ion-col col-2>{{(((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100) + (((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100)}}</ion-col>
             </ion-row>
           </ion-grid>
@@ -143,16 +143,16 @@
       <ion-col col-2>{{r2.SPEC1}}</ion-col>
       <ion-col col-2>{{commonCode1 | commonfilter : r2.UNMSR : 'commonCode1'}}</ion-col>
       <ion-col col-2>{{r2.BUD_QTY}}</ion-col>
-      <ion-col col-2>{{r2.OBJ_PRICE}}</ion-col>
-      <ion-col col-2>{{r2.BUD_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.OBJ_PRICE: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.BUD_AMT: 'money_filter'}}</ion-col>
       <ion-col col-2>{{r2.PL_QTY}}</ion-col>
-      <ion-col col-2>{{r2.STD_PRICE}}</ion-col>
-      <ion-col col-2>{{r2.PL_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.STD_PRICE: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.PL_AMT: 'money_filter'}}</ion-col>
       <ion-col col-2>{{r2.PUR_QTY}}</ion-col>
-      <ion-col col-2>{{r2.PUR_PRICE}}</ion-col>
-      <ion-col col-2>{{r2.PUR_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.PUR_PRICE: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.PUR_AMT: 'money_filter'}}</ion-col>
       <ion-col col-2>{{r2.PL_QTY - r2.PUR_QTY}}</ion-col>
-      <ion-col col-2>{{r2.PL_AMT - r2.PUR_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.PL_AMT - r2.PUR_AMT: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

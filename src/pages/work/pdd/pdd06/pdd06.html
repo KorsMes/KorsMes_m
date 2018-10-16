@@ -15,18 +15,26 @@
 
 
 <ion-content>
-<!--  <ion-row>
-    <ion-col col-2>회사</ion-col>
-    <ion-col col-10>{{p.COMPANY}}</ion-col>
-  </ion-row>-->
-  <ion-row>
-    <ion-col col-2>공장코드</ion-col>
-    <ion-col col-10>
-      <ion-select [(ngModel)]="plant_cd" interface="popover">
-        <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-      </ion-select>
-    </ion-col>
-  </ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
+          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-label>수주년원</ion-label>
+      </ion-col>
+      <ion-col col-8>
+        <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="date_fr"></ion-datetime>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
   <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
@@ -34,22 +42,27 @@
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
+  <ion-item>
+    <button ion-button (click) = "changeTab('1')">수주건별 분석표</button>
+    <button ion-button (click) = "changeTab('2')">월별 분석표</button>
+  </ion-item>
+
   <ion-card>
    <ion-card-header>
       Bar Chart
     </ion-card-header>
     <ion-card-content>
-      <canvas #barCanvas></canvas>
+      <canvas #barCanvas height="300"></canvas>
     </ion-card-content>
   </ion-card>
 
-<!--  <ion-grid class="listgrid">
-    <ion-row>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" >
-      <ion-col col-2>{{r.AMT}}</ion-col>
-    </ion-row>
-  </ion-grid>-->
+  <ion-card >
+    <ion-card-header>
+      line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

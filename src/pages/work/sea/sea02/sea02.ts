@@ -7,7 +7,7 @@ import { AlertProvider } from '../../../../providers/alert';
 import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
- * Generated class for the Scb10Page page.
+ * Generated class for the Sea02Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,10 +15,15 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-scb10',
-  templateUrl: 'scb10.html',
+  selector: 'page-sea02',
+  templateUrl: 'sea02.html',
 })
-export class SCB10 {
+export class SEA02 {
+
+  /* 공통코드 */
+  public commonCode37; //견적상태
+  public commonCode14; //영업부서
+  public commonCode13; //거래처
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -26,6 +31,8 @@ export class SCB10 {
   public acc_btn_delete;
   public acc_btn_retrive;
   public acc_btn_print;
+
+
 
   /* 조건검색 유무 */
   public searchCondition;
@@ -36,11 +43,18 @@ export class SCB10 {
   public g_plant; //공장정보
 
   public plant_cd;
-  public pjt_no; //프로젝트번호
-  public pjt_nm; //프로젝트명
 
-  /* 조회 결과 */
+  public fr_yymm = new Date().getUTCFullYear()+"-"+"01-01"; //수주년월
+  public to_yymm = new Date().toISOString(); //수주년월
+
+  public pjtno; //pjt번호
+  public pjtnm; //pjt명
+
+  public status; //견적상태
+
+  /* 조회결과 */
   public result;
+
 
   constructor(
                 public navCtrl: NavController,
@@ -49,12 +63,13 @@ export class SCB10 {
                 public modalController: ModalController,
                 public commoncodeProvider: CommoncodeProvider,
                 public alertProvider: AlertProvider,
-                public apiProvider: ApiProvider) {
+                public apiProvider: ApiProvider
+  ) {
 
                 //버튼권한
                 this.storage.get("[PAGE_AUTH]").then((data) => {
                   for(var n in data){
-                    if("SCB10" == data[n].PGM_ID){
+                    if("SEA02" == data[n].PGM_ID){
                       this.acc_btn_add = data[n].ACC_BTN_ADD;
                       this.acc_btn_save = data[n].ACC_BTN_SAVE;
                       this.acc_btn_delete = data[n].ACC_BTN_DELETE;
@@ -73,47 +88,59 @@ export class SCB10 {
                 //공장코드 가져오기
                 this.g_plant = this.commoncodeProvider.getPlantInfo();
                 this.plant_cd = this.g_plant[0].PLANT;
+
+                //견적상태 가져오기
+                this.commonCode37 = this.commoncodeProvider.getCommonCode37();
+
+                //영업부서 가져오기
+                this.commonCode14 = this.commoncodeProvider.getCommonCode14();
+
+                //거래처 가져오기
+                this.commonCode13 = this.commoncodeProvider.getCommonCode13();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Scb10Page');
+    console.log('ionViewDidLoad Sea02Page');
   }
 
 
   //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.pjt_no = null;
-      this.pjt_nm = null;
+      this.fr_yymm = new Date().getUTCFullYear()+"-"+"01-01";
+      this.to_yymm = new Date().toISOString();
+      this.pjtno = "";
+      this.pjtnm = "";
+      this.status = "";
     }
     this.searchCondition = yn;
   }
 
-  //조회조건 프로젝트번호 초기화
-  clear_pjtno(){
-    this.pjt_no = null;
-    this.pjt_nm = null;
+
+  //조회조건 pjt번호 초기화
+  clear_pdtno(){
+    this.pjtno = null;
+    this.pjtnm = null;
   }
 
-  //프로젝트번호 팝업
-  PopupPjtno(){
-    var modal = this.modalController.create('PopupPjtnoPage');
+
+  //pjt번호 팝업
+  PopupPdtno(){
+    var modal = this.modalController.create('PopupPdtnoPage');
     modal.onDidDismiss(data => {
-      this.pjt_no = data.pjtno;
-      this.pjt_nm = data.pjtnm;
+      this.pjtno = data.pjtno;
+      this.pjtnm = data.pjtnm;
     });
     modal.present();
   }
 
+
   //조회
   retrive(){
-    if(this.pjt_no == null || this.pjt_no == ""){
-      this.alertProvider.call_alert("조회", "프로젝트번호를 입력해주세요.", "확인");
-      return;
-    }
 
-    let api_url = "/scb/scb10_list";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjt_no, c_code: this.g_user.c_code})
+    //상세
+    let api_url = "/sea/sea02_list";
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
@@ -123,7 +150,9 @@ export class SCB10 {
         this.searchCondition = "";
       }
       this.result = data;
-    })
+    });
   }
+
+
 
 }

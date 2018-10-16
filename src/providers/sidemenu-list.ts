@@ -71,7 +71,7 @@ export class SidemenuListProvider {
                               thirdPages: [
                                             {
                                               title: 'PJT 수주내역 조회',
-                                              component: 'SEA12',
+                                              component: 'SEA02',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
                                               acc_btn_c : '',

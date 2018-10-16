@@ -26,6 +26,7 @@ export class PHB04 {
   public commonCode33; //불량항목
   public commonCode34; //검사종류
   public commonCode35; //검사구분
+  public commonCode36; //공정
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -108,6 +109,9 @@ export class PHB04 {
 
                 //검사구분 가져오기
                 this.commonCode35 = this.commoncodeProvider.getCommonCode35();
+
+                //공정 가져오기
+                this.commonCode36 = this.commoncodeProvider.getCommonCode36();
   }
 
   ionViewDidLoad() {

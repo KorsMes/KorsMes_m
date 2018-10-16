@@ -102,8 +102,8 @@
       <ion-col col-2>{{r1.JUPO1}}{{r1.JUPO2}}</ion-col> <!-- CHECK -->
       <ion-col col-2>{{r1.GRITN}}</ion-col>
       <ion-col col-2>{{r1.QTY2}}</ion-col>
-      <ion-col col-2>{{r1.AMT2}}</ion-col>
-      <ion-col col-2>{{r1.VAT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.AMT2: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.VAT: 'money_filter'}}</ion-col>
       <ion-col col-2>{{commonCode8 | commonfilter: r1.DPTNO : 'commonCode8'}}</ion-col>
       <ion-col col-2>{{commonCode12 | commonfilter: r1.EMPNO : 'commonCode12'}}</ion-col>
     </ion-row>
@@ -123,9 +123,9 @@
       <ion-col col-2>{{r2.CVCOD}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r2.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r2.QTY2}}</ion-col>
-      <ion-col col-2>{{r2.AMT2}}</ion-col>
-      <ion-col col-2>{{r2.VAT}}</ion-col>
-      <ion-col col-2>{{r2.TOTAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.AMT2: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.VAT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.TOTAMT: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -145,9 +145,9 @@
       <ion-col col-2>{{commonCode8 | commonfilter: r3.DPTNO : 'commonCode8'}}</ion-col>
       <ion-col col-2>{{commonCode12 | commonfilter: r3.EMPNO : 'commonCode12'}}</ion-col>
       <ion-col col-2>{{r3.QTY2}}</ion-col>
-      <ion-col col-2>{{r3.AMT2}}</ion-col>
-      <ion-col col-2>{{r3.VAT}}</ion-col>
-      <ion-col col-2>{{r3.TOTAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.AMT2: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.VAT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.TOTAMT: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

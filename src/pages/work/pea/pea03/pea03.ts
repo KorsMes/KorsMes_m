@@ -20,6 +20,10 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 })
 export class PEA03 {
   /* 통합코드 */
+  public commonCode13; //거래처정보
+  public commonCode1; //단위
+  public commonCode26; //검사구분
+  public commonCode27; //상태
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -85,6 +89,18 @@ export class PEA03 {
                 //공장코드 가져오기
                 this.g_plant = this.commoncodeProvider.getPlantInfo();
                 this.plant_cd = this.g_plant[0].PLANT;
+
+                //거래처정보 가져오기
+                this.commonCode13 = this.commoncodeProvider.getCommonCode13();
+
+                //단위 가져오기
+                this.commonCode1 = this.commoncodeProvider.getCommonCode1();
+
+                //검사구분 가져오기
+                this.commonCode26 = this.commoncodeProvider.getCommonCode26();
+
+                //상태 가져오기
+                this.commonCode27 = this.commoncodeProvider.getCommonCode27();
 
   }
 

@@ -132,14 +132,14 @@
     </ion-row>
     <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
       <ion-col col-2>{{r.VENDOR}}</ion-col>
-      <ion-col col-2>{{r.VENDOR_NAME}}</ion-col>
+      <ion-col col-2>{{commonCode13 | commonfilter : r.VENDOR : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r.DEPS_NO}}</ion-col>
       <ion-col col-2>{{r.ITEM}}</ion-col>
       <ion-col col-2>{{r.ITEM_NAME_K}}</ion-col>
       <ion-col col-2>{{r.NORM1}}</ion-col>
-      <ion-col col-2>{{r.PUR_UM}}</ion-col>
-      <ion-col col-2>{{r.IQC_YN}}</ion-col>
-      <ion-col col-2>{{r.STEP_STATUS}}</ion-col>
+      <ion-col col-2>{{commonCode1 | commonfilter : r.PUR_UM : 'commonCode1'}}</ion-col>
+      <ion-col col-2>{{commonCode26 | commonfilter : r.IQC_YN : 'commonCode26'}}</ion-col>
+      <ion-col col-2>{{commonCode27 | commonfilter : r.STEP_STATUS : 'commonCode27'}}</ion-col>
       <ion-col col-2>{{r.DELV_QTY}}</ion-col>
       <ion-col col-2>{{r.IQC_DELAY}}</ion-col>
       <ion-col col-2>{{r.INSP_QTY}}</ion-col>

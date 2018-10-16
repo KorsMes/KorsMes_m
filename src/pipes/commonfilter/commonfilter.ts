@@ -330,6 +330,23 @@ export class CommonfilterPipe implements PipeTransform {
       }
     }
 
+    //공정
+    if(code === "commonCode36"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //견적상태
+    if(code === "commonCode37"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
 
 
 
@@ -340,8 +357,30 @@ export class CommonfilterPipe implements PipeTransform {
     if(code === "filter1"){
       if(value > 1){
         re = "SETS";
-      }else{
+      }else if(value == 1){
         re = "SET";
+      }
+    }
+
+    //PEG08 TAB2 GRID - 월
+    if(code === 'getMonth'){
+      re = value.substring(0,4) + "-" + value.substring(4,6);
+    }
+
+    //금액 콤마
+    if(code === 'money_filter'){
+      if(value != '' && value != undefined){
+        var len, point;
+            value = value + "";
+            point = value.length % 3 ;
+            len = value.length;
+
+            re = value.substring(0, point);
+            while (point < len) {
+                if (re != "") re += ",";
+                re += value.substring(point, point + 3);
+                point += 3;
+            }
       }
     }
 

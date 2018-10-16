@@ -83,16 +83,16 @@
       <ion-col col-2>{{r1.ITEM}}</ion-col>
       <ion-col col-2>{{r1.ITEM_NAME_K}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r1.JEJOS : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{(r1.BASIC_AMT + r1.DEPS_AMT) / (r1.BASIC_QTY + r1.DEPS_QTY)}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : (r1.BASIC_AMT + r1.DEPS_AMT) / (r1.BASIC_QTY + r1.DEPS_QTY) : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r1.BASIC_QTY}}</ion-col>
       <ion-col col-2>{{r1.DEPS_QTY}}</ion-col>
       <ion-col col-2>{{r1.OUT_QTY}}</ion-col>
       <ion-col col-2>{{r1.STOCK_QTY}}</ion-col>
       <ion-col col-2>{{r1.JIJIC}}</ion-col>
-      <ion-col col-2>{{r1.BASIC_AMT}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_AMT}}</ion-col>
-      <ion-col col-2>{{r1.OUT_AMT}}</ion-col>
-      <ion-col col-2>{{r1.STOCK_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.BASIC_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.DEPS_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.OUT_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.STOCK_AMT : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r1.SPEC1}}</ion-col>
     </ion-row>
   </ion-grid>
@@ -105,14 +105,16 @@
       <ion-col col-2>입고금액Vat</ion-col>
       <ion-col col-2>입고금액합계</ion-col>
       <ion-col col-2>출고금액</ion-col>
+      <ion-col col-2>재고금액</ion-col>
     </ion-row>
     <ion-row *ngFor="let r2 of result2; let i=index" >
-      <ion-col col-2>{{r2.YYYYMM}}</ion-col>
-      <ion-col col-2>{{r2.BASIC_AMT}}</ion-col>
-      <ion-col col-2>{{r2.DEPS_AMT}}</ion-col>
-      <ion-col col-2>{{r2.VAT}}</ion-col>
-      <ion-col col-2>{{(r2.DEPS_AMT + r2.VAT)}}</ion-col>
-      <ion-col col-2>{{r2.OUT_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.YYYYMM : 'getMonth'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.BASIC_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.DEPS_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.VAT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : (r2.DEPS_AMT + r2.VAT) : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.OUT_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.DEPS_AMT - r2.OUT_AMT : 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -133,9 +135,9 @@
       <ion-col col-2>{{r3.SAA_BUYER_BU_CD}}</ion-col>
       <ion-col col-2>{{r3.SAA_BUYER_BY_TEL_NO}}</ion-col>
       <ion-col col-2>{{r3.SAA_BUYER_BY_PRSN}}</ion-col>
-      <ion-col col-2>{{r3.TOT_1}}</ion-col>
-      <ion-col col-2>{{r3.TOT_1_R}}</ion-col>
-      <ion-col col-2>{{r3.TOT_2}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.TOT_1 : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.TOT_1_R : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.TOT_2 : 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -158,9 +160,9 @@
       <ion-col col-2>{{r4.SAA_BUYER_BU_CD}}</ion-col>
       <ion-col col-2>{{r4.SAA_BUYER_BY_TEL_NO}}</ion-col>
       <ion-col col-2>{{r4.SAA_BUYER_BY_PRSN}}</ion-col>
-      <ion-col col-2>{{r4.TOT_1}}</ion-col>
-      <ion-col col-2>{{r4.TOT_1_R}}</ion-col>
-      <ion-col col-2>{{r4.TOT_2}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r4.TOT_1 : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r4.TOT_1_R : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r4.TOT_2 : 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -185,16 +187,16 @@
       <ion-col col-2>{{r5.ITEM}}</ion-col>
       <ion-col col-2>{{r5.ITEM_NAME_K}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r5.JEJOS : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{(r5.BASIC_AMT + r5.DEPS_AMT) / (r5.BASIC_QTY + r5.DEPS_QTY)}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : (r5.BASIC_AMT + r5.DEPS_AMT) / (r5.BASIC_QTY + r5.DEPS_QTY) : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r5.BASIC_QTY}}</ion-col>
       <ion-col col-2>{{r5.DEPS_QTY}}</ion-col>
       <ion-col col-2>{{r5.OUT_QTY}}</ion-col>
       <ion-col col-2>{{r5.STOCK_QTY}}</ion-col>
       <ion-col col-2>{{r5.JIJIC}}</ion-col>
-      <ion-col col-2>{{r5.BASIC_AMT}}</ion-col>
-      <ion-col col-2>{{r5.DEPS_AMT}}</ion-col>
-      <ion-col col-2>{{r5.OUT_AMT}}</ion-col>
-      <ion-col col-2>{{r5.STOCK_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r5.BASIC_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r5.DEPS_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r5.OUT_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r5.STOCK_AMT : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r5.NORM1}}</ion-col>
     </ion-row>
   </ion-grid>
@@ -220,16 +222,16 @@
       <ion-col col-2>{{r6.ITEM}}</ion-col>
       <ion-col col-2>{{r6.ITEM_NAME_K}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r6.JEJOS : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{(r6.BASIC_AMT + r6.DEPS_AMT) / (r6.BASIC_QTY + r6.DEPS_QTY)}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : (r6.BASIC_AMT + r6.DEPS_AMT) / (r6.BASIC_QTY + r6.DEPS_QTY) : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r6.BASIC_QTY}}</ion-col>
       <ion-col col-2>{{r6.DEPS_QTY}}</ion-col>
       <ion-col col-2>{{r6.OUT_QTY}}</ion-col>
       <ion-col col-2>{{r6.STOCK_QTY}}</ion-col>
       <ion-col col-2>{{r6.JIJIC}}</ion-col>
-      <ion-col col-2>{{r6.BASIC_AMT}}</ion-col>
-      <ion-col col-2>{{r6.DEPS_AMT}}</ion-col>
-      <ion-col col-2>{{r6.OUT_AMT}}</ion-col>
-      <ion-col col-2>{{r6.STOCK_AMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r6.BASIC_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r6.DEPS_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r6.OUT_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r6.STOCK_AMT : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r6.NORM1}}</ion-col>
     </ion-row>
   </ion-grid>

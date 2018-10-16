@@ -120,6 +120,8 @@ export class HomePage {
         this.commoncodeProvider.setCommonCode33(this.c_code); //불량항목
         this.commoncodeProvider.setCommonCode34(this.c_code); //검사종류
         this.commoncodeProvider.setCommonCode35(this.c_code); //검사구분
+        this.commoncodeProvider.setCommonCode36(this.c_code); //공정
+        this.commoncodeProvider.setCommonCode37(this.c_code); //견적상태
 
 
         //로그인 유지 시 로그인데이터(쿠키) 생성
