@@ -157,8 +157,4 @@ export class PDD06 {
       }
     }
 
-    slideChanged(){
-      this.slides.getActiveIndex();
-    }
-
 }
