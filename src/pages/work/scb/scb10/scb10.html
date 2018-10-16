@@ -69,9 +69,9 @@
       <ion-col col-2>{{r.ITDSC}}</ion-col>
       <ion-col col-2>{{r.SOQTY1}}</ion-col>
       <ion-col col-2>{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>
-      <ion-col col-2>{{r.SOWPRC1}}</ion-col>
-      <ion-col col-2>{{r.SOWAMT1}}</ion-col>
-      <ion-col col-2>{{r.NORM1}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
+      <ion-col col-2></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

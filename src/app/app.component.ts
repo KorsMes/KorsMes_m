@@ -89,6 +89,8 @@ export class MyApp {
               this.commoncodeProvider.setCommonCode33(result.c_code); //불량항목
               this.commoncodeProvider.setCommonCode34(result.c_code); //검사종류
               this.commoncodeProvider.setCommonCode35(result.c_code); //검사구분
+              this.commoncodeProvider.setCommonCode36(result.c_code); //공정
+              this.commoncodeProvider.setCommonCode37(result.c_code); //견적상태
 
               this.rootPage = MainTemplatePage;
             }

@@ -111,9 +111,9 @@
       <ion-col col-2>{{commonCode13 | commonfilter: r1.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r1.JDATA}}</ion-col>
       <ion-col col-2>{{r1.SEQ}}</ion-col>
-      <ion-col col-2>{{r1.AMT2}}</ion-col>
-      <ion-col col-2>{{r1.VAT}}</ion-col>
-      <ion-col col-2>{{r1.AMT2 + r1.VAT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.AMT2: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.VAT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.AMT2 + r1.VAT: 'money_filter'}}</ion-col>
       <ion-col col-2>{{commonCode17 | commonfilter: r1.TRGBN : 'commonCode17'}}</ion-col>
       <ion-col col-2>{{commonCode18 | commonfilter: r1.TRCAS : 'commonCode18'}}</ion-col>
       <ion-col col-2>{{r1.AMTNO}}</ion-col>
@@ -139,10 +139,10 @@
     <ion-row *ngFor="let r2 of result2; let i=index" >
       <ion-col col-2>{{r2.CVCOD}}</ion-col>
       <ion-col col-2>{{commonCode8 | commonfilter: r2.CVCOD : 'commonCode8'}}</ion-col>
-      <ion-col col-2>{{r2.CASH_AMT}}</ion-col>
-      <ion-col col-2>{{r2.BILL_AMT}}</ion-col>
-      <ion-col col-2>{{r2.VAT}}</ion-col>
-      <ion-col col-2>{{r2.CASH_AMT + r2.BILL_AMT + r2.VAT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.CASH_AMT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.BILL_AMT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.VAT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.CASH_AMT + r2.BILL_AMT + r2.VAT: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -161,10 +161,10 @@
       <ion-col col-2>{{r3.DPTNO}}</ion-col>
       <ion-col col-2>{{commonCode8 | commonfilter: r3.DPTNO : 'commonCode8'}}</ion-col>
       <ion-col col-2>{{commonCode12 | commonfilter: r3.EMPNO : 'commonCode12'}}</ion-col>
-      <ion-col col-2>{{r3.CASH_AMT}}</ion-col>
-      <ion-col col-2>{{r3.BILL_AMT}}</ion-col>
-      <ion-col col-2>{{r3.VAT}}</ion-col>
-      <ion-col col-2>{{r3.CASH_AMT + r3.BILL_AMT + r3.VAT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.CASH_AMT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.BILL_AMT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.VAT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.CASH_AMT + r3.BILL_AMT + r3.VAT: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

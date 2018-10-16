@@ -110,7 +110,7 @@
       Bar Chart
     </ion-card-header>
     <ion-card-content>
-      <canvas #barCanvas></canvas>
+      <canvas #lineCanvas></canvas>
     </ion-card-content>
   </ion-card>
 
@@ -133,8 +133,8 @@
       <ion-col col-2>{{commonCode6 | commonfilter: r.AC_CD : 'commonCode6'}}</ion-col>
       <ion-col col-2>{{r.EXP_REMARKS}}</ion-col>
       <ion-col col-2>{{r.CUST_NM}}</ion-col>
-      <ion-col col-2>{{r.AMT}}</ion-col>
-      <ion-col col-2>{{r.PRO_FLAG}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r.AMT : 'money_filter'}}</ion-col>
+      <ion-col col-2>{{commonCode7 | commonfilter: r.PRO_FLAG : 'commonCode7'}}</ion-col>
       <ion-col col-2>{{r.REMARKS}}</ion-col>
     </ion-row>
   </ion-grid>

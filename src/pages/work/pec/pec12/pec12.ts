@@ -189,6 +189,16 @@ export class PEC12 {
   //조회
   retrive(){
 
+    if(this.pdtno1 == null || this.pdtno1 == ""){
+      this.alertProvider.call_alert("조회", "PJT번호를 입력해주세요.", "확인");
+      return;
+    }
+
+    if(this.pdtno2 == null || this.pdtno2 == ""){
+      this.alertProvider.call_alert("조회", "PJT번호를 입력해주세요.", "확인");
+      return;
+    }
+
     //자재투입진척현황(상세)
     let api_url1 = "/pec/pec12_list1";
     let param1 = JSON.stringify({  company: this.g_company[0].COMPANY,

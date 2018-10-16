@@ -145,7 +145,7 @@
       <ion-col col-2>{{r1.ITNBR}}</ion-col>
       <ion-col col-2>{{r1.ITNBR_DESC}}</ion-col>
       <ion-col col-2>{{r1.PJQTY}}</ion-col>
-      <ion-col col-2>{{r1.PJAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.PJAMT : 'money_filter'}}</ion-col>
       <ion-col col-2>{{r1.NADAT}}</ion-col>
       <ion-col col-2>{{commonCode14 | commonfilter: r1.DPTNO : 'commonCode14'}}</ion-col>
       <ion-col col-2>{{commonCode15 | commonfilter: r1.EPNO : 'commonCode15'}}</ion-col>
@@ -165,7 +165,7 @@
       <ion-col col-2>{{r2.CVCOD}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter : r2.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r2.PJQTY}}</ion-col>
-      <ion-col col-2>{{r2.PJAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.PJAMT: 'money_filter'}}</ion-col>
       <ion-col col-2></ion-col>
     </ion-row>
   </ion-grid>
@@ -185,7 +185,7 @@
       <ion-col col-2>{{commonCode14 | commonfilter: r3.DPTNO : 'commonCode14'}}</ion-col>
       <ion-col col-2>{{commonCode15 | commonfilter: r3.EPNO : 'commonCode15'}}</ion-col>
       <ion-col col-2>{{r3.PJQTY}}</ion-col>
-      <ion-col col-2>{{r3.PJAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.PJAMT: 'money_filter'}}</ion-col>
       <ion-col col-2></ion-col>
     </ion-row>
   </ion-grid>

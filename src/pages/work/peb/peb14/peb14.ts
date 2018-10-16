@@ -27,6 +27,7 @@ export class PEB14 {
   public commonCode29; //입고유형
   public commonCode1; //단위
   public commonCode2; //조달구분
+  public commonCode3; //통화
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -111,6 +112,9 @@ export class PEB14 {
 
                 //입고유형 가져오기
                 this.commonCode29 = this.commoncodeProvider.getCommonCode29();
+
+                //통화 가져오기
+                this.commonCode3 = this.commoncodeProvider.getCommonCode3();
   }
 
   ionViewDidLoad() {

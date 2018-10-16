@@ -55,6 +55,8 @@ export class CommoncodeProvider {
   public commonCode33; //불량항목
   public commonCode34; //검사종류
   public commonCode35; //검사구분
+  public commonCode36; //공정
+  public commonCode37; //견적상태
 
 
 
@@ -663,6 +665,37 @@ export class CommoncodeProvider {
     });
   }
 
+  //공정
+  setCommonCode36(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode36";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode36 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //견적상태
+  setCommonCode37(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode37";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode37 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
 
   //단위 가져오기
   getCommonCode1(){
@@ -803,6 +836,16 @@ export class CommoncodeProvider {
   //검사구분
   getCommonCode35(){
     return this.commonCode35;
+  }
+
+  //공정
+  getCommonCode36(){
+    return this.commonCode36;
+  }
+
+  //견적상태
+  getCommonCode37(){
+    return this.commonCode37;
   }
 
   /* 공통모듈 SET END */

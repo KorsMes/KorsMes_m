@@ -132,11 +132,11 @@
       <ion-col col-2>{{r1.ABC_CD}}</ion-col>
       <ion-col col-2>{{commonCode29 | commonfilter: r1.DEPS_TYPE : 'commonCode29'}}</ion-col>
       <ion-col col-2>{{r1.DEPS_QTY}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_PRICE}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_AMT}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_FAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.DEPS_PRICE: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.DEPS_AMT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r1.DEPS_FAMT: 'money_filter'}}</ion-col>
       <ion-col col-2>{{commonCode2 | commonfilter: r1.SUPL_CLASS : 'commonCode2'}}</ion-col>
-      <ion-col col-2>{{r1.CURRENCY}}</ion-col>
+      <ion-col col-2>{{commonCode3 | commonfilter: r1.CURRENCY : 'commonCode3'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -149,7 +149,7 @@
     <ion-row *ngFor="let r2 of result2; let i=index" >
       <ion-col col-2>{{r2.PDTNO}}</ion-col>
       <ion-col col-2>{{r2.PJT_NM}}</ion-col>
-      <ion-col col-2>{{r2.QTY}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r2.QTY: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -168,7 +168,7 @@
       <ion-col col-2>{{r3.BU_CD}}</ion-col>
       <ion-col col-2>{{r3.BY_TEL_NO}}</ion-col>
       <ion-col col-2>{{r3.BY_PRSN}}</ion-col>
-      <ion-col col-2>{{r3.QTY}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r3.QTY: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -199,9 +199,9 @@
       <ion-col col-2>{{r4.NORM1}}</ion-col>
       <ion-col col-2>{{commonCode1 | commonfilter: r4.STOCK_UM : 'commonCode1'}}</ion-col>
       <ion-col col-2>{{r4.DEPS_QTY}}</ion-col>
-      <ion-col col-2>{{r4.DEPS_PRICE}}</ion-col>
-      <ion-col col-2>{{r4.DEPS_AMT}}</ion-col>
-      <ion-col col-2>{{r4.DEPS_FAMT}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r4.DEPS_PRICE: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r4.DEPS_AMT: 'money_filter'}}</ion-col>
+      <ion-col col-2>{{'' | commonfilter : r4.DEPS_FAMT: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

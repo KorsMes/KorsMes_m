@@ -6,7 +6,7 @@ import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
 import { CommoncodeProvider } from '../../../../providers/commoncode';
 
-//import { Chart } from 'chart.js';
+import { Chart } from 'chart.js';
 
 /**
  * Generated class for the Pdd06Page page.
@@ -31,16 +31,25 @@ export class PDD06 {
 
   /* 조건검색 */
   public g_user;
-  public g_company; //회사정보
-  public g_plant; //공장정보
-  public plant_cd; //공장코드
+  public g_company;
+  public g_plant;
+
+  public date_fr = new Date().getUTCFullYear()+"-"+"01"; //기안일자from
+
 
   /* 조회결과 */
-  public result;
+  public result1;
+  public result2;
 
+
+
+  /* bar 차트 선언*/
   @ViewChild('barCanvas') barCanvas;
-
   barChart: any;
+
+  /* line 차트 선언*/
+  @ViewChild('lineCanvas') lineCanvas;
+  lineChart: any;
 
   constructor(
               public navCtrl: NavController,
@@ -80,16 +89,76 @@ export class PDD06 {
 }
     //조회
     retrive(){
-      let api_url = "/pdd/pdd06_list1";
-      let param = JSON.stringify({c_code: this.g_user.c_code, company: this.g_company[0].COMPANY, plant: this.plant_cd, user_id: 'MASTER'});
 
-      this.apiProvider.data_api(api_url, param)
+      //수주건별 분석표 조회
+      let api_url1 = "/pdd/pdd06_list1";
+      let param1 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd,  yymm: this.date_fr});
+
+      this.apiProvider.data_api(api_url1, param1)
       .then(data => {
         if(Object.keys(data).length === 0){
           this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
         }
-        this.result = data;
+        this.result1 = data;
+
+        let chartdata1 = this.result1.map(item => item.AMT);
+        let chartlabel1 = this.result1.map(item => item.GBN_NM);
+
+          this.barChart = new Chart(this.barCanvas.nativeElement, {
+                  type: 'bar',
+                  data: {
+                      labels: ['수주금액', '목표예산', '요구금액', '발주금액', '재고사용', '자재합계'],
+                      datasets: [{
+                          label: '수주건별 자재투입 현황 분석표',
+                          data: chartdata1
+                      }]
+                  }
+              });
     });
+
+     //월별 분석표 조회
+      let api_url2 = "/pdd/pdd06_list2";
+      let param2 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: '2018'});
+
+      this.apiProvider.data_api(api_url2, param2)
+      .then(data => {
+        if(Object.keys(data).length === 0){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+        this.result2 = data;
+
+        let chartdata2 = this.result2.map(item => item.MONTH);
+        let chartlabel2 = this.result2.map(item => item.AMT);
+
+
+        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+
+                type: 'line',
+                data: {
+                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월',],
+                    datasets: [{
+                        label: '월별 자재투입 현황 분석표',
+                        data: chartdata2
+                    }]
+                }
+            });
+    });
+
+    }
+
+    //탭페이지 전환
+    changeTab(showIdx){
+      if(showIdx === "1"){
+        this.Tab1 = showIdx;
+        this.Tab2 = "";
+      }else if(showIdx === "2"){
+        this.Tab2 = showIdx;
+        this.Tab1 = "";
+      }
+    }
+
+    slideChanged(){
+      this.slides.getActiveIndex();
     }
 
 }

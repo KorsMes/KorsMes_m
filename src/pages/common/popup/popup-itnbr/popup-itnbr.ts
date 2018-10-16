@@ -35,6 +35,9 @@ export class PopupItnbrPage {
   //품목코드 조회 결과 (리스트)
   public result;
 
+  /* infiniteScroll */
+  public page = 1;
+
   constructor(
               public navCtrl: NavController,
               public navParams: NavParams,
@@ -64,9 +67,12 @@ export class PopupItnbrPage {
   }
 
   //조회
-  retrive(){
+  retrive(infiniteScroll){
+    if(infiniteScroll === undefined){
+      this.page = 1;
+    }
     let api_url = "/common/popup/itnbr";
-    let param = JSON.stringify({itnbr: this.itnbr, itnbr_nm: this.itnbr_nm, spec1: this.spec1, jijic: this.jijic, iform: this.iform, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code});
+    let param = JSON.stringify({itnbr: this.itnbr, itnbr_nm: this.itnbr_nm, spec1: this.spec1, jijic: this.jijic, iform: this.iform, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code, page: this.page});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -75,6 +81,12 @@ export class PopupItnbrPage {
         this.result = data;
       }
     });
+  }
+
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    this.retrive(infiniteScroll);
   }
 
   //리스트 선택 시
