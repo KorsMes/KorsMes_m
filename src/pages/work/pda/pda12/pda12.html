@@ -117,7 +117,7 @@
       <ion-col col-2>증빙자료</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" >
+    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
       <ion-col col-2>{{commonCode15 | commonfilter: r.SABN : 'commonCode15'}}</ion-col>
       <ion-col col-2>{{r.SEQ}}</ion-col>
       <ion-col col-2>{{r.EXP_DATE}}</ion-col>

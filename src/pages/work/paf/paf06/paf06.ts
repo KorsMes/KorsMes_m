@@ -80,7 +80,6 @@ export class PAF06 {
 
                 //단위 가져오기
                 this.commonCode1 = this.commoncodeProvider.getCommonCode1();
-
                 //조달구분 가져오기
                 this.commonCode2 = this.commoncodeProvider.getCommonCode2();
                 //통화 가져오기
@@ -164,20 +163,9 @@ export class PAF06 {
     this.retrive(infiniteScroll);
   }
 
-  add(){
-
-  }
-
-  save(){
-
-  }
-
-  delete(){
-
-  }
-
-  print(){
-
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('PAF06DETAIL', {obj: obj}).present();
   }
 
 

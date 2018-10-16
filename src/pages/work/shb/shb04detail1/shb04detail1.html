@@ -1,0 +1,74 @@
+<!--
+  Generated template for the Shb04detail1Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>수금현황 상세</ion-title>
+    <button ion-button icon-only (click)="closemodal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>PJT번호</ion-col>
+      <ion-col col-6>거래처</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.PJTNO}}</ion-col>
+      <ion-col col-6>{{commonCode13 | commonfilter: obj.CVCOD : 'commonCode13'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>프로젝트명</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>{{obj.PJTNM}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>수금일자</ion-col>
+      <ion-col col-6>수금번호</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.JDATA}}</ion-col>
+      <ion-col col-6>{{obj.SEQ}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>수금금액</ion-col>
+      <ion-col col-6>VAT</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.AMT2: 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.VAT: 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>합계금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>{{'' | commonfilter : obj.AMT2 + obj.VAT: 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>수금구분</ion-col>
+      <ion-col col-6>입금구분</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode17 | commonfilter: obj.TRGBN : 'commonCode17'}}</ion-col>
+      <ion-col col-6>{{commonCode18 | commonfilter: obj.TRCAS : 'commonCode18'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>어음번호</ion-col>
+      <ion-col col-6>발행일자</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.AMTNO}}</ion-col>
+      <ion-col col-6>{{obj.TRTAT}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

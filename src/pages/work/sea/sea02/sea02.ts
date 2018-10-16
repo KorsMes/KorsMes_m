@@ -137,8 +137,6 @@ export class SEA02 {
 
   //조회
   retrive(){
-
-    //상세
     let api_url = "/sea/sea02_list";
     let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
 
@@ -153,6 +151,9 @@ export class SEA02 {
     });
   }
 
-
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Sea02detailPage', {obj: obj}).present();
+  }
 
 }

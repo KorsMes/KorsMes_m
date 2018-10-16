@@ -1,5 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { ApiProvider } from '../../../../providers/api';
+import { AlertProvider } from '../../../../providers/alert';
+import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 /**
  * Generated class for the Paf06DetailPage page.
@@ -14,15 +18,26 @@ import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
   templateUrl: 'paf06-detail.html',
 })
 export class PAF06DETAIL {
-  @ViewChild(Slides) slides: Slides;
-  public active_slide_index;
-  public list;
+  public obj: any = {};
+
+  public commonCode1; //단위
+  public commonCode2; //조달구분
+  public commonCode3; //통화
 
   constructor(
                 public navCtrl: NavController,
-                public navParams: NavParams) {
-                  this.active_slide_index = navParams.get('index');
-                  this.list = navParams.get('list');
+                public navParams: NavParams,
+                public commoncodeProvider: CommoncodeProvider,
+                public alertProvider: AlertProvider,
+                public apiProvider: ApiProvider) {
+                  this.obj = navParams.get('obj');
+
+                  //단위 가져오기
+                  this.commonCode1 = this.commoncodeProvider.getCommonCode1();
+                  //조달구분 가져오기
+                  this.commonCode2 = this.commoncodeProvider.getCommonCode2();
+                  //통화 가져오기
+                  this.commonCode3 = this.commoncodeProvider.getCommonCode3();
   }
 
   ionViewDidLoad() {
@@ -30,15 +45,11 @@ export class PAF06DETAIL {
   }
 
   ionViewDidEnter(){
-    this.slides.slideTo(this.active_slide_index);
   }
 
-  goToSlide(index){
-    this.slides.slideTo(index, 0);
-  }
-
-  slideChanged(){
-    this.slides.getActiveIndex();
+  //팝업 닫기
+  closemodal(){
+    this.navCtrl.pop();
   }
 
 }

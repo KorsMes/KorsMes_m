@@ -8,63 +8,55 @@
 
   <ion-navbar>
     <ion-title>구매단가발행 상세</ion-title>
+    <button ion-button icon-only (click)="closemodal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
-  <ion-slides (ionSlideDidChange) = "slideChanged()">
-    <ion-slide *ngFor="let item of list; let i=index;" (click) = "goToSlide(i)">
-      <ion-card>
-        <ion-card-content>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-5>ID</ion-col>
-              <ion-col col-7>{{item.ID}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>CODE</ion-col>
-              <ion-col col-7>{{item.CODE}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>프로그램명</ion-col>
-              <ion-col col-7>{{item.NAME}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>프로그램ID</ion-col>
-              <ion-col col-7>{{item.P_ID}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-12>
-                [프로그램별 버튼 권한]
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>조회</ion-col>
-              <ion-col col-7>{{item.AUTH_A}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>추가</ion-col>
-              <ion-col col-7>{{item.AUTH_B}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>저장</ion-col>
-              <ion-col col-7>{{item.AUTH_C}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>삭제</ion-col>
-              <ion-col col-7>{{item.AUTH_D}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-5>출력</ion-col>
-              <ion-col col-7>{{item.AUTH_E}}</ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>품목코드</ion-col>
+      <ion-col col-6>품목명칭</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.ITNBR}}</ion-col>
+      <ion-col col-6>{{obj.ITEM_NAME_K}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>규격</ion-col>
+      <ion-col col-6>단위</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.NORM1}}</ion-col>
+      <ion-col col-6>{{commonCode1 | commonfilter: obj.PUR_UM : 'commonCode1'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>협력업체</ion-col>
+      <ion-col col-6>조달구분</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.VENDOR_NAME}}</ion-col>
+      <ion-col col-6>{{commonCode2 | commonfilter: obj.SUPPLY : 'commonCode2'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>통화</ion-col>
+      <ion-col col-6>외화단가</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode3 | commonfilter: obj.CURRENCY : 'commonCode3'}}</ion-col>
+      <ion-col col-6>{{obj.TEMP_PRICE}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>종전단가</ion-col>
+      <ion-col col-6>원화단가</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.PAST_PRICE}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.LAST_PRICE : 'money_filter'}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
