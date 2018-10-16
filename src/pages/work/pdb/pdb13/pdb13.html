@@ -187,7 +187,7 @@
       <ion-col col-2>발주형태</ion-col>
       <ion-col col-2>지불방법</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)">
       <ion-col col-2>{{r1.PUR_NO}}</ion-col>
       <ion-col col-2>{{r1.ITEM}}</ion-col>
       <ion-col col-2>{{r1.ITEM_NAME}}</ion-col>
@@ -227,7 +227,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail2(r2)">
     </ion-row>
   </ion-grid>
 
@@ -245,7 +245,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r3 of result3; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r3 of result3; let i=index" (click) = "openDetail3(r3)">
     </ion-row>
   </ion-grid>
 
@@ -261,7 +261,7 @@
       <ion-col col-2>NEGO단가</ion-col>
       <ion-col col-2>NEGO금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r4 of result4; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r4 of result4; let i=index" (click) = "openDetail4(r4)">
     </ion-row>
   </ion-grid>
 
@@ -275,7 +275,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r5 of result5; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r5 of result5; let i=index">
     </ion-row>
   </ion-grid>
 
@@ -289,7 +289,7 @@
       <ion-col col-2>NEGO금액</ion-col>
       <ion-col col-2>합계금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r6 of result6; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r6 of result6; let i=index">
     </ion-row>
   </ion-grid>
 

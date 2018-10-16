@@ -219,6 +219,9 @@ export class SFA05 {
     }
   }
 
-
+  //상세팝업1
+  openDetail1(obj: any){
+    this.modalController.create('Sfa05detail1Page', {obj: obj}).present();
+  }
 
 }

@@ -94,7 +94,7 @@
       <ion-col col-2>부서</ion-col>
       <ion-col col-2>매출담당</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" >
+    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)">
       <ion-col col-2>{{r1.PJTNO}}</ion-col>
       <ion-col col-2>{{r1.PJTNM}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r1.CVCOD : 'commonCode13'}}</ion-col>
@@ -119,7 +119,7 @@
       <ion-col col-2>부가세</ion-col>
       <ion-col col-2>합계금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index" >
+    <ion-row *ngFor="let r2 of result2; let i=index">
       <ion-col col-2>{{r2.CVCOD}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r2.CVCOD : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r2.QTY2}}</ion-col>
@@ -140,7 +140,7 @@
       <ion-col col-2>부가세</ion-col>
       <ion-col col-2>합계금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r3 of result3; let i=index" >
+    <ion-row *ngFor="let r3 of result3; let i=index">
       <ion-col col-2>{{r3.DPTNO}}</ion-col>
       <ion-col col-2>{{commonCode8 | commonfilter: r3.DPTNO : 'commonCode8'}}</ion-col>
       <ion-col col-2>{{commonCode12 | commonfilter: r3.EMPNO : 'commonCode12'}}</ion-col>

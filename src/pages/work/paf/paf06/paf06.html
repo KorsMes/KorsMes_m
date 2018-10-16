@@ -75,7 +75,7 @@
       <ion-col col-2>원화단가</ion-col>
       <ion-col col-2>적용일자</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
       <ion-col col-2>{{r.ITNBR}}</ion-col>
       <ion-col col-2>{{r.ITEM_NAME_K}}</ion-col>
       <ion-col col-2>{{r.NORM1}}</ion-col>

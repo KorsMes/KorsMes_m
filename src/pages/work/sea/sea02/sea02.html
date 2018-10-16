@@ -96,7 +96,7 @@
       <ion-col col-2>비고(생관)</ion-col>
       <ion-col col-2>품질등급</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
       <ion-col col-2>{{commonCode37 | commonfilter : r.STATUS : 'commonCode37'}}</ion-col>
       <ion-col col-2>{{r.PJTNO}}</ion-col>
       <ion-col col-2>{{r.PJTNM}}</ion-col>

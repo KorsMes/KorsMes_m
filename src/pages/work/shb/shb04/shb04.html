@@ -105,7 +105,7 @@
       <ion-col col-2>부서</ion-col>
       <ion-col col-2>수금담당</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail(r1)">
       <ion-col col-2>{{r1.PJTNO}}</ion-col>
       <ion-col col-2>{{r1.PJTNM}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r1.CVCOD : 'commonCode13'}}</ion-col>

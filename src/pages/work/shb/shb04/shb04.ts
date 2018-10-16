@@ -226,5 +226,11 @@ export class SHB04 {
     }
   }
 
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Shb04detail1Page', {obj: obj}).present();
+  }
+
+
 
 }

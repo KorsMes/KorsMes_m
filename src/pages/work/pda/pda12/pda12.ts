@@ -6,8 +6,6 @@ import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
 import { CommoncodeProvider } from '../../../../providers/commoncode';
 
-
-
 /**
  * Generated class for the Pda12Page page.
  *
@@ -25,7 +23,6 @@ export class PDA12 {
   public commonCode30; //상태
   public commonCode6; //계정과목
   public commonCode15; //사용자
-  public commonCode7; //증빙자료
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -56,6 +53,11 @@ export class PDA12 {
 
   /* 조회결과 */
   public result;
+
+
+  @ViewChild('barCanvas') barCanvas;
+
+  barChart: any;
 
 
 
@@ -96,8 +98,6 @@ export class PDA12 {
               this.commonCode6 = this.commoncodeProvider.getCommonCode6();
               //사용자 가져오기
               this.commonCode15 = this.commoncodeProvider.getCommonCode15();
-              //증빙자료 가져오기
-              this.commonCode7 = this.commoncodeProvider.getCommonCode7();
   }
 
   ionViewDidLoad() {
@@ -147,6 +147,11 @@ export class PDA12 {
       }
       this.result = data;
     });
+  }
+
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Pda12detailPage', {obj: obj}).present();
   }
 
 }
