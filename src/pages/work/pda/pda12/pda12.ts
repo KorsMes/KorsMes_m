@@ -6,7 +6,7 @@ import { ApiProvider } from '../../../../providers/api';
 import { AlertProvider } from '../../../../providers/alert';
 import { CommoncodeProvider } from '../../../../providers/commoncode';
 
- import { Chart } from 'chart.js';
+
 
 /**
  * Generated class for the Pda12Page page.
@@ -56,11 +56,6 @@ export class PDA12 {
 
   /* 조회결과 */
   public result;
-
-
-  @ViewChild('lineCanvas') lineCanvas;
-
-  lineChart: any;
 
 
 
@@ -151,26 +146,6 @@ export class PDA12 {
         this.searchCondition = "";
       }
       this.result = data;
-
-      let chartdata = this.result.map(item => item.AMT);
-      let chartlabel = this.result.map(item => item.CUST_NM);
-
-      this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-
-              type: 'line',
-              data: {
-                  labels: chartlabel,
-                  datasets: [{
-                      label: chartlabel,
-                      data: chartdata
-                  }],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)'
-                  ]
-              }
-
-          });
-
     });
   }
 
