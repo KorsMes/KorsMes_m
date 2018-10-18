@@ -105,29 +105,17 @@
 
   <br>
 
-  <ion-grid class="listgrid">
-    <ion-row>
-      <ion-col col-2>기안자</ion-col>
-      <ion-col col-2>No.</ion-col>
-      <ion-col col-2>지출일자</ion-col>
-      <ion-col col-2>계정과목</ion-col>
-      <ion-col col-2>지출내용</ion-col>
-      <ion-col col-2>거래처</ion-col>
-      <ion-col col-2>지출금액</ion-col>
-      <ion-col col-2>증빙자료</ion-col>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
-      <ion-col col-2>{{commonCode15 | commonfilter: r.SABN : 'commonCode15'}}</ion-col>
-      <ion-col col-2>{{r.SEQ}}</ion-col>
-      <ion-col col-2>{{r.EXP_DATE}}</ion-col>
-      <ion-col col-2>{{commonCode6 | commonfilter: r.AC_CD : 'commonCode6'}}</ion-col>
-      <ion-col col-2>{{r.EXP_REMARKS}}</ion-col>
-      <ion-col col-2>{{r.CUST_NM}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r.AMT : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{commonCode7 | commonfilter: r.PRO_FLAG : 'commonCode7'}}</ion-col>
-      <ion-col col-2>{{r.REMARKS}}</ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 class="t_left">{{r.EXP_DATE}}</ion-col>
+        <ion-col col-6 class="t_right">{{commonCode15 | commonfilter: r.SABN : 'commonCode15'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 class="t_left">{{r.EXP_REMARKS}}</ion-col>
+        <ion-col col-6 class="t_right t_bold">{{'' | commonfilter : r.AMT : 'money_filter'}}<span *ngIf="r.AMT">원</span></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
 </ion-content>

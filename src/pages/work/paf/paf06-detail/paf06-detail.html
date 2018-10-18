@@ -8,16 +8,14 @@
 
   <ion-navbar>
     <ion-title>구매단가발행 상세</ion-title>
-    <button ion-button icon-only (click)="closemodal()">
-      <ion-icon name="close"></ion-icon>
-    </button>
+    <ion-icon name="close" (click)="closemodal()" class="close_btn"></ion-icon>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-grid>
+<ion-content>
+  <ion-grid class="detail_grid">
     <ion-row>
       <ion-col col-6>품목코드</ion-col>
       <ion-col col-6>품목명칭</ion-col>
