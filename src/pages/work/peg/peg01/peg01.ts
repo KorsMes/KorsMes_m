@@ -94,13 +94,7 @@ export class PEG01 {
   //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.date_fr = new Date().getUTCFullYear()+"-"+"01-01";
-      this.date_to = new Date().toISOString();
-      this.cust_cd = "";
-      this.cust_nm = "";
-      this.dept_cd = "";
-      this.dept_nm = "";
-      this.opt = "A";
+      this.yymm = new Date().toISOString();
     }
     this.searchCondition = yn;
   }

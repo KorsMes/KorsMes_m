@@ -17,12 +17,12 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-3 >
-        <div class="ion_div">공장코드</div>
-      </ion-col>
-        <ion-select [(ngModel)]="plant_cd" interface="popover" class="search_dept">
+      <ion-col col-2>공장코드</ion-col>
+      <ion-col col-10>
+        <ion-select [(ngModel)]="plant_cd" interface="popover">
           <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
         </ion-select>
+      </ion-col>
     </ion-row>
 
     <ion-row>

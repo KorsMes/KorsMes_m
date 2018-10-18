@@ -20,16 +20,22 @@
 -->
 
 <ion-menu [content] = "content">
+<!--
   <ion-header >
     <ion-toolbar>
       <ion-title>Kors Mes</ion-title>
     </ion-toolbar>
   </ion-header>
+-->
 
   <ion-content>
     <ion-list>
+      <ion-item>
+        <div><span class="user_info">{{userInfo.user_nm}}님</span>
+        <button ion-button (click) = "doLogout()" class="log_out_btn"><img src="../../../assets/imgs/log_out_btn.jpg" /></button></div>
+      </ion-item>
       <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1(p, 'idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}" class="a">
-        <h4>
+        <h4 class="big_menu">
           {{p.title}}
           <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
         </h4>
@@ -41,16 +47,16 @@
             </h4>
             <ion-list *ngIf="isLevel2Shown('idx'+i+'idx'+i2)">
               <ion-item *ngFor="let m of s.thirdPages" text-wrap (click)="toggleLevel3(m)" class="c">
-                {{m.title}}
+                └ {{m.title}}
               </ion-item>
             </ion-list>
           </ion-item>
         </ion-list>
       </ion-item>
-      <ion-item>
+<!--      <ion-item>
         {{userInfo.user_nm}}님
         <button ion-button (click) = "doLogout()">Log Out</button>
-      </ion-item>
+      </ion-item>-->
     </ion-list>
   </ion-content>
 

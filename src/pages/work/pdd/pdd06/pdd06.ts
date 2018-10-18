@@ -30,9 +30,11 @@ export class PDD06 {
   public acc_btn_print;
 
   /* 조건검색 */
-  public g_user;
-  public g_company;
-  public g_plant;
+  public g_user; //로그인정보
+  public g_company; //회사정보
+  public g_plant; //공장정보
+
+  public plant_cd; //공장코드
 
   public date_fr = new Date().getUTCFullYear()+"-"+"01"; //기안일자from
 
@@ -41,7 +43,9 @@ export class PDD06 {
   public result1;
   public result2;
 
-
+  /* 탭 페이지 */
+  public Tab1 = "1";
+  public Tab2;
 
   /* bar 차트 선언*/
   @ViewChild('barCanvas') barCanvas;
@@ -102,19 +106,19 @@ export class PDD06 {
         this.result1 = data;
 
         let chartdata1 = this.result1.map(item => item.AMT);
-        let chartlabel1 = this.result1.map(item => item.GBN_NM);
+        //let chartlabel1 = this.result1.map(item => item.GBN_NM);
 
           this.barChart = new Chart(this.barCanvas.nativeElement, {
-                  type: 'bar',
-                  data: {
-                      labels: ['수주금액', '목표예산', '요구금액', '발주금액', '재고사용', '자재합계'],
-                      datasets: [{
-                          label: '수주건별 자재투입 현황 분석표',
-                          data: chartdata1
-                      }]
-                  }
-              });
-    });
+            type: 'bar',
+            data: {
+              labels: ['수주금액', '목표예산', '요구금액', '발주금액', '재고사용', '자재합계'],
+              datasets: [{
+                  label: '수주건별 자재투입 현황 분석표',
+                  data: chartdata1
+              }]
+            }
+          });
+      });
 
      //월별 분석표 조회
       let api_url2 = "/pdd/pdd06_list2";
@@ -128,22 +132,20 @@ export class PDD06 {
         this.result2 = data;
 
         let chartdata2 = this.result2.map(item => item.MONTH);
-        let chartlabel2 = this.result2.map(item => item.AMT);
+        //let chartlabel2 = this.result2.map(item => item.AMT);
 
 
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-
-                type: 'line',
-                data: {
-                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월',],
-                    datasets: [{
-                        label: '월별 자재투입 현황 분석표',
-                        data: chartdata2
-                    }]
-                }
-            });
-    });
-
+          type: 'line',
+          data: {
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월',],
+            datasets: [{
+                label: '월별 자재투입 현황 분석표',
+                data: chartdata2
+            }]
+          }
+        });
+      });
     }
 
     //탭페이지 전환
@@ -156,5 +158,4 @@ export class PDD06 {
         this.Tab1 = "";
       }
     }
-
 }

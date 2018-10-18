@@ -19,7 +19,7 @@ export class SidemenuListProvider {
                 title: '구매단가',
                 subPages: [
                             {
-                              title: '구매단가발행',
+                              title: '구매단가 조회',
                               component: 'PAF06',
                               acc_btn_a : '',
                               acc_btn_b : '',
@@ -35,7 +35,7 @@ export class SidemenuListProvider {
                 title: '전표관리',
                 subPages: [
                             {
-                              title: '지출내역 발행',
+                              title: '지출내역 조회',
                               component: 'PDA12',
                               acc_btn_a : '',
                               acc_btn_b : '',
@@ -51,7 +51,7 @@ export class SidemenuListProvider {
                 title: '견적관리',
                 subPages: [
                             {
-                              title: '견적서 발행(을지)',
+                              title: '견적서 조회',
                               component: 'SCB10',
                               acc_btn_a : '',
                               acc_btn_b : '',
@@ -70,7 +70,7 @@ export class SidemenuListProvider {
                               title: '수주관리',
                               thirdPages: [
                                             {
-                                              title: 'PJT 수주내역 조회',
+                                              title: 'PJT수주 조회',
                                               component: 'SEA02',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
@@ -84,7 +84,7 @@ export class SidemenuListProvider {
                               title: '매출관리',
                               thirdPages: [
                                             {
-                                              title: '매출내역 종합현황',
+                                              title: '매출현황 조회',
                                               component: 'SFA05',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
@@ -98,7 +98,7 @@ export class SidemenuListProvider {
                               title: '수금관리',
                               thirdPages: [
                                             {
-                                              title: '수금내역 종합현황',
+                                              title: '수금현황 조회',
                                               component: 'SHB04',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
@@ -119,7 +119,7 @@ export class SidemenuListProvider {
                               title: '목표예산관리',
                               thirdPages: [
                                             {
-                                              title: '목표기초원가 발행',
+                                              title: '목표기초원가 조회',
                                               component: 'PDH04',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
@@ -163,7 +163,7 @@ export class SidemenuListProvider {
                               title: 'PJT 발주처리',
                               thirdPages: [
                                             {
-                                              title: '월 발주현황',
+                                              title: '발주현황 조회',
                                               component: 'PDB13',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
@@ -198,7 +198,7 @@ export class SidemenuListProvider {
                               title: '자재입고관리',
                               thirdPages: [
                                             {
-                                              title: '일자별 자재입고 현황',
+                                              title: '자재입고현황 조회',
                                               component: 'PEB14',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
@@ -256,7 +256,7 @@ export class SidemenuListProvider {
                               title: '수입검사관리',
                               thirdPages: [
                                             {
-                                              title: '월별 수입검사현황',
+                                              title: '수입검사현황 조회',
                                               component: 'PHA03',
                                               acc_btn_a : '',
                                               acc_btn_b : '',
