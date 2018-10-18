@@ -210,5 +210,9 @@ export class PEA03 {
     });
   }
 
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Pea03detailPage', {obj: obj}).present();
+  }
 
 }

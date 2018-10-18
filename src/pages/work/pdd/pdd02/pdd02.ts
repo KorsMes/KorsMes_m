@@ -36,7 +36,7 @@ export class PDD02 {
   public g_plant; //공장정보
 
   public plant_cd; //공장코드
-  public yyyymm = new Date().toISOString(); //조회년월
+  public yymm = new Date().toISOString(); //조회년월
 
   /* 조회결과 */
   public result;
@@ -83,15 +83,15 @@ export class PDD02 {
   //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.yyyymm = new Date().toISOString();
+      this.yymm = new Date().toISOString();
     }
     this.searchCondition = yn;
   }
 
   //조회
   retrive(){
-    let api_url = "/pdd02/pdd02_list";
-    let param = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yyyymm: this.yyyymm});
+    let api_url = "/pdd/pdd02_list";
+    let param = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {

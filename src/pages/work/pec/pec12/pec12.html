@@ -129,7 +129,7 @@
       <ion-col col-2>출고번호</ion-col>
       <ion-col col-2>출고수량</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail('tab1', r1)">
       <ion-col col-2>{{r1.PJTNO}}</ion-col>
       <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
       <ion-col col-2>{{r1.DRSEQ}}</ion-col>
@@ -138,7 +138,6 @@
       <ion-col col-2>{{r1.ITEM_SPEC}}</ion-col>
       <ion-col col-2>{{r1.PL_QTY}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r1.PUR_VENDOR : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{r1.PUR_VENDOR}}</ion-col>
       <ion-col col-2>{{r1.PUR_NO}}</ion-col>
       <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
       <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
@@ -164,7 +163,7 @@
       <ion-col col-2>입고수량</ion-col>
       <ion-col col-2>출고수량</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index" >
+    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail('tab2', r2)">
       <ion-col col-2>{{r2.PJTNO}}</ion-col>
       <ion-col col-2>{{r2.PJTNO_NM}}</ion-col>
       <ion-col col-2>{{r2.DRSEQ}}</ion-col>

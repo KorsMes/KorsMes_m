@@ -24,6 +24,9 @@ export class SEA02 {
   public commonCode37; //견적상태
   public commonCode14; //영업부서
   public commonCode13; //거래처
+  public commonCode39; //생산구분
+  public commonCode40; //주문구분
+  public commonCode43; //사업구분
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -97,6 +100,15 @@ export class SEA02 {
 
                 //거래처 가져오기
                 this.commonCode13 = this.commoncodeProvider.getCommonCode13();
+
+                //생산구분 가져오기
+                this.commonCode39 = this.commoncodeProvider.getCommonCode39();
+
+                //주문구분 가져오기
+                this.commonCode40 = this.commoncodeProvider.getCommonCode40();
+
+                //사업구분 가져오기
+                this.commonCode43 = this.commoncodeProvider.getCommonCode43();
   }
 
   ionViewDidLoad() {

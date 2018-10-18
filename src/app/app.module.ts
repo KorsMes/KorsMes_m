@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
@@ -12,6 +11,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 /* COMMON PAGES */
+import { SplashscreenPage } from '../pages/common/splashscreen/splashscreen';
 import { HomePage } from '../pages/common/home/home';
 import { MainTemplatePage } from '../pages/common/main-template/main-template';
 import { MainPage } from '../pages/common/main/main';
@@ -31,6 +31,7 @@ import { PipesModule } from '../pipes/pipes.module';
     HomePage,
     MainTemplatePage,
     MainPage,
+    SplashscreenPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { PipesModule } from '../pipes/pipes.module';
     MyApp,
     HomePage,
     MainTemplatePage,
-    MainPage
+    MainPage,
+    SplashscreenPage
   ],
   providers: [
     StatusBar,

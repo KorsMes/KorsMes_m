@@ -7,12 +7,72 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>peg08detail1</ion-title>
+    <ion-title>월별/자재별 수불집계표 상세</ion-title>
+    <button ion-button icon-only (click)="closemodal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>품번</ion-col>
+      <ion-col col-6>품명</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.ITEM}}</ion-col>
+      <ion-col col-6>{{obj.ITEM_NAME_K}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>제조사</ion-col>
+      <ion-col col-6>이동평균단가</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode13 | commonfilter: obj.JEJOS : 'commonCode13'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : (obj.BASIC_AMT + obj.DEPS_AMT) / (obj.BASIC_QTY + obj.DEPS_QTY) : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>이월수량</ion-col>
+      <ion-col col-6>입고수량</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.BASIC_QTY}}</ion-col>
+      <ion-col col-6>{{obj.DEPS_QTY}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>출고수량</ion-col>
+      <ion-col col-6>재고수량</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.OUT_QTY}}</ion-col>
+      <ion-col col-6>{{obj.STOCK_QTY}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>재질/형명</ion-col>
+      <ion-col col-6>금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.JIJIC}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.BASIC_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>입고금액</ion-col>
+      <ion-col col-6>출고금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.DEPS_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.OUT_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>재고금액</ion-col>
+      <ion-col col-6>규격</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.STOCK_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-6>{{obj.SPEC1}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Slides } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,8 +19,6 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pdh04.html',
 })
 export class PDH04 {
-  @ViewChild(Slides) slides: Slides;
-  public active_slide_index;
   /* 통합코드 */
   public commonCode1; //부서
 
@@ -94,15 +92,6 @@ export class PDH04 {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Pdh04Page');
   }
-
-  ionViewDidEnter(){
-    this.slides.slideTo(this.active_slide_index);
-  }
-
-  goToSlide(index){
-    this.slides.slideTo(index, 0);
-  }
-
 
   condition_yn(yn){
     if(yn === ''){
@@ -193,9 +182,9 @@ export class PDH04 {
     }
   }
 
-  slideChanged(){
-    this.slides.getActiveIndex();
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Pdh04detail2Page', {obj: obj}).present();
   }
-
 
 }

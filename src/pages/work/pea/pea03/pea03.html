@@ -130,7 +130,7 @@
       <ion-col col-2>PJT번호</ion-col>
       <ion-col col-2>설계차수</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
       <ion-col col-2>{{r.VENDOR}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter : r.VENDOR : 'commonCode13'}}</ion-col>
       <ion-col col-2>{{r.DEPS_NO}}</ion-col>

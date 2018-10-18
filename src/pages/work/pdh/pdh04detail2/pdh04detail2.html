@@ -1,0 +1,84 @@
+<!--
+  Generated template for the Pdh04detail2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>자재투입 계획서(을지) 상세</ion-title>
+    <button ion-button icon-only (click)="closemodal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>품목코드</ion-col>
+      <ion-col col-6>명칭</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.ITEM}}</ion-col>
+      <ion-col col-6>{{obj.NAME}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>규격</ion-col>
+      <ion-col col-6>단위</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.SPEC1}}</ion-col>
+      <ion-col col-6>{{commonCode1 | commonfilter : obj.UNMSR : 'commonCode1'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>목표수량</ion-col>
+      <ion-col col-6>목표단가</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.BUD_QTY}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.OBJ_PRICE: 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>목표금액</ion-col>
+      <ion-col col-6>설계수량</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.BUD_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-6>{{obj.PL_QTY}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>설계단가</ion-col>
+      <ion-col col-6>설계금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.STD_PRICE : 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.PL_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>발주수량</ion-col>
+      <ion-col col-6>발주단가</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.PUR_QTY}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.PUR_PRICE : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>발주금액</ion-col>
+      <ion-col col-6>차이수량</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.PUR_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-6>{{obj.PL_QTY - obj.PUR_QTY}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>차이금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>{{'' | commonfilter : obj.PL_AMT - obj.PUR_AMT: 'money_filter'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

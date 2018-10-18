@@ -79,7 +79,7 @@
       <ion-col col-2>재고금액</ion-col>
       <ion-col col-2>규격</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" >
+    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail('tab1', r1)">
       <ion-col col-2>{{r1.ITEM}}</ion-col>
       <ion-col col-2>{{r1.ITEM_NAME_K}}</ion-col>
       <ion-col col-2>{{commonCode13 | commonfilter: r1.JEJOS : 'commonCode13'}}</ion-col>
@@ -107,7 +107,7 @@
       <ion-col col-2>출고금액</ion-col>
       <ion-col col-2>재고금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index" >
+    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail('tab2', r2)">
       <ion-col col-2>{{'' | commonfilter : r2.YYYYMM : 'getMonth'}}</ion-col>
       <ion-col col-2>{{'' | commonfilter : r2.BASIC_AMT : 'money_filter'}}</ion-col>
       <ion-col col-2>{{'' | commonfilter : r2.DEPS_AMT : 'money_filter'}}</ion-col>

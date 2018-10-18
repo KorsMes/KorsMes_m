@@ -7,12 +7,88 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>peb14detail1</ion-title>
+    <ion-title>일자별 자재입고 현황 상세</ion-title>
+    <button ion-button icon-only (click)="closemodal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>거래처</ion-col>
+      <ion-col col-6>거래처명</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.VENDOR}}</ion-col>
+      <ion-col col-6>{{commonCode13 | commonfilter: obj.VENDOR : 'commonCode13'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>입고의뢰일자</ion-col>
+      <ion-col col-6>입고일자</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.DELV_DATE}}</ion-col>
+      <ion-col col-6>{{obj.DEPS_DATE}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>입고번호</ion-col>
+      <ion-col col-6>품목코드</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.DEPS_NO}}</ion-col>
+      <ion-col col-6>{{obj.ITEM}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>품목명칭</ion-col>
+      <ion-col col-6>규격</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.ITEM_NAME_K}}</ion-col>
+      <ion-col col-6>{{obj.NORM1}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>단위</ion-col>
+      <ion-col col-6>등급</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode1 | commonfilter: obj.STOCK_UM : 'commonCode1'}}</ion-col>
+      <ion-col col-6>{{obj.ABC_CD}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>입고유형</ion-col>
+      <ion-col col-6>입고수량</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode29 | commonfilter: obj.DEPS_TYPE : 'commonCode29'}}</ion-col>
+      <ion-col col-6>{{obj.DEPS_QTY}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>입고단가</ion-col>
+      <ion-col col-6>입고금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.DEPS_PRICE: 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.DEPS_AMT: 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>총금액</ion-col>
+      <ion-col col-6>조달구분</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.DEPS_FAMT: 'money_filter'}}</ion-col>
+      <ion-col col-6>{{commonCode2 | commonfilter: obj.SUPL_CLASS : 'commonCode2'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>통화</ion-col>
+      <ion-col col-6></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode3 | commonfilter: obj.CURRENCY : 'commonCode3'}}</ion-col>
+      <ion-col col-6></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

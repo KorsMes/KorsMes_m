@@ -258,4 +258,17 @@ export class PEG08 {
     }
   }
 
+
+  //상세팝업
+  openDetail(idx, obj: any){
+    if(idx === "tab1"){
+      this.modalController.create('Peg08detail1Page', {obj: obj}).present();
+    }
+
+    if(idx === "tab2"){
+      this.modalController.create('Peg08detail2Page', {obj: obj}).present();
+    }
+
+  }
+
 }

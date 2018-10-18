@@ -112,6 +112,9 @@ export class MainPage {
     });
   }
 
-
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Sea02detailPage', {obj: obj}).present();
+  }
 
 }

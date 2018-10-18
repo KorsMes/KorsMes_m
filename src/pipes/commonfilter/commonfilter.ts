@@ -348,6 +348,69 @@ export class CommonfilterPipe implements PipeTransform {
       }
     }
 
+    //설치지역
+    if(code === "commonCode38"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //생산구분
+    if(code === "commonCode39"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //주문구분
+    if(code === "commonCode40"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //계약유무
+    if(code === "commonCode41"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //수주구분
+    if(code === "commonCode42"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //사업구분
+    if(code === "commonCode43"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
+    //결재조건
+    if(code === "commonCode44"){
+      for(let item in items){
+        if(items[item].CODE === value){
+          re = items[item].NAME1;
+        }
+      }
+    }
+
 
 
 

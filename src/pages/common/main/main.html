@@ -47,7 +47,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let r of result">
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
     <ion-grid>
       <ion-row>
         <ion-col>{{r.PJTNO}}</ion-col>
@@ -56,13 +56,12 @@
         <ion-col>{{r.PJTNM}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>{{'' | commonfilter : r.PJAMT: 'money_filter'}}</ion-col>
+        <ion-col>{{'' | commonfilter : r.PJAMT: 'money_filter'}}<span *ngIf="r.PJAMT">원</span></ion-col>
       </ion-row>
       <ion-row>
         <ion-col>{{r.NADAT}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
-
 
 </ion-content>

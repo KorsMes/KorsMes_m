@@ -176,14 +176,13 @@ export class PHB04 {
       return;
     }
     let api_url = "/phb/phb04_list";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.pjtno, task_cd: this.task_cd, lot_no: this.lot_no, c_code: this.g_user.c_code});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.pjtno, task: this.task_cd, lot_no: this.lot_no, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-      }else{
-        this.result = data;
       }
+      this.result = data;
     });
   }
 

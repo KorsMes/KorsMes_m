@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Storage } from '@ionic/storage';
 
+import { SplashscreenPage } from '../pages/common/splashscreen/splashscreen';
 import { HomePage } from '../pages/common/home/home';
 import { MainTemplatePage } from '../pages/common/main-template/main-template';
 
@@ -27,12 +28,15 @@ export class MyApp {
               splashScreen: SplashScreen,
               public storage: Storage,
               public apiProvider: ApiProvider,
-              public commoncodeProvider: CommoncodeProvider) {
+              public commoncodeProvider: CommoncodeProvider,
+              public modalController: ModalController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      splashScreen.hide();
+      //splashScreen.hide();
+      let splash = modalController.create(SplashscreenPage);
+      splash.present();
 
       /* 로그인 상태 체크 */
       this.storage.get("[USERINFO]").then((result) => {
@@ -91,6 +95,13 @@ export class MyApp {
               this.commoncodeProvider.setCommonCode35(result.c_code); //검사구분
               this.commoncodeProvider.setCommonCode36(result.c_code); //공정
               this.commoncodeProvider.setCommonCode37(result.c_code); //견적상태
+              this.commoncodeProvider.setCommonCode38(result.c_code); //설치지역
+              this.commoncodeProvider.setCommonCode39(result.c_code); //생산구분
+              this.commoncodeProvider.setCommonCode40(result.c_code); //주문구분
+              this.commoncodeProvider.setCommonCode41(result.c_code); //계약유무
+              this.commoncodeProvider.setCommonCode42(result.c_code); //수주구분
+              this.commoncodeProvider.setCommonCode43(result.c_code); //사업구분
+              this.commoncodeProvider.setCommonCode44(result.c_code); //결재조건
 
               this.rootPage = MainTemplatePage;
             }
@@ -102,7 +113,7 @@ export class MyApp {
           this.rootPage = HomePage;
         }
       });
-      setTimeout(() => { this.showRoot = true; },500);
+      setTimeout(() => { this.showRoot = true; },1000);
     });
   }
 

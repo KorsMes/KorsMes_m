@@ -57,6 +57,13 @@ export class CommoncodeProvider {
   public commonCode35; //검사구분
   public commonCode36; //공정
   public commonCode37; //견적상태
+  public commonCode38; //설치지역
+  public commonCode39; //생산구분
+  public commonCode40; //주문구분
+  public commonCode41; //계약유무
+  public commonCode42; //수주구분
+  public commonCode43; //사업구분
+  public commonCode44; //결재조건
 
 
 
@@ -697,6 +704,118 @@ export class CommoncodeProvider {
     });
   }
 
+  //설치지역
+  setCommonCode38(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode38";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode38 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //생산구분
+  setCommonCode39(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode39";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode39 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //주문구분
+  setCommonCode40(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode40";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode40 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //계약유무
+  setCommonCode41(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode41";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode41 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //수주구분
+  setCommonCode42(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode42";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode42 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //사업구분
+  setCommonCode43(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode43";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode43 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
+  //결재조건
+  setCommonCode44(code1){
+    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode44";
+    let param = JSON.stringify({c_code: code1});
+    return new Promise((resolve, reject) => {
+      this.http.post(SERVER_URL, param)
+      .subscribe(res => {
+        this.commonCode44 = res;
+        console.log(res);
+      }, (err) =>{
+        reject(err);
+        console.log(err);
+      });
+    });
+  }
+
   //단위 가져오기
   getCommonCode1(){
     return this.commonCode1;
@@ -837,16 +956,43 @@ export class CommoncodeProvider {
   getCommonCode35(){
     return this.commonCode35;
   }
-
   //공정
   getCommonCode36(){
     return this.commonCode36;
   }
-
   //견적상태
   getCommonCode37(){
     return this.commonCode37;
   }
+  //설치지역
+  getCommonCode38(){
+    return this.commonCode38;
+  }
+  //생산구분
+  getCommonCode39(){
+    return this.commonCode39;
+  }
+  //주문구분
+  getCommonCode40(){
+    return this.commonCode40;
+  }
+  //계약유무
+  getCommonCode41(){
+    return this.commonCode41;
+  }
+  //수주구분
+  getCommonCode42(){
+    return this.commonCode42;
+  }
+  //사업구분
+  getCommonCode43(){
+    return this.commonCode43;
+  }
+  //결재조건
+  getCommonCode44(){
+    return this.commonCode44;
+  }
+
 
   /* 공통모듈 SET END */
 
