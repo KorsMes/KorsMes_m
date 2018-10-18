@@ -21,6 +21,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 })
 export class PEC12 {
   /* 통합코드 */
+  public commonCode13; //거래처
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -48,8 +49,6 @@ export class PEC12 {
   public item_name_k; //품목명1
   public item2; //품목코드2
   public item_name_k2; //품목명2
-
-  public commonCode13; //거래처
 
   /* 조회결과 */
   public result1; //자재투입진척현황(상세)
@@ -258,5 +257,19 @@ export class PEC12 {
       this.Tab1 = "";
     }
   }
+
+
+  //상세팝업
+  openDetail(idx, obj: any){
+    if(idx === "tab1"){
+      this.modalController.create('Pec12detail1Page', {obj: obj}).present();
+    }
+
+    if(idx === "tab2"){
+      this.modalController.create('Pec12detail2Page', {obj: obj}).present();
+    }
+
+  }
+
 
 }

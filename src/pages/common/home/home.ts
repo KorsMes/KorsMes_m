@@ -122,34 +122,23 @@ export class HomePage {
         this.commoncodeProvider.setCommonCode35(this.c_code); //검사구분
         this.commoncodeProvider.setCommonCode36(this.c_code); //공정
         this.commoncodeProvider.setCommonCode37(this.c_code); //견적상태
-
+        this.commoncodeProvider.setCommonCode38(this.c_code); //설치지역
+        this.commoncodeProvider.setCommonCode39(this.c_code); //생산구분
+        this.commoncodeProvider.setCommonCode40(this.c_code); //주문구분
+        this.commoncodeProvider.setCommonCode41(this.c_code); //계약유무
+        this.commoncodeProvider.setCommonCode42(this.c_code); //수주구분
+        this.commoncodeProvider.setCommonCode43(this.c_code); //사업구분
+        this.commoncodeProvider.setCommonCode44(this.c_code); //결재조건
 
         //로그인 유지 시 로그인데이터(쿠키) 생성
         if(this.retain_flag){
           this.storage.set('[USERINFO]', this.commoncodeProvider.getUserInfo());
         }
 
-
-
-        /*
-        this.loginInfo = this.commoncodeProvider.getUserInfo();
-        console.log("앙0 : " + this.loginInfo.user_id);
-
-        this.CompanyInfo = this.commoncodeProvider.getCompanyInfo();
-        for(var a in this.CompanyInfo){
-          console.log("앙1 : " + this.CompanyInfo[a].COMPANY_NAME_K);
-        }
-
-        this.PlantInfo = this.commoncodeProvider.getPlantInfo();
-        for(var b in this.PlantInfo){
-          console.log("앙2 : " + this.PlantInfo[b].PLANT_NAME_K);
-        }
-        */
-
         this.user_id = "";
         this.user_pswd = "";
 
-        setTimeout(() => { this.navController.setRoot(MainTemplatePage); },500);
+        setTimeout(() => { this.navController.setRoot(MainTemplatePage); },1500);
       }
 
     });

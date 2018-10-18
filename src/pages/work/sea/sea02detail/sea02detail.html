@@ -17,83 +17,83 @@
 
 
 <ion-content padding>
-  <ion-grid>
+  <ion-grid *ngFor="let r of result">
     <ion-row>
       <ion-col col-6>PJT번호</ion-col>
       <ion-col col-6>견적/PO번호</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{r.PJTNO}}</ion-col>
+      <ion-col col-6>{{r.SOFNO}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-12>프로젝트명</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-12></ion-col>
+      <ion-col col-12>{{r.PJTNM}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>영업부서</ion-col>
       <ion-col col-6>영업담당</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{commonCode14 | commonfilter: r.DPTNO: 'commonCode14'}}</ion-col>
+      <ion-col col-6>{{commonCode15 | commonfilter: r.EPNO: 'commonCode15'}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>거래처</ion-col>
       <ion-col col-6>수요처</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{commonCode13 | commonfilter: r.CVCOD: 'commonCode13'}}</ion-col>
+      <ion-col col-6>{{commonCode13 | commonfilter: r.SUNAM: 'commonCode13'}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>발주처</ion-col>
       <ion-col col-6>수주구분</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{commonCode13 | commonfilter: r.BANAM: 'commonCode13'}}</ion-col>
+      <ion-col col-6>{{commonCode42 | commonfilter: r.STAT: 'commonCode42'}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>계약유무</ion-col>
       <ion-col col-6>사업구분</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{commonCode41 | commonfilter: r.CONTR: 'commonCode41'}}</ion-col>
+      <ion-col col-6>{{commonCode43 | commonfilter: r.ITGRP: 'commonCode43'}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>수주일자</ion-col>
       <ion-col col-6>계약일자</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{r.SODAT}}</ion-col>
+      <ion-col col-6>{{r.CODAT}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>납기일자</ion-col>
       <ion-col col-6>도면승인일</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{r.NADAT}}</ion-col>
+      <ion-col col-6>{{r.DRDAT}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>기자재입고일</ion-col>
       <ion-col col-6>주문구분</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{r.IPGODT}}</ion-col>
+      <ion-col col-6>{{commonCode40 | commonfilter: r.ONDOM: 'commonCode40'}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>하자보증기간</ion-col>
       <ion-col col-6></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{r.HADAT}}</ion-col>
       <ion-col col-6></ion-col>
     </ion-row>
     <ion-row>
@@ -101,16 +101,32 @@
       <ion-col col-6>지체상환금</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{commonCode39 | commonfilter: r.SUJU_GU: 'commonCode39'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter: r.DLYA1: 'money_filter'}} / {{'' | commonfilter: r.DLYA2: 'money_filter'}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-6>수주금액</ion-col>
       <ion-col col-6>계약보증금</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6></ion-col>
-      <ion-col col-6></ion-col>
+      <ion-col col-6>{{'' | commonfilter: r.PJAMT: 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter: r.CONA1: 'money_filter'}} / {{'' | commonfilter: r.CONA2: 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>결제조건</ion-col>
+      <ion-col col-6>하자보증금</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode44 | commonfilter: r.GATER: 'commonCode44'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter: r.MANA1: 'money_filter'}} / {{'' | commonfilter: r.MANA2: 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>설치지역</ion-col>
+      <ion-col col-6>유보금</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode38 | commonfilter: r.SAVCD: 'commonCode38'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter: r.HOLA1: 'money_filter'}} / {{'' | commonfilter: r.HOLA2: 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

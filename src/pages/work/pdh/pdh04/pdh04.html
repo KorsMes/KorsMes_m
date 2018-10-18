@@ -68,56 +68,51 @@
     <button ion-button (click) = "changeTab('2')">자재투입 계획서(을지)</button>
   </ion-item>
 
-  <ion-slides (ionSlideDidChange) = "slideChanged()" *ngIf="Tab1">
-    <ion-slide *ngFor="let r1 of result1; let i=index" (click) = "goToSlide(i)">
-      <ion-card>
-        <ion-card-content>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-2>pjt번호</ion-col>
-              <ion-col col-2>{{r1.PJTNO}} / {{r1.PJTNM}}</ion-col>
-              <ion-col col-2>고객</ion-col>
-              <ion-col col-2>{{r1.CUST}} / {{r1.CUST_NM}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-2>제품코드</ion-col>
-              <ion-col col-2>{{r1.ITEM}} / {{r1.ITEM_NM}}</ion-col>
-              <ion-col col-2>수주수량</ion-col>
-              <ion-col col-2>{{r1.ORDER_QTY}}</ion-col>
-              <ion-col col-2>수주일자</ion-col>
-              <ion-col col-2>{{r1.ORDER_DATE}}</ion-col>
-              <ion-col col-2>납기일자</ion-col>
-              <ion-col col-2>{{r1.DUE_DATE}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-2>수주금액</ion-col>
-              <ion-col col-2>{{'' | commonfilter : r1.ORDER_AMT: 'money_filter'}}</ion-col>
-              <ion-col col-2>구매목표금액</ion-col>
-              <ion-col col-2>{{'' | commonfilter : r1.TOTAL_AMT: 'money_filter'}}</ion-col>
-              <ion-col col-2>{{(r1.TOTAL_AMT / r1.ORDER_AMT *100)}}</ion-col>
-              <ion-col col-2>최종목표금액</ion-col>
-              <ion-col col-2>{{'' | commonfilter : r1.LASTTOTAL_AMT: 'money_filter'}}</ion-col>
-              <ion-col col-2>{{(r1.LASTTOTAL_AMT / r1.ORDER_AMT) * 100}}</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-2>재고사용금액</ion-col>
-              <ion-col col-2>{{'' | commonfilter : r1.ALLO_AMT: 'money_filter'}}</ion-col>
-              <ion-col col-2>{{(r1.ALLO_AMT / r1.ORDER_AMT) * 100}}</ion-col>
-              <ion-col col-2>발주금액</ion-col>
-              <ion-col col-2>{{'' | commonfilter : r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT: 'money_filter'}}</ion-col>
-              <ion-col col-2>{{((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100}}</ion-col>
-              <ion-col col-2>총자재금액(재고+발주)</ion-col>
-              <ion-col col-2>{{'' | commonfilter : r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT): 'money_filter'}}</ion-col>
-              <ion-col col-2>{{(((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100) + (((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100)}}</ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
-
-
-
+  <ion-item *ngIf="Tab1">
+    <ion-card *ngFor="let r1 of result1; let i=index">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>pjt번호</ion-col>
+            <ion-col col-2>{{r1.PJTNO}} / {{r1.PJTNM}}</ion-col>
+            <ion-col col-2>고객</ion-col>
+            <ion-col col-2>{{r1.CUST}} / {{r1.CUST_NM}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2>제품코드</ion-col>
+            <ion-col col-2>{{r1.ITEM}} / {{r1.ITEM_NM}}</ion-col>
+            <ion-col col-2>수주수량</ion-col>
+            <ion-col col-2>{{r1.ORDER_QTY}}</ion-col>
+            <ion-col col-2>수주일자</ion-col>
+            <ion-col col-2>{{r1.ORDER_DATE}}</ion-col>
+            <ion-col col-2>납기일자</ion-col>
+            <ion-col col-2>{{r1.DUE_DATE}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2>수주금액</ion-col>
+            <ion-col col-2>{{'' | commonfilter : r1.ORDER_AMT: 'money_filter'}}</ion-col>
+            <ion-col col-2>구매목표금액</ion-col>
+            <ion-col col-2>{{'' | commonfilter : r1.TOTAL_AMT: 'money_filter'}}</ion-col>
+            <ion-col col-2>{{(r1.TOTAL_AMT / r1.ORDER_AMT *100)}}</ion-col>
+            <ion-col col-2>최종목표금액</ion-col>
+            <ion-col col-2>{{'' | commonfilter : r1.LASTTOTAL_AMT: 'money_filter'}}</ion-col>
+            <ion-col col-2>{{(r1.LASTTOTAL_AMT / r1.ORDER_AMT) * 100}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2>재고사용금액</ion-col>
+            <ion-col col-2>{{'' | commonfilter : r1.ALLO_AMT: 'money_filter'}}</ion-col>
+            <ion-col col-2>{{(r1.ALLO_AMT / r1.ORDER_AMT) * 100}}</ion-col>
+            <ion-col col-2>발주금액</ion-col>
+            <ion-col col-2>{{'' | commonfilter : r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT: 'money_filter'}}</ion-col>
+            <ion-col col-2>{{((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100}}</ion-col>
+            <ion-col col-2>총자재금액(재고+발주)</ion-col>
+            <ion-col col-2>{{'' | commonfilter : r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT): 'money_filter'}}</ion-col>
+            <ion-col col-2>{{(((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100) + (((r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT) / r1.ORDER_AMT) * 100)}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
 
   <ion-grid *ngIf="Tab2">
     <ion-row>
@@ -137,7 +132,7 @@
       <ion-col col-2>차이수량</ion-col>
       <ion-col col-2>차이금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index">
+    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail(r2)">
       <ion-col col-2>{{r2.ITEM}}</ion-col>
       <ion-col col-2>{{r2.NAME}}</ion-col>
       <ion-col col-2>{{r2.SPEC1}}</ion-col>

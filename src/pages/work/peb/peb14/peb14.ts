@@ -293,4 +293,17 @@ export class PEB14 {
   }
 
 
+  //상세팝업
+  openDetail(idx, obj: any){
+    if(idx === "tab1"){
+      this.modalController.create('Peb14detail1Page', {obj: obj}).present();
+    }
+
+    if(idx === "tab4"){
+      this.modalController.create('Peb14detail4Page', {obj: obj}).present();
+    }
+
+  }
+
+
 }

@@ -55,10 +55,8 @@ export class PopupBuyerPage {
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-      }else{
-        this.result = data;
       }
-
+      this.result = data;
     });
   }
 

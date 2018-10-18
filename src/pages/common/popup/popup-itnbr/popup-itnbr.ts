@@ -58,6 +58,9 @@ export class PopupItnbrPage {
               let param = JSON.stringify({c_code: this.g_user.c_code});
               this.apiProvider.data_api(api_url, param)
               .then(data => {
+                if(Object.keys(data).length === 0){
+                  this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+                }
                 this.iform_list = data;
               });
   }
