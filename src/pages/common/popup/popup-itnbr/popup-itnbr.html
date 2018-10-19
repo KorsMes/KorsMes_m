@@ -12,12 +12,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <ion-row>
-     <!-- <ion-col col-2>품목코드</ion-col>
-      <ion-col col-4><ion-input [(ngModel)] = "itnbr"></ion-input></ion-col>-->
-<!--      <ion-col col-2>품목명칭</ion-col>-->
       <ion-col col-3>
         <div class="search_nm">품목명칭</div>
       </ion-col>
@@ -38,8 +35,6 @@
         <span><input type="text" [(ngModel)] = "spec1" class="search_val"></span>
       </ion-col>
 
-<!--      <ion-col col-2>재질/형명</ion-col>
-      <ion-col col-4><ion-input [(ngModel)] = "jijic"></ion-input></ion-col>-->
     </ion-row>
 
     <ion-row>
@@ -48,17 +43,48 @@
       </ion-col>
 
       <ion-col col-9>
-        <ion-select [(ngModel)]="iform" interface="popover" class="search_val">
-          <ion-option value="">전체</ion-option>
-          <ion-option value="{{i.IFORM}}" *ngFor = "let i of iform_list">{{i.IFORM_NM}}</ion-option>
-        </ion-select>
+        <select [(ngModel)]="iform" interface="popover" class="search_val" style="background-color: white;">
+          <option value="">전체</option>
+          <option value="{{i.IFORM}}" *ngFor = "let i of iform_list">{{i.IFORM_NM}}</option>
+        </select>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <button ion-button (click) = "retrive()">조회</button>
 
-  <ion-grid>
+
+
+
+  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  <br>
+  <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 class="t_left t_bold">품목명칭 : {{r.ITDSC}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 class="t_left">품목코드 : {{r.ITNBR}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-9 class="t_left">규격 | 단위 : {{r.ISPEC1}} | {{r.UNMSR_NM}}</ion-col>
+        <ion-col col-3 class="t_left">{{r.IFORM_NM}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<!--      <ion-col col-2>재질/형명</ion-col>
+      <ion-col col-4><ion-input [(ngModel)] = "jijic"></ion-input></ion-col>-->
+
+<!-- <ion-col col-2>품목코드</ion-col>
+ <ion-col col-4><ion-input [(ngModel)] = "itnbr"></ion-input></ion-col>-->
+<!--      <ion-col col-2>품목명칭</ion-col>-->
+
+
+<!--  <ion-grid>
     <ion-row>
       <ion-col col-2>품목코드</ion-col>
       <ion-col col-2>품목명칭</ion-col>
@@ -75,8 +101,10 @@
       <ion-col col-2>{{r.UNMSR_NM}}</ion-col>
       <ion-col col-2>{{r.IFORM_NM}}</ion-col>
     </ion-row>
-  </ion-grid>
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading...">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</ion-content>
+  </ion-grid>-->
+
+<!--
+<ion-select [(ngModel)]="iform" interface="popover" class="search_val">
+  <ion-option value="">전체</ion-option>
+  <ion-option value="{{i.IFORM}}" *ngFor = "let i of iform_list">{{i.IFORM_NM}}</ion-option>
+</ion-select>-->
