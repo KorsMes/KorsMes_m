@@ -102,6 +102,24 @@
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
   <br>
+
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
+        <ion-col col-4 class="t_right ">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8 class="t_left">{{r.QC_DATE}} | {{r.PJTNO_NM}}</ion-col>
+        <ion-col col-4 class="t_right">{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8></ion-col>
+        <ion-col col-4 class="t_right">{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
   <ion-grid class="listgrid">
     <ion-row>
       <ion-col col-2>PJT번호</ion-col>

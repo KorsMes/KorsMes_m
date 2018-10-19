@@ -111,7 +111,30 @@
     <button ion-button (click) = "changeTab('2')">자재투입진척현황(집계)</button>
   </ion-item>
 
-  <ion-grid *ngIf="Tab1">
+  <div *ngIf="Tab1">
+    <ion-card *ngFor="let r1 of result1" (click) = "openDetail('tab1', r1)">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="t_left">설계차수 {{r1.DRSEQ}}</ion-col>
+          <ion-col class="t_right">설계 {{r1.PL_QTY}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="t_left t_bold">{{r1.PJTNO}}</ion-col>
+          <ion-col class="t_right">발주 {{r1.PUR_QTY}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col class="t_right">입고 {{r1.DEPS_QTY}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="t_left">{{r1.ITEM_NM}}</ion-col>
+          <ion-col class="t_right">출고 {{r1.OUT_QTY}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <!--<ion-grid *ngIf="Tab1">
     <ion-row>
       <ion-col col-2>PJT번호</ion-col>
       <ion-col col-2>프로젝트명</ion-col>
@@ -146,9 +169,24 @@
       <ion-col col-2>{{r1.OUT_NO}}</ion-col>
       <ion-col col-2>{{r1.OUT_QTY}}</ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 
 
+
+  <div *ngIf="Tab2">
+    <ion-card *ngFor="let r21 of result2" (click) = "openDetail('tab2', r2)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 class="t_left t_bold">{{r2.PJTNO_NM}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="t_left">{{r2.ITEM_NM}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <!--
   <ion-grid *ngIf="Tab2">
     <ion-row>
       <ion-col col-2>PJT번호</ion-col>
@@ -176,7 +214,7 @@
       <ion-col col-2>{{r2.DEPS_QTY}}</ion-col>
       <ion-col col-2>{{r2.OUT_QTY}}</ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 
 
 </ion-content>

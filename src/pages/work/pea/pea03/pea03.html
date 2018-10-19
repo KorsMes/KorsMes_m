@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>부품 입고대기 현황</ion-title>
+    <ion-title>부품입고대기현황</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -108,49 +108,21 @@
 
   <br>
 
-  <ion-grid class="listgrid">
-    <ion-row>
-      <ion-col col-2>거래처</ion-col>
-      <ion-col col-2>업체명</ion-col>
-      <ion-col col-2>입고번호</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>검사구분</ion-col>
-      <ion-col col-2>상태</ion-col>
-      <ion-col col-2>가입고수량</ion-col>
-      <ion-col col-2>검사대기</ion-col>
-      <ion-col col-2>검사수량</ion-col>
-      <ion-col col-2>입고대기</ion-col>
-      <ion-col col-2>입고수량</ion-col>
-      <ion-col col-2>납품일자</ion-col>
-      <ion-col col-2>검사일자</ion-col>
-      <ion-col col-2>입고일자</ion-col>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>설계차수</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
-      <ion-col col-2>{{r.VENDOR}}</ion-col>
-      <ion-col col-2>{{commonCode13 | commonfilter : r.VENDOR : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{r.DEPS_NO}}</ion-col>
-      <ion-col col-2>{{r.ITEM}}</ion-col>
-      <ion-col col-2>{{r.ITEM_NAME_K}}</ion-col>
-      <ion-col col-2>{{r.NORM1}}</ion-col>
-      <ion-col col-2>{{commonCode1 | commonfilter : r.PUR_UM : 'commonCode1'}}</ion-col>
-      <ion-col col-2>{{commonCode26 | commonfilter : r.IQC_YN : 'commonCode26'}}</ion-col>
-      <ion-col col-2>{{commonCode27 | commonfilter : r.STEP_STATUS : 'commonCode27'}}</ion-col>
-      <ion-col col-2>{{r.DELV_QTY}}</ion-col>
-      <ion-col col-2>{{r.IQC_DELAY}}</ion-col>
-      <ion-col col-2>{{r.INSP_QTY}}</ion-col>
-      <ion-col col-2>{{r.INC_DELAY}}</ion-col>
-      <ion-col col-2>{{r.DEPS_QTY}}</ion-col>
-      <ion-col col-2>{{r.DELV_DATE}}</ion-col>
-      <ion-col col-2>{{r.INSP_DATE}}</ion-col>
-      <ion-col col-2>{{r.DEPS_DATE}}</ion-col>
-      <ion-col col-2>{{r.PDTNO}}</ion-col>
-      <ion-col col-2>{{r.ORDER_NO}}</ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-7 class="t_left">{{commonCode27 | commonfilter : r.STEP_STATUS : 'commonCode27'}} {{r.DEPS_DATE}}</ion-col>
+        <ion-col col-5 class="t_left">검사대기 {{r.IQC_DELAY}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7 class="t_left">{{r.ITEM_NAME_K}}</ion-col>
+        <ion-col col-5 class="t_left">입고대기 {{r.INC_DELAY}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7 class="t_left">{{r.NORM1}}</ion-col>
+        <ion-col col-5 class="t_left">입고수량 {{r.DEPS_QTY}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
 </ion-content>

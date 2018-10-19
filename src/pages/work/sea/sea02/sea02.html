@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>PJT 수주내역 조회</ion-title>
+    <ion-title>PJT수주조회</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -75,46 +75,21 @@
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
+  <br>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-2>견적상태</ion-col>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>영업부서</ion-col>
-      <ion-col col-2>거래처명</ion-col>
-      <ion-col col-2>PO/견적번호</ion-col>
-      <ion-col col-2>계약유무</ion-col>
-      <ion-col col-2>사업구분</ion-col>
-      <ion-col col-2>수주금액</ion-col>
-      <ion-col col-2>수주일자</ion-col>
-      <ion-col col-2>계약일자</ion-col>
-      <ion-col col-2>납기일자</ion-col>
-      <ion-col col-2>주문구분</ion-col>
-      <ion-col col-2>생산구분</ion-col>
-      <ion-col col-2>생산완료구분</ion-col>
-      <ion-col col-2>비고(생관)</ion-col>
-      <ion-col col-2>품질등급</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" (click) = "openDetail(r)">
-      <ion-col col-2>{{commonCode37 | commonfilter : r.STATUS : 'commonCode37'}}</ion-col>
-      <ion-col col-2>{{r.PJTNO}}</ion-col>
-      <ion-col col-2>{{r.PJTNM}}</ion-col>
-      <ion-col col-2>{{commonCode14 | commonfilter : r.DPTNO : 'commonCode14'}}</ion-col>
-      <ion-col col-2>{{commonCode13 | commonfilter : r.CVCOD : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{r.SOFNO}}</ion-col>
-      <ion-col col-2>{{r.CONTR}}</ion-col>
-      <ion-col col-2>{{commonCode43 | commonfilter: r.ITGRP: 'commonCode43'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r.PJAMT: 'money_filter'}}</ion-col>
-      <ion-col col-2>{{r.SODAT}}</ion-col>
-      <ion-col col-2>{{r.CODAT}}</ion-col>
-      <ion-col col-2>{{r.NADAT}}</ion-col>
-      <ion-col col-2>{{commonCode40 | commonfilter: r.ONDOM: 'commonCode40'}}</ion-col>
-      <ion-col col-2>{{commonCode39 | commonfilter: r.SUJU_GU: 'commonCode39'}}</ion-col>
-      <ion-col col-2>{{r.PRODUCT_GU}}</ion-col>
-      <ion-col col-2>{{r.BOGO}}</ion-col>
-      <ion-col col-2>{{r.MNHCD}}</ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>{{commonCode37 | commonfilter : r.STATUS : 'commonCode37'}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 class="t_left t_bold">{{r.PJTNM}}</ion-col>
+        <ion-col col-6 class="t_right t_bold ">{{'' | commonfilter : r.PJAMT: 'money_filter'}}<span *ngIf="r.PJAMT">원</span></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 class="t_left">{{r.SODAT}} | {{commonCode13 | commonfilter : r.CVCOD : 'commonCode13'}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
 </ion-content>
