@@ -50,6 +50,8 @@ export class PAF06 {
   public page = 1;
 
 
+
+
   constructor(
                 public navController: NavController,
                 public navParams: NavParams,
@@ -167,6 +169,7 @@ export class PAF06 {
   openDetail(obj: any){
     this.modalController.create('PAF06DETAIL', {obj: obj}).present();
   }
+
 
 
 }

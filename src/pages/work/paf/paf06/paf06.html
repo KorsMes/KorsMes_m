@@ -9,26 +9,27 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>구매단가발행</ion-title>
+    <ion-title>구매단가 조회</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 
-<ion-content padding>
+<ion-content>
   <button ion-button (click) = "condition_yn('')">전체</button>
   <button ion-button (click) = "condition_yn('true')">조건검색</button>
   <br>
-  <ion-grid *ngIf="searchCondition">
+  <ion-grid *ngIf="searchCondition" class="search_filter">
     <ion-row>
       <ion-col col-4>
         <ion-item (click) = "PopupItnbr()">
-          <ion-label color="primary">품목코드</ion-label>
+          <ion-label color="primary">품목명칭</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "PopupItnbr()">
-          <ion-label>{{itnbr_nm}}</ion-label>
+        <ion-item (click) = "PopupItnbr()" class="itnbr_nm">
+          <ion-label class="itnbr_nm">{{itnbr_nm}}</ion-label>
+          <input type="text">
         </ion-item>
       </ion-col>
       <ion-col col-1>

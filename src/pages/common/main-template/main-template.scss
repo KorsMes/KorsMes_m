@@ -1,6 +1,6 @@
 page-main-template {
-  
 
+ .a {background-color: #F6F6F6; color:black; font-weight:bold; font-size:8px; padding: 0px;}
 
   .label-md {
     margin : 0px;
@@ -10,8 +10,13 @@ page-main-template {
     margin : 0px;
   }
 
-  .scroll-content{
-    background-color: #A6A6A6;
+  .fixed-content{
+    //background-color: #A6A6A6;
+    background-color: none;
+  }
+
+  .side_menu{
+    background-color: #F6F6F6;
   }
 
   h4.big_menu{
@@ -31,11 +36,11 @@ page-main-template {
   }
 
 
-  .button-md{
+ /* .button-md{
     background-color: white;
     border: 0px;
     -webkit-box-shadow: none;
-  }
+  } */
 
 
 }
