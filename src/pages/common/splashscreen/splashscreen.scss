@@ -13,12 +13,16 @@
 
 /* ion-title */
 .toolbar-title-md{
-  font-size : 25px;
+  font-size : 20px;
 }
 
 /* ion-header */
 .toolbar-background-md{
-  background-color : #EDCE7A;
+  background-color : #FFDF24;
+}
+
+.toolbar-md{
+  height: 20%;
 }
 
 /* header close button */
@@ -63,13 +67,91 @@
   font-size: 10px;
 }
 
-/* 필터검색 */
+/* 필터 조건 명 */
+ .search_nm{
+  text-align : center;
+  color: gray;
+  width: 95%;
+  margin-top: 9%;
+  margin-left: 2%;
+ }
 
- .search_filter{
+/*필터 조건 값*/
+ .search_val{
+    width: 90%;
+    border: solid 1px #F6F6F6;
+    height: 100%;
+ }
 
+/*필터 조건 값2*/
+ .search_val2{
+    width: 90%;
+    border: solid 1px #F6F6F6;
+    height: 100%;
  }
 
 
- .itnbr_nm{
-  border : solid 1px gray;
+/*검색 값 초기화 버튼*/
+ .cancel_btn{
+    float: right;
+    background-color : white;
+    margin-top :1%;
+    height : 87%;
+    width: 10%;
  }
+
+/*조건 전체 버튼*/
+  .all_btn{
+    background-color : #FFCD12;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-left: 5%;
+    margin-top: 3%;
+    width: 20%;
+    height: 5%;
+  }
+
+
+/*조건 필터 버튼*/
+  .filter_btn{
+    background-color : #FFCD12;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-top: 3%;
+    width: 20%;
+    height: 5%;
+  }
+
+ /*조회 버튼*/
+  .search_btn{
+    background-color : #FFCD12;
+    box-shadow: none;
+    border-radius: 5px;
+    width: 98%;
+  }
+
+
+  .search_grid{
+    height: 15%;
+  }
+
+  .search_row{
+    height: 100%;
+  }
+
+/*카드 리스트*/
+  .Card_Grid{
+    margin : 0px;
+    border-radius : 0px;
+    width : 100%;
+    border-top : 1px solid #F6F6F6;
+  }
+
+/* 팝업 닫기 버튼*/
+
+  .popup_close{
+    float: right;
+    background-color: #FFDF24;
+    border: 0px;
+    box-shadow : none;
+  }

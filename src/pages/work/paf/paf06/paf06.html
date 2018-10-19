@@ -16,64 +16,55 @@
 
 
 <ion-content>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
-  <br>
-  <ion-grid *ngIf="searchCondition" class="search_filter">
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupItnbr()">
-          <ion-label color="primary">품목명칭</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupItnbr()" class="itnbr_nm">
-          <ion-label class="itnbr_nm">{{itnbr_nm}}</ion-label>
-          <input type="text">
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="itnbr_nm" (click) = "clear_itnbr('')">X</button>
-      </ion-col>
-    </ion-row>
+    <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
+    <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
+    <br>
+    <ion-grid *ngIf="searchCondition"  class="search_grid">
+      <ion-row class="search_row">
 
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupBuyer()">
-          <ion-label color="primary">협력업체</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupBuyer()">
-          <ion-label>{{cust_nm}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="cust_nm" (click) = "clear_buyer('')">X</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+        <ion-col col-3>
+          <div (click) = "PopupItnbr()" class="search_nm">품목명칭</div>
+        </ion-col>
+
+        <ion-col col-9 >
+          <span (click) = "PopupItnbr()"><input type="text" value="{{itnbr_nm}}" class="search_val"></span><button  *ngIf="itnbr_nm" (click) = "clear_itnbr('')" class="cancel_btn">X</button>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row class="search_row">
+
+        <ion-col col-3>
+            <div (click) = "PopupBuyer()" class="search_nm">협력업체</div>
+        </ion-col>
+
+        <ion-col col-9>
+            <span (click) = "PopupBuyer()"><input type="text" value="{{cust_nm}}" class="search_val2"></span><button *ngIf="cust_nm" (click) = "clear_buyer('')" class="cancel_btn">X</button>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <br>
+    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <br>
+    <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
+          <ion-col col-3 class="t_right t_bold ">{{'' | commonfilter : r.LAST_PRICE : 'money_filter'}}<span *ngIf="r.LAST_PRICE">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 class="t_left">{{r.NORM1}} | {{r.VENDOR_NAME}}</ion-col>
+          <!--<ion-col col-3 class="t_right"></ion-col>-->
+        </ion-row>
+      </ion-grid>
+    </ion-card>
 
-  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
-        <ion-col col-6 class="t_right t_bold ">{{'' | commonfilter : r.LAST_PRICE : 'money_filter'}}<span *ngIf="r.LAST_PRICE">원</span></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6 class="t_left">{{r.NORM1}}</ion-col>
-        <ion-col col-6 class="t_right">{{r.VENDOR_NAME}}</ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
 
   <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading...">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
