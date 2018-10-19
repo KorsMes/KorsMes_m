@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'sea02.html',
 })
 export class SEA02 {
+  @ViewChild(Content) content: Content;
 
   /* 공통코드 */
   public commonCode37; //견적상태
@@ -57,7 +58,6 @@ export class SEA02 {
 
   /* 조회결과 */
   public result;
-
 
   constructor(
                 public navCtrl: NavController,
@@ -166,6 +166,11 @@ export class SEA02 {
   //상세팝업
   openDetail(obj: any){
     this.modalController.create('Sea02detailPage', {obj: obj}).present();
+  }
+
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
 }

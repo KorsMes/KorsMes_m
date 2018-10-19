@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>검사 불량현황 발행</ion-title>
+    <ion-title (click) = "scrollToTop()">검사 불량현황 발행</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -119,7 +119,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
+<!--
   <ion-grid class="listgrid">
     <ion-row>
       <ion-col col-2>PJT번호</ion-col>
@@ -142,7 +142,7 @@
       <ion-col col-2>검사결과</ion-col>
       <ion-col col-2>비고</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
+    <ion-row *ngFor="let r of result; let i=index" >&lt;!&ndash;(click) = "goDetail(i)"&ndash;&gt;
       <ion-col col-2>{{r.MO_NO}}</ion-col>
       <ion-col col-2>{{r.PJTNO_NM}}</ion-col>
       <ion-col col-2>{{r.LOT_NO}}</ion-col>
@@ -163,6 +163,6 @@
       <ion-col col-2>{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
       <ion-col col-2>{{r.REMARKS}}</ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 
 </ion-content>

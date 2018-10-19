@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,13 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'phb04.html',
 })
 export class PHB04 {
+  @ViewChild(Content) content: Content;
+
+  //Scroll to Top
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+
   /* 통합코드 */
   public commonCode12; //검사자
   public commonCode31; //조치구분

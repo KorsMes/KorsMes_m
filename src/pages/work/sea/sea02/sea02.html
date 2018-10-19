@@ -13,8 +13,7 @@
   </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
+<ion-content has-header="true" #testElement>
   <button ion-button (click) = "condition_yn('')">전체</button>
   <button ion-button (click) = "condition_yn('true')">조건검색</button>
   <br>
@@ -74,7 +73,6 @@
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
-
   <br>
 
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
@@ -92,4 +90,6 @@
     </ion-grid>
   </ion-card>
 
+
+  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="abc">top</button></ion-fab>
 </ion-content>

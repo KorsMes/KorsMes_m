@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,13 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'sfa05.html',
 })
 export class SFA05 {
+  @ViewChild(Content) content: Content;
+
+  //Scroll to Top
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
   public acc_btn_save;
