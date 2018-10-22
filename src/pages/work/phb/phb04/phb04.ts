@@ -194,5 +194,9 @@ export class PHB04 {
   }
 
 
+  //상세팝업
+  openDetail(obj: any){
+    this.modalController.create('Phb04detailPage', {obj: obj}).present();
+  }
 
 }

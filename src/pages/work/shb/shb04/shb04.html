@@ -86,7 +86,7 @@
   </ion-item>
 
   <div *ngIf="Tab1">
-    <ion-card *ngFor="let r1 of result1" (click) = "openDetail(r)">
+    <ion-card *ngFor="let r1 of result1" (click) = "openDetail(r1)">
       <ion-grid>
         <ion-row>
           <ion-col col-7 class="t_left t_bold">{{r1.PJTNM}}</ion-col>

@@ -5,61 +5,91 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>거래처 검색</ion-title>
-    <button ion-button (click) = "closeModal()">Close</button>
+    <ion-title>거래처 검색<button ion-button (click) = "closeModal()" class="popup_close">X</button></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-3>거래처코드</ion-col>
-      <ion-col col-3><ion-input [(ngModel)] = "by_cd"></ion-input></ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-checkbox color="primary" checked="1" [(ngModel)] = "use_gubun"></ion-checkbox>
-          <ion-label>미사용거래처포함</ion-label>
-        </ion-item>
+
+      <ion-col col-3>
+        <div class="search_nm">거래처명</div>
       </ion-col>
+
+      <ion-col col-9>
+        <span><input type="text" [(ngModel)] = "by_nm" class="search_val"></span>
+      </ion-col>
+
     </ion-row>
+
     <ion-row>
-      <ion-col col-3>거래처명</ion-col>
-      <ion-col col-3><ion-input [(ngModel)] = "by_nm"></ion-input></ion-col>
-      <ion-col col-3>대표자명</ion-col>
-      <ion-col col-3><ion-input [(ngModel)] = "by_prsn"></ion-input></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3>사업자번호</ion-col>
-      <ion-col col-3><ion-input [(ngModel)] = "bu_cd"></ion-input></ion-col>
-      <ion-col col-3>담당자명</ion-col>
-      <ion-col col-3><ion-input [(ngModel)] = "ven_user"></ion-input></ion-col>
+
+      <ion-col col-3>
+        <div class="search_nm">담당자명</div>
+      </ion-col>
+
+      <ion-col col-9>
+        <span><input type="text" [(ngModel)] = "ven_user" class="search_val"></span>
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 
-  <button ion-button (click) = "retrive()">조회</button>
+  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-2>코드</ion-col>
-      <ion-col col-2>거래처명</ion-col>
-      <ion-col col-2>사업자번호</ion-col>
-      <ion-col col-2>대표자</ion-col>
-      <ion-col col-2>담당자</ion-col>
-      <ion-col col-2>전화번호</ion-col>
-      <ion-col col-12>주소</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
-      <ion-col col-2>{{r.BY_CD}}</ion-col>
-      <ion-col col-2>{{r.BY_NM}}</ion-col>
-      <ion-col col-2>{{r.BU_CD}}</ion-col>
-      <ion-col col-2>{{r.BY_PRSN}}</ion-col>
-      <ion-col col-2>{{r.VEN_USER}}</ion-col>
-      <ion-col col-2>{{r.BY_TEL_NO}}</ion-col>
-      <ion-col col-12>{{r.BY_ADDR}}</ion-col>
-    </ion-row>
-  </ion-grid>
+  <br>
+  <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 class="t_left t_bold">{{r.BY_NM}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 class="t_left">{{r.BU_CD}} | {{r.BY_PRSN}} | {{r.BY_TEL_NO}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
+
+
+<!--<ion-row>
+  <ion-col col-3>거래처코드</ion-col>
+</ion-row>-->
+<!--
+<ion-col col-3><ion-input [(ngModel)] = "by_cd"></ion-input></ion-col>
+<ion-col col-6>
+  <ion-item>
+    <ion-checkbox color="primary" checked="1" [(ngModel)] = "use_gubun"></ion-checkbox>
+    <ion-label>미사용거래처포함</ion-label>
+  </ion-item>
+</ion-col>-->
+<!--<ion-col col-3>대표자명</ion-col>
+<ion-col col-3><ion-input [(ngModel)] = "by_prsn"></ion-input></ion-col>-->
+<!--
+<ion-col col-3>사업자번호</ion-col>
+<ion-col col-3><ion-input [(ngModel)] = "bu_cd"></ion-input></ion-col>-->
+
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col col-2>코드</ion-col>
+    <ion-col col-2>거래처명</ion-col>
+    <ion-col col-2>사업자번호</ion-col>
+    <ion-col col-2>대표자</ion-col>
+    <ion-col col-2>담당자</ion-col>
+    <ion-col col-2>전화번호</ion-col>
+    <ion-col col-12>주소</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+    <ion-col col-2>{{r.BY_CD}}</ion-col>
+    <ion-col col-2>{{r.BY_NM}}</ion-col>
+    <ion-col col-2>{{r.BU_CD}}</ion-col>
+    <ion-col col-2>{{r.BY_PRSN}}</ion-col>
+    <ion-col col-2>{{r.VEN_USER}}</ion-col>
+    <ion-col col-2>{{r.BY_TEL_NO}}</ion-col>
+    <ion-col col-12>{{r.BY_ADDR}}</ion-col>
+  </ion-row>
+</ion-grid>-->

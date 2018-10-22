@@ -1,0 +1,52 @@
+<!--
+  Generated template for the Phb04detailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>검사 불량현황 상세</ion-title>
+    <ion-icon name="close" (click)="closemodal()" class="close_btn"></ion-icon>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid class="detail_grid">
+    <ion-row>
+      <ion-col col-6>PJT번호</ion-col>
+      <ion-col col-6>프로젝트명</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.MO_NO}}</ion-col>
+      <ion-col col-6>{{obj.PJTNO_NM}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>LOT_NO</ion-col>
+      <ion-col col-6>검사일자</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.LOT_NO}}</ion-col>
+      <ion-col col-6>{{obj.QC_DATE}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>검사번호</ion-col>
+      <ion-col col-6>검사구분</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.QC_NO}}</ion-col>
+      <ion-col col-6>{{commonCode35 | commonfilter: obj.GUBUN : 'commonCode35'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>공정</ion-col>
+      <ion-col col-6>품목코드</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{commonCode36 | commonfilter: obj.VENDOR : 'commonCode36'}}</ion-col>
+      <ion-col col-6>{{obj.ITEM}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

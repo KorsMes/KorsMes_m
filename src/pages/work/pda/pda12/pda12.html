@@ -14,66 +14,24 @@
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
+  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
   <br>
   <ion-grid *ngIf="searchCondition">
     <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
+      <ion-col col-3>
+        <div (click) = "PopupUser()" class="search_nm">기안자</div>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-2>상태</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="status_cd" interface="popover">
-          <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode30">{{p.NAME1}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-2>계정과목</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="acnt_cd" interface="popover">
-          <ion-option value="" selected>전체</ion-option>
-          <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode6">{{p.NAME1}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-2>
-        <ion-label>
-          지출내용
-        </ion-label>
-      </ion-col>
-      <ion-col col-10>
-        <ion-input placeholder="exp_remarks" [(ngModel)] = "exp_remarks"></ion-input>
+
+      <ion-col col-9 >
+        <span (click) = "PopupUser()"><input type="text" value="{{user_nm}}" class="search_val"></span><button  *ngIf="user_nm" (click) = "clear_user('')" class="cancel_btn">X</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupUser()">
-          <ion-label color="primary">기안자</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupUser()">
-          <ion-label>{{user_nm}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="user_nm" (click) = "clear_user('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-label>기안일자</ion-label>
+      <ion-col col-3>
+        <div (click) = "PopupUser()" class="search_nm">기안일자</div>
       </ion-col>
       <ion-col col-4>
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>
@@ -82,22 +40,9 @@
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
       </ion-col>
     </ion-row>
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-item>
-          <ion-label color="primary">거래처</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-8>
-        <ion-item>
-          <ion-input type="text" [(ngModel)] = "cust_nm"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -105,7 +50,7 @@
 
   <br>
 
-  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
     <ion-grid>
       <ion-row>
         <ion-col col-6 class="t_left">{{r.EXP_DATE}}</ion-col>
@@ -119,3 +64,56 @@
   </ion-card>
 
 </ion-content>
+
+
+<!--
+<ion-row>
+  <ion-col col-2>공장코드</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="plant_cd" interface="popover">
+      <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>-->
+
+<!--
+<ion-row>
+  <ion-col col-2>상태</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="status_cd" interface="popover">
+      <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode30">{{p.NAME1}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col col-2>계정과목</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="acnt_cd" interface="popover">
+      <ion-option value="" selected>전체</ion-option>
+      <ion-option value="{{p.CODE}}" *ngFor = "let p of commonCode6">{{p.NAME1}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col col-2>
+    <ion-label>
+      지출내용
+    </ion-label>
+  </ion-col>
+  <ion-col col-10>
+    <ion-input placeholder="exp_remarks" [(ngModel)] = "exp_remarks"></ion-input>
+  </ion-col>
+</ion-row>-->
+<!--
+<ion-row>
+  <ion-col col-4>
+    <ion-item>
+      <ion-label color="primary">거래처</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-8>
+    <ion-item>
+      <ion-input type="text" [(ngModel)] = "cust_nm"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>-->

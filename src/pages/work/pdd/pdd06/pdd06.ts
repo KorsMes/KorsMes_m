@@ -54,6 +54,7 @@ export class PDD06 {
   /* line 차트 선언*/
   @ViewChild('lineCanvas') lineCanvas;
   lineChart: any;
+  public aaa;
 
   constructor(
               public navCtrl: NavController,
@@ -103,24 +104,44 @@ export class PDD06 {
         if(Object.keys(data).length === 0){
           this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
         }
+
         this.result1 = data;
 
         let chartdata1 = this.result1.map(item => item.AMT);
-        //let chartlabel1 = this.result1.map(item => item.GBN_NM);
+        let chartlabel1 = this.result1.map(item => item.PJTNO);
+        let chartlabels1 = this.result1.map(item => item.GBN_NM);
 
-          this.barChart = new Chart(this.barCanvas.nativeElement, {
-            type: 'bar',
-            data: {
-              labels: ['수주금액', '목표예산', '요구금액', '발주금액', '재고사용', '자재합계'],
-              datasets: [{
-                  label: '수주건별 자재투입 현황 분석표',
-                  data: chartdata1
-              }]
-            }
-          });
+       this.barChart = new Chart(this.barCanvas.nativeElement,{
+          type: 'bar',
+                    data:
+                     {
+                      labels: ["수주금액", "목표예산", "요구금액", "발주금액"],
+                      datasets: [{
+                                    label: chartlabel1[0],
+                                    data:  chartdata1,
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    borderColor: 'rgba(255,99,132,1)',
+                                    borderWidth: 2
+                                  },
+                                  {
+                                    label: chartlabel1[2],
+                                    data:  chartdata1,
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 2
+                                  },
+                                  {
+                                    label: chartlabel1[3],
+                                    data:  chartdata1,
+                                    backgroundColor: 'rgba(199, 99, 152, 0.2)',
+                                    borderColor: 'rgba(199,99,152,1)',
+                                    borderWidth: 2
+                                  }],
+                    }
+                  });
       });
 
-     //월별 분석표 조회
+    /* //월별 분석표 조회
       let api_url2 = "/pdd/pdd06_list2";
       let param2 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: '2018'});
 
@@ -145,7 +166,7 @@ export class PDD06 {
             }]
           }
         });
-      });
+      });*/
     }
 
     //탭페이지 전환
