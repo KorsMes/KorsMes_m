@@ -9,40 +9,94 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>월말 요약 보고서(종합)</ion-title>
+    <ion-title>월말 요약 보고서</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
   <br>
-  <ion-grid *ngIf="searchCondition">
+  <ion-grid>
     <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-label>조회년월</ion-label>
+      <ion-col col-3>
+        <div class="search_nm">조회년월</div>
       </ion-col>
       <ion-col col-8>
         <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="yymm"></ion-datetime>
       </ion-col>
     </ion-row>
-
   </ion-grid>
 
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+
+
+  <ion-grid>
+    <ion-row *ngIf="gubun_a">
+      <ion-col col-12>1. 당월 자재 투입집계</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{r.CUR_YYMM_TO | commonfilter : r.GUBUN: 'pdd02_month'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{''| commonfilter : r.GUBUN: 'pdd02_sum_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+    <!--{{r.CUR_YYMM_TO | commonfilter : r.GUBUN: 'pdd02_month': r.GUBUN_GR}}-->
+    <ion-row *ngIf="gubun_b">
+      <ion-col col-12>2. 누적 자재 투입 집계</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'B'">{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'B'">{{r.CUR_YYMM_FR | commonfilter : r.GUBUN: 'pdd02_month' : r.CUR_YYMM_TO}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'B'">{{''| commonfilter : r.GUBUN: 'pdd02_sum_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'B'">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'B'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'B'">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="gubun_c">
+      <ion-col col-12>3. Fail 발생 집계</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'C'">{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'C'">{{r.CUR_YYMM_FR | commonfilter : r.GUBUN: 'pdd02_month' : r.CUR_YYMM_TO}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'C'">{{''| commonfilter : r.GUBUN: 'pdd02_sum_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'C'">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'C'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'C'">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="gubun_d">
+      <ion-col col-12>4. 수주기준 투입비용 집계</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result; let i=index" >
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{r.BEF_YYYY | commonfilter : r.GUBUN: 'pdd02_month' : r.CUR_YYMM_TO}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{''| commonfilter : r.GUBUN: 'pdd02_sum_gubun'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{'' | commonfilter : r.PUR_AMT +r .ALLO_AMT : 'money_filter'}}</ion-col>
+      <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{'' | commonfilter : (r.PUR_AMT +r .ALLO_AMT)+r.PUR_AMT+r.ALLO_AMT : 'money_filter'}}</ion-col>
+    </ion-row>
+
+
+
+    <ion-row *ngFor="let r2 of result2; let i=index" >
+      <ion-col col-12>{{r2.PUR_YYMM_FR}}</ion-col>
+      <ion-col col-12>{{r2.PUR_AMT}}</ion-col>
+      <ion-col col-12>{{r2.PUR_AMT2}}</ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
+
+
 </ion-content>

@@ -72,7 +72,7 @@
   text-align : center;
   color: gray;
   width: 95%;
-  margin-top: 9%;
+  margin-top: 5%;
   margin-left: 2%;
  }
 
@@ -154,4 +154,32 @@
     background-color: #FFDF24;
     border: 0px;
     box-shadow : none;
+  }
+
+/* phd04_grid 양쪽정렬*/
+
+  .phd04_grid{
+    float: right;
+    font-size : small;
+  }
+
+  /* phd04 그리드 bottom*/
+  .grid_bottom{
+    border-bottom : 1px solid #F6F6F6;
+    font-size: small;
+  }
+
+  /* 탭페이지*/
+  .tabpage{
+    padding: 0px;
+  }
+
+  .tabpage1{
+    width: 50%;
+    border-radius : 0px;
+  }
+
+  .tabpage2{
+    width: 50%;
+    border-radius : 0px;
   }

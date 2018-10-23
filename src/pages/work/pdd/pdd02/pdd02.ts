@@ -40,6 +40,13 @@ export class PDD02 {
 
   /* 조회결과 */
   public result;
+  public result2;
+
+  /*보고내용 header*/
+  public gubun_a; //당월 자재 투입 집계
+  public gubun_b; //누적 자재 투입 집계
+  public gubun_c; //Fail 발생 집계
+  public gubun_d; //수주기준 투입비용 집계
 
   constructor(
                 public navCtrl: NavController,
@@ -90,6 +97,12 @@ export class PDD02 {
 
   //조회
   retrive(){
+    this.gubun_a = "";
+    this.gubun_b = "";
+    this.gubun_c = "";
+    this.gubun_d = "";
+
+    /* 월말요약 보고서 헤더 조회 */
     let api_url = "/pdd/pdd02_list";
     let param = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
 
@@ -97,11 +110,41 @@ export class PDD02 {
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-      }else{
-        this.searchCondition = "";
       }
       this.result = data;
+
+      if(this.result.length > 0){
+        for(var i=0; i<this.result.length; i++){
+          if(this.result[i].GUBUN_GR === "A"){
+            this.gubun_a = "a";
+          }
+          if(this.result[i].GUBUN_GR === "B"){
+            this.gubun_b = "b";
+          }
+          if(this.result[i].GUBUN_GR === "C"){
+            this.gubun_c = "c";
+          }
+          if(this.result[i].GUBUN_GR === "D"){
+            this.gubun_d = "d";
+          }
+        }
+      }
+
     });
+
+    /*월말 요약 보고서 푸터 조회*/
+    let api_url = "/pdd/pdd02_list2";
+    let param = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
+
+    this.apiProvider.data_api(api_url, param)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+      }
+      this.result2 = data;
+    });
+
+
   }
 
 }
