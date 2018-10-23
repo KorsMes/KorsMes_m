@@ -14,53 +14,38 @@
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
   <br>
-  <ion-grid *ngIf="searchCondition">
+  <ion-grid>
     <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
+      <ion-col col-3>
+        <div class="search_nm">조회년월</div>
       </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-label>조회년월</ion-label>
-      </ion-col>
-      <ion-col col-8>
+      <ion-col col-9>
         <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="yyyymm"></ion-datetime>
       </ion-col>
-      <ion-col col-8>
-        <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="yyyymm2"></ion-datetime>
-      </ion-col>
     </ion-row>
-
   </ion-grid>
 
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <ion-item>
-    <button ion-button (click) = "changeTab('1')">월별/자재별 수불집계표</button>
-    <button ion-button (click) = "changeTab('2')">월별 금액집계표</button>
+    <button ion-button (click) = "changeTab('1')" class="tabpage1">수불집계표</button>
+    <button ion-button (click) = "changeTab('2')" class="tabpage2">금액집계표</button>
   </ion-item>
   <ion-item>
-    <button ion-button (click) = "changeTab('3')">마감(전)집계표</button>
-    <button ion-button (click) = "changeTab('4')">마감(후)집계표</button>
+    <button ion-button (click) = "changeTab('3')" class="tabpage1">마감(전)</button>
+    <button ion-button (click) = "changeTab('4')" class="tabpage2">마감(후)</button>
   </ion-item>
-  <ion-item>
+<!--  <ion-item>
     <button ion-button (click) = "changeTab('5')">실사용 재고리스트</button>
     <button ion-button (click) = "changeTab('6')">기간별/자재별 수불집계표</button>
-  </ion-item>
+  </ion-item>-->
 
   <div *ngIf="Tab1">
     <ion-card *ngFor="let r1 of result1" (click) = "openDetail('tab1', r1)">
@@ -132,6 +117,28 @@
           <ion-col></ion-col>
           <ion-col class="t_letf">합계</ion-col>
           <ion-col class="t_right">{{'' | commonfilter : r3.TOT_1 + r3.TOT_1_R : 'money_filter'}}<span *ngIf="r3.TOT_1 + r3.TOT_1_R">원</span></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <div *ngIf="Tab4">
+    <ion-card *ngFor="let r4 of result4" (click) = "openDetail('tab4', r4)">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="t_left t_bold">{{r3.SAA_BUYER_BY_NM}}</ion-col>
+          <ion-col class="t_letf">입고금액</ion-col>
+          <ion-col class="t_right">{{'' | commonfilter : r4.TOT_1 : 'money_filter'}}<span *ngIf="r4.TOT_1">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="t_left"></ion-col>
+          <ion-col class="t_letf">VAT</ion-col>
+          <ion-col class="t_right">{{'' | commonfilter : r4.TOT_1_R : 'money_filter'}}<span *ngIf="r4.TOT_1_R">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col class="t_letf">합계</ion-col>
+          <ion-col class="t_right">{{'' | commonfilter : r4.TOT_1 + r4.TOT_1_R : 'money_filter'}}<span *ngIf="r4.TOT_1 + r4.TOT_1_R">원</span></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
