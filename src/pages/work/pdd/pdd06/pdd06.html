@@ -27,7 +27,7 @@
 
     <ion-row>
       <ion-col col-4>
-        <ion-label>수주년원</ion-label>
+        <ion-label>수주년월</ion-label>
       </ion-col>
       <ion-col col-8>
         <ion-datetime displayFormat="YYYY-MM" [(ngModel)]="date_fr"></ion-datetime>
@@ -47,18 +47,55 @@
     <button ion-button (click) = "changeTab('2')">월별 분석표</button>
   </ion-item>
 
-  <ion-card>
+  <ion-card *ngIf="Tab1">
     <ion-card-header>
-      Bar Chart
+      수주건별 자재투입 현황 분석표
     </ion-card-header>
-    <ion-card-content>
-      <canvas #barCanvas height="300"></canvas>
+    <ion-card-content height=400>
+      <canvas #barCanvas></canvas>
     </ion-card-content>
   </ion-card>
 
-  <ion-card >
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>프로젝트명</ion-col>
+        <ion-col>{{pjtnm1}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>수주금액</ion-col>
+        <ion-col>{{amt1}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>목표예산</ion-col>
+        <ion-col>{{amt2}} / {{rto2}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>요구금액</ion-col>
+        <ion-col>{{amt3}} / {{rto3}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>발주금액</ion-col>
+        <ion-col>{{amt4}} / {{rto4}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>재고사용</ion-col>
+        <ion-col>{{amt5}} / {{rto5}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>자재합계</ion-col>
+        <ion-col>{{amt6}} / {{rto6}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>FAIL COST</ion-col>
+        <ion-col>{{amt7}} / {{rto7}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card *ngIf="Tab2">
     <ion-card-header>
-      line Chart
+      월별 자재투입 현황 분석표
     </ion-card-header>
     <ion-card-content>
       <canvas #lineCanvas></canvas>
