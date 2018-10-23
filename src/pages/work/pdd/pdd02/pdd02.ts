@@ -103,10 +103,10 @@ export class PDD02 {
     this.gubun_d = "";
 
     /* 월말요약 보고서 헤더 조회 */
-    let api_url = "/pdd/pdd02_list";
-    let param = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
+    let api_url1 = "/pdd/pdd02_list";
+    let param1 = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
 
-    this.apiProvider.data_api(api_url, param)
+    this.apiProvider.data_api(api_url1, param1)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
@@ -133,10 +133,10 @@ export class PDD02 {
     });
 
     /*월말 요약 보고서 푸터 조회*/
-    let api_url = "/pdd/pdd02_list2";
-    let param = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
+    let api_url2 = "/pdd/pdd02_list2";
+    let param2 = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
 
-    this.apiProvider.data_api(api_url, param)
+    this.apiProvider.data_api(api_url2, param2)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
