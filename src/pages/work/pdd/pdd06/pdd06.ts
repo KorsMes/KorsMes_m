@@ -106,6 +106,9 @@ export class PDD06 {
               //공장코드 가져오기
               this.g_plant = this.commoncodeProvider.getPlantInfo();
               this.plant_cd = this.g_plant[0].PLANT;
+
+
+              this.retrive();
   }
 
   ionViewDidLoad() {
@@ -116,132 +119,313 @@ export class PDD06 {
 
   //조회
   retrive(){
+    if(this.Tab1 === "1"){
 
-    //수주건별 분석표 조회
-    let api_url1 = "/pdd/pdd06_list1";
-    let param1 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd,  yymm: this.date_fr});
+      //수주건별 분석표 조회
+      let api_url1 = "/pdd/pdd06_list1";
+      let param1 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd,  yymm: this.date_fr});
 
-    this.apiProvider.data_api(api_url1, param1)
-    .then(data => {
-      if(Object.keys(data).length === 0){
-        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-      }
-
-      this.result1 = data;
-
-
-      if(this.result1.length > 0){
-        this.pjtno_arr = new Array(Math.floor(this.result1.length / 4));
-        var amt1_arr:number[] = new Array(Math.floor(this.result1.length / 4));
-        var amt2_arr:number[] = new Array(Math.floor(this.result1.length / 4));
-        var amt3_arr:number[] = new Array(Math.floor(this.result1.length / 4));
-        var amt4_arr:number[] = new Array(Math.floor(this.result1.length / 4));
-
-        for(var i=0; i<this.result1.length; i++){
-          if((i % 4) === 0){
-            this.pjtno_arr[i/4] = data[i].PJTNO;
-          }
-
-          console.log("qwerqwerwqer : " + this.pjtno_arr.length);
-
-          if(data[i].GBN_NM === '수주금액'){
-            amt1_arr[Math.floor(i/4)] = data[i].AMT;
-          }
-          if(data[i].GBN_NM === '목표예산'){
-            amt2_arr[Math.floor(i/4)] = data[i].AMT;
-          }
-          if(data[i].GBN_NM === '요구금액'){
-            amt3_arr[Math.floor(i/4)] = data[i].AMT;
-          }
-          if(data[i].GBN_NM === '발주금액'){
-            amt4_arr[Math.floor(i/4)] = data[i].AMT;
-          }
+      this.apiProvider.data_api(api_url1, param1)
+      .then(data => {
+        if(Object.keys(data).length === 0){
+          //this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
         }
 
-      }
+        this.result1 = data;
 
-      this.barChart = new Chart(this.barCanvas.nativeElement.getContext("2d"),{
-        type: 'bar',
-        data:
-         {
-          labels: this.pjtno_arr,
-          datasets: [{
-                        label: '수주금액',
-                        data: amt1_arr,
-                        backgroundColor: [
-                            'rgba(255, 0, 0, 1)',
-                            'rgba(255, 0, 0, 1)',
-                            'rgba(255, 0, 0, 1)',
-                            'rgba(255, 0, 0, 1)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 0, 0, 1)',
-                            'rgba(255, 0, 0, 1)',
-                            'rgba(255, 0, 0, 1)',
-                            'rgba(255, 0, 0, 1)'
-                        ],
-                        borderWidth: 1
-                      },
-                      {
-                        label: '목표예산',
-                        data: amt2_arr,
-                        backgroundColor: [
-                            'rgba(0, 255, 0, 1)',
-                            'rgba(0, 255, 0, 1)',
-                            'rgba(0, 255, 0, 1)',
-                            'rgba(0, 255, 0, 1)'
-                        ],
-                        borderColor: [
-                            'rgba(0, 255, 0, 1)',
-                            'rgba(0, 255, 0, 1)',
-                            'rgba(0, 255, 0, 1)',
-                            'rgba(0, 255, 0, 1)'
-                        ],
-                        borderWidth: 1
-                      },
-                      {
-                        label: '요구금액',
-                        data: amt3_arr,
-                        backgroundColor: [
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 255, 1)'
-                        ],
-                        borderColor: [
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 255, 1)',
-                            'rgba(0, 0, 255, 1)'
-                        ],
-                        borderWidth: 1
-                      },
-                      {
-                         label: '발주금액',
-                         data: amt4_arr,
-                         backgroundColor: [
-                            'rgba(255, 205, 18, 1)',
-                            'rgba(255, 205, 18, 1)',
-                            'rgba(255, 205, 18, 1)',
-                            'rgba(255, 205, 18, 1)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 205, 18, 1)',
-                            'rgba(255, 205, 18, 1)',
-                            'rgba(255, 205, 18, 1)',
-                            'rgba(255, 205, 18, 1)'
-                        ],
-                        borderWidth: 1
-                      }],
-        },
-        options : {
-          legend:{display:true},
-          onClick:(clickEvt,activeElems)=>this.onChartClick(clickEvt,activeElems),
+        if(this.result1.length > 0){
+          //차트 데이터셋 세팅
+          this.pjtno_arr = new Array(Math.floor(this.result1.length / 4));
+          var amt1_arr:number[] = new Array(Math.floor(this.result1.length / 4));
+          var amt2_arr:number[] = new Array(Math.floor(this.result1.length / 4));
+          var amt3_arr:number[] = new Array(Math.floor(this.result1.length / 4));
+          var amt4_arr:number[] = new Array(Math.floor(this.result1.length / 4));
+
+          //차트 데이터 세팅
+          for(var i=0; i<this.result1.length; i++){
+            if((i % 4) === 0){
+              this.pjtno_arr[i/4] = data[i].PJTNO;
+            }
+
+
+            if(data[i].GBN_NM === '수주금액'){
+              amt1_arr[Math.floor(i/4)] = data[i].AMT;
+            }
+            if(data[i].GBN_NM === '목표예산'){
+              amt2_arr[Math.floor(i/4)] = data[i].AMT;
+            }
+            if(data[i].GBN_NM === '요구금액'){
+              amt3_arr[Math.floor(i/4)] = data[i].AMT;
+            }
+            if(data[i].GBN_NM === '발주금액'){
+              amt4_arr[Math.floor(i/4)] = data[i].AMT;
+            }
+          }
+
         }
+
+        this.barChart = new Chart(this.barCanvas.nativeElement.getContext("2d"),{
+          type: 'bar',
+          data:
+           {
+            labels: this.pjtno_arr,
+            datasets: [{
+                          label: '수주금액',
+                          data: amt1_arr,
+                          backgroundColor: [
+                              'rgba(228, 108, 10, 0.5)',
+                              'rgba(228, 108, 10, 0.5)',
+                              'rgba(228, 108, 10, 0.5)',
+                              'rgba(228, 108, 10, 0.5)',
+                          ],
+                          borderColor: [
+                              'rgba(228, 108, 10, 0)',
+                              'rgba(228, 108, 10, 0)',
+                              'rgba(228, 108, 10, 0)',
+                              'rgba(228, 108, 10, 0)'
+                          ],
+                          borderWidth: 1
+                        },
+                        {
+                          label: '목표예산',
+                          data: amt2_arr,
+                          backgroundColor: [
+                              'rgba(197, 224, 180, 0.5)',
+                              'rgba(197, 224, 180, 0.5)',
+                              'rgba(197, 224, 180, 0.5)',
+                              'rgba(197, 224, 180, 0.5)'
+                          ],
+                          borderColor: [
+                              'rgba(197, 224, 180, 0)',
+                              'rgba(197, 224, 180, 0)',
+                              'rgba(197, 224, 180, 0)',
+                              'rgba(197, 224, 180, 0)'
+                          ],
+                          borderWidth: 1
+                        },
+                        {
+                          label: '요구금액',
+                          data: amt3_arr,
+                          backgroundColor: [
+                              'rgba(0, 176, 240, 0.5)',
+                              'rgba(0, 176, 240, 0.5)',
+                              'rgba(0, 176, 240, 0.5)',
+                              'rgba(0, 176, 240, 0.5)'
+                          ],
+                          borderColor: [
+                              'rgba(0, 176, 240, 0)',
+                              'rgba(0, 176, 240, 0)',
+                              'rgba(0, 176, 240, 0)',
+                              'rgba(0, 176, 240, 0)'
+                          ],
+                          borderWidth: 1
+                        },
+                        {
+                           label: '발주금액',
+                           data: amt4_arr,
+                           backgroundColor: [
+                              'rgba(255, 230, 153, 0.5)',
+                              'rgba(255, 230, 153, 0.5)',
+                              'rgba(255, 230, 153, 0.5)',
+                              'rgba(255, 230, 153, 0.5)'
+                          ],
+                          borderColor: [
+                              'rgba(255, 230, 153, 0)',
+                              'rgba(255, 230, 153, 0)',
+                              'rgba(255, 230, 153, 0)',
+                              'rgba(255, 230, 153, 0)'
+                          ],
+                          borderWidth: 1
+                        }],
+          },
+          options : {
+            legend:{
+              display: true,
+              position: 'bottom',
+              labels : {
+                boxWidth: 13,
+                fontSize: 10
+              }
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  display: false
+                }
+              }],
+              xAxes: [{
+                ticks: {
+                  fontSize: 10
+                }
+              }]
+            },
+            onClick:(clickEvt,activeElems)=>this.onChartClick(clickEvt,activeElems),
+          }
+        });
       });
-    });
+    }
+
+
+    if(this.Tab2 === "2"){
+      //월별 분석표 조회
+      let api_url2 = "/pdd/pdd06_list2";
+      let param2 = JSON.stringify({c_code:this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: this.date_fr});
+
+      this.apiProvider.data_api(api_url2, param2)
+      .then(data => {
+        if(Object.keys(data).length === 0){
+          this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+        }
+        this.result2 = data;
+
+        if(this.result2.length > 0){
+                //차트 데이터셋 세팅
+                var month_arr = new Array(Math.floor(this.result2.length / 4));
+                var amt5_arr:number[] = new Array(12);
+                var amt6_arr:number[] = new Array(12);
+                var amt7_arr:number[] = new Array(12);
+                var amt8_arr:number[] = new Array(12);
+
+                //차트 데이터 세팅
+                for(var i=0; i<this.result2.length; i++){
+                  if(i < month_arr.length){
+                    month_arr[i] = data[i].MONTH;
+                  }
+                  if(data[i].GBN_NM === '수주금액'){
+                    amt5_arr[Math.floor((i % 12))] = data[i].AMT;
+                  }
+                  if(data[i].GBN_NM === '목표예산'){
+                    amt6_arr[Math.floor((i % 12))] = data[i].AMT;
+                  }
+                  if(data[i].GBN_NM === '요구금액'){
+                    amt7_arr[Math.floor((i % 12))] = data[i].AMT;
+                  }
+                  if(data[i].GBN_NM === '발주금액'){
+                    amt8_arr[Math.floor((i % 12))] = data[i].AMT;
+                  }
+                }
+
+                var tot_arr = new Array(4);
+                tot_arr[0] = amt5_arr;
+                tot_arr[1] = amt6_arr;
+                tot_arr[2] = amt7_arr;
+                tot_arr[3] = amt8_arr;
+
+              }
+
+        this.lineChart = new Chart(this.lineCanvas.nativeElement.getContext("2d"), {
+          type: 'line',
+          data:
+             {
+              labels: month_arr,
+              datasets: [{
+                            label: '수주금액',
+                            data: amt5_arr,
+                            backgroundColor: [
+                              'rgba(228, 108, 10, 0)',
+                              'rgba(228, 108, 10, 0)',
+                              'rgba(228, 108, 10, 0)',
+                              'rgba(228, 108, 10, 0)'
+                            ],
+                            borderColor: [
+                              'rgba(228, 108, 10, 1)',
+                              'rgba(228, 108, 10, 1)',
+                              'rgba(228, 108, 10, 1)',
+                              'rgba(228, 108, 10, 1)'
+                            ],
+                            pointBackgroundColor: 'rgba(228, 108, 10, 1)',
+                            pointBorderColor: 'rgba(228, 108, 10, 1)',
+                            borderWidth: 1
+                          },
+                          {
+                            label: '목표예산',
+                            data: amt6_arr,
+                            backgroundColor: [
+                              'rgba(197, 224, 180, 0)',
+                              'rgba(197, 224, 180, 0)',
+                              'rgba(197, 224, 180, 0)',
+                              'rgba(197, 224, 180, 0)'
+                            ],
+                            borderColor: [
+                              'rgba(197, 224, 180, 1)',
+                              'rgba(197, 224, 180, 1)',
+                              'rgba(197, 224, 180, 1)',
+                              'rgba(197, 224, 180, 1)'
+                            ],
+                            pointBackgroundColor: 'rgba(197, 224, 180, 1)',
+                            pointBorderColor: 'rgba(197, 224, 180, 1)',
+                            borderWidth: 1
+                          },
+                          {
+                            label: '요구금액',
+                            data: amt7_arr,
+                            backgroundColor: [
+                              'rgba(0, 176, 240, 0)',
+                              'rgba(0, 176, 240, 0)',
+                              'rgba(0, 176, 240, 0)',
+                              'rgba(0, 176, 240, 0)'
+                            ],
+                            borderColor: [
+                              'rgba(0, 176, 240, 1)',
+                              'rgba(0, 176, 240, 1)',
+                              'rgba(0, 176, 240, 1)',
+                              'rgba(0, 176, 240, 1)'
+                            ],
+                            pointBackgroundColor: 'rgba(0, 176, 240, 1)',
+                            pointBorderColor: 'rgba(0, 176, 240, 1)',
+                            borderWidth: 1
+                          },
+                          {
+                            label: '발주금액',
+                            data: amt8_arr,
+                            backgroundColor: [
+                              'rgba(255, 230, 153, 0)',
+                              'rgba(255, 230, 153, 0)',
+                              'rgba(255, 230, 153, 0)',
+                              'rgba(255, 230, 153, 0)'
+                            ],
+                            borderColor: [
+                              'rgba(255, 230, 153, 1)',
+                              'rgba(255, 230, 153, 1)',
+                              'rgba(255, 230, 153, 1)',
+                              'rgba(255, 230, 153, 1)'
+                            ],
+                            pointBackgroundColor: 'rgba(255, 230, 153, 1)',
+                            pointBorderColor: 'rgba(255, 230, 153, 1)',
+                            borderWidth: 1
+                          }],
+            },
+            options : {
+              tooltips: {
+                mode: 'point'
+              },
+              legend:{
+                position: 'bottom',
+                labels : {
+                  boxWidth: 13,
+                  fontSize: 10
+                }
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    display: false
+                  }
+                }],
+                xAxes: [{
+                  ticks: {
+                    fontSize: 10
+                  }
+                }]
+              }
+            }
+        });
+      });
+    }
+
   }
 
+  //차트 클릭 시 상세 정보 조회
   y_clicked = null; //holds y-axis .getValueForPixel() when chart is clicked
   x_clicked = null;
   timeoutID = null; //handle to setTimeout
@@ -258,8 +442,9 @@ export class PDD06 {
     if(this.timeoutID) clearTimeout(this.timeoutID);
     this.timeoutID = setTimeout(()=>this.y_clicked=null,2000);
 
-    console.log(this.x_clicked + " : " + this.y_clicked + " : " + this.timeoutID);
-
+    if(this.x_clicked > this.pjtno_arr.length -1){
+      return;
+    }
 
     let detail_url = "/pdd/pdd06_detail1";
     let detail_param = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: this.date_fr, pjtno: this.pjtno_arr[this.x_clicked]});
@@ -316,7 +501,10 @@ export class PDD06 {
 
     });
 
+
+    /*  barChart 종료  */
   }
+
 
   //탭페이지 전환
   changeTab(showIdx){
@@ -327,8 +515,7 @@ export class PDD06 {
       this.Tab2 = showIdx;
       this.Tab1 = "";
     }
+    this.retrive();
   }
-
-
 
 }
