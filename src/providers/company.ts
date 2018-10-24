@@ -25,6 +25,10 @@ export class CompanyProvider {
                 company_name: '(주)한빛테크놀로지',
                 company_code: 'c00000002'
               },
+              {
+                company_name: '(주)한성더스트킹(운영)',
+                company_code: 'c00000003'
+              },
             ]
   }
 

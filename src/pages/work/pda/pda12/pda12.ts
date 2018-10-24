@@ -97,7 +97,7 @@ export class PDA12 {
               //계정과목 가져오기
               this.commonCode6 = this.commoncodeProvider.getCommonCode6();
               //사용자 가져오기
-              this.commonCode15 = this.commoncodeProvider.getCommonCode15();
+              ``
   }
 
   ionViewDidLoad() {

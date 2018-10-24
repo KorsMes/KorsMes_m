@@ -5,44 +5,41 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>사용자 검색</ion-title>
-    <button ion-button (click) = "closeModal()">Close</button>
+    <ion-title>사용자 검색<button ion-button (click) = "closeModal()" class="popup_close">X</button></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
   <ion-grid>
     <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupDept()">
-          <ion-label color="primary">부서코드</ion-label>
-        </ion-item>
+      <ion-col col-3>
+          <div (click) = "PopupDept()" class="search_nm">부서코드</div>
       </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupDept()">
-          <ion-label>{{dept_nm}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="dept_nm" (click) = "clear_dept('')">X</button>
+
+      <ion-col col-9>
+          <span (click) = "PopupDept()"><input type="text" value="{{dept_nm}}" class="search_val"></span><button  *ngIf="dept_nm" (click) = "clear_dept('')" class="cancel_btn">X</button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <button ion-button (click) = "retrive()">조회</button>
+  <br>
+  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <ion-grid>
-    <ion-row>
+    <ion-row class="grid_header">
       <ion-col col-3>사번</ion-col>
       <ion-col col-3>성명</ion-col>
       <ion-col col-3>부서</ion-col>
       <ion-col col-3>부서명칭</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)" class="grid_header2">
       <ion-col col-3>{{r.USER_ID}}</ion-col>
       <ion-col col-3>{{r.USER_NM}}</ion-col>
       <ion-col col-3>{{r.DEPT_CD}}</ion-col>

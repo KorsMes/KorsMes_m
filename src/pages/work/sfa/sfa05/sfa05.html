@@ -9,14 +9,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title (click) = "scrollToTop()">매출현황조회</ion-title>
+    <ion-title>매출현황 조회</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
   <br>
   <ion-grid *ngIf="searchCondition">
     <ion-row>
@@ -72,7 +72,11 @@
     </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <ion-item>
     <button ion-button (click) = "changeTab('1')">상세현황</button>

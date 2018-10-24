@@ -5,48 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title (click) = "scrollToTop()">견적서조회</ion-title>
+    <ion-title>견적서 조회</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
   <br>
-  <ion-grid *ngIf="searchCondition">
-    <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
+  <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "PopupPjtno()">
-          <ion-label color="primary">프로젝트번호</ion-label>
-        </ion-item>
+          <div (click) = "PopupPjtno()" class="search_nm">견적번호</div>
       </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupPjtno()">
-          <ion-label>{{pjt_nm}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="pjt_nm" (click) = "clear_pjtno('')">X</button>
+
+      <ion-col col-8>
+        <span (click) = "PopupPjtno()"><input type="text" value="{{pjt_nm}}" class="search_val"></span><button  *ngIf="pjt_nm" (click) = "clear_pjtno('')" class="cancel_btn">X</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -55,30 +37,30 @@
   <br>
 
   <ion-grid>
-    <ion-row>
-      <ion-col col-2>그룹</ion-col>
-      <ion-col col-2>품명 및 규격</ion-col>
-      <ion-col col-2>수량</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>단가</ion-col>
-      <ion-col col-2>금액</ion-col>
+    <ion-row class="grid_text">
+      <ion-col col-1.5>그룹</ion-col>
+      <ion-col col-5>품명/규격</ion-col>
+      <ion-col col-1.5>수량</ion-col>
+      <ion-col col-1.5>단위</ion-col>
+      <ion-col col-1.5>단가</ion-col>
+      <ion-col col-1.5>금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index">
-      <ion-col col-1>{{r.GRPNO}}</ion-col>
-      <ion-col col-5>{{r.ITDSC}}</ion-col>
-      <ion-col col-1>{{r.SOQTY1}}</ion-col>
-      <ion-col col-1>{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
+    <ion-row *ngFor="let r of result; let i=index" class="grid_text">
+      <ion-col col-1.5>{{r.GRPNO}}</ion-col>
+      <ion-col col-5 class="t_left">{{r.ITDSC}}</ion-col>
+      <ion-col col-1.5>{{r.SOQTY1}}</ion-col>
+      <ion-col col-1.5>{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>
+      <ion-col col-1.5>{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
+      <ion-col col-1.5>{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="grid_text">
       <ion-col col-6> 소계 </ion-col>
       <ion-col col-1></ion-col>
       <ion-col col-1></ion-col>
       <ion-col col-2></ion-col>
       <ion-col col-2></ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="grid_text">
       <ion-col col-6> 합계 </ion-col>
       <ion-col col-1></ion-col>
       <ion-col col-1></ion-col>

@@ -5,101 +5,126 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>프로젝트번호 검색</ion-title>
-    <button ion-button (click) = "closeModal()">Close</button>
+    <ion-title>프로젝트번호 검색<button ion-button (click) = "closeModal()" class="popup_close">X</button></ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
+<ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupUser()">
-          <ion-label color="primary">담당자</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupUser()">
-          <ion-label>{{user_1}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="user_1" (click) = "clear_user('')">X</button>
-      </ion-col>
-    </ion-row>
 
     <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupBuyer()">
-          <ion-label color="primary">발주처</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupBuyer()">
-          <ion-label>{{balju_1}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="balju_1" (click) = "clear_buyer('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-2>상태</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="status" interface="popover">
-          <ion-option value="{{i.STATUS_CD}}" *ngFor = "let i of status_list">{{i.STATUS_NM}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>견적의뢰일자</ion-col>
-      <ion-col col-4>
-        <ion-item>
-          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col col-4>
-        <ion-item>
-          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>견적번호</ion-col>
       <ion-col col-3>
-        <ion-input placeholder="cust_cd" [(ngModel)] = "cust_cd"></ion-input>
+        <div class="search_nm">의뢰일자</div>
       </ion-col>
-      <ion-col col-5>
-        <ion-input placeholder="cust_nm" [(ngModel)] = "cust_nm"></ion-input>
+
+      <ion-col col-4>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
+      </ion-col>
+
+      <ion-col col-4>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
       </ion-col>
     </ion-row>
-  </ion-grid>
 
-  <button ion-button (click) = "retrive()">조회</button>
-
-  <ion-grid>
     <ion-row>
-      <ion-col col-2>사업구분</ion-col>
-      <ion-col col-2>견적번호</ion-col>
-      <ion-col col-2>프로젝트 명칭</ion-col>
-      <ion-col col-2>현재상태</ion-col>
-      <ion-col col-2>발주처</ion-col>
-      <ion-col col-2>담당자</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
-      <ion-col col-2>{{r.ITGRP1}}</ion-col>
-      <ion-col col-2>{{r.PJTNO}}</ion-col>
-      <ion-col col-2>{{r.PJTNM}}</ion-col>
-      <ion-col col-2>{{r.CURSTS}}</ion-col>
-      <ion-col col-2>{{r.BALJU}}</ion-col>
-      <ion-col col-2>{{r.SOCMA}}</ion-col>
+      <ion-col col-3>
+        <div class="search_nm">상태</div>
+      </ion-col>
+
+      <ion-col col-9>
+        <select [(ngModel)]="status" interface="popover" class="search_val" style="background-color: white;">
+          <<!--option value="">전체</option>-->
+          <option value="{{i.STATUS_CD}}" *ngFor = "let i of status_list">{{i.STATUS_NM}}</option>
+        </select>
+      </ion-col>
     </ion-row>
   </ion-grid>
+
+  <br>
+  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
+  <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
+  <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
+  <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
+
+  <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12><div class="pjt_status">{{r.CURSTS}}</div></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 class="t_left t_bold">{{r.PJTNM}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 class="t_left">{{r.PJTNO}} | {{r.BALJU}} | {{r.SOCMA}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
+
+
+<!--
+<ion-row>
+  <ion-col col-4>
+    <ion-item (click) = "PopupUser()">
+      <ion-label color="primary">담당자</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-7>
+    <ion-item (click) = "PopupUser()">
+      <ion-label>{{user_1}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="user_1" (click) = "clear_user('')">X</button>
+  </ion-col>
+</ion-row>-->
+<!--
+<ion-row>
+  <ion-col col-4>
+    <ion-item (click) = "PopupBuyer()">
+      <ion-label color="primary">발주처</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-7>
+    <ion-item (click) = "PopupBuyer()">
+      <ion-label>{{balju_1}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="balju_1" (click) = "clear_buyer('')">X</button>
+  </ion-col>
+</ion-row>-->
+<!--
+<ion-row>
+  <ion-col col-4>견적번호</ion-col>
+  <ion-col col-3>
+    <ion-input placeholder="cust_cd" [(ngModel)] = "cust_cd"></ion-input>
+  </ion-col>
+  <ion-col col-5>
+    <ion-input placeholder="cust_nm" [(ngModel)] = "cust_nm"></ion-input>
+  </ion-col>
+</ion-row>-->
+
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col col-2>사업구분</ion-col>
+    <ion-col col-2>견적번호</ion-col>
+    <ion-col col-2>프로젝트 명칭</ion-col>
+    <ion-col col-2>현재상태</ion-col>
+    <ion-col col-2>발주처</ion-col>
+    <ion-col col-2>담당자</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+    <ion-col col-2>{{r.ITGRP1}}</ion-col>
+    &lt;!&ndash;<ion-col col-2>{{commonCode43 | commonfilter: r.ITGRP1 : 'commonCode43'}}</ion-col>&ndash;&gt;
+    <ion-col col-2>{{r.PJTNO}}</ion-col>
+    <ion-col col-2>{{r.PJTNM}}</ion-col>
+    <ion-col col-2>{{r.CURSTS}}</ion-col>
+    <ion-col col-2>{{r.BALJU}}</ion-col>
+    <ion-col col-2>{{r.SOCMA}}</ion-col>
+  </ion-row>
+</ion-grid>-->

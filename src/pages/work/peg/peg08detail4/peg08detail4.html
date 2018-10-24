@@ -7,12 +7,62 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>peg08detail4</ion-title>
+    <ion-title>마감(후)집계표 상세</ion-title>
+    <button ion-button icon-only (click)="closemodal()">
+      <ion-icon name="close"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>거래처</ion-col>
+      <ion-col col-6>거래처명</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.PEH01_MST_VENDOR}}</ion-col>
+      <ion-col col-6>{{obj.SAA_BUYER_BY_NM}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>사업자등록번호</ion-col>
+      <ion-col col-6>전화번호</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.SAA_BUYER_BU_CD}}</ion-col>
+      <ion-col col-6>{{obj.SAA_BUYER_BY_TEL_NO}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>대표자명</ion-col>
+      <ion-col col-6>내자금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{obj.SAA_BUYER_BY_PRSN}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.TOT_1 : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>내자VAT</ion-col>
+      <ion-col col-6>외자금액</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.TOT_1_R : 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.TOT_2 : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>입고금액</ion-col>
+      <ion-col col-6>부가세</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>{{'' | commonfilter : obj.TOT_1 + obj.TOT_2 : 'money_filter'}}</ion-col>
+      <ion-col col-6>{'' | commonfilter : obj.TOT_1_R : 'money_filter'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>합계</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>{{'' | commonfilter : obj.TOT_1 + obj.TOT_2 : 'money_filter'}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

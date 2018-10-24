@@ -36,6 +36,7 @@
 
 .t_left{
   text-align: left;
+  color: gray
 }
 
 .t_right{
@@ -45,6 +46,7 @@
 .t_bold{
   font-weight: bold;
   font-size: 15px;
+  color: black;
 }
 
 
@@ -182,4 +184,43 @@
   .tabpage2{
     width: 50%;
     border-radius : 0px;
+  }
+
+  /*그리드 헤더 색상*/
+  .grid_header{
+    background-color: darkgray;
+    text-align: center;
+  }
+
+  .grid_header2{
+    text-align: center;
+  }
+
+  /*그리드 색상 및 폰트 크기*/
+  .grid_text{
+    font-size: x-small;
+    text-align: center;
+  }
+
+  /*프로젝트 상태*/
+  .pjt_status{
+    border: 1px solid darkorange;
+    width: 18%;
+    text-align: center;
+    border-radius: 15px;
+    font-size: smaller;
+  }
+
+  /* 긴글자 ...처리*/
+  .text_overflow{
+    white-space: nowrap;
+    width: 120%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+
+  .grid{
+    padding: 0px;
   }

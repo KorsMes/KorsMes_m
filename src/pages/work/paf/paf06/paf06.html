@@ -52,7 +52,7 @@
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <br>
-    <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
+<ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
   <ion-grid>
     <ion-row>
       <ion-col col-9 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>

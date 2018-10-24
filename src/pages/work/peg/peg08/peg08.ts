@@ -269,6 +269,14 @@ export class PEG08 {
       this.modalController.create('Peg08detail2Page', {obj: obj}).present();
     }
 
+    if(idx === "tab3"){
+      this.modalController.create('Peg08detail3Page', {obj: obj}).present();
+    }
+
+    if(idx === "tab4"){
+      this.modalController.create('Peg08detail4Page', {obj: obj}).present();
+    }
+
   }
 
 }

@@ -111,6 +111,8 @@ export class SCB10 {
     modal.present();
   }
 
+
+
   //조회
   retrive(){
     if(this.pjt_no == null || this.pjt_no == ""){

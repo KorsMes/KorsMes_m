@@ -20,6 +20,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 })
 export class PopupPjtnoPage {
 
+  public commonCode43; //사업구분
+
   //조회조건 : 상태 리스트
   public status_list;
 
@@ -70,6 +72,9 @@ export class PopupPjtnoPage {
                 .then(data => {
                   this.status_list = data;
                 });
+
+                //사업구분 가져오기
+                this.commonCode43 = this.commoncodeProvider.getCommonCode43();
 
   }
 

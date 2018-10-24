@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>지출내역 발행</ion-title>
+    <ion-title>지출내역 조회</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -33,6 +33,7 @@
       <ion-col col-3>
         <div class="search_nm">기안일자</div>
       </ion-col>
+
       <ion-col col-4>
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>
       </ion-col>
@@ -40,6 +41,7 @@
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
       </ion-col>
     </ion-row>
+
   </ion-grid>
   <br>
   <button ion-button (click) = "retrive()" class="search_btn">조회</button>
