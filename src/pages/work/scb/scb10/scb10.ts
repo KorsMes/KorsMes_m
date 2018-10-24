@@ -48,6 +48,9 @@ export class SCB10 {
   /* 조회 결과 */
   public result;
 
+  public abc;
+  public def;
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
@@ -132,6 +135,16 @@ export class SCB10 {
       }
       this.result = data;
     })
+  }
+
+
+  changedddd(a){
+    if(this.abc === '1'){
+      this.abc = '';
+    }else{
+      this.abc = '1';
+    }
+    this.def = a;
   }
 
 }

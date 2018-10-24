@@ -45,13 +45,13 @@
       <ion-col col-1.5 class="t_right">단가</ion-col>
       <ion-col col-1.5 class="t_right">금액</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" class="grid_text">
-      <ion-col col-1.5 class="t_left">{{r.GRPNO}}</ion-col>
-      <ion-col col-5 class="t_left">{{r.ITDSC}}</ion-col>
-      <ion-col col-1.5 class="t_left">{{r.SOQTY1}}</ion-col>
-      <ion-col col-1.5 class="t_left">{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>
-      <ion-col col-1.5 class="t_right">{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
-      <ion-col col-1.5 class="t_right">{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
+    <ion-row *ngFor="let r of result; let i=index" class="grid_text" (click) = "changedddd(r.GROUP_NO)">
+      <ion-col col-1.5 class="t_left" *ngIf="(abc === '1' && r.GROUP_NO === def) || r.GRPNO === r.GROUP_NO">{{r.GRPNO}}</ion-col>
+      <ion-col col-5 class="t_left" *ngIf="(abc === '1' && r.GROUP_NO === def) || r.GRPNO === r.GROUP_NO">{{r.ITDSC}}</ion-col>
+      <ion-col col-1.5 class="t_left" *ngIf="(abc === '1' && r.GROUP_NO === def) || r.GRPNO === r.GROUP_NO">{{r.SOQTY1}}</ion-col>
+      <ion-col col-1.5 class="t_left" *ngIf="(abc === '1' && r.GROUP_NO === def) || r.GRPNO === r.GROUP_NO">{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</ion-col>
+      <ion-col col-1.5 class="t_right" *ngIf="(abc === '1' && r.GROUP_NO === def) || r.GRPNO === r.GROUP_NO">{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
+      <ion-col col-1.5 class="t_right" *ngIf="(abc === '1' && r.GROUP_NO === def) || r.GRPNO === r.GROUP_NO">{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
