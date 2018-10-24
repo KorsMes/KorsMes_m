@@ -48,15 +48,12 @@
   </ion-item>
 
   <ion-card *ngIf="Tab1">
-    <ion-card-header>
-      수주건별 자재투입 현황 분석표
-    </ion-card-header>
     <ion-card-content height=400>
       <canvas #barCanvas></canvas>
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="Tab1">
     <ion-grid>
       <ion-row>
         <ion-col>프로젝트명</ion-col>
@@ -94,9 +91,9 @@
   </ion-card>
 
   <ion-card *ngIf="Tab2">
-    <ion-card-header>
+    <!--<ion-card-header>
       월별 자재투입 현황 분석표
-    </ion-card-header>
+    </ion-card-header>-->
     <ion-card-content>
       <canvas #lineCanvas></canvas>
     </ion-card-content>
