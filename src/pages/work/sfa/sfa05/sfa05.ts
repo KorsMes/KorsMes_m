@@ -21,11 +21,6 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 export class SFA05 {
   @ViewChild(Content) content: Content;
 
-  //Scroll to Top
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
-
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
   public acc_btn_save;
