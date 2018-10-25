@@ -19,27 +19,6 @@
   <button ion-button (click) = "condition_yn('true')" class="filter_btn">조건검색</button>
   <br>
   <ion-grid *ngIf="searchCondition">
-    <ion-row class="search_row">
-
-      <ion-col col-3>
-          <div (click) = "PopupPjtno()" class="search_nm">프로젝트명</div>
-      </ion-col>
-
-      <ion-col col-9>
-          <span (click) = "PopupPjtno()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pjtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
-      </ion-col>
-
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-3>
-          <div (click) = "PopupItnbr()" class="search_nm">품목명</div>
-      </ion-col>
-
-      <ion-col col-9>
-          <span (click) = "PopupItnbr()"><input type="text" value="{{itnbr_nm}}" class="search_val"></span><button  *ngIf="itnbr_nm" (click) = "clear_itnbr('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
-      </ion-col>
-    </ion-row>
 
     <ion-row>
       <ion-col col-3>
@@ -53,6 +32,41 @@
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
       </ion-col>
     </ion-row>
+
+    <ion-row class="search_row">
+
+      <ion-col col-3>
+          <div (click) = "PopupPjtno()" class="search_nm">프로젝트명</div>
+      </ion-col>
+
+      <ion-col col-9>
+          <span (click) = "PopupPjtno()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pjtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row class="search_row">
+
+      <ion-col col-3>
+        <div (click) = "PopupBuyer()" class="search_nm">거래처명</div>
+      </ion-col>
+
+      <ion-col col-9>
+        <span (click) = "PopupBuyer()"><input type="text" value="{{cust_nm}}" class="search_val2"></span><button *ngIf="cust_nm" (click) = "clear_buyer('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row class="search_row">
+      <ion-col col-3>
+          <div (click) = "PopupItnbr()" class="search_nm">품목명</div>
+      </ion-col>
+
+      <ion-col col-9>
+          <span (click) = "PopupItnbr()"><input type="text" value="{{itnbr_nm}}" class="search_val"></span><button  *ngIf="itnbr_nm" (click) = "clear_itnbr('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
   <br>
   <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
@@ -61,19 +75,19 @@
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
-  <ion-item>
-    <button ion-button (click) = "changeTab('1')">P/O별 상세</button>
-    <button ion-button (click) = "changeTab('2')">업체별 집계</button>
+  <ion-item class='tabpage'>
+    <button ion-button (click) = "changeTab('1')" class="tabpage1" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">P/O별 상세</button>
+    <button ion-button (click) = "changeTab('2')" class="tabpage2" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">업체별 집계</button>
   </ion-item>
 
-  <ion-item>
-    <button ion-button (click) = "changeTab('3')">PJT별 집계</button>
-    <button ion-button (click) = "changeTab('4')">품목별 집계</button>
+  <ion-item class='tabpage'>
+    <button ion-button (click) = "changeTab('3')" class="tabpage1" [ngStyle]="{'border-color': buttonColor3}" (click) = "btn_change3()">PJT별 집계</button>
+    <button ion-button (click) = "changeTab('4')" class="tabpage2" [ngStyle]="{'border-color': buttonColor4}" (click) = "btn_change4()">품목별 집계</button>
   </ion-item>
 
-  <ion-item>
-    <button ion-button (click) = "changeTab('5')">업체별 총집계</button>
-    <button ion-button (click) = "changeTab('6')">PJT별 총집계</button>
+  <ion-item class='tabpage'>
+    <button ion-button (click) = "changeTab('5')" class="tabpage1" [ngStyle]="{'border-color': buttonColor5}" (click) = "btn_change5()">업체별 총집계</button>
+    <button ion-button (click) = "changeTab('6')" class="tabpage2" [ngStyle]="{'border-color': buttonColor6}" (click) = "btn_change6()">PJT별 총집계</button>
   </ion-item>
 
   <ion-grid *ngIf="Tab1">
