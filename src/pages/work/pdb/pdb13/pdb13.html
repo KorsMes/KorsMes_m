@@ -32,21 +32,13 @@
     </ion-row>
 
     <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupItnbr()">
-          <ion-label color="primary">품목명</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupItnbr()">
-          <ion-label>{{itnbr_nm1}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="itnbr_nm" (click) = "clear_itnbr('')">X</button>
+      <ion-col col-3>
+          <div (click) = "PopupItnbr()" class="search_nm">품목명</div>
       </ion-col>
 
-
+      <ion-col col-9>
+          <span (click) = "PopupItnbr()"><input type="text" value="{{itnbr_nm}}" class="search_val"></span><button  *ngIf="itnbr_nm" (click) = "clear_pjtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
+      </ion-col>
     </ion-row>
 
     <ion-row>
@@ -58,32 +50,6 @@
       </ion-col>
       <ion-col col-4>
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-label>품목구분</ion-label>
-      </ion-col>
-      <ion-col col-8>
-        <ion-list radio-group [(ngModel)]="itnbr_gu">
-          <ion-item>
-            <ion-label>전기</ion-label>
-            <ion-radio value="E"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>기구</ion-label>
-            <ion-radio value="M"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>기타</ion-label>
-            <ion-radio value="C"></ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-label>전체</ion-label>
-            <ion-radio value="%"></ion-radio>
-          </ion-item>
-        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -304,3 +270,31 @@
 <ion-col col-1>
   <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
 </ion-col>-->
+
+
+<!--
+<ion-row>
+  <ion-col col-4>
+    <ion-label>품목구분</ion-label>
+  </ion-col>
+  <ion-col col-8>
+    <ion-list radio-group [(ngModel)]="itnbr_gu">
+      <ion-item>
+        <ion-label>전기</ion-label>
+        <ion-radio value="E"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>기구</ion-label>
+        <ion-radio value="M"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>기타</ion-label>
+        <ion-radio value="C"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>전체</ion-label>
+        <ion-radio value="%"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-col>
+</ion-row>-->
