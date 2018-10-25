@@ -64,6 +64,7 @@
 
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
     <ion-grid>
+
       <ion-row>
         <ion-col col-12><div class="pjt_status">{{commonCode37 | commonfilter : r.STATUS : 'commonCode37'}}</div></ion-col>
       </ion-row>
