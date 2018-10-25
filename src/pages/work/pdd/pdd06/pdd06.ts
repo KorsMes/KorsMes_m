@@ -51,6 +51,16 @@ export class PDD06 {
 
   public pjtno_arr;
 
+  /* 바 차트 색상정리 */
+  public bar_bg1;
+  public bar_border1;
+  public bar_bg2;
+  public bar_border2;
+  public bar_bg3;
+  public bar_border3;
+  public bar_bg4;
+  public bar_border4;
+
   /* 탭 페이지 */
   public Tab1 = "1";
   public Tab2;
@@ -128,10 +138,27 @@ export class PDD06 {
           var amt3_arr:number[] = new Array(Math.floor(this.result1.length / 4));
           var amt4_arr:number[] = new Array(Math.floor(this.result1.length / 4));
 
+          this.bar_bg1 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_border1 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_bg2 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_border2 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_bg3 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_border3 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_bg4 = new Array(Math.floor(this.result1.length / 4));
+          this.bar_border4 = new Array(Math.floor(this.result1.length / 4));
+
           //차트 데이터 세팅
           for(var i=0; i<this.result1.length; i++){
             if((i % 4) === 0){
               this.pjtno_arr[i/4] = data[i].PJTNO;
+              this.bar_bg1[i/4] = 'rgba(228, 108, 10, 0.5)';
+              this.bar_border1[i/4] = 'rgba(228, 108, 10, 0)';
+              this.bar_bg2[i/4] = 'rgba(197, 224, 180, 0.5)';
+              this.bar_border2[i/4] = 'rgba(197, 224, 180, 0)';
+              this.bar_bg3[i/4] = 'rgba(0, 176, 240, 0.5)';
+              this.bar_border3[i/4] = 'rgba(0, 176, 240, 0)';
+              this.bar_bg4[i/4] = 'rgba(255, 230, 153, 0.5)';
+              this.bar_border4[i/4] = 'rgba(255, 230, 153, 0)';
             }
 
 
@@ -149,8 +176,11 @@ export class PDD06 {
             }
           }
 
+
+
         }
 
+        if (this.barChart) this.barChart.destroy();
         this.barChart = new Chart(this.barCanvas.nativeElement.getContext("2d"),{
           type: 'bar',
           data:
@@ -159,70 +189,30 @@ export class PDD06 {
             datasets: [{
                           label: '수주금액',
                           data: amt1_arr,
-                          backgroundColor: [
-                              'rgba(228, 108, 10, 0.5)',
-                              'rgba(228, 108, 10, 0.5)',
-                              'rgba(228, 108, 10, 0.5)',
-                              'rgba(228, 108, 10, 0.5)',
-                          ],
-                          borderColor: [
-                              'rgba(228, 108, 10, 0)',
-                              'rgba(228, 108, 10, 0)',
-                              'rgba(228, 108, 10, 0)',
-                              'rgba(228, 108, 10, 0)'
-                          ],
+                          backgroundColor: this.bar_bg1,
+                          borderColor: this.bar_border1,
                           borderWidth: 1
                         },
                         {
                           label: '목표예산',
                           data: amt2_arr,
-                          backgroundColor: [
-                              'rgba(197, 224, 180, 0.5)',
-                              'rgba(197, 224, 180, 0.5)',
-                              'rgba(197, 224, 180, 0.5)',
-                              'rgba(197, 224, 180, 0.5)'
-                          ],
-                          borderColor: [
-                              'rgba(197, 224, 180, 0)',
-                              'rgba(197, 224, 180, 0)',
-                              'rgba(197, 224, 180, 0)',
-                              'rgba(197, 224, 180, 0)'
-                          ],
+                          backgroundColor: this.bar_bg2,
+                          borderColor: this.bar_border2,
                           borderWidth: 1
                         },
                         {
                           label: '요구금액',
                           data: amt3_arr,
-                          backgroundColor: [
-                              'rgba(0, 176, 240, 0.5)',
-                              'rgba(0, 176, 240, 0.5)',
-                              'rgba(0, 176, 240, 0.5)',
-                              'rgba(0, 176, 240, 0.5)'
-                          ],
-                          borderColor: [
-                              'rgba(0, 176, 240, 0)',
-                              'rgba(0, 176, 240, 0)',
-                              'rgba(0, 176, 240, 0)',
-                              'rgba(0, 176, 240, 0)'
-                          ],
+                          backgroundColor: this.bar_bg3,
+                          borderColor: this.bar_border3,
                           borderWidth: 1
                         },
                         {
                            label: '발주금액',
                            data: amt4_arr,
-                           backgroundColor: [
-                              'rgba(255, 230, 153, 0.5)',
-                              'rgba(255, 230, 153, 0.5)',
-                              'rgba(255, 230, 153, 0.5)',
-                              'rgba(255, 230, 153, 0.5)'
-                          ],
-                          borderColor: [
-                              'rgba(255, 230, 153, 0)',
-                              'rgba(255, 230, 153, 0)',
-                              'rgba(255, 230, 153, 0)',
-                              'rgba(255, 230, 153, 0)'
-                          ],
-                          borderWidth: 1
+                           backgroundColor: this.bar_bg4,
+                           borderColor: this.bar_border4,
+                           borderWidth: 1
                         }],
           },
           options : {
@@ -260,9 +250,8 @@ export class PDD06 {
           .then(data => {
             this.result3 = data;
 
-            if(this.result3.length > 0){  
+            if(this.result3.length > 0){
               this.result5 = data[0];
-              console.log("PJTNM : " +this.result5);
             }
           });
 
@@ -319,6 +308,7 @@ export class PDD06 {
 
               }
 
+        if (this.lineChart) this.lineChart.destroy();
         this.lineChart = new Chart(this.lineCanvas.nativeElement.getContext("2d"), {
           type: 'line',
           data:
