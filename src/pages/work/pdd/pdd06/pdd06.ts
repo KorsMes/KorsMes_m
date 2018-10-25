@@ -40,29 +40,16 @@ export class PDD06 {
 
 
   /* 조회결과 */
-  public result1;
-  public result2;
+  public result1; //바차트 데이터
+  public result2; //라인차트 데이터
 
-  public detail_result;
+  public result3; //바차트 상세 데이터 리스트
+  public result4; //라인차트 상세 데이터 리스트
+
+  public result5; //바차트 상세 데이터(show)
+  public result6; //라인차트 상세 데이터(show)
 
   public pjtno_arr;
-
-  /* 상세정보1 */
-  public pjtnm1;
-  public pjtno1;
-  public amt1;
-  public amt2;
-  public amt3;
-  public amt4;
-  public amt5;
-  public amt6;
-  public amt7;
-  public rto2;
-  public rto3;
-  public rto4;
-  public rto5;
-  public rto6;
-  public rto7;
 
   /* 탭 페이지 */
   public Tab1 = "1";
@@ -262,6 +249,25 @@ export class PDD06 {
             onClick:(clickEvt,activeElems)=>this.onChartClick(clickEvt,activeElems),
           }
         });
+
+
+        //최초 조회 시 상세 정보 불러오기
+        if(this.result1.length > 0){
+          let detail_url1 = "/pdd/pdd06_detail1";
+          let detail_param1 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: this.date_fr});
+
+          this.apiProvider.data_api(detail_url1, detail_param1)
+          .then(data => {
+            this.result3 = data;
+
+            if(data.length > 0){
+              this.result5 = data[0];
+              console.log("PJTNM : " +this.result5);
+            }
+          });
+
+        }
+
       });
     }
 
@@ -430,7 +436,6 @@ export class PDD06 {
   x_clicked = null;
   timeoutID = null; //handle to setTimeout
   numOfBars = 5; //how many horizontal bars to chart
-
   onChartClick(clickEvt:MouseEvent,activeElems:Array<any>){
     if(activeElems && activeElems.length) return;
 
@@ -446,60 +451,7 @@ export class PDD06 {
       return;
     }
 
-    let detail_url = "/pdd/pdd06_detail1";
-    let detail_param = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: this.date_fr, pjtno: this.pjtno_arr[this.x_clicked]});
-
-    this.apiProvider.data_api(detail_url, detail_param)
-    .then(data => {
-      if(Object.keys(data).length === 0){
-        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-      }
-      this.detail_result = data[0];
-      this.pjtnm1 = this.detail_result.PJTNM;
-      this.pjtno1 = this.detail_result.PJTNO;
-      this.amt1 = this.detail_result.AMT;
-
-      this.detail_result = data[1];
-      this.amt2 = this.detail_result.AMT;
-
-      this.detail_result = data[2];
-      this.rto2 = this.detail_result.AMT;
-
-      this.detail_result = data[3];
-      this.amt3 = this.detail_result.AMT;
-
-      this.detail_result = data[4];
-      this.rto3 = this.detail_result.AMT;
-
-      this.detail_result = data[5];
-      this.amt4 = this.detail_result.AMT;
-
-      this.detail_result = data[6];
-      this.rto4 = this.detail_result.AMT;
-
-      this.detail_result = data[7];
-      this.amt5 = this.detail_result.AMT;
-
-      this.detail_result = data[8];
-      this.rto5 = this.detail_result.AMT;
-
-      this.detail_result = data[9];
-      this.amt6 = this.detail_result.AMT;
-
-      this.detail_result = data[10];
-      this.rto6 = this.detail_result.AMT;
-
-      this.detail_result = data[11];
-      this.amt7 = this.detail_result.AMT;
-
-      this.detail_result = data[12];
-      this.rto7 = this.detail_result.AMT;
-
-
-
-      console.log(this.detail_result.PJTNM);
-
-    });
+    this.result5 = this.result3[this.x_clicked];
 
 
     /*  barChart 종료  */
