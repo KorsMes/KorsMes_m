@@ -259,4 +259,7 @@ export class SFA05 {
     this.buttonColor3 = '#FFDF24';
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 }

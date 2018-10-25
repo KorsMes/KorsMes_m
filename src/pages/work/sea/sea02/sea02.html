@@ -13,7 +13,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content has-header="true" #testElement>
+<ion-content has-header="true">
   <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
   <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
   <br>
@@ -79,7 +79,7 @@
   </ion-card>
 
 
-  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn">∧</button></ion-fab>
+  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
 </ion-content>
 
 

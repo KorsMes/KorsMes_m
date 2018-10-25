@@ -55,7 +55,7 @@
     </ion-row>
   </ion-grid>-->
 
-  <ion-card *ngFor="let r of result; let i=index" class="Card_Grid" (click) = "changedddd(r.GROUP_NO)">
+  <ion-card *ngFor="let r of result; let i=index" class="Card_Grid" (click) = "category_click(r.GROUP_NO)">
     <ion-grid>
       <ion-row>
         <ion-col col-12 class="t_left t_bold" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">&nbsp;&nbsp;</span>{{r.GRPNO}} / {{r.ITDSC}}</ion-col>
@@ -73,4 +73,5 @@
     </ion-grid>
   </ion-card>
 
+  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
 </ion-content>
