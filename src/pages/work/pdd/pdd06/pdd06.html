@@ -53,39 +53,39 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="Tab1">
+  <ion-card *ngIf="result5 && Tab1">
     <ion-grid>
       <ion-row>
         <ion-col>프로젝트명</ion-col>
-        <ion-col>{{pjtnm1}}</ion-col>
+        <ion-col>{{result5.PJTNM}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>수주금액</ion-col>
-        <ion-col>{{amt1}}</ion-col>
+        <ion-col>{{result5.AMT_A0}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>목표예산</ion-col>
-        <ion-col>{{amt2}} / {{rto2}}</ion-col>
+        <ion-col>{{result5.AMT_B0}} / {{result5.AMT_B1}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>요구금액</ion-col>
-        <ion-col>{{amt3}} / {{rto3}}</ion-col>
+        <ion-col>{{result5.AMT_C0}} / {{result5.AMT_C1}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>발주금액</ion-col>
-        <ion-col>{{amt4}} / {{rto4}}</ion-col>
+        <ion-col>{{result5.AMT_D0}} / {{result5.AMT_D1}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>재고사용</ion-col>
-        <ion-col>{{amt5}} / {{rto5}}</ion-col>
+        <ion-col>{{result5.AMT_E0}} / {{result5.AMT_E1}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>자재합계</ion-col>
-        <ion-col>{{amt6}} / {{rto6}}</ion-col>
+        <ion-col>{{result5.AMT_F0}} / {{result5.AMT_F1}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col>FAIL COST</ion-col>
-        <ion-col>{{amt7}} / {{rto7}}</ion-col>
+        <ion-col>{{result5.AMT_G0}} / {{result5.AMT_G1}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
