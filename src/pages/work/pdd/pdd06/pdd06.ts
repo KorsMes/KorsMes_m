@@ -260,7 +260,7 @@ export class PDD06 {
           .then(data => {
             this.result3 = data;
 
-            if(data.length > 0){
+            if(this.result3.length > 0){
               this.result5 = data[0];
               console.log("PJTNM : " +this.result5);
             }
