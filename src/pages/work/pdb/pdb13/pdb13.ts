@@ -36,20 +36,20 @@ export class PDB13 {
 
   public plant_cd;
 
-  public pjtno1; //PJT번호from
-  public pjtnm1; //PJT명from
+  public pjtno; //PJT번호from
+  public pjtnm; //PJT명from
 
-  public pjtno2; //PJT번호to
-  public pjtnm2; //PJT명to
+  /*public pjtno2; //PJT번호to
+  public pjtnm2; //PJT명to*/
 
   public purno1; //발주번호from
   public purno2; //발주번호to
 
-  public itnbr_cd1; //품목코드from
-  public itnbr_nm1; //품목명from
+  public itnbr_cd; //품목코드from
+  public itnbr_nm; //품목명from
 
-  public itnbr_cd2; //품목코드to
-  public itnbr_nm2; //품목명to
+  /*public itnbr_cd2; //품목코드to
+  public itnbr_nm2; //품목명to*/
 
   public date_fr = new Date().getUTCFullYear()+"-"+"01-01"; //발주일자from
   public date_to = new Date().toISOString(); //발주일자to
@@ -113,20 +113,20 @@ export class PDB13 {
   //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.pjtno1="";
-      this.pjtnm1="";
+      this.pjtno="";
+      this.pjtnm="";
 
-      this.pjtno2="";
-      this.pjtnm2="";
+     /* this.pjtno2="";
+      this.pjtnm2="";*/
 
       this.purno1="";
       this.purno2="";
 
-      this.itnbr_cd1="";
-      this.itnbr_nm1="";
+      this.itnbr_cd="";
+      this.itnbr_nm="";
 
-      this.itnbr_cd2="";
-      this.itnbr_nm2="";
+      /*this.itnbr_cd2="";
+      this.itnbr_nm2="";*/
 
       this.date_fr = new Date().getUTCFullYear()+"-"+"01-01";
       this.date_to = new Date().toISOString();
@@ -136,17 +136,17 @@ export class PDB13 {
 
 
   //조회조건 PJT번호 초기화 from
-  clear_pjtno1(){
-    this.pjtno1 = null;
-    this.pjtnm1= null;
+  clear_pjtno(){
+    this.pjtno = null;
+    this.pjtnm= null;
   }
 
   //PJT번호 팝업 from
-  PopupPjtno1(){
+  PopupPjtno(){
     var modal = this.modalController.create('PopupPjtno2Page');
     modal.onDidDismiss(data => {
-      this.pjtno1 = data.pjtno;
-      this.pjtnm1 = data.pjtnm;
+      this.pjtno = data.pjtno;
+      this.pjtnm = data.pjtnm;
     });
     modal.present();
   }
@@ -157,7 +157,7 @@ export class PDB13 {
     this.pjtnm2= null;
   }
 
-  //PJT번호 팝업 to
+ /* //PJT번호 팝업 to
   PopupPjtno2(){
     var modal = this.modalController.create('PopupPjtno2Page');
     modal.onDidDismiss(data => {
@@ -165,7 +165,7 @@ export class PDB13 {
       this.pjtnm2 = data.pjtnm;
     });
     modal.present();
-  }
+  }*/
 
   //조회조건 발주번호 초기화 from
   clear_purno1(){
@@ -197,21 +197,21 @@ export class PDB13 {
 
   //조회조건 품목코드 초기화 from
   clear_itnbr1(){
-    this.itnbr_cd1 = "";
-    this.itnbr_nm1 = "";
+    this.itnbr_cd = "";
+    this.itnbr_nm = "";
   }
 
   //품목코드 팝업 from
-  PopupItnbr1(){
+  PopupItnbr(){
     var modal = this.modalController.create('PopupItnbr2Page');
     modal.onDidDismiss(data => {
-      this.itnbr_cd1 = data.itnbr_cd2;
-      this.itnbr_nm1 = data.itnbr_nm2;
+      this.itnbr_cd = data.itnbr_cd;
+      this.itnbr_nm = data.itnbr_nm;
     });
     modal.present();
   }
 
-  //조회조건 품목코드 초기화 to
+/*  //조회조건 품목코드 초기화 to
   clear_itnbr2(){
     this.itnbr_cd2 = "";
     this.itnbr_nm2 = "";
@@ -225,13 +225,13 @@ export class PDB13 {
       this.itnbr_nm2 = data.itnbr_nm2;
     });
     modal.present();
-  }
+  }*/
 
   //조회
   retrive(){
     //P/O별 발주상세내역
     let api_url1 = "/pdb/pdb13_list1";
-    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd,  date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
 
     this.apiProvider.data_api(api_url1, param1)
     .then(data => {
@@ -247,7 +247,7 @@ export class PDB13 {
 
     //업체별 발주집계표
     let api_url2 = "/pdb/pdb13_list2";
-    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url2, param2)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -262,7 +262,7 @@ export class PDB13 {
 
     //PJT별 발주집계표
     let api_url3 = "/pdb/pdb13_list3";
-    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url3, param3)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -277,7 +277,7 @@ export class PDB13 {
 
     //품목별 발주 집계표
     let api_url4 = "/pdb/pdb13_list4";
-    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url4, param4)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -292,7 +292,7 @@ export class PDB13 {
 
     //업체별 발주내역 총집계표
     let api_url5 = "/pdb/pdb13_list5";
-    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url5, param5)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -307,7 +307,7 @@ export class PDB13 {
 
     //PJT별 발주내역 총집계표
     let api_url6 = "/pdb/pdb13_list6";
-    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
     this.apiProvider.data_api(api_url6, param6)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -326,7 +326,7 @@ export class PDB13 {
     if(idx === "1"){
       //P/O별 발주상세내역
       let api_url1 = "/pdb/pdb13_list1";
-      let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
       this.apiProvider.data_api(api_url1, param1)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -341,7 +341,7 @@ export class PDB13 {
     }else if(idx === "2"){
       //업체별 발주집계표
       let api_url2 = "/pdb/pdb13_list2";
-      let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
       this.apiProvider.data_api(api_url2, param2)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -356,7 +356,7 @@ export class PDB13 {
     }else if(idx === "3"){
       //PJT별 발주집계표
       let api_url3 = "/pdb/pdb13_list3";
-      let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
       this.apiProvider.data_api(api_url3, param3)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -371,7 +371,7 @@ export class PDB13 {
     }else if(idx === "4"){
       //품목별 발주 집계표
       let api_url4 = "/pdb/pdb13_list4";
-      let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
       this.apiProvider.data_api(api_url4, param4)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -386,7 +386,7 @@ export class PDB13 {
     }else if(idx === "5"){
       //업체별 발주내역 총집계표
       let api_url5 = "/pdb/pdb13_list5";
-      let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
       this.apiProvider.data_api(api_url5, param5)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -401,7 +401,7 @@ export class PDB13 {
     }else if(idx === "6"){
       //PJT별 발주내역 총집계표
       let api_url6 = "/pdb/pdb13_list6";
-      let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno1: this.pjtno1, pjtno2: this.pjtno2, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
+      let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd1: this.itnbr_cd1, itnbr_cd2: this.itnbr_cd2, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code});
       this.apiProvider.data_api(api_url6, param6)
       .then(data => {
         if(Object.keys(data).length === 0){

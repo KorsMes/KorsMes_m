@@ -9,97 +9,44 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>월 발주현황</ion-title>
+    <ion-title class="title_text">월 발주현황</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
+  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn">조건검색</button>
   <br>
   <ion-grid *ngIf="searchCondition">
-    <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
+    <ion-row class="search_row">
+
+      <ion-col col-3>
+          <div (click) = "PopupPjtno()" class="search_nm">프로젝트명</div>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupPjtno1()">
-          <ion-label color="primary">PJT번호</ion-label>
-        </ion-item>
+
+      <ion-col col-9>
+          <span (click) = "PopupPjtno()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pjtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupPjtno1()">
-          <ion-label>{{pjtnm1}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="pjtnm1" (click) = "clear_pjtno1('')">X</button>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupPjtno2()">
-          <ion-label>{{pjtnm2}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="pjtnm2" (click) = "clear_pjtno2('')">X</button>
-      </ion-col>
+
     </ion-row>
 
     <ion-row>
       <ion-col col-4>
-        <ion-item (click) = "PopupPurno1()">
-          <ion-label color="primary">발주번호</ion-label>
-        </ion-item>
-      </ion-col>
-
-      <ion-col col-7>
-        <ion-item (click) = "PopupPurno1()">
-          <ion-label>{{purno1}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="purno1" (click) = "clear_purno1('')">X</button>
-      </ion-col>
-
-      <ion-col col-7>
-        <ion-item (click) = "PopupPurno2()">
-          <ion-label>{{purno2}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="purno2" (click) = "clear_purno2('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupItnbr1()">
-          <ion-label color="primary">품목코드</ion-label>
+        <ion-item (click) = "PopupItnbr()">
+          <ion-label color="primary">품목명</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-7>
-        <ion-item (click) = "PopupItnbr1()">
+        <ion-item (click) = "PopupItnbr()">
           <ion-label>{{itnbr_nm1}}</ion-label>
         </ion-item>
       </ion-col>
       <ion-col col-1>
-        <button ion-button *ngIf="itnbr_nm1" (click) = "clear_itnbr1('')">X</button>
+        <button ion-button *ngIf="itnbr_nm" (click) = "clear_itnbr('')">X</button>
       </ion-col>
 
-      <ion-col col-7>
-        <ion-item (click) = "PopupItnbr2()">
-          <ion-label>{{itnbr_nm2}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
-      </ion-col>
+
     </ion-row>
 
     <ion-row>
@@ -141,25 +88,25 @@
     </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <ion-item>
-    <button ion-button (click) = "changeTab('1')">P/O별 발주상세내역</button>
-    <button ion-button (click) = "changeTab('2')">업체별 발주집계표</button>
+    <button ion-button (click) = "changeTab('1')">P/O별 상세</button>
+    <button ion-button (click) = "changeTab('2')">업체별 집계</button>
   </ion-item>
 
   <ion-item>
-    <button ion-button (click) = "changeTab('3')">PJT별 발주집계표</button>
-    <button ion-button (click) = "changeTab('4')">품목별 발주 집계표</button>
+    <button ion-button (click) = "changeTab('3')">PJT별 집계</button>
+    <button ion-button (click) = "changeTab('4')">품목별 집계</button>
   </ion-item>
 
   <ion-item>
-    <button ion-button (click) = "changeTab('5')">업체별 발주내역 총집계표</button>
-    <button ion-button (click) = "changeTab('6')">PJT별 발주내역 총집계표</button>
+    <button ion-button (click) = "changeTab('5')">업체별 총집계</button>
+    <button ion-button (click) = "changeTab('6')">PJT별 총집계</button>
   </ion-item>
 
   <ion-grid *ngIf="Tab1">
@@ -298,3 +245,62 @@
   </ion-infinite-scroll>
 </ion-content>
 
+
+
+<!--
+<ion-row>
+  <ion-col col-2>공장코드</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="plant_cd" interface="popover">
+      <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>-->
+
+
+<!--
+<ion-col col-7>
+  <ion-item (click) = "PopupPjtno2()">
+    <ion-label>{{pjtnm2}}</ion-label>
+  </ion-item>
+</ion-col>
+<ion-col col-1>
+  <button ion-button *ngIf="pjtnm2" (click) = "clear_pjtno2('')">X</button>
+</ion-col>-->
+<!--
+<ion-col col-7>
+  <ion-item (click) = "PopupPurno2()">
+    <ion-label>{{purno2}}</ion-label>
+  </ion-item>
+</ion-col>
+<ion-col col-1>
+  <button ion-button *ngIf="purno2" (click) = "clear_purno2('')">X</button>
+</ion-col>-->
+
+
+<<!--ion-row>
+  <ion-col col-4>
+    <ion-item (click) = "PopupPurno1()">
+      <ion-label color="primary">발주번호</ion-label>
+    </ion-item>
+  </ion-col>
+
+  <ion-col col-7>
+    <ion-item (click) = "PopupPurno1()">
+      <ion-label>{{purno1}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="purno1" (click) = "clear_purno1('')">X</button>
+  </ion-col>
+</ion-row>-->
+
+
+<<!--ion-col col-7>
+  <ion-item (click) = "PopupItnbr2()">
+    <ion-label>{{itnbr_nm2}}</ion-label>
+  </ion-item>
+</ion-col>
+<ion-col col-1>
+  <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
+</ion-col>-->
