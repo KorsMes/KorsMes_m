@@ -151,11 +151,11 @@ export class PDB13 {
     modal.present();
   }
 
-  //조회조건 PJT번호 초기화 to
+ /* //조회조건 PJT번호 초기화 to
   clear_pjtno2(){
     this.pjtno2 = null;
     this.pjtnm2= null;
-  }
+  }*/
 
  /* //PJT번호 팝업 to
   PopupPjtno2(){
@@ -196,7 +196,7 @@ export class PDB13 {
   }
 
   //조회조건 품목코드 초기화 from
-  clear_itnbr1(){
+  clear_itnbr(){
     this.itnbr_cd = "";
     this.itnbr_nm = "";
   }

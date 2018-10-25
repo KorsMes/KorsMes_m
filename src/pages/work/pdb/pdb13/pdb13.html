@@ -37,16 +37,17 @@
       </ion-col>
 
       <ion-col col-9>
-          <span (click) = "PopupItnbr()"><input type="text" value="{{itnbr_nm}}" class="search_val"></span><button  *ngIf="itnbr_nm" (click) = "clear_pjtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
+          <span (click) = "PopupItnbr()"><input type="text" value="{{itnbr_nm}}" class="search_val"></span><button  *ngIf="itnbr_nm" (click) = "clear_itnbr('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-4>
-        <ion-label>발주일자</ion-label>
+      <ion-col col-3>
+        <div class="search_nm">발주일자</div>
       </ion-col>
+
       <ion-col col-4>
-        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>-
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_fr"></ion-datetime>
       </ion-col>
       <ion-col col-4>
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date_to"></ion-datetime>
