@@ -48,8 +48,8 @@
   </ion-item>
 
   <ion-card *ngIf="Tab1">
-    <ion-scroll scrollX style="height:1000px;">
-      <ion-card-content style="width:1000px;">
+    <ion-scroll scrollX [ngStyle]="{'height': responsive_height}">
+      <ion-card-content [ngStyle]="{'width': responsive_width}" style="align: center;">
         <canvas #barCanvas></canvas>
       </ion-card-content>
     </ion-scroll>

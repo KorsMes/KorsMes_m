@@ -61,6 +61,10 @@ export class PDD06 {
   public bar_bg4;
   public bar_border4;
 
+  /* 바 차트 사이즈정의 */
+  public responsive_width = "320px";
+  public responsive_height = "180px";
+
   /* 탭 페이지 */
   public Tab1 = "1";
   public Tab2;
@@ -176,6 +180,16 @@ export class PDD06 {
             }
           }
 
+          this.responsive_width = Math.floor(this.result1.length / 4) * 80 + "px";
+          this.responsive_height = Math.floor(this.result1.length / 4) * 40 + "px";
+
+          if(Math.floor(this.result1.length / 4) * 100 < 360){
+            this.responsive_width = "320px";
+          }
+
+          if(Math.floor(this.result1.length / 4) * 50 < 200){
+            this.responsive_height = "180px";
+          }
 
 
         }
@@ -436,6 +450,10 @@ export class PDD06 {
         this.x_clicked = clickX;
     if(this.timeoutID) clearTimeout(this.timeoutID);
     this.timeoutID = setTimeout(()=>this.y_clicked=null,2000);
+
+    if(this.pjtno_arr == null){
+      return;
+    }
 
     if(this.x_clicked > this.pjtno_arr.length -1){
       return;
