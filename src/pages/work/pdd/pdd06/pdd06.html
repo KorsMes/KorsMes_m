@@ -48,9 +48,11 @@
   </ion-item>
 
   <ion-card *ngIf="Tab1">
-    <ion-card-content height=400>
-      <canvas #barCanvas></canvas>
-    </ion-card-content>
+    <ion-scroll scrollX style="height:1000px;">
+      <ion-card-content style="width:1000px;">
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-scroll>
   </ion-card>
 
   <ion-card *ngIf="result5 && Tab1">
@@ -91,13 +93,10 @@
   </ion-card>
 
   <ion-card *ngIf="Tab2">
-    <!--<ion-card-header>
-      월별 자재투입 현황 분석표
-    </ion-card-header>-->
-    <ion-card-content>
-      <canvas #lineCanvas></canvas>
-    </ion-card-content>
+    <ion-scroll scrollX style="height:350px;">
+      <ion-card-content style="width:700px;">
+        <canvas #lineCanvas></canvas>
+      </ion-card-content>
+    </ion-scroll>
   </ion-card>
-
-
 </ion-content>
