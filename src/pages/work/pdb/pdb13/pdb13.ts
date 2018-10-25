@@ -550,4 +550,22 @@ export class PDB13 {
     this.buttonColor6 = 'white';
   }
 
+  btn_change5(){
+    this.buttonColor1 = 'white';
+    this.buttonColor2 = 'white';
+    this.buttonColor3 = 'white';
+    this.buttonColor4 = 'white';
+    this.buttonColor5 = '#FFDF24';
+    this.buttonColor6 = 'white';
+  }
+
+  btn_change6(){
+    this.buttonColor1 = 'white';
+    this.buttonColor2 = 'white';
+    this.buttonColor3 = 'white';
+    this.buttonColor4 = 'white';
+    this.buttonColor5 = 'white';
+    this.buttonColor6 = '#FFDF24';
+  }
+
 }

@@ -201,7 +201,6 @@ export class PDH04 {
   btn_change2(){
     this.buttonColor1 = 'white';
     this.buttonColor2 = '#FFDF24';
-
   }
 
 
