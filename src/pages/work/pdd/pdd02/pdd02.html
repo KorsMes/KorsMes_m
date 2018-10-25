@@ -38,7 +38,7 @@
 
   <ion-grid>
     <ion-row *ngIf="gubun_a">
-      <ion-col col-12>1. 당월 자재 투입집계</ion-col>
+      <ion-col col-12 style="background-color: #F6F6F6; border: 1px solid red;">1. 당월 자재 투입집계</ion-col>
     </ion-row>
     <ion-row *ngFor="let r of result; let i=index" >
       <ion-col col-12 *ngIf="r.GUBUN_GR === 'A'">{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>

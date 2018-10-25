@@ -46,9 +46,11 @@
   </ion-grid>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <h6 class="bodt_title">PJT 수주내역</h6>
+
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
-    <ion-grid>
+    <ion-grid class="main_grid">
       <ion-row>
         <ion-col>{{r.PJTNO}}</ion-col>
       </ion-row>

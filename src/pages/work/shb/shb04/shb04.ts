@@ -58,6 +58,11 @@ export class SHB04 {
   public Tab2;
   public Tab3;
 
+  /*버튼 색상 변경*/
+  buttonColor1: string = '#FFDF24';
+  buttonColor2: string = 'white';
+  buttonColor3: string = 'white';
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
@@ -231,6 +236,24 @@ export class SHB04 {
     this.modalController.create('Shb04detail1Page', {obj: obj}).present();
   }
 
+  //버튼 컬러 change
+  btn_change1(){
+    this.buttonColor1 = '#FFDF24';
+    this.buttonColor2 = 'white';
+    this.buttonColor3 = 'white';
+  }
 
+  btn_change2(){
+    this.buttonColor1 = 'white';
+    this.buttonColor2 = '#FFDF24';
+    this.buttonColor3 = 'white';
+
+  }
+
+  btn_change3(){
+    this.buttonColor1 = 'white';
+    this.buttonColor2 = 'white';
+    this.buttonColor3 = '#FFDF24';
+  }
 
 }

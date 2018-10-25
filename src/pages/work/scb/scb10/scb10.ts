@@ -48,8 +48,9 @@ export class SCB10 {
   /* 조회 결과 */
   public result;
 
-  public abc;
-  public def;
+  /*그룹 SHOW & HIDE*/
+  public GRPNO_SHOW;
+  public GROUP_NO_SHOW;
 
   constructor(
                 public navCtrl: NavController,
@@ -138,13 +139,10 @@ export class SCB10 {
   }
 
 
-  changedddd(a){
-    if(this.abc === '1'){
-      this.abc = '';
-    }else{
-      this.abc = '1';
-    }
-    this.def = a;
+  changedddd(GROUP_NO){
+      this.GRPNO_SHOW = '1';
+      this.GROUP_NO_SHOW = GROUP_NO;
   }
 
 }
+

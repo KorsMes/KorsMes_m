@@ -52,6 +52,11 @@ export class PDH04 {
   public Tab1 = "1";
   public Tab2;
 
+  /*버튼 색상 변경*/
+  buttonColor1: string = '#FFDF24';
+  buttonColor2: string = 'white';
+
+
   constructor(
               public navCtrl: NavController,
               public navParams: NavParams,
@@ -186,5 +191,18 @@ export class PDH04 {
   openDetail(obj: any){
     this.modalController.create('Pdh04detail2Page', {obj: obj}).present();
   }
+
+  //버튼 컬러 change
+  btn_change1(){
+    this.buttonColor1 = '#FFDF24';
+    this.buttonColor2 = 'white';
+  }
+
+  btn_change2(){
+    this.buttonColor1 = 'white';
+    this.buttonColor2 = '#FFDF24';
+
+  }
+
 
 }

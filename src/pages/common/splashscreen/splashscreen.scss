@@ -49,6 +49,12 @@
   color: black;
 }
 
+.top_btn{
+  background-color: #FAED7D;
+  font-weight: bold;
+  color: #000000;
+}
+
 
 /*
  * 상세 프로그램 CSS
@@ -174,16 +180,69 @@
   /* 탭페이지*/
   .tabpage{
     padding: 0px;
+    padding-right: 0px;
   }
 
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
   .tabpage1{
     width: 50%;
     border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    color: black;
+    border-bottom: 4px solid;
+    box-shadow: none;
   }
 
   .tabpage2{
     width: 50%;
     border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    color: black;
+    border-bottom: 4px solid;
+    box-shadow: none;
+  }
+
+  .tabpage3{
+    border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 33%;
+    background-color: white;
+    color: black;
+    border-bottom: 4px solid;
+    box-shadow: none;
+  }
+
+  .tabpage4{
+    border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 33%;
+    background-color: white;
+    color: black;
+    border-bottom: 4px solid;
+    box-shadow: none;
+  }
+
+  .tabpage5{
+    border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 33%;
+    background-color: white;
+    color: black;
+    border-bottom: 4px solid;
+    box-shadow: none;
+  }
+
+  .button_body{
+    width: 100%;
   }
 
   /*그리드 헤더 색상*/
@@ -223,4 +282,27 @@
 
   .grid{
     padding: 0px;
+  }
+
+  /*조회 결과 그리드 */
+  .retrive_grid ion-row:nth-of-type(odd) {
+    background: #EAEAEA;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .retrive_grid ion-row:nth-of-type(even) {
+    text-align: center;
+  }
+
+  .item-md.item-block .item-inner{
+    border-bottom: none;
+  }
+
+  /*툴바 타이틀 */
+  .toolbar-title-md{
+    font-size: 18px;
+  }
+  .title_text{
+    margin-left: 16%;
   }

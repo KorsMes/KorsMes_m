@@ -17,6 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SplashscreenPage {
 
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,

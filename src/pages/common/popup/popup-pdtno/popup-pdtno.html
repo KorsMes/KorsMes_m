@@ -5,68 +5,103 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>PJT번호 검색</ion-title>
-    <button ion-button (click) = "closeModal()">Close</button>
+    <ion-title>PJT번호 검색<button ion-button (click) = "closeModal()" class="popup_close">X</button></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-4>수주일자</ion-col>
-      <ion-col col-4>
-        <ion-item>
-          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col col-4>
-        <ion-item>
-          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
-        </ion-item>
-      </ion-col>
-    </ion-row>
 
     <ion-row>
-      <ion-col col-4>PJT번호</ion-col>
       <ion-col col-3>
-        <ion-input placeholder="pjtcd" [(ngModel)] = "pjtcd"></ion-input>
+        <div class="search_nm">수주일자</div>
       </ion-col>
-      <ion-col col-5>
-        <ion-input placeholder="pjtnm" [(ngModel)] = "pjtnm"></ion-input>
+
+      <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
+      </ion-col>
+      <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
-  <button ion-button (click) = "retrive()">조회</button>
+  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  <br>
+  <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 class="t_left">{{r.PJTNO}}</ion-col>
+      </ion-row>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>수주일자</ion-col>
-      <ion-col col-2>생산지시일자</ion-col>
-      <ion-col col-2>수주처</ion-col>
-      <ion-col col-2>발주처</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
-      <ion-col col-2>{{r.PJTNO}}</ion-col>
-      <ion-col col-2>{{r.PJTNM}}</ion-col>
-      <ion-col col-2>{{r.SODAT}}</ion-col>
-      <ion-col col-2>{{r.POJIT}}</ion-col>
-      <ion-col col-2>{{r.SNAME}}</ion-col>
-      <ion-col col-2>{{r.BNAME}}</ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col col-12 class="t_left t_bold">{{r.PJTNM}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 class="t_left">{{r.BNAME}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6 class="t_left">{{r.SODAT}}</ion-col>
+        <ion-col col-6 class="t_right">{{r.POJIT}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
 </ion-content>
+
+
+<!--
+<ion-row>
+  <ion-col col-2>공장코드</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="plant_cd" interface="popover">
+      <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>-->
+
+<!--
+<ion-input placeholder="pjtcd" [(ngModel)] = "pjtcd"></ion-input>-->
+<!--
+<ion-input placeholder="pjtnm" [(ngModel)] = "pjtnm"></ion-input>-->
+<!--
+<ion-row>
+  <ion-col col-3>
+    <div class="search_nm">PJT번호</div>
+  </ion-col>
+
+  <ion-col col-4>
+    <span><input type="text" [(ngModel)] = "pjtcd" class="search_val"></span>
+  </ion-col>
+  <ion-col col-1>&nbsp;&nbsp;-&nbsp;&nbsp;</ion-col>
+  <ion-col col-4>
+    <span><input type="text" [(ngModel)] = "pjtnm" class="search_val"></span>
+  </ion-col>
+</ion-row>-->
+
+
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col col-2>PJT번호</ion-col>
+    <ion-col col-2>프로젝트명</ion-col>
+    <ion-col col-2>수주일자</ion-col>
+    <ion-col col-2>생산지시일자</ion-col>
+    <ion-col col-2>수주처</ion-col>
+    <ion-col col-2>발주처</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+    <ion-col col-2>{{r.PJTNO}}</ion-col>
+    <ion-col col-2>{{r.PJTNM}}</ion-col>
+    <ion-col col-2>{{r.SODAT}}</ion-col>
+    <ion-col col-2>{{r.POJIT}}</ion-col>
+    <ion-col col-2>{{r.SNAME}}</ion-col>
+    <ion-col col-2>{{r.BNAME}}</ion-col>
+  </ion-row>
+</ion-grid>-->
