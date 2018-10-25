@@ -139,9 +139,13 @@ export class SCB10 {
   }
 
 
-  changedddd(GROUP_NO){
+  category_click(GROUP_NO){
       this.GRPNO_SHOW = '1';
       this.GROUP_NO_SHOW = GROUP_NO;
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
 }

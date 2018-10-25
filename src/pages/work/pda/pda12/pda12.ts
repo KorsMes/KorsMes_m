@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pda12.html',
 })
 export class PDA12 {
+  @ViewChild(Content) content: Content;
 
   public commonCode30; //상태
   public commonCode6; //계정과목
@@ -53,12 +54,6 @@ export class PDA12 {
 
   /* 조회결과 */
   public result;
-
-
-  @ViewChild('barCanvas') barCanvas;
-
-  barChart: any;
-
 
 
   constructor(
@@ -152,6 +147,10 @@ export class PDA12 {
   //상세팝업
   openDetail(obj: any){
     this.modalController.create('Pda12detailPage', {obj: obj}).present();
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
 }

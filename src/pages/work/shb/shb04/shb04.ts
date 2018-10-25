@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'shb04.html',
 })
 export class SHB04 {
+  @ViewChild(Content) content: Content;
+
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
   public acc_btn_save;
@@ -256,4 +258,7 @@ export class SHB04 {
     this.buttonColor3 = '#FFDF24';
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 }
