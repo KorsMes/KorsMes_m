@@ -9,93 +9,129 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>월별 수입검사현황</ion-title>
+    <ion-title class="title_text">월별 수입검사현황</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
   <br>
-
-<ion-grid *ngIf="searchCondition">
-  <ion-row>
-    <ion-col col-2>공장코드</ion-col>
-    <ion-col col-10>
-      <ion-select [(ngModel)]="plant_cd" interface="popover">
-        <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-      </ion-select>
+<ion-grid class="search_grid">
+  <ion-row class="search_row2">
+    <ion-col col-3 >
+      <div class="search_nm">검사년월</div>
     </ion-col>
-  </ion-row>
 
-  <ion-col col-4 >검사일자</ion-col>
-  <ion-col col-4>
-    <ion-item>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
-    </ion-item>
-  </ion-col>
-  <ion-col col-4>
-    <ion-item>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
-    </ion-item>
-  </ion-col>
-
-  <ion-row>
     <ion-col col-4>
-      <ion-item (click) = "PopupItnbr2()">
-        <ion-label color="primary">품목코드</ion-label>
-      </ion-item>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
     </ion-col>
-    <ion-col col-7>
-      <ion-item (click) = "PopupItnbr2()">
-        <ion-label>{{itnbr_nm2}}</ion-label>
-      </ion-item>
-    </ion-col>
-    <ion-col col-1>
-      <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
-    </ion-col>
-  </ion-row>
-
-  -
-
-  <ion-row>
-    <ion-col col-7>
-      <ion-item (click) = "PopupItnbr3()">
-        <ion-label>{{itnbr_nm3}}</ion-label>
-      </ion-item>
-    </ion-col>
-    <ion-col col-1>
-      <button ion-button *ngIf="itnbr_nm3" (click) = "clear_itnbr3('')">X</button>
+    <ion-col col-4>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
     </ion-col>
   </ion-row>
 </ion-grid>
-<ion-content padding>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
   <br>
-  <ion-grid class="listgrid">
-    <ion-row>
-      <ion-col col-2>협력업체</ion-col>
-      <ion-col col-2>검사일</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>검사의뢰수량</ion-col>
-      <ion-col col-2>검사수량</ion-col>
-      <ion-col col-2>합격수량</ion-col>
-      <ion-col col-2>불량수량</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" ><!--(click) = "goDetail(i)"-->
-      <ion-col col-2>{{r.VENDOR_NAME}}</ion-col>
-      <ion-col col-2>{{r.INSP_DATE}}</ion-col>
-      <ion-col col-2>{{r.ITEM}}</ion-col>
-      <ion-col col-2>{{r.STOCK}}</ion-col>
-      <ion-col col-2>{{r.DELV_QTY}}</ion-col>
-      <ion-col col-2>{{r.INSP_QTY}}</ion-col>
-      <ion-col col-2>{{r.IQC_QTY}}</ion-col>
-      <ion-col col-2>{{r.ERR_QTY}}</ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <ion-card *ngFor="let r of result; let i=index" class="Card_Grid">
+    <ion-grid>
+
+      <ion-row>
+        <ion-col col-5 class="t_left"></ion-col>
+        <ion-col col-1.5 class="t_right t_black">의뢰</ion-col>
+        <ion-col col-5.5 class="t_right t_black">{{r.DELV_QTY}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-5 class="t_left t_bold">{{r.ITEM}}</ion-col>
+        <ion-col col-1.5 class="t_right t_black">검사</ion-col>
+        <ion-col col-5.5 class="t_right t_black">{{r.INSP_QTY}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-5 class="t_left"></ion-col>
+        <ion-col col-1.5 class="t_right t_black">합격</ion-col>
+        <ion-col col-5.5 class="t_right t_black">{{r.STOCK}}</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-5 class="t_left">{{r.INSP_DATE}} | {{r.VENDOR_NAME}}</ion-col>
+        <ion-col col-1.5 class="t_right t_black">불량</ion-col>
+        <ion-col col-5.5 class="t_right t_black">{{r.ERR_QTY}}</ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</ion-content>
+
+
+
+<!--
+<ion-row>
+  <ion-col col-2>공장코드</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="plant_cd" interface="popover">
+      <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>-->
+
+
+<!--<ion-row>
+  <ion-col col-4>
+    <ion-item (click) = "PopupItnbr2()">
+      <ion-label color="primary">품목코드</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-7>
+    <ion-item (click) = "PopupItnbr2()">
+      <ion-label>{{itnbr_nm2}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="itnbr_nm2" (click) = "clear_itnbr2('')">X</button>
+  </ion-col>
+</ion-row>
+
+-
+
+<ion-row>
+  <ion-col col-7>
+    <ion-item (click) = "PopupItnbr3()">
+      <ion-label>{{itnbr_nm3}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="itnbr_nm3" (click) = "clear_itnbr3('')">X</button>
+  </ion-col>
+</ion-row>-->
+
+
+
+<!--
+<ion-grid class="listgrid">
+  <ion-row>
+    <ion-col col-2>협력업체</ion-col>
+    <ion-col col-2>검사일</ion-col>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>단위</ion-col>
+    <ion-col col-2>검사의뢰수량</ion-col>
+    <ion-col col-2>검사수량</ion-col>
+    <ion-col col-2>합격수량</ion-col>
+    <ion-col col-2>불량수량</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r of result; let i=index" >&lt;!&ndash;(click) = "goDetail(i)"&ndash;&gt;
+    <ion-col col-2>{{r.VENDOR_NAME}}</ion-col>
+    <ion-col col-2>{{r.INSP_DATE}}</ion-col>
+    <ion-col col-2>{{r.ITEM}}</ion-col>
+    <ion-col col-2>{{r.STOCK}}</ion-col>
+    <ion-col col-2>{{r.DELV_QTY}}</ion-col>
+    <ion-col col-2>{{r.INSP_QTY}}</ion-col>
+    <ion-col col-2>{{r.IQC_QTY}}</ion-col>
+    <ion-col col-2>{{r.ERR_QTY}}</ion-col>
+  </ion-row>
+</ion-grid>-->

@@ -9,116 +9,89 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title (click) = "scrollToTop()">검사 불량현황 발행</ion-title>
+    <ion-title class="title_text">검사 불량현황 발행</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
+  <button ion-button (click) = "condition_yn('')" class="all_btn" [ngStyle]="{'border-color': borderColor1, 'background-color': all_search_Color1, 'color': text_color1}" (click) = "all_btn()">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn" [ngStyle]="{'border-color': borderColor2, 'background-color': all_search_Color2, 'color': text_color2}" (click) = "filter_btn()">필터</button>
   <br>
 
-
-  <ion-row *ngIf="searchCondition">
-
-    <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
+  <ion-grid *ngIf="searchCondition" class="search_grid3">
+    <ion-row class="search_row3">
+      <ion-col col-3 >
+        <div class="search_nm">검사일자</div>
       </ion-col>
-    </ion-row>
 
-    <ion-col col-4 >검사일자</ion-col>
-    <ion-col col-4>
-      <ion-item>
+      <ion-col col-4>
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
-      </ion-item>
-    </ion-col>
-    <ion-col col-4>
-      <ion-item>
+      </ion-col>
+      <ion-col col-4>
         <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
-      </ion-item>
-    </ion-col>
+      </ion-col>
+    </ion-row>
 
-    <ion-row>
-      <ion-col col-4>LOT_NO</ion-col>
+    <ion-row class="search_row3">
       <ion-col col-3>
-        <ion-input placeholder="LOT_NO" [(ngModel)] = "lot_no"></ion-input>
-      </ion-col>
-    </ion-row>
-  </ion-row>
-
-  <ion-grid *ngIf="searchCondition">
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupPjtno3()">
-          <ion-label color="primary">불합격 PJT번호</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupPjtno3()">
-          <ion-label>{{pjtnm}}</ion-label>
-        </ion-item>
+          <div (click) = "PopupPjtno3()" class="search_nm">PJT번호</div>
       </ion-col>
 
-      <ion-col col-1>
-        <button ion-button *ngIf="pjtnm" (click) = "clear_pjtno3('')">X</button>
+      <ion-col col-9>
+          <span (click) = "PopupPjtno3()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pjtno3('')" class="cancel_btn">X</button>
       </ion-col>
     </ion-row>
 
-    <!--<ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupTask()">
-          <ion-label color="primary">공정</ion-label>
-        </ion-item>
+    <ion-row class="search_row3">
+      <ion-col col-3>
+        <div class="search_nm">공정</div>
       </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupTask()">
-          <ion-label>{{task_nm}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="task_nm" (click) = "clear_task('')">X</button>
-      </ion-col>
-    </ion-row>-->
-
-    <ion-row>
-      <ion-col col-2>공정</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="task_cd" interface="popover">
-          <ion-option value="{{c.CODE}}" *ngFor = "let c of commonCode36">{{c.NAME2}} | {{c.NAME1}}</ion-option>
-        </ion-select>
+      <ion-col col-9>
+        <select [(ngModel)]="task_cd" interface="popover" class="search_val" style="background-color: white;">
+          <option value="">전체</option>
+          <option value="{{c.CODE}}" *ngFor = "let c of commonCode36">{{c.NAME2}} | {{c.NAME1}}</option>
+        </select>
       </ion-col>
     </ion-row>
   </ion-grid>
-
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
   <br>
 
-  <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
+  <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
     <ion-grid>
       <ion-row>
-        <ion-col col-8 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
-        <ion-col col-4 class="t_right ">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
+        <ion-col col-5 class="t_left"></ion-col>
+        <ion-col col-7 class="t_right t_black">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-8 class="t_left">{{r.QC_DATE}} | {{r.PJTNO_NM}}</ion-col>
+        <ion-col col-8 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
         <ion-col col-4 class="t_right">{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-8></ion-col>
+        <ion-col col-8 class="t_left"><div class="text_overflow">{{r.QC_DATE}} | {{r.PJTNO_NM}}</div></ion-col>
         <ion-col col-4 class="t_right">{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
+</ion-content>
+
+
+<!--
+<ion-row>
+  <ion-col col-2>공장코드</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="plant_cd" interface="popover">
+      <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>-->
+
 <!--
   <ion-grid class="listgrid">
     <ion-row>
@@ -165,4 +138,54 @@
     </ion-row>
   </ion-grid>-->
 
-</ion-content>
+
+<!--<ion-row>
+  <ion-col col-4>
+    <ion-item (click) = "PopupTask()">
+      <ion-label color="primary">공정</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-7>
+    <ion-item (click) = "PopupTask()">
+      <ion-label>{{task_nm}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="task_nm" (click) = "clear_task('')">X</button>
+  </ion-col>
+</ion-row>-->
+
+
+<!--
+<ion-row>
+  <ion-col col-4>LOT_NO</ion-col>
+  <ion-col col-3>
+    <ion-input placeholder="LOT_NO" [(ngModel)] = "lot_no"></ion-input>
+  </ion-col>
+</ion-row>
+</ion-row>-->
+
+
+<!--
+<ion-select [(ngModel)]="task_cd" interface="popover">
+  <ion-option value="{{c.CODE}}" *ngFor = "let c of commonCode36">{{c.NAME2}} | {{c.NAME1}}</ion-option>
+</ion-select>
+-->
+
+
+<!--<ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
+      <ion-col col-4 class="t_right ">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8 class="t_left">{{r.QC_DATE}} | {{r.PJTNO_NM}}</ion-col>
+      <ion-col col-4 class="t_right">{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8></ion-col>
+      <ion-col col-4 class="t_right">{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>-->

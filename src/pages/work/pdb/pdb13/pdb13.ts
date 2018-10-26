@@ -84,6 +84,16 @@ export class PDB13 {
   buttonColor5: string = 'white';
   buttonColor6: string = 'white';
 
+  /* 전체 필터 색상*/
+  borderColor1: string = '#FFDF24';
+  borderColor2: string = '#D5D5D5';
+
+  all_search_Color1: string = '#FFDF24';
+  all_search_Color2: string = 'white';
+
+  text_color1: string = "white";
+  text_color2: string = "#D5D5D5";
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
@@ -566,6 +576,28 @@ export class PDB13 {
     this.buttonColor4 = 'white';
     this.buttonColor5 = 'white';
     this.buttonColor6 = '#FFDF24';
+  }
+
+  all_btn(){
+    this.borderColor1 = '#FFDF24';
+    this.borderColor2 = '#D5D5D5';
+
+    this.all_search_Color1 = '#FFDF24';
+    this.all_search_Color2 = 'white';
+
+    this.text_color1 = 'white';
+    this.text_color2 = '#D5D5D5';
+  }
+
+  filter_btn(){
+    this.borderColor1 = '#D5D5D5';
+    this.borderColor2 = '#FFDF24';
+
+    this.all_search_Color1 = 'white';
+    this.all_search_Color2 = '#FFDF24';
+
+    this.text_color1 = '#D5D5D5';
+    this.text_color2 = 'white';
   }
 
 }

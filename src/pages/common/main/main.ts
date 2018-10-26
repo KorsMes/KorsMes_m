@@ -38,6 +38,17 @@ export class MainPage {
 
   public status; //견적상태
 
+  public commonCode13; //거래처
+  public commonCode14; //영업부서
+  public commonCode15; //영업담당
+  public commonCode38; //설치지역
+  public commonCode39; //생산구분
+  public commonCode40; //주문구분
+  public commonCode41; //계약유무
+  public commonCode42; //수주구분
+  public commonCode43; //사업구분
+  public commonCode44; //결재조건
+
   /* 조회결과 */
   public result;
 
@@ -74,6 +85,28 @@ export class MainPage {
 
                   return;
                 });
+
+                  //거래처 가져오기
+                  this.commonCode13 = this.commoncodeProvider.getCommonCode13();
+                  //영업부서 가져오기
+                  this.commonCode14 = this.commoncodeProvider.getCommonCode14();
+                  //영업담당 가져오기
+                  this.commonCode15 = this.commoncodeProvider.getCommonCode15();
+                  //설치지역 가져오기
+                  this.commonCode38 = this.commoncodeProvider.getCommonCode38();
+                  //생산구분 가져오기
+                  this.commonCode39 = this.commoncodeProvider.getCommonCode39();
+                  //주문구분 가져오기
+                  this.commonCode40 = this.commoncodeProvider.getCommonCode40();
+                  //계약유무 가져오기
+                  this.commonCode41 = this.commoncodeProvider.getCommonCode41();
+                  //수주구분 가져오기
+                  this.commonCode42 = this.commoncodeProvider.getCommonCode42();
+                  //사업구분 가져오기
+                  this.commonCode43 = this.commoncodeProvider.getCommonCode43();
+                  //결재조건 가져오기
+                  this.commonCode44 = this.commoncodeProvider.getCommonCode44();
+
   }
 
   ionViewDidLoad() {

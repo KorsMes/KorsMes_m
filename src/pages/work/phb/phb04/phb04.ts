@@ -21,10 +21,6 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 export class PHB04 {
   @ViewChild(Content) content: Content;
 
-  //Scroll to Top
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
 
   /* 통합코드 */
   public commonCode12; //검사자
@@ -65,6 +61,16 @@ export class PHB04 {
 
   /* 조회결과 */
   public result;
+
+  /* 전체 필터 색상*/
+  borderColor1: string = '#FFDF24';
+  borderColor2: string = '#D5D5D5';
+
+  all_search_Color1: string = '#FFDF24';
+  all_search_Color2: string = 'white';
+
+  text_color1: string = "white";
+  text_color2: string = "#D5D5D5";
 
 
   constructor(
@@ -197,6 +203,28 @@ export class PHB04 {
   //상세팝업
   openDetail(obj: any){
     this.modalController.create('Phb04detailPage', {obj: obj}).present();
+  }
+
+  all_btn(){
+    this.borderColor1 = '#FFDF24';
+    this.borderColor2 = '#D5D5D5';
+
+    this.all_search_Color1 = '#FFDF24';
+    this.all_search_Color2 = 'white';
+
+    this.text_color1 = 'white';
+    this.text_color2 = '#D5D5D5';
+  }
+
+  filter_btn(){
+    this.borderColor1 = '#D5D5D5';
+    this.borderColor2 = '#FFDF24';
+
+    this.all_search_Color1 = 'white';
+    this.all_search_Color2 = '#FFDF24';
+
+    this.text_color1 = '#D5D5D5';
+    this.text_color2 = 'white';
   }
 
 }

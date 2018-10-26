@@ -15,8 +15,8 @@
 
 <ion-content>
   <br>
-  <ion-grid>
-    <ion-row>
+  <ion-grid class="search_grid2">
+    <ion-row class="search_row1">
       <ion-col col-3>
           <div (click) = "PopupPdtno1()" class="search_nm">프로젝트명</div>
       </ion-col>
@@ -28,7 +28,7 @@
   </ion-grid>
 
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -36,7 +36,7 @@
 
   <ion-item class='tabpage'>
     <button ion-button (click) = "changeTab('1')" class="tabpage1" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">자재투입 계획서(갑지)</button>
-    <button ion-button (click) = "changeTab('2')" class="tabpage2" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">자재투입 계획서(을지)</button>
+    <button ion-button (click) = "changeTab('2')" class="tabpage1" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">자재투입 계획서(을지)</button>
   </ion-item>
 
 <div *ngIf="Tab1">

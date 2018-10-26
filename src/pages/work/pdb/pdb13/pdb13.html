@@ -15,12 +15,12 @@
 
 
 <ion-content>
-  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
-  <button ion-button (click) = "condition_yn('true')" class="filter_btn">조건검색</button>
+  <button ion-button (click) = "condition_yn('')" class="all_btn" [ngStyle]="{'border-color': borderColor1, 'background-color': all_search_Color1, 'color': text_color1}" (click) = "all_btn()">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn" [ngStyle]="{'border-color': borderColor2, 'background-color': all_search_Color2, 'color': text_color2}" (click) = "filter_btn()">필터</button>
   <br>
-  <ion-grid *ngIf="searchCondition">
+  <ion-grid *ngIf="searchCondition" class="search_grid4">
 
-    <ion-row>
+    <ion-row class="search_row4">
       <ion-col col-3>
         <div class="search_nm">발주일자</div>
       </ion-col>
@@ -33,7 +33,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="search_row">
+    <ion-row class="search_row4">
 
       <ion-col col-3>
           <div (click) = "PopupPjtno()" class="search_nm">프로젝트명</div>
@@ -45,7 +45,7 @@
 
     </ion-row>
 
-    <ion-row class="search_row">
+    <ion-row class="search_row4">
 
       <ion-col col-3>
         <div (click) = "PopupBuyer()" class="search_nm">거래처명</div>
@@ -57,7 +57,7 @@
 
     </ion-row>
 
-    <ion-row class="search_row">
+    <ion-row class="search_row4">
       <ion-col col-3>
           <div (click) = "PopupItnbr()" class="search_nm">품목명</div>
       </ion-col>
@@ -75,20 +75,26 @@
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
-  <ion-item class='tabpage'>
-    <button ion-button (click) = "changeTab('1')" class="tabpage1" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">P/O별 상세</button>
-    <button ion-button (click) = "changeTab('2')" class="tabpage2" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">업체별 집계</button>
-  </ion-item>
+  <ion-scroll scrollX style="height:45px;">
+    <ion-item  style="width:700px;" class='tabpage'>
+      <button ion-button (click) = "changeTab('1')" class="tabpage6" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">P/O별 상세</button>
+      <button ion-button (click) = "changeTab('2')" class="tabpage6" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">업체별 집계</button>
+      <button ion-button (click) = "changeTab('3')" class="tabpage6" [ngStyle]="{'border-color': buttonColor3}" (click) = "btn_change3()">PJT별 집계</button>
+      <button ion-button (click) = "changeTab('4')" class="tabpage6" [ngStyle]="{'border-color': buttonColor4}" (click) = "btn_change4()">품목별 집계</button>
+      <button ion-button (click) = "changeTab('5')" class="tabpage6" [ngStyle]="{'border-color': buttonColor5}" (click) = "btn_change5()">업체별 총집계</button>
+      <button ion-button (click) = "changeTab('6')" class="tabpage6" [ngStyle]="{'border-color': buttonColor6}" (click) = "btn_change6()">PJT별 총집계</button>
+    </ion-item>
+  </ion-scroll>
 
-  <ion-item class='tabpage'>
-    <button ion-button (click) = "changeTab('3')" class="tabpage1" [ngStyle]="{'border-color': buttonColor3}" (click) = "btn_change3()">PJT별 집계</button>
-    <button ion-button (click) = "changeTab('4')" class="tabpage2" [ngStyle]="{'border-color': buttonColor4}" (click) = "btn_change4()">품목별 집계</button>
-  </ion-item>
-
-  <ion-item class='tabpage'>
-    <button ion-button (click) = "changeTab('5')" class="tabpage1" [ngStyle]="{'border-color': buttonColor5}" (click) = "btn_change5()">업체별 총집계</button>
-    <button ion-button (click) = "changeTab('6')" class="tabpage2" [ngStyle]="{'border-color': buttonColor6}" (click) = "btn_change6()">PJT별 총집계</button>
-  </ion-item>
+<!--  <div *ngIf="Tab1">
+    <ion-card *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 class="t_left">{{r1.PUR_NO}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>-->
 
   <ion-grid *ngIf="Tab1">
     <ion-row>
@@ -138,6 +144,86 @@
       <ion-col col-2>{{r1.NEGO_PRICE}}</ion-col>
       <ion-col col-2>{{r1.PUR_TYPE}}</ion-col>
       <ion-col col-2>{{r1.PAY_METHOD}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab2">
+    <ion-row>
+      <ion-col col-2>업체</ion-col>
+      <ion-col col-2>명칭</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail2(r2)">
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab3">
+    <ion-row>
+      <ion-col col-2>PJT번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r3 of result3; let i=index" (click) = "openDetail3(r3)">
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab4">
+    <ion-row>
+      <ion-col col-2>품목코드</ion-col>
+      <ion-col col-2>품목명칭</ion-col>
+      <ion-col col-2>규격</ion-col>
+      <ion-col col-2>단위</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>할당수량</ion-col>
+      <ion-col col-2>발주단가</ion-col>
+      <ion-col col-2>NEGO단가</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r4 of result4; let i=index" (click) = "openDetail4(r4)">
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab5">
+    <ion-row>
+      <ion-col col-2>업체</ion-col>
+      <ion-col col-2>명칭</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>재고사용금액</ion-col>
+      <ion-col col-2>원발주금액</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>비고</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r5 of result5; let i=index">
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="Tab6">
+    <ion-row>
+      <ion-col col-2>pjt번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>발주수량</ion-col>
+      <ion-col col-2>재고사용금액</ion-col>
+      <ion-col col-2>원발주금액</ion-col>
+      <ion-col col-2>NEGO금액</ion-col>
+      <ion-col col-2>합계금액</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r6 of result6; let i=index">
     </ion-row>
   </ion-grid>
 
@@ -313,3 +399,138 @@
     </ion-list>
   </ion-col>
 </ion-row>-->
+
+
+
+
+<!--
+<ion-grid *ngIf="Tab1">
+  <ion-row>
+    <ion-col col-2>발주번호</ion-col>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>품목명칭</ion-col>
+    <ion-col col-2>조달구분</ion-col>
+    <ion-col col-2>단위</ion-col>
+    <ion-col col-2>업체</ion-col>
+    <ion-col col-2>명칭</ion-col>
+    <ion-col col-2>발주일자</ion-col>
+    <ion-col col-2>순번</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>NEGO단가</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+    <ion-col col-2>납기일자</ion-col>
+    <ion-col col-2>규격</ion-col>
+    <ion-col col-2>PJT번호</ion-col>
+    <ion-col col-2>프로젝트명</ion-col>
+    <ion-col col-2>차수</ion-col>
+    <ion-col col-2>변경내역</ion-col>
+    <ion-col col-2>할당수량</ion-col>
+    <ion-col col-2>발주단가</ion-col>
+    <ion-col col-2>발주형태</ion-col>
+    <ion-col col-2>지불방법</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)">
+    <ion-col col-2>{{r1.PUR_NO}}</ion-col>
+    <ion-col col-2>{{r1.ITEM}}</ion-col>
+    <ion-col col-2>{{r1.ITEM_NAME}}</ion-col>
+    <ion-col col-2>{{r1.SUPL_CLASS}}</ion-col>
+    <ion-col col-2>{{r1.UOM}}</ion-col>
+    <ion-col col-2>{{r1.VENDOR}}</ion-col>
+    <ion-col col-2>{{r1.BY_NM}}</ion-col>
+    <ion-col col-2>{{r1.PUR_DATE}}</ion-col>
+    <ion-col col-2>{{r1.PUR_SEQ}}</ion-col>
+    <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
+    <ion-col col-2>{{r1.PUR_PRICE}}</ion-col>
+    <ion-col col-2>{{r1.PUR_AMT}}</ion-col>
+    <ion-col col-2>{{r1.DELV_DATE}}</ion-col>
+    <ion-col col-2>{{r1.NORM}}</ion-col>
+    <ion-col col-2>{{r1.PDTNO}}</ion-col>
+    <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
+    <ion-col col-2>{{r1.DRSEQ}}</ion-col>
+    <ion-col col-2>{{r1.DRDSC}}</ion-col>
+    <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
+    <ion-col col-2>{{r1.NEGO_PRICE}}</ion-col>
+    <ion-col col-2>{{r1.PUR_TYPE}}</ion-col>
+    <ion-col col-2>{{r1.PAY_METHOD}}</ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="Tab2">
+  <ion-row>
+    <ion-col col-2>업체</ion-col>
+    <ion-col col-2>명칭</ion-col>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>품목명칭</ion-col>
+    <ion-col col-2>규격</ion-col>
+    <ion-col col-2>단위</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>발주단가</ion-col>
+    <ion-col col-2>NEGO단가</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+    <ion-col col-2>비고</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail2(r2)">
+  </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="Tab3">
+  <ion-row>
+    <ion-col col-2>PJT번호</ion-col>
+    <ion-col col-2>프로젝트명</ion-col>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>품목명칭</ion-col>
+    <ion-col col-2>규격</ion-col>
+    <ion-col col-2>단위</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>발주단가</ion-col>
+    <ion-col col-2>NEGO단가</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+    <ion-col col-2>비고</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r3 of result3; let i=index" (click) = "openDetail3(r3)">
+  </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="Tab4">
+  <ion-row>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>품목명칭</ion-col>
+    <ion-col col-2>규격</ion-col>
+    <ion-col col-2>단위</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>할당수량</ion-col>
+    <ion-col col-2>발주단가</ion-col>
+    <ion-col col-2>NEGO단가</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r4 of result4; let i=index" (click) = "openDetail4(r4)">
+  </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="Tab5">
+  <ion-row>
+    <ion-col col-2>업체</ion-col>
+    <ion-col col-2>명칭</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>재고사용금액</ion-col>
+    <ion-col col-2>원발주금액</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+    <ion-col col-2>비고</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r5 of result5; let i=index">
+  </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="Tab6">
+  <ion-row>
+    <ion-col col-2>pjt번호</ion-col>
+    <ion-col col-2>프로젝트명</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>재고사용금액</ion-col>
+    <ion-col col-2>원발주금액</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+    <ion-col col-2>합계금액</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r6 of result6; let i=index">
+  </ion-row>
+</ion-grid>-->

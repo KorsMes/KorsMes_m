@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle class="menuToggel_button">
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title class="title_text">매출현황 조회</ion-title>
@@ -15,11 +15,11 @@
 
 
 <ion-content>
-  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
-  <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
+  <button ion-button (click) = "condition_yn('')" class="all_btn" [ngStyle]="{'border-color': borderColor1, 'background-color': all_search_Color1, 'color': text_color1}" (click) = "all_btn()">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn" [ngStyle]="{'border-color': borderColor2, 'background-color': all_search_Color2, 'color': text_color2}" (click) = "filter_btn()">필터</button>
   <br>
-  <ion-grid *ngIf="searchCondition">
-    <ion-row>
+  <ion-grid *ngIf="searchCondition" class="search_grid3">
+    <ion-row class="search_row3">
       <ion-col col-3>
           <div (click) = "PopupBuyer()" class="search_nm">거래처명</div>
       </ion-col>
@@ -28,7 +28,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="search_row3">
       <ion-col col-3>
         <div class="search_nm">매출일자</div>
       </ion-col>
@@ -41,7 +41,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="search_row3">
       <ion-col col-3>
         <div (click) = "PopupDept()" class="search_nm">부서명</div>
       </ion-col>
@@ -61,8 +61,8 @@
   <ion-item class='tabpage'>
     <div class="button_body">
       <button ion-button (click) = "changeTab('1')" class="tabpage3" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">상세현황</button>
-      <button ion-button (click) = "changeTab('2')" class="tabpage4" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">거래처별</button>
-      <button ion-button (click) = "changeTab('3')" class="tabpage5" [ngStyle]="{'border-color': buttonColor3}" (click) = "btn_change3()">부서별</button>
+      <button ion-button (click) = "changeTab('2')" class="tabpage3" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">거래처별</button>
+      <button ion-button (click) = "changeTab('3')" class="tabpage3" [ngStyle]="{'border-color': buttonColor3}" (click) = "btn_change3()">부서별</button>
     </div>
   </ion-item>
 

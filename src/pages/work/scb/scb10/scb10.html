@@ -16,19 +16,19 @@
 
 <ion-content>
   <br>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-4>
+  <ion-grid class="search_grid2">
+    <ion-row class="search_row1">
+      <ion-col col-3>
           <div (click) = "PopupPjtno()" class="search_nm">견적번호</div>
       </ion-col>
 
-      <ion-col col-8>
-        <span (click) = "PopupPjtno()"><input type="text" value="{{pjt_nm}}" class="search_val"></span><button  *ngIf="pjt_nm" (click) = "clear_pjtno('')" class="cancel_btn">X</button>
+      <ion-col col-9>
+        <span (click) = "PopupPjtno()"><input type="text" value="{{pjt_nm}}" class="search_val"></span><button  *ngIf="pjt_nm" (click) = "clear_pjtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>

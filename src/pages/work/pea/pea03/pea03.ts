@@ -109,7 +109,7 @@ export class PEA03 {
   }
 
 
-  //조회조건 전체 초기화
+ /* //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
       this.plant_cd = this.g_plant[0].PLANT;
@@ -126,7 +126,7 @@ export class PEA03 {
       this.delv_date2 = new Date().toISOString();
     }
     this.searchCondition = yn;
-  }
+  }*/
 
 
   //조회조건 Pjt번호 초기화

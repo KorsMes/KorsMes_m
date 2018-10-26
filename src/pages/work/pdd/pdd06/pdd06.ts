@@ -69,6 +69,10 @@ export class PDD06 {
   public Tab1 = "1";
   public Tab2;
 
+  /*버튼 색상 변경*/
+  buttonColor1: string = '#FFDF24';
+  buttonColor2: string = 'white';
+
   /* bar 차트 선언*/
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
@@ -250,7 +254,7 @@ export class PDD06 {
                 }
               }]
             },
-            onClick:(clickEvt,activeElems)=>this.onChartClick(clickEvt,activeElems),
+            onClick:(clickEvt,activeElems)=>this.onChartClick(clickEvt,activeElems)
           }
         });
 
@@ -268,7 +272,6 @@ export class PDD06 {
               this.result5 = data[0];
             }
           });
-
         }
 
       });
@@ -427,19 +430,41 @@ export class PDD06 {
                     fontSize: 10
                   }
                 }]
-              }
+              },
+              onClick:(clickEvt,activeElems)=>this.onChartClick2(clickEvt,activeElems)
             }
         });
+
+        //최초 조회 시 상세 정보 불러오기
+        if(this.result2.length > 0){
+          let detail_url2 = "/pdd/pdd06_detail2";
+          let detail_param2 = JSON.stringify({c_code: this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: this.date_fr});
+
+          this.apiProvider.data_api(detail_url2, detail_param2)
+          .then(data => {
+            this.result4 = data;
+
+            if(this.result4.length > 0){
+              for(var l=0; l<this.result4.length; l++){
+                if(this.result2[0].YYMM === this.result4[l].YYYYMM){
+                  this.result6 = this.result4[l];
+                  return;
+                }else{
+                  this.result6 = null;
+                }
+              }
+            }
+          });
+        }
       });
     }
 
   }
 
-  //차트 클릭 시 상세 정보 조회
+  //바차트 클릭 시 상세 정보 조회
   y_clicked = null; //holds y-axis .getValueForPixel() when chart is clicked
   x_clicked = null;
   timeoutID = null; //handle to setTimeout
-  numOfBars = 5; //how many horizontal bars to chart
   onChartClick(clickEvt:MouseEvent,activeElems:Array<any>){
     if(activeElems && activeElems.length) return;
 
@@ -447,7 +472,7 @@ export class PDD06 {
     let clickY = this.barChart.scales['y-axis-0'].getValueForPixel(mousePoint.y);
     this.y_clicked = clickY;
     let clickX = this.barChart.scales['x-axis-0'].getValueForPixel(mousePoint.x);
-        this.x_clicked = clickX;
+    this.x_clicked = clickX;
     if(this.timeoutID) clearTimeout(this.timeoutID);
     this.timeoutID = setTimeout(()=>this.y_clicked=null,2000);
 
@@ -460,11 +485,36 @@ export class PDD06 {
     }
 
     this.result5 = this.result3[this.x_clicked];
-
-
-    /*  barChart 종료  */
   }
 
+  //라인차트 클릭 시 상세 정보 조회
+  x_clicked2 = null;
+  onChartClick2(clickEvt2:MouseEvent,activeElems2:Array<any>){
+    if(activeElems2 && activeElems2.length) return;
+
+    let mousePoint2 = Chart.helpers.getRelativePosition(clickEvt2, this.lineChart.chart);
+    let clickX2 = this.lineChart.scales['x-axis-0'].getValueForPixel(mousePoint2.x);
+    this.x_clicked2 = clickX2;
+
+    if(this.result2 == null){
+      return;
+    }
+
+    if(this.x_clicked2 > this.result2.length -1){
+      return;
+    }
+
+
+    for(var l=0; l<this.result4.length; l++){
+      if(this.result2[this.x_clicked2].YYMM === this.result4[l].YYYYMM){
+        this.result6 = this.result4[l];
+        return;
+      }else{
+        this.result6 = null;
+      }
+    }
+
+  }
 
   //탭페이지 전환
   changeTab(showIdx){
@@ -476,6 +526,17 @@ export class PDD06 {
       this.Tab1 = "";
     }
     this.retrive();
+  }
+
+  //버튼 컬러 change
+  btn_change1(){
+    this.buttonColor1 = '#FFDF24';
+    this.buttonColor2 = 'white';
+  }
+
+  btn_change2(){
+    this.buttonColor1 = 'white';
+    this.buttonColor2 = '#FFDF24';
   }
 
 }

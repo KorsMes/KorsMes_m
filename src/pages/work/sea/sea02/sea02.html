@@ -14,21 +14,21 @@
 </ion-header>
 
 <ion-content has-header="true">
-  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
-  <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
+  <button ion-button (click) = "condition_yn('')" class="all_btn" [ngStyle]="{'border-color': borderColor1, 'background-color': all_search_Color1, 'color': text_color1}" (click) = "all_btn()">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn" [ngStyle]="{'border-color': borderColor2, 'background-color': all_search_Color2, 'color': text_color2}" (click) = "filter_btn()">필터</button>
   <br>
-  <ion-grid *ngIf="searchCondition">
-    <ion-row>
+  <ion-grid *ngIf="searchCondition" class="search_grid3">
+    <ion-row class="search_row3">
       <ion-col col-3>
           <div (click) = "PopupPdtno()" class="search_nm">PJT번호</div>
       </ion-col>
 
       <ion-col col-9>
-          <span (click) = "PopupPdtno()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pdtno('')" class="cancel_btn">X</button>
+          <span (click) = "PopupPdtno()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pdtno('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="search_row3">
       <ion-col col-3>
         <div class="search_nm">수주일자</div>
       </ion-col>
@@ -40,7 +40,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="search_row3">
       <ion-col col-3>
         <div class="search_nm">품목구분</div>
       </ion-col>
@@ -64,7 +64,6 @@
 
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
     <ion-grid>
-
       <ion-row>
         <ion-col col-12><div class="pjt_status">{{commonCode37 | commonfilter : r.STATUS : 'commonCode37'}}</div></ion-col>
       </ion-row>

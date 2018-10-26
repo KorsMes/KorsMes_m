@@ -63,7 +63,15 @@ export class SFA05 {
   buttonColor2: string = 'white';
   buttonColor3: string = 'white';
 
+  /* 전체 필터 색상*/
+  borderColor1: string = '#FFDF24';
+  borderColor2: string = '#D5D5D5';
 
+  all_search_Color1: string = '#FFDF24';
+  all_search_Color2: string = 'white';
+
+  text_color1: string = "white";
+  text_color2: string = "#D5D5D5";
 
 
   constructor(
@@ -257,4 +265,27 @@ export class SFA05 {
   scrollToTop() {
     this.content.scrollToTop();
   }
+
+  all_btn(){
+    this.borderColor1 = '#FFDF24';
+    this.borderColor2 = '#D5D5D5';
+
+    this.all_search_Color1 = '#FFDF24';
+    this.all_search_Color2 = 'white';
+
+    this.text_color1 = 'white';
+    this.text_color2 = '#D5D5D5';
+  }
+
+  filter_btn(){
+    this.borderColor1 = '#D5D5D5';
+    this.borderColor2 = '#FFDF24';
+
+    this.all_search_Color1 = 'white';
+    this.all_search_Color2 = '#FFDF24';
+
+    this.text_color1 = '#D5D5D5';
+    this.text_color2 = 'white';
+  }
+
 }

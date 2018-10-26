@@ -21,29 +21,26 @@
 
 <ion-header>
   <ion-navbar>
-
-    <button ion-button menuToggle>
+    <button ion-button menuToggle style="color: black;">
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      <img alt="logo" src={{company_logo}}>
+      <img alt="logo" src={{company_logo}} style="width: 68%;">
     </ion-title>
   </ion-navbar>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-3 (click) = "quickPage('PAF06', '구매단가발행')">구매단가</ion-col>
-      <ion-col col-3 (click) = "quickPage('PDA12', '지출내역 발행')">전표관리</ion-col>
-      <ion-col col-3 (click) = "quickPage('SCB10', '견적서 발행(을지)')">견적관리</ion-col>
-      <ion-col col-3 (click) = "quickPage('SEA02', 'PJT 수주내역 조회')">영업관리</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3 (click) = "quickPage('PDH04', '목표기초원가 발행')">목표예산</ion-col>
-      <ion-col col-3 (click) = "quickPage('PDB13', '월 발주현황')">구매발주</ion-col>
-      <ion-col col-3 (click) = "quickPage('PEA03', '부품 입고대기 현황')">자재관리</ion-col>
-      <ion-col col-3 (click) = "quickPage('PHA03', '월별 수입검사현황')">품질관리</ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-scroll scrollX style="height:33px;">
+    <ion-item  style="width:700px; background-color: #F6F6F6; padding-left: 0px;">
+      <button ion-button (click) = "quickPage('PAF06', '구매단가발행')" class="quick_menu">구매단가</button>
+      <button ion-button (click) = "quickPage('PDA12', '지출내역 발행')" class="quick_menu">전표관리</button>
+      <button ion-button (click) = "quickPage('SCB10', '견적서 발행(을지)')" class="quick_menu">견적관리</button>
+      <button ion-button (click) = "quickPage('SEA02', 'PJT 수주내역 조회')" class="quick_menu">영업관리</button>
+      <button ion-button (click) = "quickPage('PDH04', '목표기초원가 발행')" class="quick_menu">목표예산</button>
+      <button ion-button (click) = "quickPage('PDB13', '월 발주현황')" class="quick_menu">구매발주</button>
+      <button ion-button (click) = "quickPage('PEA03', '부품 입고대기 현황')" class="quick_menu">자재관리</button>
+      <button ion-button (click) = "quickPage('PHA03', '월별 수입검사현황')" class="quick_menu">품질관리</button>
+    </ion-item>
+  </ion-scroll>
 </ion-header>
 
 <ion-content>
@@ -52,18 +49,42 @@
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
     <ion-grid class="main_grid">
       <ion-row>
-        <ion-col>{{r.PJTNO}}</ion-col>
+        <ion-col col-12 class="t_left">{{r.PJTNO}}</ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>{{r.PJTNM}}</ion-col>
+        <ion-col col-10 class="t_left t_bold"><span class="main_overflow">{{r.PJTNM}}</span></ion-col>
+        <ion-col col-2 class="t_right t_bold"> > </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>{{'' | commonfilter : r.PJAMT: 'money_filter'}}<span *ngIf="r.PJAMT">원</span></ion-col>
+        <ion-col col-8 class="t_left">{{commonCode13 | commonfilter: r.BANAM: 'commonCode13'}}</ion-col>
+        <ion-col col-4 class="t_right" style="color: gray;">{{commonCode15 | commonfilter: r.EPNO: 'commonCode15'}}</ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>{{r.NADAT}}</ion-col>
+        <ion-col col-6 class="t_left">수주일자 {{r.SODAT}}</ion-col>
+        <ion-col col-6 class="t_right" style="color: gray;">납기일자 {{r.NADAT}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
 
 </ion-content>
+
+
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col col-3 (click) = "quickPage('PAF06', '구매단가발행')">구매단가</ion-col>
+    <ion-col col-3 (click) = "quickPage('PDA12', '지출내역 발행')">전표관리</ion-col>
+    <ion-col col-3 (click) = "quickPage('SCB10', '견적서 발행(을지)')">견적관리</ion-col>
+    <ion-col col-3 (click) = "quickPage('SEA02', 'PJT 수주내역 조회')">영업관리</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-3 (click) = "quickPage('PDH04', '목표기초원가 발행')">목표예산</ion-col>
+    <ion-col col-3 (click) = "quickPage('PDB13', '월 발주현황')">구매발주</ion-col>
+    <ion-col col-3 (click) = "quickPage('PEA03', '부품 입고대기 현황')">자재관리</ion-col>
+    <ion-col col-3 (click) = "quickPage('PHA03', '월별 수입검사현황')">품질관리</ion-col>
+  </ion-row>
+</ion-grid>-->

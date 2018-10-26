@@ -15,21 +15,21 @@
 
 
 <ion-content>
-  <button ion-button (click) = "condition_yn('')" class="all_btn">전체</button>
-  <button ion-button (click) = "condition_yn('true')" class="filter_btn">필터</button>
+  <button ion-button (click) = "condition_yn('')" class="all_btn" [ngStyle]="{'border-color': borderColor1, 'background-color': all_search_Color1, 'color': text_color1}" (click) = "all_btn()">전체</button>
+  <button ion-button (click) = "condition_yn('true')" class="filter_btn" [ngStyle]="{'border-color': borderColor2, 'background-color': all_search_Color2, 'color': text_color2}" (click) = "filter_btn()">필터</button>
   <br>
-  <ion-grid *ngIf="searchCondition">
-    <ion-row>
+  <ion-grid *ngIf="searchCondition" class="search_grid2">
+    <ion-row class="search_row2">
       <ion-col col-3>
         <div (click) = "PopupUser()" class="search_nm">기안자</div>
       </ion-col>
 
       <ion-col col-9 >
-        <span (click) = "PopupUser()"><input type="text" value="{{user_nm}}" class="search_val"></span><button  *ngIf="user_nm" (click) = "clear_user('')" class="cancel_btn">X</button>
+        <span (click) = "PopupUser()"><input type="text" value="{{user_nm}}" class="search_val"></span><button  *ngIf="user_nm" (click) = "clear_user('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="search_row2">
       <ion-col col-3>
         <div class="search_nm">기안일자</div>
       </ion-col>
@@ -44,7 +44,7 @@
 
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -59,7 +59,7 @@
         <ion-col col-6 class="t_right">{{commonCode15 | commonfilter: r.SABN : 'commonCode15'}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6 class="t_left">{{r.EXP_REMARKS}}</ion-col>
+        <ion-col col-6 class="t_left t_bold">{{r.EXP_REMARKS}}</ion-col>
         <ion-col col-6 class="t_right t_bold">{{'' | commonfilter : r.AMT : 'money_filter'}}<span *ngIf="r.AMT">원</span></ion-col>
       </ion-row>
     </ion-grid>

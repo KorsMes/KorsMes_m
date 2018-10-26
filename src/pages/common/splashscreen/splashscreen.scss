@@ -11,6 +11,9 @@
           font-weight: bold;
        }
 
+/* 스크롤바 hide */
+::-webkit-scrollbar{ display:none; }
+
 /* ion-title */
 .toolbar-title-md{
   font-size : 20px;
@@ -18,7 +21,9 @@
 
 /* ion-header */
 .toolbar-background-md{
-  background-color : #FFDF24;
+  background-color : #FFC000;
+  //#FFC000  #FFDF24
+  color: white;
 }
 
 .toolbar-md{
@@ -37,6 +42,10 @@
 .t_left{
   text-align: left;
   color: gray
+}
+
+.t_black{
+  color: black;
 }
 
 .t_right{
@@ -66,15 +75,37 @@
 }
 
 .detail_grid ion-row:nth-of-type(odd) {
-  background: #FAF4C0;
+  background: #A6A6A6;
+  // #FAF4C0
   font-weight: bold;
+  color: white;
 }
 
 .detail_grid ion-row ion-col{
   text-align: center;
   border: 1px solid white;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: bold;
 }
+
+   /*조회 그리드*/
+  .user_grid {
+    padding: 0px;
+  }
+
+  .user_grid ion-row:nth-of-type(odd) {
+    background: #EAEAEA;
+    // #FAF4C0
+    font-weight: bold;
+  }
+
+  .user_grid ion-row ion-col{
+    text-align: center;
+    //border: 1px solid white;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
 
 /* 필터 조건 명 */
  .search_nm{
@@ -109,9 +140,10 @@
     width: 10%;
  }
 
-/*조건 전체 버튼*/
+  /*조건 전체 버튼*/
   .all_btn{
     background-color : #FFCD12;
+    border : 1px solid #FFCD12;
     border-radius: 0px;
     box-shadow: none;
     margin-left: 5%;
@@ -121,9 +153,10 @@
   }
 
 
-/*조건 필터 버튼*/
+  /*조건 필터 버튼*/
   .filter_btn{
     background-color : #FFCD12;
+    border : 1px solid #FFCD12;
     border-radius: 0px;
     box-shadow: none;
     margin-top: 3%;
@@ -131,7 +164,7 @@
     height: 5%;
   }
 
- /*조회 버튼*/
+  /*조회 버튼*/
   .search_btn{
     background-color : #FFCD12;
     box-shadow: none;
@@ -139,16 +172,43 @@
     width: 98%;
   }
 
+  /*조회조건 1개일때 조회 버튼*/
+  .search_btn_margin{
+    margin-top: -25%;
+  }
 
-  .search_grid{
+  /*검색조건 1이면 조회조건1개 2면 2개*/
+  .search_grid2{
     height: 15%;
   }
 
-  .search_row{
+  .search_row2{
     height: 100%;
   }
 
-/*카드 리스트*/
+  .search_row1{
+    height: 50%;
+  }
+
+  .search_grid3{
+    height: 23%;
+  }
+
+  .search_row3{
+    height: 100%;
+  }
+
+  .search_grid4{
+    height: 27%;
+  }
+
+  .search_row4{
+    height: 100%;
+  }
+
+
+
+  /*카드 리스트 top*/
   .Card_Grid{
     margin : 0px;
     border-radius : 0px;
@@ -156,11 +216,19 @@
     border-top : 1px solid #F6F6F6;
   }
 
+  /*카드 리스트 top*/
+  .Card_Grid2{
+    margin : 0px;
+    border-radius : 0px;
+    width : 100%;
+    border-bottom : 1px solid #F6F6F6;
+  }
+
 /* 팝업 닫기 버튼*/
 
   .popup_close{
     float: right;
-    background-color: #FFDF24;
+    background-color: #FFC000;
     border: 0px;
     box-shadow : none;
   }
@@ -187,6 +255,8 @@
   .item-md.item-block .item-inner{
     padding-right: 0px;
   }
+
+  /* 탭페이지 2개인 경우*/
   .tabpage1{
     width: 50%;
     border-radius : 0px;
@@ -198,17 +268,7 @@
     box-shadow: none;
   }
 
-  .tabpage2{
-    width: 50%;
-    border-radius : 0px;
-    margin: 0px;
-    padding: 0px;
-    background-color: white;
-    color: black;
-    border-bottom: 4px solid;
-    box-shadow: none;
-  }
-
+  /* 탭페이지 3개인 경우*/
   .tabpage3{
     border-radius : 0px;
     margin: 0px;
@@ -220,26 +280,46 @@
     box-shadow: none;
   }
 
+  /* 탭페이지 4개인 경우*/
   .tabpage4{
     border-radius : 0px;
     margin: 0px;
     padding: 0px;
-    width: 33%;
+    width: 25%;
     background-color: white;
     color: black;
     border-bottom: 4px solid;
     box-shadow: none;
   }
 
-  .tabpage5{
+  /* 탭페이지 6개인 경우*/
+  .tabpage6{
     border-radius : 0px;
     margin: 0px;
     padding: 0px;
-    width: 33%;
+    width: 16%;
     background-color: white;
     color: black;
     border-bottom: 4px solid;
     box-shadow: none;
+  }
+
+  /* 퀵메뉴 스크롤*/
+  .quick_menu{
+    border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 13%;
+    color: #5D5D5D;
+    box-shadow: none;
+    background-color: #F6F6F6;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: -3%;
+  }
+
+  ion-label{
+    overflow: initial;
   }
 
   .button_body{
@@ -280,6 +360,16 @@
     overflow: hidden;
   }
 
+  /*메인 프로젝트명 ...처리*/
+  .main_overflow{
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+
 
   .grid{
     padding: 0px;
@@ -303,7 +393,33 @@
   /*툴바 타이틀 */
   .toolbar-title-md{
     font-size: 18px;
+    color: white;
   }
   .title_text{
     margin-left: 16%;
+  }
+
+  /*폰트*/
+  span.button-inner{
+    font-family: 굴림체;
+  }
+
+  .toolbar-md{
+    padding: 0px;
+  }
+
+
+  /*chart_grid*/
+  .chart_grid{
+    border-bottom: 1px solid #EAEAEA;
+  }
+
+  /*팝업 뒤로가기 버튼 색상*/
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+    color: white;
+  }
+
+  /*팝업 텍스트*/
+  span.popup_text{
+    margin-left: 38%;
   }

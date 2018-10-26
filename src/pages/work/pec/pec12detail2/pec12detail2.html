@@ -5,19 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>자재투입진척현황(집계) 상세</ion-title>
-    <button ion-button icon-only (click)="closemodal()">
-      <ion-icon name="close"></ion-icon>
-    </button>
+    <ion-title>자재투입진척현황(집계) 상세<button ion-button (click) = "closemodal()" class="popup_close">X</button></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-  <ion-grid>
+<ion-content>
+  <ion-grid class="detail_grid">
     <ion-row>
       <ion-col col-6>PJT번호</ion-col>
       <ion-col col-6>프로젝트명</ion-col>

@@ -32,14 +32,14 @@
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
-  <ion-grid>
-    <ion-row class="grid_header">
+  <ion-grid class="user_grid">
+    <ion-row style="background-color: #A6A6A6; color: white;">
       <ion-col col-3>사번</ion-col>
       <ion-col col-3>성명</ion-col>
       <ion-col col-3>부서</ion-col>
       <ion-col col-3>부서명칭</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result" (click) = "selectItem(r)" class="grid_header2">
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)" >
       <ion-col col-3>{{r.USER_ID}}</ion-col>
       <ion-col col-3>{{r.USER_NM}}</ion-col>
       <ion-col col-3>{{r.DEPT_CD}}</ion-col>

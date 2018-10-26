@@ -9,110 +9,48 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>설계/발주/입고/출고현황</ion-title>
+    <ion-title class="title_text">설계/발주/입고/출고현황</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button (click) = "condition_yn('')">전체</button>
-  <button ion-button (click) = "condition_yn('true')">조건검색</button>
+<ion-content>
   <br>
-  <ion-grid *ngIf="searchCondition">
-    <ion-row>
-      <ion-col col-2>공장코드</ion-col>
-      <ion-col col-10>
-        <ion-select [(ngModel)]="plant_cd" interface="popover">
-          <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupPdtno1()">
-          <ion-label color="primary">PJT번호</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupPdtno1()">
-          <ion-label>{{pdtnm1}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="pdtnm1" (click) = "clear_pdtno1('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-7>
-        <ion-item (click) = "PopupPdtno2()">
-          <ion-label>{{pdtnm2}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="pdtnm2" (click) = "clear_pdtno2('')">X</button>
-      </ion-col>
-    </ion-row>
-
-
-
-    <ion-row>
-      <ion-col col-4>
-        <ion-item (click) = "PopupItnbr1()">
-          <ion-label color="primary">품목코드</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-7>
-        <ion-item (click) = "PopupItnbr1()">
-          <ion-label>{{item_name_k}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="item_name_k" (click) = "clear_itnbr1('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-7>
-        <ion-item (click) = "PopupItnbr2()">
-          <ion-label>{{item_name_k2}}</ion-label>
-        </ion-item>
-      </ion-col>
-      <ion-col col-1>
-        <button ion-button *ngIf="item_name_k2" (click) = "clear_itnbr2('')">X</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
+  <ion-grid class="search_grid2">
+    <ion-row class="search_row2">
       <ion-col col-3>
-        <ion-label>
-          설계차수
-        </ion-label>
+        <div (click) = "PopupPdtno1()" class="search_nm">프로젝트명</div>
       </ion-col>
-      <ion-col col-3>
-        <ion-input placeholder="drseq" [(ngModel)] = "drseq"></ion-input>
-      </ion-col>
-      <ion-col col-3>
-        <ion-input placeholder="drseq2" [(ngModel)] = "drseq2"></ion-input>
+
+      <ion-col col-9>
+        <span (click) = "PopupPdtno1()"><input type="text" value="{{pdtnm1}}" class="search_val"></span><button  *ngIf="pdtnm1" (click) = "clear_pdtno1('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
     </ion-row>
 
+    <ion-row class="search_row2">
+      <ion-col col-3>
+        <div (click) = "PopupPdtno2()" class="search_nm">프로젝트명</div>
+      </ion-col>
 
+      <ion-col col-9>
+        <span (click) = "PopupPdtno2()"><input type="text" value="{{pdtnm2}}" class="search_val"></span><button  *ngIf="pdtnm2" (click) = "clear_pdtno2('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive">조회</button>
+  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
-  <ion-item>
-    <button ion-button (click) = "changeTab('1')">자재투입진척현황(상세)</button>
-    <button ion-button (click) = "changeTab('2')">자재투입진척현황(집계)</button>
+  <ion-item class='tabpage'>
+    <button ion-button (click) = "changeTab('1')" class="tabpage1" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">자재투입진척현황(상세)</button>
+    <button ion-button (click) = "changeTab('2')" class="tabpage1" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">자재투입진척현황(집계)</button>
   </ion-item>
 
   <div *ngIf="Tab1">
-    <ion-card *ngFor="let r1 of result1" (click) = "openDetail('tab1', r1)">
+    <ion-card *ngFor="let r1 of result1" (click) = "openDetail('tab1', r1)" class="Card_Grid">
       <ion-grid>
         <ion-row>
           <ion-col class="t_left">설계차수 {{r1.DRSEQ}}</ion-col>
@@ -123,58 +61,19 @@
           <ion-col class="t_right">발주 {{r1.PUR_QTY}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col></ion-col>
+          <ion-col class="t_left">{{r1.ITEM_NM}}</ion-col>
           <ion-col class="t_right">입고 {{r1.DEPS_QTY}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col class="t_left">{{r1.ITEM_NM}}</ion-col>
           <ion-col class="t_right">출고 {{r1.OUT_QTY}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
   </div>
 
-  <!--<ion-grid *ngIf="Tab1">
-    <ion-row>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>설계차수</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>설계수량</ion-col>
-      <ion-col col-2>협력업체</ion-col>
-      <ion-col col-2>발주번호</ion-col>
-      <ion-col col-2>할당수량</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>입고번호</ion-col>
-      <ion-col col-2>입고수량</ion-col>
-      <ion-col col-2>출고번호</ion-col>
-      <ion-col col-2>출고수량</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail('tab1', r1)">
-      <ion-col col-2>{{r1.PJTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
-      <ion-col col-2>{{r1.DRSEQ}}</ion-col>
-      <ion-col col-2>{{r1.ITEM}}</ion-col>
-      <ion-col col-2>{{r1.ITEM_NM}}</ion-col>
-      <ion-col col-2>{{r1.ITEM_SPEC}}</ion-col>
-      <ion-col col-2>{{r1.PL_QTY}}</ion-col>
-      <ion-col col-2>{{commonCode13 | commonfilter: r1.PUR_VENDOR : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{r1.PUR_NO}}</ion-col>
-      <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
-      <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_NO}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_QTY}}</ion-col>
-      <ion-col col-2>{{r1.OUT_NO}}</ion-col>
-      <ion-col col-2>{{r1.OUT_QTY}}</ion-col>
-    </ion-row>
-  </ion-grid>-->
-
-
 
   <div *ngIf="Tab2">
-    <ion-card *ngFor="let r2 of result2" (click) = "openDetail('tab2', r2)">
+    <ion-card *ngFor="let r2 of result2" (click) = "openDetail('tab2', r2)" class="Card_Grid">
       <ion-grid>
         <ion-row>
           <ion-col col-12 class="t_left t_bold">{{r2.PJTNO_NM}}</ion-col>
@@ -185,8 +84,117 @@
       </ion-grid>
     </ion-card>
   </div>
+</ion-content>
 
-  <!--
+
+<!--
+<ion-row>
+  <ion-col col-2>공장코드</ion-col>
+  <ion-col col-10>
+    <ion-select [(ngModel)]="plant_cd" interface="popover">
+      <ion-option value="{{p.PLANT}}" *ngFor = "let p of g_plant">{{p.PLANT_NAME_K}}</ion-option>
+    </ion-select>
+  </ion-col>
+</ion-row>-->
+
+
+<!--
+<ion-row>
+  <ion-col col-4>
+    <ion-item (click) = "PopupItnbr1()">
+      <ion-label color="primary">품목코드</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-7>
+    <ion-item (click) = "PopupItnbr1()">
+      <ion-label>{{item_name_k}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="item_name_k" (click) = "clear_itnbr1('')">X</button>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col col-7>
+    <ion-item (click) = "PopupItnbr2()">
+      <ion-label>{{item_name_k2}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="item_name_k2" (click) = "clear_itnbr2('')">X</button>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col col-3>
+    <ion-label>
+      설계차수
+    </ion-label>
+  </ion-col>
+  <ion-col col-3>
+    <ion-input placeholder="drseq" [(ngModel)] = "drseq"></ion-input>
+  </ion-col>
+  <ion-col col-3>
+    <ion-input placeholder="drseq2" [(ngModel)] = "drseq2"></ion-input>
+  </ion-col>
+</ion-row>
+-->
+
+
+<!--
+<ion-row>
+  <ion-col col-7>
+    <ion-item (click) = "PopupPdtno2()">
+      <ion-label>{{pdtnm2}}</ion-label>
+    </ion-item>
+  </ion-col>
+  <ion-col col-1>
+    <button ion-button *ngIf="pdtnm2" (click) = "clear_pdtno2('')">X</button>
+  </ion-col>
+</ion-row>-->
+
+
+
+<!--<ion-grid *ngIf="Tab1">
+  <ion-row>
+    <ion-col col-2>PJT번호</ion-col>
+    <ion-col col-2>프로젝트명</ion-col>
+    <ion-col col-2>설계차수</ion-col>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>품목명칭</ion-col>
+    <ion-col col-2>규격</ion-col>
+    <ion-col col-2>설계수량</ion-col>
+    <ion-col col-2>협력업체</ion-col>
+    <ion-col col-2>발주번호</ion-col>
+    <ion-col col-2>할당수량</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>입고번호</ion-col>
+    <ion-col col-2>입고수량</ion-col>
+    <ion-col col-2>출고번호</ion-col>
+    <ion-col col-2>출고수량</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail('tab1', r1)">
+    <ion-col col-2>{{r1.PJTNO}}</ion-col>
+    <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
+    <ion-col col-2>{{r1.DRSEQ}}</ion-col>
+    <ion-col col-2>{{r1.ITEM}}</ion-col>
+    <ion-col col-2>{{r1.ITEM_NM}}</ion-col>
+    <ion-col col-2>{{r1.ITEM_SPEC}}</ion-col>
+    <ion-col col-2>{{r1.PL_QTY}}</ion-col>
+    <ion-col col-2>{{commonCode13 | commonfilter: r1.PUR_VENDOR : 'commonCode13'}}</ion-col>
+    <ion-col col-2>{{r1.PUR_NO}}</ion-col>
+    <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
+    <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
+    <ion-col col-2>{{r1.DEPS_NO}}</ion-col>
+    <ion-col col-2>{{r1.DEPS_QTY}}</ion-col>
+    <ion-col col-2>{{r1.OUT_NO}}</ion-col>
+    <ion-col col-2>{{r1.OUT_QTY}}</ion-col>
+  </ion-row>
+</ion-grid>-->
+
+
+<!--
   <ion-grid *ngIf="Tab2">
     <ion-row>
       <ion-col col-2>PJT번호</ion-col>
@@ -215,6 +223,3 @@
       <ion-col col-2>{{r2.OUT_QTY}}</ion-col>
     </ion-row>
   </ion-grid>-->
-
-
-</ion-content>

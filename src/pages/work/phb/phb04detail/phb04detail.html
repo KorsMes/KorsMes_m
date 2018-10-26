@@ -5,16 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>검사 불량현황 상세</ion-title>
-    <ion-icon name="close" (click)="closemodal()" class="close_btn"></ion-icon>
+    <ion-title>검사 불량현황 상세<button ion-button (click) = "closemodal()" class="popup_close">X</button></ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+
+<ion-content>
   <ion-grid class="detail_grid">
     <ion-row>
       <ion-col col-6>PJT번호</ion-col>
