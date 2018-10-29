@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pdb13.html',
 })
 export class PDB13 {
+  @ViewChild(Content) content: Content;
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -598,6 +599,10 @@ export class PDB13 {
 
     this.text_color1 = '#D5D5D5';
     this.text_color2 = 'white';
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
 }

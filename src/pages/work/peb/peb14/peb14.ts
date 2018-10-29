@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'peb14.html',
 })
 export class PEB14 {
+  @ViewChild(Content) content: Content;
+
   /* 통합코드 */
   public commonCode28; //품목구분
   public commonCode13; //거래처
@@ -340,4 +342,7 @@ export class PEB14 {
     this.buttonColor4 = '#FFDF24';
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 }

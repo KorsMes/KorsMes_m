@@ -86,17 +86,13 @@
       <ion-col col-12 *ngIf="r.GUBUN_GR === 'D'">{{'' | commonfilter : (r.PUR_AMT +r .ALLO_AMT)+r.PUR_AMT+r.ALLO_AMT : 'money_filter'}}</ion-col>
     </ion-row>
 
-
-
     <ion-row *ngFor="let r2 of result2; let i=index" >
       <ion-col col-12>{{r2.PUR_YYMM_FR}}</ion-col>
       <ion-col col-12>{{r2.PUR_AMT}}</ion-col>
       <ion-col col-12>{{r2.PUR_AMT2}}</ion-col>
     </ion-row>
-
-
-
   </ion-grid>
 
+  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
 
 </ion-content>

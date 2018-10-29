@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pea03.html',
 })
 export class PEA03 {
+  @ViewChild(Content) content: Content;
+
   /* 통합코드 */
   public commonCode13; //거래처정보
   public commonCode1; //단위
@@ -215,4 +217,7 @@ export class PEA03 {
     this.modalController.create('Pea03detailPage', {obj: obj}).present();
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 }

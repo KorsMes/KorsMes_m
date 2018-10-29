@@ -227,4 +227,7 @@ export class PHB04 {
     this.text_color2 = 'white';
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 }

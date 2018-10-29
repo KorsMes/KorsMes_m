@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pdd02.html',
 })
 export class PDD02 {
+  @ViewChild(Content) content: Content;
 
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
@@ -143,8 +144,10 @@ export class PDD02 {
       }
       this.result2 = data;
     });
+  }
 
-
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
 }

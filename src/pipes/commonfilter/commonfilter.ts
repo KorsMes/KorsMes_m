@@ -526,7 +526,7 @@ export class CommonfilterPipe implements PipeTransform {
       for(var nfa=0; nfa<value; nfa++){
         number_filter_argu = number_filter_argu * 10;
       }
-      re = Math.round(value2 * number_filter_argu) / number_filter_argu;
+      re = Math.round(value2 * number_filter_argu) / number_filter_argu + "";
     }
 
     return re;

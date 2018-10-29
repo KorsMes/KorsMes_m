@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'pdh04.html',
 })
 export class PDH04 {
+  @ViewChild(Content) content: Content;
+
   /* 통합코드 */
   public commonCode1; //부서
 

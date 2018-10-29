@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiProvider } from '../../../../providers/api';
@@ -19,6 +19,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
   templateUrl: 'peg01.html',
 })
 export class PEG01 {
+  @ViewChild(Content) content: Content;
+
   /* 통합코드 */
   public commonCode1; //단위
   public commonCode28; //품목형태
@@ -123,5 +125,8 @@ export class PEG01 {
     this.modalController.create('Peg01detail1Page', {obj: obj}).present();
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 
 }
