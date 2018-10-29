@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-pea03',
+  selector: 'search_page',
   templateUrl: 'pea03.html',
 })
 export class PEA03 {

@@ -14,7 +14,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-peg08detail2',
+  selector: 'detail_page',
   templateUrl: 'peg08detail2.html',
 })
 export class Peg08detail2Page {

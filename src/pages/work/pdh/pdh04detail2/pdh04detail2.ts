@@ -14,7 +14,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-pdh04detail2',
+  selector: 'detail_page',
   templateUrl: 'pdh04detail2.html',
 })
 export class Pdh04detail2Page {

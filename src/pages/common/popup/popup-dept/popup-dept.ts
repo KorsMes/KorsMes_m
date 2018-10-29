@@ -14,7 +14,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-popup-dept',
+  selector: 'popup_page',
   templateUrl: 'popup-dept.html',
 })
 export class PopupDeptPage {

@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-peg01',
+  selector: 'search_page',
   templateUrl: 'peg01.html',
 })
 export class PEG01 {

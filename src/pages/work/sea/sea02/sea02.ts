@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-sea02',
+  selector: 'search_page',
   templateUrl: 'sea02.html',
 })
 export class SEA02 {
@@ -57,10 +57,10 @@ export class SEA02 {
   public status; //견적상태
 
   /* 전체 필터 색상*/
-  borderColor1: string = '#FFDF24';
-  borderColor2: string = '#D5D5D5';
+  borderColor1: string = '#007087';
+  borderColor2: string = 'white';
 
-  all_search_Color1: string = '#FFDF24';
+  all_search_Color1: string = '#007087';
   all_search_Color2: string = 'white';
 
   text_color1: string = "white";
@@ -184,10 +184,10 @@ export class SEA02 {
   }
 
   all_btn(){
-    this.borderColor1 = '#FFDF24';
+    this.borderColor1 = '#007087';
     this.borderColor2 = '#D5D5D5';
 
-    this.all_search_Color1 = '#FFDF24';
+    this.all_search_Color1 = '#007087';
     this.all_search_Color2 = 'white';
 
     this.text_color1 = 'white';
@@ -196,10 +196,10 @@ export class SEA02 {
 
   filter_btn(){
     this.borderColor1 = '#D5D5D5';
-    this.borderColor2 = '#FFDF24';
+    this.borderColor2 = '#007087';
 
     this.all_search_Color1 = 'white';
-    this.all_search_Color2 = '#FFDF24';
+    this.all_search_Color2 = '#007087';
 
     this.text_color1 = '#D5D5D5';
     this.text_color2 = 'white';

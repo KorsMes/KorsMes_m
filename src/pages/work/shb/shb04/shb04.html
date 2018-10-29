@@ -18,9 +18,9 @@
   <button ion-button (click) = "condition_yn('')" class="all_btn" [ngStyle]="{'border-color': borderColor1, 'background-color': all_search_Color1, 'color': text_color1}" (click) = "all_btn()">전체</button>
   <button ion-button (click) = "condition_yn('true')" class="filter_btn" [ngStyle]="{'border-color': borderColor2, 'background-color': all_search_Color2, 'color': text_color2}" (click) = "filter_btn()">필터</button>
   <br>
-  <ion-grid *ngIf="searchCondition" class="search_grid3">
+  <ion-grid *ngIf="searchCondition">
 
-    <ion-row class="search_row3">
+    <ion-row class="search_row">
       <ion-col col-3>
         <div (click) = "PopupBuyer()" class="search_nm">거래처명</div>
       </ion-col>
@@ -29,7 +29,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="search_row3">
+    <ion-row class="search_row">
       <ion-col col-3>
         <div class="search_nm">매출일자</div>
       </ion-col>
@@ -42,7 +42,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="search_row3">
+    <ion-row class="search_row">
       <ion-col col-3>
         <div (click) = "PopupDept()" class="search_nm">부서명</div>
       </ion-col>
@@ -73,7 +73,7 @@
     <ion-card *ngFor="let r1 of result1" (click) = "openDetail(r1)" class="Card_Grid">
       <ion-grid>
         <ion-row>
-          <ion-col col-7 class="t_left t_bold">{{r1.PJTNM}}</ion-col>
+          <ion-col col-7 class="t_left t_bold text_overflow">{{r1.PJTNM}}</ion-col>
           <ion-col col-5 class="t_right t_bold ">{{'' | commonfilter : r1.AMT2: 'money_filter'}}<span *ngIf="r1.AMT2">원</span></ion-col>
         </ion-row>
         <ion-row>
@@ -90,14 +90,14 @@
           <ion-col col-12 class="t_left t_bold">{{commonCode8 | commonfilter: r2.CVCOD : 'commonCode8'}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3 class="t_left">현금</ion-col>
-          <ion-col col-3 class="t_right t_bold ">{{'' | commonfilter : r2.CASH_AMT: 'money_filter'}}<span *ngIf="r2.CASH_AMT">원</span></ion-col>
+          <ion-col col-2 class="t_left">현금</ion-col>
+          <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r2.CASH_AMT: 'money_filter'}}<span *ngIf="r2.CASH_AMT">원</span></ion-col>
           <ion-col col-2 class="t_left">VAT</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r2.VAT: 'money_filter'}}<span *ngIf="r2.VAT">원</span></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3 class="t_left">어음</ion-col>
-          <ion-col col-3 class="t_right t_bold ">{{'' | commonfilter : r2.BILL_AMT: 'money_filter'}}<span *ngIf="r2.BILL_AMT">원</span></ion-col>
+          <ion-col col-2 class="t_left">어음</ion-col>
+          <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r2.BILL_AMT: 'money_filter'}}<span *ngIf="r2.BILL_AMT">원</span></ion-col>
           <ion-col col-2 class="t_left">합계</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r2.CASH_AMT + r2.BILL_AMT + r2.VAT: 'money_filter'}}<span *ngIf="r2.CASH_AMT + r2.BILL_AMT + r2.VAT">원</span></ion-col>
         </ion-row>
@@ -112,14 +112,14 @@
           <ion-col col-12 class="t_left t_bold">{{commonCode8 | commonfilter: r3.DPTNO : 'commonCode8'}} {{commonCode12 | commonfilter: r3.EMPNO : 'commonCode12'}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3 class="t_left">현금</ion-col>
-          <ion-col col-3 class="t_right t_bold ">{{'' | commonfilter : r3.CASH_AMT: 'money_filter'}}<span *ngIf="r3.CASH_AMT">원</span></ion-col>
+          <ion-col col-2 class="t_left">현금</ion-col>
+          <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r3.CASH_AMT: 'money_filter'}}<span *ngIf="r3.CASH_AMT">원</span></ion-col>
           <ion-col col-2 class="t_left">VAT</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r3.VAT: 'money_filter'}}<span *ngIf="r3.VAT">원</span></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3 class="t_left">어음</ion-col>
-          <ion-col col-3 class="t_right t_bold ">{{'' | commonfilter : r3.BILL_AMT: 'money_filter'}}<span *ngIf="r3.BILL_AMT">원</span></ion-col>
+          <ion-col col-2 class="t_left">어음</ion-col>
+          <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r3.BILL_AMT: 'money_filter'}}<span *ngIf="r3.BILL_AMT">원</span></ion-col>
           <ion-col col-2 class="t_left">합계</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r3.CASH_AMT + r3.BILL_AMT + r3.VAT: 'money_filter'}}<span *ngIf="r3.CASH_AMT + r3.BILL_AMT + r3.VAT">원</span></ion-col>
         </ion-row>

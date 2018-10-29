@@ -14,7 +14,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-pec12detail1',
+  selector: 'detail_page',
   templateUrl: 'pec12detail1.html',
 })
 export class Pec12detail1Page {

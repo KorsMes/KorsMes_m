@@ -16,7 +16,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-pha03',
+  selector: 'search_page',
   templateUrl: 'pha03.html',
 })
 export class PHA03 {

@@ -16,7 +16,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-pec12',
+  selector: 'search_page',
   templateUrl: 'pec12.html',
 })
 export class PEC12 {

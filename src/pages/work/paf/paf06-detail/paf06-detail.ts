@@ -14,7 +14,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-paf06-detail',
+  selector: 'detail_page',
   templateUrl: 'paf06-detail.html',
 })
 export class PAF06DETAIL {

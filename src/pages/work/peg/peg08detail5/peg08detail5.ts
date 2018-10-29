@@ -10,7 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-peg08detail5',
+  selector: 'detail_page',
   templateUrl: 'peg08detail5.html',
 })
 export class Peg08detail5Page {

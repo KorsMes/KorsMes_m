@@ -430,16 +430,16 @@ export class CommonfilterPipe implements PipeTransform {
     if(code === 'money_filter'){
       if(value != '' && value != undefined){
         var len, point;
-            value = value + "";
-            point = value.length % 3 ;
-            len = value.length;
+        value = value + "";
+        point = value.length % 3 ;
+        len = value.length;
 
-            re = value.substring(0, point);
-            while (point < len) {
-                if (re != "") re += ",";
-                re += value.substring(point, point + 3);
-                point += 3;
-            }
+        re = value.substring(0, point);
+        while (point < len) {
+          if (re != "") re += ",";
+          re += value.substring(point, point + 3);
+          point += 3;
+        }
       }
     }
 
@@ -457,68 +457,77 @@ export class CommonfilterPipe implements PipeTransform {
     }
 
     //PDD02 보고내용 상세
-      if(code === "pdd02_gubun"){
-        if(value === 'A1'){
-          re = " - 당월 자재 투입 비용";
-        }else if(value === 'B1'){
-          re = " - 누적 자재 투입 비용";
-        }else if(value === 'B2'){
-          re = " - 누적 기타건 투입비용(설비,기자재,소모품등)";
-        }else if(value === 'C1'){
-          re = " - 당월 Fail 발생 비용";
-        }else if(value === 'C2'){
-          re = " - 누적 Fail 발생 비용";
-        }else if(value === 'D1'){
-          re = " - 금년도 수주 진행건";
-        }else if(value === 'D2'){
-          re = " - 과년도 수주 진행건";
-        }else if(value === 'D3'){
-          re = " - 기타건 투입 비용(설비,기자재,소모품등)";
-        }
+    if(code === "pdd02_gubun"){
+      if(value === 'A1'){
+        re = " - 당월 자재 투입 비용";
+      }else if(value === 'B1'){
+        re = " - 누적 자재 투입 비용";
+      }else if(value === 'B2'){
+        re = " - 누적 기타건 투입비용(설비,기자재,소모품등)";
+      }else if(value === 'C1'){
+        re = " - 당월 Fail 발생 비용";
+      }else if(value === 'C2'){
+        re = " - 누적 Fail 발생 비용";
+      }else if(value === 'D1'){
+        re = " - 금년도 수주 진행건";
+      }else if(value === 'D2'){
+        re = " - 과년도 수주 진행건";
+      }else if(value === 'D3'){
+        re = " - 기타건 투입 비용(설비,기자재,소모품등)";
       }
+    }
 
     //PDD02  집계기간
-      if(code === "pdd02_month"){
-        //console.log(code + " : " + value + " : " + items + " : " + value2);
-        if(value === 'A1'){
-          re = items.substring(6, 4)+"월";
-        }else if(value === 'B1'){
-          re = items.substring(6, 4)+"월 - "+value2.substring(6, 4)+"월";
-        }else if(value === 'B2'){
-          re = items.substring(6, 4)+"월 - "+value2.substring(6, 4)+"월";
-        }else if(value === 'C1'){
-          re = items.substring(6, 4)+"월";
-        }else if(value === 'C2'){
-          re = items.substring(6, 4)+"월 - "+value2.substring(6, 4)+"월";
-        }else if(value === 'D1'){
-          re = value2.substring(0, 4)+"년";
-        }else if(value === 'D2'){
-          re = items.substring(0, 4)+"년";
-        }else if(value === 'D3'){
-          re = value2.substring(0, 4)+"년";
-        }
+    if(code === "pdd02_month"){
+      //console.log(code + " : " + value + " : " + items + " : " + value2);
+      if(value === 'A1'){
+        re = items.substring(6, 4)+"월";
+      }else if(value === 'B1'){
+        re = items.substring(6, 4)+"월 - "+value2.substring(6, 4)+"월";
+      }else if(value === 'B2'){
+        re = items.substring(6, 4)+"월 - "+value2.substring(6, 4)+"월";
+      }else if(value === 'C1'){
+        re = items.substring(6, 4)+"월";
+      }else if(value === 'C2'){
+        re = items.substring(6, 4)+"월 - "+value2.substring(6, 4)+"월";
+      }else if(value === 'D1'){
+        re = value2.substring(0, 4)+"년";
+      }else if(value === 'D2'){
+        re = items.substring(0, 4)+"년";
+      }else if(value === 'D3'){
+        re = value2.substring(0, 4)+"년";
       }
+    }
 
     //PDD02 집계구분
-      if(code === "pdd02_sum_gubun"){
-        if(value === 'A1'){
-          re = "정상수주/원설계";
-        }else if(value === 'B1'){
-          re = "정상수주/원설계";
-        }else if(value === 'B2'){
-          re = "기타수주/원설계";
-        }else if(value === 'C1'){
-          re = "추가설계";
-        }else if(value === 'C2'){
-          re = "추가설계";
-        }else if(value === 'D1'){
-          re = "정상수주";
-        }else if(value === 'D2'){
-          re = "정상수주";
-        }else if(value === 'D3'){
-          re = "기타수주";
-        }
+    if(code === "pdd02_sum_gubun"){
+      if(value === 'A1'){
+        re = "정상수주/원설계";
+      }else if(value === 'B1'){
+        re = "정상수주/원설계";
+      }else if(value === 'B2'){
+        re = "기타수주/원설계";
+      }else if(value === 'C1'){
+        re = "추가설계";
+      }else if(value === 'C2'){
+        re = "추가설계";
+      }else if(value === 'D1'){
+        re = "정상수주";
+      }else if(value === 'D2'){
+        re = "정상수주";
+      }else if(value === 'D3'){
+        re = "기타수주";
       }
+    }
+
+    //소수점 처리
+    if(code === "number_filter"){
+      var number_filter_argu = 1;
+      for(var nfa=0; nfa<value; nfa++){
+        number_filter_argu = number_filter_argu * 10;
+      }
+      re = Math.round(value2 * number_filter_argu) / number_filter_argu;
+    }
 
     return re;
   }

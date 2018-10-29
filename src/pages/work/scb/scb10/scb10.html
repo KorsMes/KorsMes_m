@@ -16,8 +16,8 @@
 
 <ion-content>
   <br>
-  <ion-grid class="search_grid2">
-    <ion-row class="search_row1">
+  <ion-grid>
+    <ion-row class="search_row">
       <ion-col col-3>
           <div (click) = "PopupPjtno()" class="search_nm">견적번호</div>
       </ion-col>
@@ -55,22 +55,74 @@
     </ion-row>
   </ion-grid>-->
 
-  <ion-card *ngFor="let r of result; let i=index" class="Card_Grid" (click) = "category_click(r.GROUP_NO)">
+<!--  <ion-grid class="scb10_grid">
+    <ion-row *ngFor="let r of result; let i=index" (click) = "category_click(r.GROUP_NO)">
+      <ion-col *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO">
+        <ion-card class="Card_Grid" >
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12 class="t_left t_bold" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">&nbsp;&nbsp;</span>{{r.GRPNO}}. &nbsp;&nbsp; {{r.ITDSC}}</ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO">
+              <ion-col col-12 class="t_right" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">단가&nbsp; </span>{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO">
+              <ion-col col-4 class="t_left" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">&nbsp;&nbsp;</span><span *ngIf="r.GRPNO !== r.GROUP_NO">수량&nbsp; </span><span *ngIf="r.GRPNO !== r.GROUP_NO">{{r.SOQTY1}} &nbsp; </span><span *ngIf="r.GRPNO !== r.GROUP_NO">{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</span></ion-col>
+              <ion-col col-8 class="t_right" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">금액&nbsp; </span><span *ngIf="r.GRPNO === r.GROUP_NO">소계&nbsp; </span>{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>-->
+
+  <!--<ion-card *ngFor="let r of result; let i=index" class="Card_Grid" (click) = "category_click(r.GROUP_NO)">
     <ion-grid>
       <ion-row>
-        <ion-col col-12 class="t_left t_bold" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">&nbsp;&nbsp;</span>{{r.GRPNO}} / {{r.ITDSC}}</ion-col>
+        <ion-col col-12 class="t_left t_bold" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">&nbsp;&nbsp;</span>{{r.GRPNO}}. &nbsp;&nbsp; {{r.ITDSC}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO">
         <ion-col col-12 class="t_right" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">단가&nbsp; </span>{{'' | commonfilter : r.SOWPRC1 : 'money_filter'}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO">
         <ion-col col-4 class="t_left" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">&nbsp;&nbsp;</span><span *ngIf="r.GRPNO !== r.GROUP_NO">수량&nbsp; </span><span *ngIf="r.GRPNO !== r.GROUP_NO">{{r.SOQTY1}} &nbsp; </span><span *ngIf="r.GRPNO !== r.GROUP_NO">{{r.SOQTY1 | commonfilter: r.SOQTY1: 'filter1'}}</span></ion-col>
         <ion-col col-8 class="t_right" *ngIf="(GRPNO_SHOW === '1' && r.GROUP_NO === GROUP_NO_SHOW) || r.GRPNO === r.GROUP_NO"><span *ngIf="r.GRPNO !== r.GROUP_NO">금액&nbsp; </span><span *ngIf="r.GRPNO === r.GROUP_NO">소계&nbsp; </span>{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}</ion-col>
       </ion-row>
-
     </ion-grid>
+  </ion-card>-->
+
+  <ion-card *ngFor="let r of result; let i=index" class="Card_Grid" (click) = "category_click(r.GROUP_NO)">
+    <ion-grid class="Card_Grid2">
+      <ion-row>
+        <ion-col col-12 class="t_left t_bold text_overflow">{{r.GRPNO}}. &nbsp;&nbsp; {{r.ITDSC}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8 class="t_right">소계</ion-col>
+        <ion-col col-4 class="t_right">{{'' | commonfilter : r.SOWAMT1 : 'money_filter'}}원</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <span *ngIf= "showCard === r.GRPNO">
+      <ion-grid *ngFor="let r2 of result3; let i=index" class="Card_Grid2">
+        <ion-row *ngIf= "showCard === r2.GROUP_NO">
+          <ion-col col-12 class="t_left t_bold text_overflow">&nbsp;{{r2.GRPNO}}. &nbsp;&nbsp; {{r2.ITDSC}}</ion-col>
+        </ion-row>
+        <ion-row *ngIf= "showCard === r2.GROUP_NO">
+          <ion-col col-5></ion-col>
+          <ion-col col-3 class="t_right">&nbsp;단가</ion-col>
+          <ion-col col-4 class="t_right">&nbsp;{{'' | commonfilter : r2.SOWPRC1 : 'money_filter'}}원</ion-col>
+        </ion-row>
+        <ion-row *ngIf= "showCard === r2.GROUP_NO">
+          <ion-col col-5 class="t_left">&nbsp;수량 {{r2.SOQTY1}}, {{r2.SOQTY1 | commonfilter: r2.SOQTY1: 'filter1'}}</ion-col>
+          <ion-col col-3 class="t_right">&nbsp;금액</ion-col>
+          <ion-col col-4 class="t_right">&nbsp;{{'' | commonfilter : r2.SOWAMT1 : 'money_filter'}}원</ion-col>
+        </ion-row>
+      </ion-grid>
+    </span>
   </ion-card>
 
   <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>

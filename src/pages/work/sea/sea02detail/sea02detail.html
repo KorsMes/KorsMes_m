@@ -6,12 +6,12 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>PJT수주 상세<button ion-button (click) = "closemodal()" class="popup_close">X</button></ion-title>
+    <ion-title>PJT수주 상세<img src="../../../../assets/icon/close_btn.png" class="close_btn" (click) = "closemodal()"></ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
   <ion-grid *ngFor="let r of result"  class="detail_grid">
     <ion-row>
       <ion-col col-6>PJT번호</ion-col>
@@ -104,7 +104,7 @@
       <ion-col col-6>계약보증금</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6>{{'' | commonfilter: r.PJAMT: 'money_filter'}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter: r.PJAMT: 'money_filter'}}원</ion-col>
       <ion-col col-6>{{'' | commonfilter: r.CONA1: 'money_filter'}} / {{'' | commonfilter: r.CONA2: 'money_filter'}}</ion-col>
     </ion-row>
     <ion-row>

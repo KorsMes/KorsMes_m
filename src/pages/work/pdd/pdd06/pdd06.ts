@@ -17,7 +17,7 @@ import { Chart } from 'chart.js';
 
 @IonicPage()
 @Component({
-  selector: 'page-pdd06',
+  selector: 'search_page',
   templateUrl: 'pdd06.html',
 })
 export class PDD06 {
@@ -62,8 +62,8 @@ export class PDD06 {
   public bar_border4;
 
   /* 바 차트 사이즈정의 */
-  public responsive_width = "320px";
-  public responsive_height = "180px";
+  public responsive_width = "100%";
+  public responsive_height = "200px";
 
   /* 탭 페이지 */
   public Tab1 = "1";
@@ -125,6 +125,8 @@ export class PDD06 {
   //조회
   retrive(){
     if(this.Tab1 === "1"){
+      this.result3 = null;
+      this.result5 = null;
 
       //수주건별 분석표 조회
       let api_url1 = "/pdd/pdd06_list1";
@@ -187,15 +189,19 @@ export class PDD06 {
           this.responsive_width = Math.floor(this.result1.length / 4) * 80 + "px";
           this.responsive_height = Math.floor(this.result1.length / 4) * 40 + "px";
 
-          if(Math.floor(this.result1.length / 4) * 100 < 360){
-            this.responsive_width = "320px";
+          if(Math.floor(this.result1.length / 4) * 100 <= 360){
+            this.responsive_width = "100%";
+            this.responsive_height = "200px";
           }
 
-          if(Math.floor(this.result1.length / 4) * 50 < 200){
-            this.responsive_height = "180px";
+          if(Math.floor(this.result1.length / 4) * 50 <= 200){
+            this.responsive_width = "100%";
+            this.responsive_height = "200px";
           }
 
 
+        }else{
+          this.pjtno_arr = null;
         }
 
         if (this.barChart) this.barChart.destroy();
@@ -279,6 +285,9 @@ export class PDD06 {
 
 
     if(this.Tab2 === "2"){
+      this.result4 = null;
+      this.result6 = null;
+
       //월별 분석표 조회
       let api_url2 = "/pdd/pdd06_list2";
       let param2 = JSON.stringify({c_code:this.g_user.c_code, company_cd: this.g_company[0].COMPANY, user_id: this.g_user, plant_cd: this.plant_cd, yymm: this.date_fr});

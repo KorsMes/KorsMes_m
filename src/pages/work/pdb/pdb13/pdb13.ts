@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-pdb13',
+  selector: 'search_page',
   templateUrl: 'pdb13.html',
 })
 export class PDB13 {

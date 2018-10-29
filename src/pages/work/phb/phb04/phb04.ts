@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-phb04',
+  selector: 'search_page',
   templateUrl: 'phb04.html',
 })
 export class PHB04 {

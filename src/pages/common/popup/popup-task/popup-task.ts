@@ -14,7 +14,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-popup-task',
+  selector: 'popup_page',
   templateUrl: 'popup-task.html',
 })
 export class PopupTaskPage {

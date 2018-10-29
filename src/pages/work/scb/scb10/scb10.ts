@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-scb10',
+  selector: 'search_page',
   templateUrl: 'scb10.html',
 })
 export class SCB10 {
@@ -42,10 +42,11 @@ export class SCB10 {
 
   /* 조회 결과 */
   public result;
+  public result2;
+  public result3;
 
-  /*그룹 SHOW & HIDE*/
-  public GRPNO_SHOW;
-  public GROUP_NO_SHOW;
+  /*중메뉴 SHOW & HIDE*/
+  public showCard = null;
 
   constructor(
                 public navCtrl: NavController,
@@ -128,20 +129,48 @@ export class SCB10 {
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }else{
         this.searchCondition = "";
+        let api_url2 = "/scb/scb10_list2";
+        let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjt_no, c_code: this.g_user.c_code})
+
+        this.apiProvider.data_api(api_url2, param2)
+        .then(data2 => {
+          this.result2 = data2;
+
+          for(var i=0; i<Object.keys(data).length; i++){
+            var totamt=0;
+            for(var j=0; j<Object.keys(data2).length; j++){
+              if(this.result[i].GROUP_NO === data2[j].GROUP_NO){
+                console.log("chk : " + Math.floor(data2[j].SOWAMT1));
+                totamt = Math.floor(totamt) + Math.floor(data2[j].SOWAMT1);
+              }
+            }
+            console.log("total : " + totamt);
+            data[i].SOWAMT1 = totamt;
+          }
+        })
       }
       this.result = data;
     })
+
+    this.showCard = null;
   }
 
 
+
   category_click(GROUP_NO){
-      this.GRPNO_SHOW = '1';
-      this.GROUP_NO_SHOW = GROUP_NO;
+    let api_url3 = "/scb/scb10_list2";
+    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjt_no, c_code: this.g_user.c_code, group_no: GROUP_NO})
+
+    this.apiProvider.data_api(api_url3, param3)
+    .then(data3 => {
+      this.result3 = data3;
+    });
+
+    this.showCard = GROUP_NO;
   }
 
   scrollToTop() {
     this.content.scrollToTop();
   }
-
 }
 

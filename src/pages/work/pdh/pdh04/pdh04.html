@@ -15,8 +15,8 @@
 
 <ion-content>
   <br>
-  <ion-grid class="search_grid2">
-    <ion-row class="search_row1">
+  <ion-grid>
+    <ion-row class="search_row">
       <ion-col col-3>
           <div (click) = "PopupPdtno1()" class="search_nm">프로젝트명</div>
       </ion-col>
@@ -43,64 +43,64 @@
   <ion-card *ngFor="let r1 of result1; let i=index" class="Card_Grid">
     <ion-grid>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">프로젝트명</ion-col>
-        <ion-col col-8 class="t_right text_overflow">{{r1.PJTNM}}</ion-col>
+        <ion-col col-8 class="t_center text_overflow">{{r1.PJTNM}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">고객</ion-col>
-        <ion-col col-8 class="t_right">{{r1.CUST_NM}}</ion-col>
+        <ion-col col-8 class="t_center">{{r1.CUST_NM}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">제품명</ion-col>
-        <ion-col col-8 class="t_right">{{r1.ITEM_NM}}</ion-col>
+        <ion-col col-8 class="t_center">{{r1.ITEM_NM}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">수주수량</ion-col>
-        <ion-col col-8 class="t_right">{{r1.ORDER_QTY}}</ion-col>
+        <ion-col col-8 class="t_center">{{r1.ORDER_QTY}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">수주일자</ion-col>
-        <ion-col col-8 class="t_right">{{r1.ORDER_DATE}}</ion-col>
+        <ion-col col-8 class="t_center">{{r1.ORDER_DATE}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">납기일자</ion-col>
-        <ion-col col-8 class="t_right">{{r1.DUE_DATE}}</ion-col>
+        <ion-col col-8 class="t_center">{{r1.DUE_DATE}}</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">수주금액</ion-col>
-        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.ORDER_AMT: 'money_filter'}}</ion-col>
+        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.ORDER_AMT: 'money_filter'}}원</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">구매목표금액</ion-col>
-        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.TOTAL_AMT: 'money_filter'}} / {{(r1.TOTAL_AMT / r1.ORDER_AMT *100)}}%</ion-col>
+        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.TOTAL_AMT: 'money_filter'}}<span *ngIf="r1.TOTAL_AMT">원</span> / {{'' | commonfilter: 2: 'number_filter': (r1.TOTAL_AMT / r1.ORDER_AMT) *100}}%</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">최종목표금액</ion-col>
-        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.LASTTOTAL_AMT: 'money_filter'}} / {{(r1.LASTTOTAL_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
+        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.LASTTOTAL_AMT: 'money_filter'}}<span *ngIf="r1.LASTTOTAL_AMT">원</span> / {{'' | commonfilter: 2: 'number_filter': (r1.LASTTOTAL_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">재고사용금액</ion-col>
-        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.ALLO_AMT: 'money_filter'}} / {{(r1.ALLO_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
+        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.ALLO_AMT: 'money_filter'}}<span *ngIf="r1.ALLO_AMT">원</span> / {{'' | commonfilter: 2: 'number_filter': (r1.ALLO_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row class="Card_Grid2">
         <ion-col col-4 class="t_left t_bold">발주금액</ion-col>
-        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT: 'money_filter'}} / {{(r1.PUR_TOTAL_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
+        <ion-col col-8 class="t_right">{{'' | commonfilter : r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT: 'money_filter'}}<span *ngIf="r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT">원</span> / {{'' | commonfilter: 2: 'number_filter': (r1.PUR_TOTAL_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col col-4 class="t_left t_bold">총자재금액<br><span>(재고+발주)</span></ion-col>
-        <ion-col col-8 class="t_right"><br>{{'' | commonfilter : r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT): 'money_filter'}} / {{(r1.ALLO_AMT / r1.ORDER_AMT)+(r1.PUR_TOTAL_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
+        <ion-col col-8 class="t_right"><br>{{'' | commonfilter : r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT): 'money_filter'}}<span *ngIf="r1.ALLO_AMT + (r1.PUR_TOTAL_AMT + r1.ADD_PUR_TOTAL_AMT)">원</span> / {{'' | commonfilter: 2: 'number_filter': (r1.ALLO_AMT / r1.ORDER_AMT)+(r1.PUR_TOTAL_AMT / r1.ORDER_AMT) * 100}}%</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
@@ -108,23 +108,23 @@
 
   <div *ngIf="Tab2">
   <ion-card *ngFor="let r2 of result2; let i=index" (click) = "openDetail(r2)" class="Card_Grid">
-    <ion-grid  *ngFor="let r2 of result2; let i=index" (click) = "openDetail(r2)">
+    <ion-grid>
       <ion-row>
-        <ion-col col-6></ion-col>
-        <ion-col col-2.5 class="t_left" style="color: black;">발주수량</ion-col>
-        <ion-col col-3.5 class="t_right">{{r2.PUR_QTY}}</ion-col>
+        <ion-col col-5 class="t_left t_bold text_overflow">{{r2.NAME}}</ion-col>
+        <ion-col col-2.5 class="t_center" style="color: black;">발주수량</ion-col>
+        <ion-col col-4.5 class="t_right">{{r2.PUR_QTY}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-6 class="t_left t_bold text_overflow">{{r2.NAME}}</ion-col>
-        <ion-col col-2.5 class="t_left" style="color: black;">발주단가</ion-col>
-        <ion-col col-3.5 class="t_right">{{'' | commonfilter : r2.PUR_PRICE: 'money_filter'}}</ion-col>
+        <ion-col col-5 class="t_left text_overflow">{{r2.SPEC1}} | {{commonCode1 | commonfilter : r2.UNMSR : 'commonCode1'}}</ion-col>
+        <ion-col col-2.5 class="t_center" style="color: black;">발주단가</ion-col>
+        <ion-col col-4.5 class="t_right">{{'' | commonfilter : r2.PUR_PRICE: 'money_filter'}}원</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-6 class="t_left text_overflow">{{r2.SPEC1}} | {{commonCode1 | commonfilter : r2.UNMSR : 'commonCode1'}}</ion-col>
-        <ion-col col-2.5 class="t_left" style="color: black;">발주금액</ion-col>
-        <ion-col col-3.5 class="t_right">{{'' | commonfilter : r2.PUR_AMT: 'money_filter'}}</ion-col>
+        <ion-col col-5></ion-col>
+        <ion-col col-2.5 class="t_center" style="color: black;">발주금액</ion-col>
+        <ion-col col-4.5 class="t_right">{{'' | commonfilter : r2.PUR_AMT: 'money_filter'}}원</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

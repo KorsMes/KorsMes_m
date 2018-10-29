@@ -1,94 +1,168 @@
-.wrap{
-        position:relative;
-        height:100%;
-        margin-bottom:40px
-     }
-.center{
-          position:absolute;
-          top:50%;
-          transform:translate(50%, -50%);
-          font-size: 30px;
-          font-weight: bold;
-       }
+/*=========================================================================================================
+  COMMON CSS
+=========================================================================================================*/
+  /* 스크롤바 hide */
+  ::-webkit-scrollbar{ display:none; }
 
-/* 스크롤바 hide */
-::-webkit-scrollbar{ display:none; }
+  /* ion-title */
+  .toolbar-title-md{
+    font-size : 20px;
+  }
 
-/* ion-title */
-.toolbar-title-md{
-  font-size : 20px;
-}
+  /* ion-header */
+  .toolbar-background-md{
+    background-color : #007087;
+    color: white;
+  }
 
-/* ion-header */
-.toolbar-background-md{
-  background-color : #FFC000;
-  //#FFC000  #FFDF24
-  color: white;
-}
-
-.toolbar-md{
-  min-height: 45px;
-}
-
-/* header close button */
-.close_btn{
-  background-color : #EDCE7A;
-}
-
-/*
- * 조회 프로그램 공통 CSS
-*/
-
-.t_left{
-  text-align: left;
-  color: gray
-}
-
-.t_black{
-  color: black;
-}
-
-.t_right{
-  text-align: right;
-}
-
-.t_bold{
-  font-weight: bold;
-  font-size: 15px;
-  color: black;
-}
-
-.top_btn{
-  background-color: rgba(0,0,0,0);
-  opacity: 0;
-  box-shadow: none;
-}
+  .toolbar-md{
+    min-height: 45px;
+  }
 
 
+  /*조회 버튼*/
+  .search_btn{
+    background-color : #007087;
+    box-shadow: none;
+    border-radius: 5px;
+    width: 99%;
+  }
 
-/*
- * 상세 프로그램 CSS
- */
+  /* 퀵메뉴 스크롤*/
+  .quick_menu{
+    border-radius : 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 12%;
+    color: white;
+    box-shadow: none;
+    background-color: #007087;
+    font-weight: bold;
+    //font-size: 16px;
+    margin-top: -3%;
+  }
 
-.detail_grid {
-  padding: 0px;
-}
+  ion-label{
+    overflow: initial;
+  }
 
-.detail_grid ion-row:nth-of-type(odd) {
-  background: #A6A6A6;
-  // #FAF4C0
-  font-weight: bold;
-  color: white;
-}
+  .button_body{
+    width: 100%;
+  }
 
-.detail_grid ion-row ion-col{
-  text-align: center;
-  border: 1px solid white;
-  font-size: 11px;
-  font-weight: bold;
-}
+  /*툴바 타이틀 */
+  .toolbar-title-md{
+    font-size: 18px;
+    color: white;
+  }
 
-   /*조회 그리드*/
+  /*폰트*/
+  span.button-inner{
+    font-family: 굴림체;
+  }
+
+  .toolbar-md{
+    padding: 0px;
+  }
+
+  /*chart_grid*/
+  .chart_grid{
+    border-bottom: 1px solid #EAEAEA;
+  }
+
+  ion-content{
+    padding: 3px;
+  }
+
+  .main_left{
+    text-align: left;
+    color: gray
+  }
+
+  .main_black{
+    color: black;
+  }
+
+  .main_right{
+    text-align: right;
+  }
+
+  .main_bold{
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+  }
+
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+    color: white;
+  }
+
+
+/*=========================================================================================================
+  POPUP PROGRAM CSS
+=========================================================================================================*/
+popup_page{
+
+
+ .close_btn{
+    width: 25px;
+    height: 25px;
+    float: right;
+ }
+
+  ion-header{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-navbar{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-title{
+    width:100%;
+    text-align: center;
+  }
+
+  .scroll-content{
+    background-color: #F6F6F6;
+  }
+
+  /* 필터 조건 명 */
+  .search_nm{
+    text-align : center;
+    color: gray;
+    width: 95%;
+    margin-top: 5%;
+    margin-left: 2%;
+  }
+
+  /*필터 조건 값*/
+  .search_val{
+    width: 90%;
+    border: solid 1px #F6F6F6;
+    height: 100%;
+  }
+
+  /*필터 조건 값2*/
+  .search_val2{
+    width: 90%;
+    border: solid 1px #F6F6F6;
+    height: 100%;
+  }
+
+  /*그리드 헤더 색상*/
+  .grid_header{
+    background-color: darkgray;
+    text-align: center;
+  }
+
+  .grid_header2{
+    text-align: center;
+  }
+
+  /*조회 그리드*/
   .user_grid {
     padding: 0px;
   }
@@ -105,9 +179,60 @@
     font-size: 13px;
     font-weight: bold;
   }
+}
 
 
-/* 필터 조건 명 */
+
+/*=========================================================================================================
+  INTRO PROGRAM CSS
+=========================================================================================================*/
+page-splashscreen{
+  .wrap{
+          position:relative;
+          height:100%;
+          margin-bottom:40px
+  }
+  .center{
+            position:absolute;
+            top:50%;
+            transform:translate(50%, -50%);
+            font-size: 30px;
+            font-weight: bold;
+  }
+}
+
+
+
+/*=========================================================================================================
+  SEARCH PROGRAM CSS
+=========================================================================================================*/
+search_page{
+  /*그리드 헤더 색상*/
+  .grid_header{
+    background-color: darkgray;
+    text-align: center;
+  }
+
+  ion-header{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-navbar{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-title{
+    width:80%;
+    text-align: center;
+  }
+
+  .grid_header2{
+    text-align: center;
+  }
+
+  /* 필터 조건 명 */
  .search_nm{
   text-align : center;
   color: gray;
@@ -116,14 +241,14 @@
   margin-left: 2%;
  }
 
-/*필터 조건 값*/
+  /*필터 조건 값*/
  .search_val{
     width: 90%;
     border: solid 1px #F6F6F6;
     height: 100%;
  }
 
-/*필터 조건 값2*/
+  /*필터 조건 값2*/
  .search_val2{
     width: 90%;
     border: solid 1px #F6F6F6;
@@ -131,10 +256,10 @@
  }
 
 
-/*검색 값 초기화 버튼*/
+  /*검색 값 초기화 버튼*/
  .cancel_btn{
     float: right;
-    background-color : white;
+    background-color : #F6F6F6;
     margin-top :1%;
     height : 87%;
     width: 10%;
@@ -164,92 +289,34 @@
     height: 5%;
   }
 
-  /*조회 버튼*/
-  .search_btn{
-    background-color : #FFCD12;
-    box-shadow: none;
-    border-radius: 5px;
-    width: 98%;
-  }
-
-  /*조회조건 1개일때 조회 버튼*/
-  .search_btn_margin{
-    margin-top: -25%;
-  }
-
   /*검색조건 1이면 조회조건1개 2면 2개*/
-  .search_grid2{
-    height: 15%;
+  .search_row{
+    height: 40px;
   }
-
-  .search_row2{
-    height: 100%;
-  }
-
-  .search_row1{
-    height: 50%;
-  }
-
-  .search_grid3{
-    height: 23%;
-  }
-
-  .search_row3{
-    height: 100%;
-  }
-
-  .search_grid4{
-    height: 27%;
-  }
-
-  .search_row4{
-    height: 100%;
-  }
-
-
 
   /*카드 리스트 top*/
   .Card_Grid{
-    margin : 0px;
-    border-radius : 0px;
-    width : 100%;
-    border-top : 1px solid #F6F6F6;
+    //margin-top : 0px;
+    border-radius : 5px;
+    border-top : 2px solid #F6F6F6;
   }
 
   /*카드 리스트 top*/
   .Card_Grid2{
     margin : 0px;
-    border-radius : 0px;
+    border-radius : 2px;
     width : 100%;
-    border-bottom : 1px solid #F6F6F6;
-  }
-
-/* 팝업 닫기 버튼*/
-
-  .popup_close{
-    float: right;
-    background-color: #FFC000;
-    border: 0px;
-    box-shadow : none;
-  }
-
-/* phd04_grid 양쪽정렬*/
-
-  .phd04_grid{
-    float: right;
-    font-size : small;
-  }
-
-  /* phd04 그리드 bottom*/
-  .grid_bottom{
-    border-bottom : 1px solid #F6F6F6;
-    font-size: small;
+    border-bottom : 1px solid #CACACA;
   }
 
   /* 탭페이지*/
   .tabpage{
+    margin: 0px;
     padding: 0px;
-    padding-right: 0px;
+  }
+
+  .tabpage .input-wrapper{
+    align-items: flex-end;
   }
 
   .item-md.item-block .item-inner{
@@ -278,6 +345,7 @@
     color: black;
     border-bottom: 4px solid;
     box-shadow: none;
+    height: 50px;
   }
 
   /* 탭페이지 4개인 경우*/
@@ -290,6 +358,7 @@
     color: black;
     border-bottom: 4px solid;
     box-shadow: none;
+    height: 100%;
   }
 
   /* 탭페이지 6개인 경우*/
@@ -302,38 +371,48 @@
     color: black;
     border-bottom: 4px solid;
     box-shadow: none;
+    height: 100%;
   }
 
-  /* 퀵메뉴 스크롤*/
-  .quick_menu{
-    border-radius : 0px;
-    margin: 0px;
-    padding: 0px;
-    width: 13%;
-    color: #5D5D5D;
-    box-shadow: none;
-    background-color: #F6F6F6;
+  /* phd04_grid 양쪽정렬*/
+  .phd04_grid{
+    float: right;
+    font-size : small;
+  }
+
+  /* phd04 그리드 bottom*/
+  .grid_bottom{
+    border-bottom : 1px solid #F6F6F6;
+    font-size: small;
+  }
+
+  .t_left{
+    text-align: left;
+    color: gray
+  }
+
+  .t_center{
+    text-align: center;
+  }
+
+  .t_black{
+    color: black;
+  }
+
+  .t_right{
+    text-align: right;
+  }
+
+  .t_bold{
     font-weight: bold;
-    font-size: 16px;
-    margin-top: -3%;
+    font-size: 15px;
+    color: black;
   }
 
-  ion-label{
-    overflow: initial;
-  }
-
-  .button_body{
-    width: 100%;
-  }
-
-  /*그리드 헤더 색상*/
-  .grid_header{
-    background-color: darkgray;
-    text-align: center;
-  }
-
-  .grid_header2{
-    text-align: center;
+  .top_btn{
+    background-color: rgba(0,0,0,0);
+    opacity: 0;
+    box-shadow: none;
   }
 
   /*그리드 색상 및 폰트 크기*/
@@ -369,7 +448,60 @@
     overflow: hidden;
   }
 
+  .scroll-content{
+    background-color: #F6F6F6;
+  }
 
+  /*pdd06 chart css*/
+  .chart_bg ion-scroll .scroll-content{
+    width: 100%;
+    background-color: white;
+  }
+
+  .chart_bg{
+    position: relative;
+  }
+
+  .chart_bg ion-scroll .scroll-content .scroll-zoom-wrapper ion-card-content{
+    margin-right: 0px;
+    align: center;
+  }
+
+  ion-card-content .card-content .card-content-md{
+    margin: 0px;
+  }
+}
+
+
+
+
+/*=========================================================================================================
+  DETAIL PROGRAM CSS
+=========================================================================================================*/
+
+detail_page{
+
+  .detail_grid {
+    padding: 0px;
+  }
+
+  .detail_grid ion-row:nth-of-type(odd) {
+    background: #9EBEC4;
+    font-weight: bold;
+  }
+
+  .detail_grid ion-row{
+    display: table;
+  }
+
+  .detail_grid ion-row ion-col{
+    text-align: center;
+    border: 1px solid black;
+    font-size: 13px;
+    height: 34px;
+    vertical-align: middle;
+    display: table-cell;
+  }
 
   .grid{
     padding: 0px;
@@ -390,36 +522,29 @@
     border-bottom: none;
   }
 
-  /*툴바 타이틀 */
-  .toolbar-title-md{
-    font-size: 18px;
-    color: white;
-  }
-  .title_text{
-    margin-left: 16%;
+ .scroll-content{
+   background-color: #F6F6F6;
+ }
+
+ .close_btn{
+    width: 25px;
+    height: 25px;
+    float: right;
+ }
+
+  ion-header{
+    width: 100%;
+    position:relative;
   }
 
-  /*폰트*/
-  span.button-inner{
-    font-family: 굴림체;
+  ion-navbar{
+    width: 100%;
+    position:relative;
   }
 
-  .toolbar-md{
-    padding: 0px;
+  ion-title{
+    width:100%;
+    text-align: center;
   }
 
-
-  /*chart_grid*/
-  .chart_grid{
-    border-bottom: 1px solid #EAEAEA;
-  }
-
-  /*팝업 뒤로가기 버튼 색상*/
-  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
-    color: white;
-  }
-
-  /*팝업 텍스트*/
-  span.popup_text{
-    margin-left: 38%;
-  }
+}

@@ -10,7 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-pdb13detail5',
+  selector: 'detail_page',
   templateUrl: 'pdb13detail5.html',
 })
 export class Pdb13detail5Page {

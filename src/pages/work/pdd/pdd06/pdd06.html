@@ -16,8 +16,8 @@
 
 <ion-content>
   <br>
-  <ion-grid class="search_grid2">
-    <ion-row class="search_row1">
+  <ion-grid>
+    <ion-row class="search_row">
       <ion-col col-3>
         <div class="search_nm">조회년월</div>
       </ion-col>
@@ -40,7 +40,7 @@
     <button ion-button (click) = "changeTab('2')" class="tabpage1" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">월별 분석표</button>
   </ion-item>
 
-  <ion-card *ngIf="Tab1" class="Card_Grid">
+  <ion-card *ngIf="Tab1" class="Card_Grid chart_bg" >
     <ion-scroll scrollX [ngStyle]="{'height': responsive_height}">
       <ion-card-content [ngStyle]="{'width': responsive_width}" style="align: center;">
         <canvas #barCanvas></canvas>
@@ -85,7 +85,7 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card *ngIf="Tab2">
+  <ion-card *ngIf="Tab2" class="chart_bg">
     <ion-scroll scrollX style="height:350px;">
       <ion-card-content style="width:700px;">
         <canvas #lineCanvas></canvas>

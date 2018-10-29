@@ -15,7 +15,7 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 
 @IonicPage()
 @Component({
-  selector: 'page-popup-purno',
+  selector: 'popup_page',
   templateUrl: 'popup-purno.html',
 })
 export class PopupPurnoPage {
