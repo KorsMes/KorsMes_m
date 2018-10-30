@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { IonicStorageModule } from '@ionic/storage';
-
 import { MyApp } from './app.component';
+import { HideFabOnscrollModule } from 'ionic-hide-fab-onscroll';
 
 /* COMMON PAGES */
 import { SplashscreenPage } from '../pages/common/splashscreen/splashscreen';
@@ -39,7 +39,8 @@ import { PipesModule } from '../pipes/pipes.module';
     IonicStorageModule.forRoot(),
     HttpClientModule,
     HttpModule,
-    PipesModule
+    PipesModule,
+    HideFabOnscrollModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

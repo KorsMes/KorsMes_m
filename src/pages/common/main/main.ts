@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { CompanyProvider } from '../../../providers/company';
 import { AlertProvider } from '../../../providers/alert';
 import { ApiProvider } from '../../../providers/api';
 import { CommoncodeProvider } from '../../../providers/commoncode';
@@ -21,10 +22,13 @@ import { HomePage } from '../home/home';
   templateUrl: 'main.html',
 })
 export class MainPage {
+  @ViewChild(Content) content: Content;
+
   userInfo: any;
   public g_company;
   public g_user;
   public g_plant;
+  public companyInfo;
 
   /* 조회조건 */
   public company_cd;
@@ -54,6 +58,8 @@ export class MainPage {
 
   /* title img */
   public company_logo;
+  public bi_width;
+  public bi_height;
 
   constructor(
                 public navController: NavController,
@@ -61,6 +67,7 @@ export class MainPage {
                 public storage: Storage,
                 public alertProvider: AlertProvider,
                 public apiProvider:ApiProvider,
+                public companyProvider: CompanyProvider,
                 public modalController: ModalController,
                 public commoncodeProvider: CommoncodeProvider) {
 
@@ -74,7 +81,17 @@ export class MainPage {
                 this.g_plant = this.commoncodeProvider.getPlantInfo();
                 this.plant_cd = this.g_plant[0].PLANT;
 
+                //회사리스트 가져오기
+                this.companyInfo = this.companyProvider.getCompanyInfo();
+
                 this.company_logo = "../../../assets/imgs/company_logo/"+this.g_user.c_code+".png";
+
+                for(let n in this.companyInfo){
+                  if(this.companyInfo[n].company_code === this.g_user.c_code){
+                    this.bi_width = this.companyInfo[n].bi_width;
+                    this.bi_height = this.companyInfo[n].bi_height;
+                  }
+                }
 
                 let api_url = "/sea/sea02_list";
                 let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
@@ -150,4 +167,7 @@ export class MainPage {
     this.modalController.create('Sea02detailPage', {obj: obj}).present();
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 }

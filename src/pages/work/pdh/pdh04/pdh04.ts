@@ -205,5 +205,8 @@ export class PDH04 {
     this.buttonColor2 = '#FFDF24';
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 
 }

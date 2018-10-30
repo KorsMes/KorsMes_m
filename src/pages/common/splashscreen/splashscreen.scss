@@ -103,7 +103,6 @@
 =========================================================================================================*/
 popup_page{
 
-
  .close_btn{
     width: 25px;
     height: 25px;
@@ -182,6 +181,103 @@ popup_page{
 }
 
 
+/*=========================================================================================================
+  MAIN PROGRAM CSS
+=========================================================================================================*/
+page-main {
+  ion-title img{
+    width:auto;
+    height:auto;
+    max-width:243px;
+    max-height: 42px;
+    vertical-align: middle;
+  }
+
+  ion-navbar .toolbar-background-md{
+    background-color : white;
+  }
+
+  .main_grid{
+    border-left: 6px solid #007087;
+  }
+
+  .bodt_title{
+    color: #424242;
+    font-weight: bold;
+    margin-left: 3%;
+  }
+
+  .top_btn{
+    background-color: rgba(0,0,0,0);
+    opacity: 0;
+    box-shadow: none;
+  }
+
+  ion-header{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-navbar{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-title{
+    width:82%;
+    text-align: center;
+  }
+}
+
+/*=========================================================================================================
+  SIDE MENU PROGRAM CSS
+=========================================================================================================*/
+page-main-template {
+
+  .a {
+    background-color: #F6F6F6;
+    color:black;
+    font-weight:bold;
+    font-size:8px;
+    padding: 0px;
+  }
+
+  .label-md {
+    margin : 0px;
+  }
+
+  .list-md{
+    margin : 0px;
+  }
+
+  .fixed-content{
+    background-color: none;
+  }
+
+  .side_menu{
+    background-color: #F6F6F6;
+  }
+
+  h4.big_menu{
+    padding-left : 15px;
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  .log_out_btn{
+    float: right;
+    background-color : white;
+    -webkit-box-shadow: none;
+    margin: 0px;
+  }
+
+  .user_info{
+    margin-top: 1%;
+  }
+
+}
 
 /*=========================================================================================================
   INTRO PROGRAM CSS
@@ -224,7 +320,7 @@ search_page{
   }
 
   ion-title{
-    width:80%;
+    width:82%;
     text-align: center;
   }
 
