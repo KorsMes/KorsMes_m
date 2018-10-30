@@ -193,8 +193,6 @@ page-main {
     vertical-align: middle;
   }
 
-  .a11{ width:3000px; }
-
   ion-navbar .toolbar-background-md{
     background-color : white;
   }
@@ -231,6 +229,55 @@ page-main {
   }
 }
 
+/*=========================================================================================================
+  SIDE MENU PROGRAM CSS
+=========================================================================================================*/
+page-main-template {
+
+  .a {
+    background-color: #F6F6F6;
+    color:black;
+    font-weight:bold;
+    font-size:8px;
+    padding: 0px;
+  }
+
+  .label-md {
+    margin : 0px;
+  }
+
+  .list-md{
+    margin : 0px;
+  }
+
+  .fixed-content{
+    background-color: none;
+  }
+
+  .side_menu{
+    background-color: #F6F6F6;
+  }
+
+  h4.big_menu{
+    padding-left : 15px;
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  .log_out_btn{
+    float: right;
+    background-color : white;
+    -webkit-box-shadow: none;
+    margin: 0px;
+  }
+
+  .user_info{
+    margin-top: 1%;
+  }
+
+}
 
 /*=========================================================================================================
   INTRO PROGRAM CSS
