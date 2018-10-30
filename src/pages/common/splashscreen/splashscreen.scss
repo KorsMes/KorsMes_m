@@ -227,6 +227,15 @@ page-main {
     width:82%;
     text-align: center;
   }
+
+  /*메인 프로젝트명 ...처리*/
+  .main_overflow{
+    white-space: nowrap;
+    width: 80%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 /*=========================================================================================================
@@ -530,15 +539,6 @@ search_page{
   .text_overflow{
     white-space: nowrap;
     width: 120%;
-    height: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  /*메인 프로젝트명 ...처리*/
-  .main_overflow{
-    white-space: nowrap;
-    width: 100%;
     height: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
