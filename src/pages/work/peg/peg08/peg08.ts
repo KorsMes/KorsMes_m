@@ -119,6 +119,12 @@ export class PEG08 {
 
   //조회
   retrive(){
+    this.result1 = null;
+    this.result2 = null;
+    this.result3 = null;
+    this.result4 = null;
+    this.result5 = null;
+    this.result6 = null;
 
     //월별/자재별 수불집계표
     let api_url1 = "/peg/peg08_list1";

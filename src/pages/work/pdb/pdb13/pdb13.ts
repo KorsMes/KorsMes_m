@@ -272,7 +272,7 @@ export class PDB13 {
   retrive(){
     //P/O별 발주상세내역
     let api_url1 = "/pdb/pdb13_list1";
-    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd,  date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd,  date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
 
     this.apiProvider.data_api(api_url1, param1)
     .then(data => {
@@ -288,7 +288,7 @@ export class PDB13 {
 
     //업체별 발주집계표
     let api_url2 = "/pdb/pdb13_list2";
-    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url2, param2)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -303,7 +303,7 @@ export class PDB13 {
 
     //PJT별 발주집계표
     let api_url3 = "/pdb/pdb13_list3";
-    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url3, param3)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -318,7 +318,7 @@ export class PDB13 {
 
     //품목별 발주 집계표
     let api_url4 = "/pdb/pdb13_list4";
-    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url4, param4)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -333,7 +333,7 @@ export class PDB13 {
 
     //업체별 발주내역 총집계표
     let api_url5 = "/pdb/pdb13_list5";
-    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url5, param5)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -348,7 +348,7 @@ export class PDB13 {
 
     //PJT별 발주내역 총집계표
     let api_url6 = "/pdb/pdb13_list6";
-    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url6, param6)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -367,7 +367,7 @@ export class PDB13 {
     if(idx === "1"){
       //P/O별 발주상세내역
       let api_url1 = "/pdb/pdb13_list1";
-      let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+      let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
       this.apiProvider.data_api(api_url1, param1)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -382,7 +382,7 @@ export class PDB13 {
     }else if(idx === "2"){
       //업체별 발주집계표
       let api_url2 = "/pdb/pdb13_list2";
-      let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+      let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
       this.apiProvider.data_api(api_url2, param2)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -397,7 +397,7 @@ export class PDB13 {
     }else if(idx === "3"){
       //PJT별 발주집계표
       let api_url3 = "/pdb/pdb13_list3";
-      let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+      let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
       this.apiProvider.data_api(api_url3, param3)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -412,7 +412,7 @@ export class PDB13 {
     }else if(idx === "4"){
       //품목별 발주 집계표
       let api_url4 = "/pdb/pdb13_list4";
-      let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+      let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
       this.apiProvider.data_api(api_url4, param4)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -427,7 +427,7 @@ export class PDB13 {
     }else if(idx === "5"){
       //업체별 발주내역 총집계표
       let api_url5 = "/pdb/pdb13_list5";
-      let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+      let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
       this.apiProvider.data_api(api_url5, param5)
       .then(data => {
         if(Object.keys(data).length === 0){
@@ -442,7 +442,7 @@ export class PDB13 {
     }else if(idx === "6"){
       //PJT별 발주내역 총집계표
       let api_url6 = "/pdb/pdb13_list6";
-      let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, itnbr_gu: this.itnbr_gu, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+      let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
       this.apiProvider.data_api(api_url6, param6)
       .then(data => {
         if(Object.keys(data).length === 0){
