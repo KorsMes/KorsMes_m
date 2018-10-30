@@ -103,7 +103,6 @@
 =========================================================================================================*/
 popup_page{
 
-
  .close_btn{
     width: 25px;
     height: 25px;
@@ -182,6 +181,56 @@ popup_page{
 }
 
 
+/*=========================================================================================================
+  MAIN PROGRAM CSS
+=========================================================================================================*/
+page-main {
+  ion-title img{
+    width:auto;
+    height:auto;
+    max-width:243px;
+    max-height: 42px;
+    vertical-align: middle;
+  }
+
+  .a11{ width:3000px; }
+
+  ion-navbar .toolbar-background-md{
+    background-color : white;
+  }
+
+  .main_grid{
+    border-left: 6px solid #007087;
+  }
+
+  .bodt_title{
+    color: #424242;
+    font-weight: bold;
+    margin-left: 3%;
+  }
+
+  .top_btn{
+    background-color: rgba(0,0,0,0);
+    opacity: 0;
+    box-shadow: none;
+  }
+
+  ion-header{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-navbar{
+    width: 100%;
+    position:relative;
+  }
+
+  ion-title{
+    width:82%;
+    text-align: center;
+  }
+}
+
 
 /*=========================================================================================================
   INTRO PROGRAM CSS
@@ -224,7 +273,7 @@ search_page{
   }
 
   ion-title{
-    width:80%;
+    width:82%;
     text-align: center;
   }
 
