@@ -52,7 +52,10 @@
     </ion-row>
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+  </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -70,11 +73,11 @@
     <ion-card *ngFor="let r1 of result1" (click) = "openDetail1(r1)" class="Card_Grid">
       <ion-grid>
         <ion-row>
-          <ion-col col-7 class="t_left t_bold text_overflow">{{r1.PJTNM}}</ion-col>
-          <ion-col col-5 class="t_right t_bold ">{{'' | commonfilter : r1.AMT2 : 'money_filter'}}<span *ngIf="r1.AMT2">원</span></ion-col>
+          <ion-col col-12 class="t_left t_bold text_overflow">{{r1.PJTNM}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-7 class="t_left">{{r1.JDATA}} | {{commonCode13 | commonfilter: r1.CVCOD : 'commonCode13'}}</ion-col>
+          <ion-col col-5 class="t_right t_bold ">{{'' | commonfilter : r1.AMT2 : 'money_filter'}}<span *ngIf="r1.AMT2">원</span></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
@@ -89,15 +92,15 @@
         </ion-row>
 
         <ion-row>
-          <ion-col col-3 class="t_left">매출수량</ion-col>
-          <ion-col col-3.5 class="t_left t_bold ">{{r2.QTY2}}</ion-col>
+          <ion-col col-2 class="t_left">수량</ion-col>
+          <ion-col col-4.5 class="t_left t_bold ">{{r2.QTY2}}</ion-col>
           <ion-col col-1.5 class="t_right">VAT</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r2.VAT: 'money_filter'}}<span *ngIf="r2.VAT">원</span></ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col col-3 class="t_left">매출금액</ion-col>
-          <ion-col col-3.5 class="t_left t_bold ">{{'' | commonfilter : r2.AMT2: 'money_filter'}}<span *ngIf="r2.AMT2">원</span></ion-col>
+          <ion-col col-2 class="t_left">금액</ion-col>
+          <ion-col col-4.5 class="t_left t_bold ">{{'' | commonfilter : r2.AMT2: 'money_filter'}}<span *ngIf="r2.AMT2">원</span></ion-col>
           <ion-col col-1.5 class="t_right">합계</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r2.TOTAMT: 'money_filter'}}<span *ngIf="r2.TOTAMT">원</span></ion-col>
         </ion-row>
@@ -113,14 +116,14 @@
           <ion-col col-12 class="t_left t_bold">{{commonCode8 | commonfilter: r3.DPTNO : 'commonCode8'}} {{commonCode12 | commonfilter: r3.EMPNO : 'commonCode12'}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3 class="t_left">매출수량</ion-col>
-          <ion-col col-3.5 class="t_left t_bold ">{{r3.QTY2}}</ion-col>
+          <ion-col col-2 class="t_left">수량</ion-col>
+          <ion-col col-4.5 class="t_left t_bold ">{{r3.QTY2}}</ion-col>
           <ion-col col-1.5 class="t_right">VAT</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r3.VAT: 'money_filter'}}<span *ngIf="r3.VAT">원</span></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-3 class="t_left">매출금액</ion-col>
-          <ion-col col-3.5 class="t_left t_bold ">{{'' | commonfilter : r3.AMT2: 'money_filter'}}<span *ngIf="r3.AMT2">원</span></ion-col>
+          <ion-col col-2 class="t_left">금액</ion-col>
+          <ion-col col-4.5 class="t_left t_bold ">{{'' | commonfilter : r3.AMT2: 'money_filter'}}<span *ngIf="r3.AMT2">원</span></ion-col>
           <ion-col col-1.5 class="t_right">합계</ion-col>
           <ion-col col-4 class="t_right t_bold ">{{'' | commonfilter : r3.TOTAMT: 'money_filter'}}<span *ngIf="r3.TOTAMT">원</span></ion-col>
         </ion-row>

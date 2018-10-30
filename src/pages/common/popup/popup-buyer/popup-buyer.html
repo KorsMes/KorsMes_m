@@ -38,8 +38,9 @@
     </ion-row>
   </ion-grid>
 
-  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
-
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  </div>
   <br>
   <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
     <ion-grid>

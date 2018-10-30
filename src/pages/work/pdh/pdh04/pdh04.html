@@ -28,7 +28,10 @@
   </ion-grid>
 
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+  </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -110,19 +113,19 @@
   <ion-card *ngFor="let r2 of result2; let i=index" (click) = "openDetail(r2)" class="Card_Grid">
     <ion-grid>
       <ion-row>
-        <ion-col col-5 class="t_left t_bold text_overflow">{{r2.NAME}}</ion-col>
+        <ion-col col-5></ion-col>
         <ion-col col-2.5 class="t_center" style="color: black;">발주수량</ion-col>
         <ion-col col-4.5 class="t_right">{{r2.PUR_QTY}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-5 class="t_left text_overflow">{{r2.SPEC1}} | {{commonCode1 | commonfilter : r2.UNMSR : 'commonCode1'}}</ion-col>
+        <ion-col col-5 class="t_left t_bold text_overflow">{{r2.NAME}}</ion-col>
         <ion-col col-2.5 class="t_center" style="color: black;">발주단가</ion-col>
         <ion-col col-4.5 class="t_right">{{'' | commonfilter : r2.PUR_PRICE: 'money_filter'}}원</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-5></ion-col>
+        <ion-col col-5 class="t_left text_overflow">{{r2.SPEC1}} | {{commonCode1 | commonfilter : r2.UNMSR : 'commonCode1'}}</ion-col>
         <ion-col col-2.5 class="t_center" style="color: black;">발주금액</ion-col>
         <ion-col col-4.5 class="t_right">{{'' | commonfilter : r2.PUR_AMT: 'money_filter'}}원</ion-col>
       </ion-row>

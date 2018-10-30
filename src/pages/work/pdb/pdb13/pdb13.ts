@@ -60,6 +60,8 @@ export class PDB13 {
 
   public itnbr_gu = 'A'; //품목구분
 
+  public commonCode13; //거래처
+
   /* 조회결과 */
   public g_user;
   public result1; //P/O별 발주상세내역
@@ -86,10 +88,10 @@ export class PDB13 {
   buttonColor6: string = 'white';
 
   /* 전체 필터 색상*/
-  borderColor1: string = '#FFDF24';
-  borderColor2: string = '#D5D5D5';
+  borderColor1: string = '#007087';
+  borderColor2: string = 'white';
 
-  all_search_Color1: string = '#FFDF24';
+  all_search_Color1: string = '#007087';
   all_search_Color2: string = 'white';
 
   text_color1: string = "white";
@@ -126,6 +128,9 @@ export class PDB13 {
                 //공장코드 가져오기
                 this.g_plant = this.commoncodeProvider.getPlantInfo();
                 this.plant_cd = this.g_plant[0].PLANT;
+
+                //거래처 가져오기
+                this.commonCode13 = this.commoncodeProvider.getCommonCode13();
   }
 
   ionViewDidLoad() {
@@ -272,7 +277,7 @@ export class PDB13 {
   retrive(){
     //P/O별 발주상세내역
     let api_url1 = "/pdb/pdb13_list1";
-    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd,  date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, itnbr_cd: this.itnbr_cd,  date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
 
     this.apiProvider.data_api(api_url1, param1)
     .then(data => {
@@ -288,7 +293,7 @@ export class PDB13 {
 
     //업체별 발주집계표
     let api_url2 = "/pdb/pdb13_list2";
-    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno,  purno1: this.purno1, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url2, param2)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -303,7 +308,7 @@ export class PDB13 {
 
     //PJT별 발주집계표
     let api_url3 = "/pdb/pdb13_list3";
-    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url3, param3)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -318,7 +323,7 @@ export class PDB13 {
 
     //품목별 발주 집계표
     let api_url4 = "/pdb/pdb13_list4";
-    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url4, param4)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -333,7 +338,7 @@ export class PDB13 {
 
     //업체별 발주내역 총집계표
     let api_url5 = "/pdb/pdb13_list5";
-    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url5, param5)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -348,7 +353,7 @@ export class PDB13 {
 
     //PJT별 발주내역 총집계표
     let api_url6 = "/pdb/pdb13_list6";
-    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
+    let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
     this.apiProvider.data_api(api_url6, param6)
     .then(data => {
       if(Object.keys(data).length === 0){
@@ -360,101 +365,6 @@ export class PDB13 {
       }
       this.result6 = data;
     });
-  }
-
-  //탭 페이지 조회
-  subRetrive(idx){
-    if(idx === "1"){
-      //P/O별 발주상세내역
-      let api_url1 = "/pdb/pdb13_list1";
-      let param1 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
-      this.apiProvider.data_api(api_url1, param1)
-      .then(data => {
-        if(Object.keys(data).length === 0){
-          if(this.Tab1 === "1"){
-            this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-          }
-        }else{
-          this.searchCondition = "";
-        }
-        this.result1 = data;
-      })
-    }else if(idx === "2"){
-      //업체별 발주집계표
-      let api_url2 = "/pdb/pdb13_list2";
-      let param2 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
-      this.apiProvider.data_api(api_url2, param2)
-      .then(data => {
-        if(Object.keys(data).length === 0){
-          if(this.Tab2 === "2"){
-            this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-          }
-        }else{
-          this.searchCondition = "";
-        }
-        this.result1 = data;
-      });
-    }else if(idx === "3"){
-      //PJT별 발주집계표
-      let api_url3 = "/pdb/pdb13_list3";
-      let param3 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
-      this.apiProvider.data_api(api_url3, param3)
-      .then(data => {
-        if(Object.keys(data).length === 0){
-          if(this.Tab3 === "3"){
-            this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-          }
-        }else{
-          this.searchCondition = "";
-        }
-        this.result1 = data;
-      })
-    }else if(idx === "4"){
-      //품목별 발주 집계표
-      let api_url4 = "/pdb/pdb13_list4";
-      let param4 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
-      this.apiProvider.data_api(api_url4, param4)
-      .then(data => {
-        if(Object.keys(data).length === 0){
-          if(this.Tab4 === "4"){
-            this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-          }
-        }else{
-          this.searchCondition = "";
-        }
-        this.result1 = data;
-      })
-    }else if(idx === "5"){
-      //업체별 발주내역 총집계표
-      let api_url5 = "/pdb/pdb13_list5";
-      let param5 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
-      this.apiProvider.data_api(api_url5, param5)
-      .then(data => {
-        if(Object.keys(data).length === 0){
-          if(this.Tab5 === "5"){
-            this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-          }
-        }else{
-          this.searchCondition = "";
-        }
-        this.result1 = data;
-      })
-    }else if(idx === "6"){
-      //PJT별 발주내역 총집계표
-      let api_url6 = "/pdb/pdb13_list6";
-      let param6 = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno: this.pjtno, purno1: this.purno1, purno2: this.purno2, itnbr_cd: this.itnbr_cd, date_fr: this.date_fr, date_to: this.date_to, c_code: this.g_user.c_code, by_cd: this.cust_cd});
-      this.apiProvider.data_api(api_url6, param6)
-      .then(data => {
-        if(Object.keys(data).length === 0){
-          if(this.Tab6 === "6"){
-            this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-          }
-        }else{
-          this.searchCondition = "";
-        }
-        this.result1 = data;
-      })
-    }
   }
 
   //탭페이지 전환
@@ -524,6 +434,16 @@ export class PDB13 {
     this.modalController.create('Pdb13detail4Page', {obj: obj}).present();
   }
 
+  //상세팝업5
+  openDetail5(obj: any){
+    this.modalController.create('Pdb13detail5Page', {obj: obj}).present();
+  }
+
+  //상세팝업6
+  openDetail6(obj: any){
+    this.modalController.create('Pdb13detail6Page', {obj: obj}).present();
+  }
+
   //버튼 컬러 change
   btn_change1(){
     this.buttonColor1 = '#FFDF24';
@@ -580,10 +500,10 @@ export class PDB13 {
   }
 
   all_btn(){
-    this.borderColor1 = '#FFDF24';
+    this.borderColor1 = '#007087';
     this.borderColor2 = '#D5D5D5';
 
-    this.all_search_Color1 = '#FFDF24';
+    this.all_search_Color1 = '#007087';
     this.all_search_Color2 = 'white';
 
     this.text_color1 = 'white';
@@ -592,10 +512,10 @@ export class PDB13 {
 
   filter_btn(){
     this.borderColor1 = '#D5D5D5';
-    this.borderColor2 = '#FFDF24';
+    this.borderColor2 = '#007087';
 
     this.all_search_Color1 = 'white';
-    this.all_search_Color2 = '#FFDF24';
+    this.all_search_Color2 = '#007087';
 
     this.text_color1 = '#D5D5D5';
     this.text_color2 = 'white';

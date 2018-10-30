@@ -53,20 +53,21 @@
 
 
 
-
-  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  <div class="btn_div">
+   <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  </div>
   <br>
   <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
     <ion-grid>
       <ion-row>
-        <ion-col col-12 class="t_left t_bold">{{r.ITDSC}}</ion-col>
-      </ion-row>
-      <ion-row>
         <ion-col col-12 class="t_left">{{r.ITNBR}}</ion-col>
       </ion-row>
       <ion-row>
+        <ion-col col-12 class="t_left t_bold">{{r.ITDSC}}</ion-col>
+      </ion-row>
+      <ion-row>
         <ion-col col-9 class="t_left">{{r.ISPEC1}} | {{r.UNMSR_NM}}</ion-col>
-        <ion-col col-3 class="t_left">{{r.IFORM_NM}}</ion-col>
+        <ion-col col-3 class="t_right">{{r.IFORM_NM}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

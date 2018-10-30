@@ -20,12 +20,15 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 })
 export class PopupPjtnoPage {
 
-  public commonCode43; //사업구분
+
 
   //조회조건 : 상태 리스트
   public status_list;
 
   public date = new Date();
+
+  /*공통코드*/
+  public commonCode30; //견적상태
 
   //조회조건
   public g_user;
@@ -73,8 +76,8 @@ export class PopupPjtnoPage {
                   this.status_list = data;
                 });
 
-                //사업구분 가져오기
-                this.commonCode43 = this.commoncodeProvider.getCommonCode43();
+                //견적상태 가져오기
+                this.commonCode30 = this.commoncodeProvider.getCommonCode30();
 
   }
 

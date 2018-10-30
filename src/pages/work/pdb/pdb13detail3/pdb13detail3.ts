@@ -20,6 +20,11 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 export class Pdb13detail3Page {
   public obj: any = {};
 
+  public commonCode1; //단위
+  public commonCode2; //조달구분
+  public commonCode20; //발주형태
+  public commonCode21; //지불방법
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
@@ -27,6 +32,15 @@ export class Pdb13detail3Page {
                 public alertProvider: AlertProvider,
                 public apiProvider: ApiProvider) {
                   this.obj = navParams.get('obj');
+
+                //단위 가져오기
+                this.commonCode1 = this.commoncodeProvider.getCommonCode1();
+                //조달구분 가져오기
+                this.commonCode2 = this.commoncodeProvider.getCommonCode2();
+                //발주형태 가져오기
+                this.commonCode20 = this.commoncodeProvider.getCommonCode20();
+                //지불방법 가져오기
+                this.commonCode21 = this.commoncodeProvider.getCommonCode21();
 
   }
 

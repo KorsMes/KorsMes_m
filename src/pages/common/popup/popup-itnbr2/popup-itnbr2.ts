@@ -39,6 +39,8 @@ export class PopupItnbr2Page {
   public mccod_cd = ""; //내외자구분
   public itemtype_cd = ""; //품목형태
 
+  public commonCode1; //단위
+
   public searchyn;
 
   //조회결과
@@ -87,6 +89,9 @@ export class PopupItnbr2Page {
                 .then(data => {
                   this.itemtype_list = data;
                 });
+
+                //단위 가져오기
+                this.commonCode1 = this.commoncodeProvider.getCommonCode1();
 
   }
 

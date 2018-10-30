@@ -28,7 +28,9 @@
   </ion-grid>
 
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+  </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -70,7 +72,7 @@
 
   <div *ngIf="Tab2">
     <ion-grid *ngFor="let r2 of result2; let i=index" (click) = "openDetail('tab2', r2)">
-      <ion-row class="Card_Grid Card_Grid2">
+      <ion-row class="Card_Grid">
         <ion-col col-6 class="t_left t_black">기초금액</ion-col>
         <ion-col col-6 class="t_right ">{{'' | commonfilter : r2.BASIC_AMT : 'money_filter'}}<span *ngIf="r2.BASIC_AMT">원</span></ion-col>
       </ion-row>

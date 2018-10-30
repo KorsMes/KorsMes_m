@@ -44,7 +44,9 @@
 </ion-header>
 
 <ion-content>
-    <h6 class="bodt_title"> > PJT 수주내역</h6>
+    <br>
+  <span class="bodt_title"><img src="../../../assets/imgs/page_img/main_pjt_img.png" style="width: 16px; height: 16px;"> PJT 수주내역</span><br>
+  <!--<span class="bodt_title"><img src="../../../assets/imgs/page_img/1608480-16 (1).png" style="width: 16px; height: 16px;"> PJT 수주내역</span><br>-->
 
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)">
     <ion-grid class="main_grid">

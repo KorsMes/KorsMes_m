@@ -69,7 +69,10 @@
 
   </ion-grid>
   <br>
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+  </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -86,66 +89,32 @@
     </ion-item>
   </ion-scroll>
 
-<!--  <div *ngIf="Tab1">
-    <ion-card *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)" class="Card_Grid">
+
+  <div *ngIf="Tab1">
+    <ion-card *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)">
       <ion-grid>
         <ion-row>
           <ion-col col-12 class="t_left">{{r1.PUR_NO}}</ion-col>
         </ion-row>
+
+        <ion-row>
+          <ion-col col-6 class="t_left t_bold text_overflow">{{r1.PJTNO_NM}}</ion-col>
+          <ion-col col-2.5 class="t_right t_gray">발주수량</ion-col>
+          <ion-col col-4.5 class="t_right">{{r1.PUR_QTY}}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6 class="t_left t_bold text_overflow">{{r1.ITEM_NAME}}</ion-col>
+          <ion-col col-2.5 class="t_right t_gray">NEGO금액</ion-col>
+          <ion-col col-4.5 class="t_right">{{'' | commonfilter : r1.PUR_AMT: 'money_filter'}}원</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12 class="t_left">{{r1.PUR_DATE}} | {{commonCode13 | commonfilter: r1.VENDOR: 'commonCode13'}}</ion-col>
+        </ion-row>
       </ion-grid>
     </ion-card>
-  </div>-->
-
-  <ion-grid *ngIf="Tab1">
-    <ion-row>
-      <ion-col col-2>발주번호</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>조달구분</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>업체</ion-col>
-      <ion-col col-2>명칭</ion-col>
-      <ion-col col-2>발주일자</ion-col>
-      <ion-col col-2>순번</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>NEGO단가</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>납기일자</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>차수</ion-col>
-      <ion-col col-2>변경내역</ion-col>
-      <ion-col col-2>할당수량</ion-col>
-      <ion-col col-2>발주단가</ion-col>
-      <ion-col col-2>발주형태</ion-col>
-      <ion-col col-2>지불방법</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)">
-      <ion-col col-2>{{r1.PUR_NO}}</ion-col>
-      <ion-col col-2>{{r1.ITEM}}</ion-col>
-      <ion-col col-2>{{r1.ITEM_NAME}}</ion-col>
-      <ion-col col-2>{{r1.SUPL_CLASS}}</ion-col>
-      <ion-col col-2>{{r1.UOM}}</ion-col>
-      <ion-col col-2>{{r1.VENDOR}}</ion-col>
-      <ion-col col-2>{{r1.BY_NM}}</ion-col>
-      <ion-col col-2>{{r1.PUR_DATE}}</ion-col>
-      <ion-col col-2>{{r1.PUR_SEQ}}</ion-col>
-      <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
-      <ion-col col-2>{{r1.PUR_PRICE}}</ion-col>
-      <ion-col col-2>{{r1.PUR_AMT}}</ion-col>
-      <ion-col col-2>{{r1.DELV_DATE}}</ion-col>
-      <ion-col col-2>{{r1.NORM}}</ion-col>
-      <ion-col col-2>{{r1.PDTNO}}</ion-col>
-      <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
-      <ion-col col-2>{{r1.DRSEQ}}</ion-col>
-      <ion-col col-2>{{r1.DRDSC}}</ion-col>
-      <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
-      <ion-col col-2>{{r1.NEGO_PRICE}}</ion-col>
-      <ion-col col-2>{{r1.PUR_TYPE}}</ion-col>
-      <ion-col col-2>{{r1.PAY_METHOD}}</ion-col>
-    </ion-row>
-  </ion-grid>
+  </div>
 
   <ion-grid *ngIf="Tab2">
     <ion-row>
@@ -165,23 +134,24 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid *ngIf="Tab3">
-    <ion-row>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>발주단가</ion-col>
-      <ion-col col-2>NEGO단가</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r3 of result3; let i=index" (click) = "openDetail3(r3)">
-    </ion-row>
-  </ion-grid>
+
+  <div *ngIf="Tab3">
+    <ion-card *ngFor="let r3 of result3; let i=index" (click) = "openDetail3(r3)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 class="t_reft t_bold text_overflow">{{r3.PJTNO_NM}}</ion-col>
+          <ion-col col-2.5 class="t_right">발주수량</ion-col>
+          <ion-col col-4.5 class="t_right">{{r3.PUR_QTY}}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6 class="t_left text_overflow">{{r3.ITEM_NAME}}</ion-col>
+          <ion-col col-2.5 class="t_right t_gray">NEGO금액</ion-col>
+          <ion-col col-4.5 class="t_right">{{'' | commonfilter : r3.PUR_AMT: 'money_filter'}}원</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 
   <ion-grid *ngIf="Tab4">
     <ion-row>
@@ -199,113 +169,41 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid *ngIf="Tab5">
-    <ion-row>
-      <ion-col col-2>업체</ion-col>
-      <ion-col col-2>명칭</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>재고사용금액</ion-col>
-      <ion-col col-2>원발주금액</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r5 of result5; let i=index">
-    </ion-row>
-  </ion-grid>
+  <div *ngIf="Tab5">
+    <ion-card *ngFor="let r5 of result5; let i=index" (click) = "openDetail5(r5)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 class="t_reft t_bold text_overflow">{{r5.PJTNO_NM}}</ion-col>
+          <ion-col col-2.5 class="t_right">발주수량</ion-col>
+          <ion-col col-4.5 class="t_right">{{r5.PUR_QTY}}</ion-col>
+        </ion-row>
 
-  <ion-grid *ngIf="Tab6">
-    <ion-row>
-      <ion-col col-2>pjt번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>재고사용금액</ion-col>
-      <ion-col col-2>원발주금액</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>합계금액</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r6 of result6; let i=index">
-    </ion-row>
-  </ion-grid>
+        <ion-row>
+          <ion-col col-6 class="t_left text_overflow">{{r5.ITEM_NAME}}</ion-col>
+          <ion-col col-2.5 class="t_right t_gray">NEGO금액</ion-col>
+          <ion-col col-4.5 class="t_right">{{'' | commonfilter : r5.PUR_AMT: 'money_filter'}}원</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 
-  <ion-grid *ngIf="Tab2">
-    <ion-row>
-      <ion-col col-2>업체</ion-col>
-      <ion-col col-2>명칭</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>발주단가</ion-col>
-      <ion-col col-2>NEGO단가</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail2(r2)">
-    </ion-row>
-  </ion-grid>
+  <div *ngIf="Tab6">
+    <ion-card *ngFor="let r6 of result6; let i=index" (click) = "openDetail6(r6)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 class="t_reft t_bold text_overflow">{{r6.PJTNO_NM}}</ion-col>
+          <ion-col col-2.5 class="t_right">발주수량</ion-col>
+          <ion-col col-4.5 class="t_right">{{r6.PUR_QTY}}</ion-col>
+        </ion-row>
 
-  <ion-grid *ngIf="Tab3">
-    <ion-row>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>발주단가</ion-col>
-      <ion-col col-2>NEGO단가</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r3 of result3; let i=index" (click) = "openDetail3(r3)">
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid *ngIf="Tab4">
-    <ion-row>
-      <ion-col col-2>품목코드</ion-col>
-      <ion-col col-2>품목명칭</ion-col>
-      <ion-col col-2>규격</ion-col>
-      <ion-col col-2>단위</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>할당수량</ion-col>
-      <ion-col col-2>발주단가</ion-col>
-      <ion-col col-2>NEGO단가</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r4 of result4; let i=index" (click) = "openDetail4(r4)">
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid *ngIf="Tab5">
-    <ion-row>
-      <ion-col col-2>업체</ion-col>
-      <ion-col col-2>명칭</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>재고사용금액</ion-col>
-      <ion-col col-2>원발주금액</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>비고</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r5 of result5; let i=index">
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid *ngIf="Tab6">
-    <ion-row>
-      <ion-col col-2>pjt번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>발주수량</ion-col>
-      <ion-col col-2>재고사용금액</ion-col>
-      <ion-col col-2>원발주금액</ion-col>
-      <ion-col col-2>NEGO금액</ion-col>
-      <ion-col col-2>합계금액</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r6 of result6; let i=index">
-    </ion-row>
-  </ion-grid>
+        <ion-row>
+          <ion-col col-6 class="t_left text_overflow"></ion-col>
+          <ion-col col-2.5 class="t_right t_gray">NEGO금액</ion-col>
+          <ion-col col-4.5 class="t_right">{{'' | commonfilter : r6.PUR_AMT: 'money_filter'}}원</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 
   <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
 </ion-content>
@@ -530,5 +428,58 @@
     <ion-col col-2>합계금액</ion-col>
   </ion-row>
   <ion-row *ngFor="let r6 of result6; let i=index">
+  </ion-row>
+</ion-grid>-->
+
+
+<!--
+<ion-grid *ngIf="Tab1">
+  <ion-row>
+    <ion-col col-2>발주번호</ion-col>
+    <ion-col col-2>품목코드</ion-col>
+    <ion-col col-2>품목명칭</ion-col>
+    <ion-col col-2>조달구분</ion-col>
+    <ion-col col-2>단위</ion-col>
+    <ion-col col-2>업체</ion-col>
+    <ion-col col-2>명칭</ion-col>
+    <ion-col col-2>발주일자</ion-col>
+    <ion-col col-2>순번</ion-col>
+    <ion-col col-2>발주수량</ion-col>
+    <ion-col col-2>NEGO단가</ion-col>
+    <ion-col col-2>NEGO금액</ion-col>
+    <ion-col col-2>납기일자</ion-col>
+    <ion-col col-2>규격</ion-col>
+    <ion-col col-2>PJT번호</ion-col>
+    <ion-col col-2>프로젝트명</ion-col>
+    <ion-col col-2>차수</ion-col>
+    <ion-col col-2>변경내역</ion-col>
+    <ion-col col-2>할당수량</ion-col>
+    <ion-col col-2>발주단가</ion-col>
+    <ion-col col-2>발주형태</ion-col>
+    <ion-col col-2>지불방법</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail1(r1)">
+    <ion-col col-2>{{r1.PUR_NO}}</ion-col>
+    <ion-col col-2>{{r1.ITEM}}</ion-col>
+    <ion-col col-2>{{r1.ITEM_NAME}}</ion-col>
+    <ion-col col-2>{{r1.SUPL_CLASS}}</ion-col>
+    <ion-col col-2>{{r1.UOM}}</ion-col>
+    <ion-col col-2>{{r1.VENDOR}}</ion-col>
+    <ion-col col-2>{{r1.BY_NM}}</ion-col>
+    <ion-col col-2>{{r1.PUR_DATE}}</ion-col>
+    <ion-col col-2>{{r1.PUR_SEQ}}</ion-col>
+    <ion-col col-2>{{r1.PUR_QTY}}</ion-col>
+    <ion-col col-2>{{r1.PUR_PRICE}}</ion-col>
+    <ion-col col-2>{{r1.PUR_AMT}}</ion-col>
+    <ion-col col-2>{{r1.DELV_DATE}}</ion-col>
+    <ion-col col-2>{{r1.NORM}}</ion-col>
+    <ion-col col-2>{{r1.PDTNO}}</ion-col>
+    <ion-col col-2>{{r1.PJTNO_NM}}</ion-col>
+    <ion-col col-2>{{r1.DRSEQ}}</ion-col>
+    <ion-col col-2>{{r1.DRDSC}}</ion-col>
+    <ion-col col-2>{{r1.ALLO_QTY}}</ion-col>
+    <ion-col col-2>{{r1.NEGO_PRICE}}</ion-col>
+    <ion-col col-2>{{r1.PUR_TYPE}}</ion-col>
+    <ion-col col-2>{{r1.PAY_METHOD}}</ion-col>
   </ion-row>
 </ion-grid>-->

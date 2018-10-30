@@ -21,7 +21,6 @@
       <ion-col col-4>
           <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
       </ion-col>
-
       <ion-col col-4>
           <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date2"></ion-datetime>
       </ion-col>
@@ -42,7 +41,10 @@
   </ion-grid>
 
   <br>
-  <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+  </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>
@@ -51,7 +53,7 @@
   <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
     <ion-grid>
       <ion-row>
-        <ion-col col-12><div class="pjt_status">{{r.CURSTS}}</div></ion-col>
+        <ion-col col-12 class="t_left"><div class="pjt_status">{{commonCode30 | commonfilter :r.CURSTS: 'commonCode30'}}</div></ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12 class="t_left t_bold">{{r.PJTNM}}</ion-col>

@@ -19,13 +19,18 @@
     min-height: 45px;
   }
 
+  .btn_div{
+    width: 100%;
+    position: relative;
+    text-align: center;
+  }
 
   /*조회 버튼*/
   .search_btn{
     background-color : #007087;
     box-shadow: none;
     border-radius: 5px;
-    width: 99%;
+    width: 80%;
   }
 
   /* 퀵메뉴 스크롤*/
@@ -76,7 +81,8 @@
 
   .main_left{
     text-align: left;
-    color: gray
+    color: gray;
+    font-size: smaller;
   }
 
   .main_black{
@@ -85,11 +91,12 @@
 
   .main_right{
     text-align: right;
+    font-size: smaller;
   }
 
   .main_bold{
     font-weight: bold;
-    font-size: 15px;
+    font-size: smaller;
     color: black;
   }
 
@@ -178,6 +185,36 @@ popup_page{
     font-size: 13px;
     font-weight: bold;
   }
+
+  .t_left{
+    text-align: left;
+    color: gray;
+    font-size: smaller;
+  }
+
+  .t_center{
+    text-align: center;
+    font-size: smaller;
+  }
+
+  .t_black{
+    color: black;
+  }
+
+  .t_gray{
+    color: gray;
+  }
+
+  .t_right{
+    text-align: right;
+    font-size: smaller;
+  }
+
+  .t_bold{
+    font-weight: bold;
+    color: black;
+  }
+
 }
 
 
@@ -185,6 +222,11 @@ popup_page{
   MAIN PROGRAM CSS
 =========================================================================================================*/
 page-main {
+
+  .scroll-content{
+    background-color : #F6F6F6;
+  }
+
   ion-title img{
     width:auto;
     height:auto;
@@ -205,6 +247,7 @@ page-main {
     color: #424242;
     font-weight: bold;
     margin-left: 3%;
+    font-size: 16px;
   }
 
   .top_btn{
@@ -493,24 +536,30 @@ search_page{
 
   .t_left{
     text-align: left;
-    color: gray
+    color: gray;
+    font-size: smaller;
   }
 
   .t_center{
     text-align: center;
+    font-size: smaller;
   }
 
   .t_black{
     color: black;
   }
 
+  .t_gray{
+    color: gray;
+  }
+
   .t_right{
     text-align: right;
+    font-size: smaller;
   }
 
   .t_bold{
     font-weight: bold;
-    font-size: 15px;
     color: black;
   }
 
@@ -566,6 +615,14 @@ search_page{
   ion-card-content .card-content .card-content-md{
     margin: 0px;
   }
+
+  /*pdd02 grid css*/
+  .pdd02_grid{
+    background-color: #747474;
+    border-top: 1px solid #4C4C4C;
+    border-bottom: 1px solid #4C4C4C;
+    color: white;
+  }
 }
 
 
@@ -587,17 +644,17 @@ detail_page{
   }
 
   .detail_grid ion-row{
-    display: table;
+
   }
 
   .detail_grid ion-row ion-col{
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid #D5D5D5;
     font-size: 13px;
     height: 34px;
-    vertical-align: middle;
-    display: table-cell;
+    padding-top: 9px;
   }
+
 
   .grid{
     padding: 0px;
