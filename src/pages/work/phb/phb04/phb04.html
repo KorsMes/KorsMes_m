@@ -39,7 +39,7 @@
       </ion-col>
 
       <ion-col col-9>
-          <span (click) = "PopupPjtno3()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pjtno3('')" class="cancel_btn">X</button>
+          <span (click) = "PopupPjtno3()"><input type="text" value="{{pjtnm}}" class="search_val"></span><button  *ngIf="pjtnm" (click) = "clear_pjtno3('')" class="cancel_btn"><img src="../../../assets/imgs/text_delete_btn.gif"/></button>
       </ion-col>
     </ion-row>
 
@@ -49,7 +49,7 @@
       </ion-col>
       <ion-col col-9>
         <select [(ngModel)]="task_cd" interface="popover" class="search_val" style="background-color: white;">
-          <option value="" selected>전체</option>
+          <option value="">전체</option>
           <option value="{{c.CODE}}" *ngFor = "let c of commonCode36">{{c.NAME2}} | {{c.NAME1}}</option>
         </select>
       </ion-col>
@@ -69,16 +69,16 @@
   <ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
     <ion-grid>
       <ion-row>
-        <ion-col col-5 class="t_left"></ion-col>
-        <ion-col col-7 class="t_right t_black">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
+        <ion-col col-9 class="t_left t_bold text_overflow">{{r.ITEM_NAME_K}}</ion-col>
+        <ion-col col-3 class="t_left t_black">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-8 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
-        <ion-col col-4 class="t_right">{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
+        <ion-col col-9 class="t_left text_overflow">{{r.QC_DATE}} | {{r.PJTNO_NM}}</ion-col>
+        <ion-col col-3 class="t_left">{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-8 class="t_left"><div class="text_overflow">{{r.QC_DATE}} | {{r.PJTNO_NM}}</div></ion-col>
-        <ion-col col-4 class="t_right">{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
+        <ion-col col-9></ion-col>
+        <ion-col col-3 class="t_left">{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
@@ -181,15 +181,15 @@
 <!--<ion-card *ngFor="let r of result" (click) = "openDetail(r)" class="Card_Grid">
   <ion-grid>
     <ion-row>
-      <ion-col col-8 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
+      <ion-col col-9 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
       <ion-col col-4 class="t_right ">{{commonCode34 | commonfilter: r.INS_KIND : 'commonCode34'}}</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-8 class="t_left">{{r.QC_DATE}} | {{r.PJTNO_NM}}</ion-col>
+      <ion-col col-9 class="t_left">{{r.QC_DATE}} | {{r.PJTNO_NM}}</ion-col>
       <ion-col col-4 class="t_right">{{commonCode33 | commonfilter: r.ERR_TAG : 'commonCode33'}}</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-8></ion-col>
+      <ion-col col-9></ion-col>
       <ion-col col-4 class="t_right">{{commonCode32 | commonfilter: r.QC_RESULT : 'commonCode32'}}</ion-col>
     </ion-row>
   </ion-grid>

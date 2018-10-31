@@ -54,7 +54,7 @@ export class SEA02 {
   public pjtno; //pjt번호
   public pjtnm; //pjt명
 
-  public status; //견적상태
+  public status = ""; //견적상태
 
   /* 전체 필터 색상*/
   borderColor1: string = '#007087';

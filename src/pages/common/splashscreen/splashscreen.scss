@@ -1,5 +1,5 @@
 /*=========================================================================================================
-  COMMON CSS
+  COMMON PROGRAM CSS
 =========================================================================================================*/
   /* 스크롤바 hide */
   ::-webkit-scrollbar{ display:none; }
@@ -43,7 +43,6 @@
     box-shadow: none;
     background-color: #007087;
     font-weight: bold;
-    //font-size: 16px;
     margin-top: -3%;
   }
 
@@ -175,13 +174,11 @@ popup_page{
 
   .user_grid ion-row:nth-of-type(odd) {
     background: #EAEAEA;
-    // #FAF4C0
     font-weight: bold;
   }
 
   .user_grid ion-row ion-col{
     text-align: center;
-    //border: 1px solid white;
     font-size: 13px;
     font-weight: bold;
   }
@@ -217,6 +214,97 @@ popup_page{
 
 }
 
+
+/*=========================================================================================================
+  HOME PROGRAM CSS
+=========================================================================================================*/
+page-home {
+  ion-header{
+    height: 100%;
+  }
+
+  .login_logo{
+    width: 100%;
+    height: 30%;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    padding: 70px;
+  }
+
+  .login_logo img{
+  }
+
+  .home_input{
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .home_input input{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 9px;
+    border: 1px solid #007087;
+    border-radius: 7px;
+  }
+
+  .home_input select{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 9px;
+    border: 1px solid #007087;
+    border-radius: 7px;
+    color: gray;
+  }
+
+  .retain_flag {
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .retain_flag div{
+    width: 80%;
+    text-align: left;
+  }
+
+  ion-label{
+    font-size: 13px;
+  }
+
+  .item-md.item-block .item-inner{
+    border-bottom: 0px;
+  }
+
+  .item.item-md .checkbox-md {
+    margin: 0px;
+    margin-left: 6%;
+    margin-right: 7px;
+  }
+
+  .search_nm{
+    text-align : center;
+    color: gray;
+    width: 95%;
+    margin-top: 5%;
+    margin-left: 2%;
+  }
+
+  .btn_div{
+    width: 100%;
+    position: relative;
+    text-align: center;
+  }
+
+  /*로그인 버튼*/
+  .search_btn{
+    background-color : #007087;
+    box-shadow: none;
+    border-radius: 5px;
+    width: 80%;
+  }
+}
 
 /*=========================================================================================================
   MAIN PROGRAM CSS
@@ -444,7 +532,6 @@ search_page{
 
   /*카드 리스트 top*/
   .Card_Grid{
-    //margin-top : 0px;
     border-radius : 5px;
     border-top : 2px solid #F6F6F6;
   }
@@ -617,11 +704,15 @@ search_page{
   }
 
   /*pdd02 grid css*/
-  .pdd02_grid{
+  .pdd02_title{
     background-color: #747474;
     border-top: 1px solid #4C4C4C;
     border-bottom: 1px solid #4C4C4C;
     color: white;
+  }
+
+  .pdd02_content{
+    background-color: white;
   }
 }
 
@@ -698,6 +789,15 @@ detail_page{
   ion-title{
     width:100%;
     text-align: center;
+  }
+
+  /* 긴글자 ...처리*/
+  .text_overflow{
+    white-space: nowrap;
+    width: 120%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
 }

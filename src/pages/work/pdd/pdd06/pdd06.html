@@ -28,8 +28,9 @@
     </ion-row>
   </ion-grid>
 
-
-  <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+  <div class="btn_div">
+    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+  </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
   <button ion-button (click) = "delete()" *ngIf="acc_btn_delete">삭제</button>

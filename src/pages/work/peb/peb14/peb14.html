@@ -41,7 +41,7 @@
   <button ion-button (click) = "print()" *ngIf="acc_btn_print">출력</button>-->
 
   <ion-scroll scrollX style="height:45px;">
-    <ion-item  style="width:700px;">
+    <ion-item  style="width:800px;">
     <button ion-button (click) = "changeTab('1')" class="tabpage4" [ngStyle]="{'border-color': buttonColor1}" (click) = "btn_change1()">일자별 자재입고현황</button>
     <button ion-button (click) = "changeTab('2')" class="tabpage4" [ngStyle]="{'border-color': buttonColor2}" (click) = "btn_change2()">작업지시별 입고현황</button>
     <button ion-button (click) = "changeTab('3')" class="tabpage4" [ngStyle]="{'border-color': buttonColor3}" (click) = "btn_change3()">거래처별 입고현황</button>
@@ -57,11 +57,13 @@
         </ion-row>
         <ion-row>
           <ion-col col-7 class="t_left t_bold">{{r1.ITEM_NAME_K}}</ion-col>
-          <ion-col col-5 class="t_right">입고수량 {{r1.DEPS_QTY}}</ion-col>
+          <ion-col col-2.5 class="t_left t_black">입고수량</ion-col>
+          <ion-col col-4.5 class="t_right t_black">{{r1.DEPS_QTY}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6 class="t_left">{{r1.DEPS_DATE}} | {{commonCode13 | commonfilter: r1.VENDOR : 'commonCode13'}}</ion-col>
-          <ion-col col-6 class="t_right t_bold">{{'' | commonfilter : r1.DEPS_FAMT: 'money_filter'}}<span *ngIf="r1.DEPS_FAMT">원</span></ion-col>
+          <ion-col col-7 class="t_left text_overflow">{{r1.DEPS_DATE}} | {{commonCode13 | commonfilter: r1.VENDOR : 'commonCode13'}}</ion-col>
+          <ion-col col-2.5 class="t_left t_black">입고금액</ion-col>
+          <ion-col col-4.5 class="t_right t_bold">{{'' | commonfilter : r1.DEPS_FAMT: 'money_filter'}}<span *ngIf="r1.DEPS_FAMT">원</span></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
@@ -86,24 +88,12 @@
       </ion-grid>
     </ion-card>
   </div>
-<!--  <ion-grid *ngIf="Tab2">
-    <ion-row>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>입고금액</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r2 of result2; let i=index" (click) = "openDetail('tab2', r2)">
-      <ion-col col-2>{{r2.PDTNO}}</ion-col>
-      <ion-col col-2>{{r2.PJT_NM}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r2.QTY: 'money_filter'}}</ion-col>
-    </ion-row>
-  </ion-grid>-->
 
   <div *ngIf="Tab3">
     <ion-card *ngFor="let r3 of result3; let i=index" (click) = "openDetail('tab3', r3)" class="Card_Grid">
       <ion-grid>
         <ion-row>
-          <ion-col col-12 class="t_left">{{r3.BU_CD}}</ion-col>
+          <ion-col col-12 class="t_left">{{'' | commonfilter: r3.BU_CD: 'bucd_filter'}}</ion-col>
         </ion-row>
 
         <ion-row>
@@ -120,8 +110,33 @@
     </ion-card>
   </div>
 
+  <div *ngIf="Tab4">
+    <ion-card *ngFor="let r4 of result4; let i=index" (click) = "openDetail('tab4', r4)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 class="t_left t_bold text_overflow">{{r4.VENDOR}} | {{commonCode13 | commonfilter: r4.VENDOR : 'commonCode13'}}</ion-col>
+        </ion-row>
 
-<div *ngIf="Tab4">
+        <ion-row>
+          <ion-col col-6 class="t_left">{{r4.PDTNO}}</ion-col>
+          <ion-col col-2.5 class="t_left t_gray">입고일자</ion-col>
+          <ion-col col-4.5 class="t_right t_gray">{{r4.DEPS_DATE}}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6 class="t_left text_overflow">{{r4.ITEM}} | {{r4.NORM1}} | {{commonCode1 | commonfilter: r4.STOCK_UM : 'commonCode1'}}</ion-col>
+          <ion-col col-2.5 class="t_left t_gray">입고의뢰일자</ion-col>
+          <ion-col col-4.5 class="t_right t_gray">{{r4.DELV_DATE}}</ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
+</ion-content>
+
+<!--<div *ngIf="Tab4">
   <ion-card *ngFor="let r4 of result4; let i=index" (click) = "openDetail('tab4', r4)" class="Card_Grid">
     <ion-grid>
       <ion-row>
@@ -130,7 +145,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col col-6 class="t_left t_bold"><div class="text_overflow">{{r4.VENDOR}} | {{commonCode13 | commonfilter: r4.VENDOR : 'commonCode13'}}</div></ion-col>
+        <ion-col col-6 class="t_left t_bold text_overflow">{{r4.VENDOR}} | {{commonCode13 | commonfilter: r4.VENDOR : 'commonCode13'}}</ion-col>
         <ion-col col-6 class="t_right">{{r4.DEPS_DATE}}</ion-col>
       </ion-row>
 
@@ -140,10 +155,8 @@
 
     </ion-grid>
   </ion-card>
-</div>
+</div>-->
 
-  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
-</ion-content>
 
 
 <!--

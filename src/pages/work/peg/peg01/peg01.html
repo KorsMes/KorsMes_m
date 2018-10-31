@@ -40,11 +40,13 @@
     <ion-grid>
       <ion-row>
         <ion-col col-6 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
-        <ion-col col-6 class="t_right">재고수량 {{r.STOCK_QTY}}</ion-col>
+        <ion-col col-1.5 class="t_left t_black">재고수량</ion-col>
+        <ion-col col-4.5 class="t_right t_black">{{r.STOCK_QTY}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-6 class="t_left">{{r.NORM1}}</ion-col>
-        <ion-col col-6 class="t_right t_bold">{{'' | commonfilter: r.BASIC_AMT: 'money_filter'}}<span *ngIf="r.BASIC_AMT">원</span></ion-col>
+        <ion-col col-1.5 class="t_left t_black">기초금액</ion-col>
+        <ion-col col-4.5 class="t_right t_bold">{{'' | commonfilter: r.BASIC_AMT: 'money_filter'}}<span *ngIf="r.BASIC_AMT">원</span></ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

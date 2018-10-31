@@ -17,7 +17,7 @@ import { MainTemplatePage } from '../main-template/main-template';
 export class HomePage {
   public companyInfo; //companyProvider data
 
-  public selCompanyCode; //회사코드 (select)
+  public selCompanyCode=""; //회사코드 (select)
 
 
   /* 조회조건 */

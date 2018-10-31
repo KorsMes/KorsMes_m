@@ -529,6 +529,11 @@ export class CommonfilterPipe implements PipeTransform {
       re = Math.round(value2 * number_filter_argu) / number_filter_argu + "";
     }
 
+    //사업자등록번호 (3-2-5)
+    if(code === "bucd_filter"){
+      re = value.substring(0,3) + "-" + value.substring(3,5) + "-" + value.substring(5,10);
+    }
+
     return re;
   }
 }

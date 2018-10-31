@@ -20,6 +20,12 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 export class Phb04detailPage {
   public obj: any = {};
 
+  /* 통합코드 */
+  public commonCode12; //검사자
+  public commonCode31; //조치구분
+  public commonCode32; //검사결과
+  public commonCode33; //불량항목
+  public commonCode34; //검사종류
   public commonCode35; //검사구분
   public commonCode36; //공정
 
@@ -30,6 +36,21 @@ export class Phb04detailPage {
                 public alertProvider: AlertProvider,
                 public apiProvider: ApiProvider) {
                   this.obj = navParams.get('obj');
+
+                  //검사자 가져오기
+                  this.commonCode12 = this.commoncodeProvider.getCommonCode12();
+
+                  //조치구분 가져오기
+                  this.commonCode31 = this.commoncodeProvider.getCommonCode31();
+
+                  //검사결과 가져오기
+                  this.commonCode32 = this.commoncodeProvider.getCommonCode32();
+
+                  //불량항목 가져오기
+                  this.commonCode33 = this.commoncodeProvider.getCommonCode33();
+
+                  //검사종류 가져오기
+                  this.commonCode34 = this.commoncodeProvider.getCommonCode34();
 
                   //검사구분 가져오기
                   this.commonCode35 = this.commoncodeProvider.getCommonCode35();

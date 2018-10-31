@@ -1,48 +1,86 @@
-<!--
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Kors - Mes
-    </ion-title>
-  </ion-navbar>
-</ion-header>
--->
+  <div class="login_logo">
+    <img src="../../../assets/imgs/main_img.png">
+  </div>
 
-<ion-content style="margin-top: 50%;">
+  <div class="home_input">
+    <select [(ngModel)] = "selCompanyCode" style="background-color: white;" interface="popover">
+      <option value="">&nbsp;&nbsp;회사명</option>
+      <option value="{{c.company_code}}" *ngFor = "let c of companyInfo">{{c.company_name}}</option>
+    </select>
+
+    <input type="text" placeholder=" &nbsp;&nbsp;아이디" [(ngModel)] = "user_id">
+    <input type="password" placeholder=" &nbsp;&nbsp;비밀번호" [(ngModel)] = "user_pswd">
+
+
+    <ion-item>
+      <ion-label>로그인유지</ion-label>
+      <ion-checkbox color="primary" checked="1" [(ngModel)] = "retain_flag"></ion-checkbox>
+    </ion-item>
+  </div>
+
+
+  <div class="btn_div">
+    <button ion-button (click) = "doLogin()" class="search_btn">로 그 인</button>
+  </div>
+
+
+
+</ion-header>
+<!--<ion-content style="margin-top: 30%;">-->
+    <!--<img src="../../../assets/imgs/main_img.png" class="login_top_img">
+  <br>
+  <br>
+  <br>
   <ion-list>
     <ion-row>
-      <ion-col col-12>
-        <ion-select placeholder="회사코드" [(ngModel)]="selCompanyCode" interface="popover">
-          <ion-option value="{{c.company_code}}" *ngFor = "let c of companyInfo">{{c.company_name}}</ion-option>
-        </ion-select>
+      <ion-col col-3>
+        <div class="search_nm">회사코드</div>
       </ion-col>
+
+        <select [(ngModel)] = "selCompanyCode" class="search_val" style="background-color: white;" interface="popover">
+          <option value="{{c.company_code}}" *ngFor = "let c of companyInfo">{{c.company_name}}</option>
+        </select>
     </ion-row>
 
     <ion-item>
-      <ion-input placeholder="아이디" [(ngModel)] = "user_id"></ion-input>
+      <ion-label floating>아이디</ion-label>
+      <ion-input type="text" [(ngModel)] = "user_id"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input placeholder="비밀번호" type="password" [(ngModel)] = "user_pswd"></ion-input>
+      <ion-label floating>비밀번호</ion-label>
+      <ion-input type="password" [(ngModel)] = "user_pswd"></ion-input>
     </ion-item>
 
   </ion-list>
 
-  <button ion-button full (click) = "doLogin()" class="search_btn">로 그 인</button>
+  <div class="btn_div">
+    <button ion-button (click) = "doLogin()" class="search_btn">로 그 인</button>
+  </div>
+
   <ion-item>
     <ion-label>로그인유지</ion-label>
     <ion-checkbox color="primary" checked="1" [(ngModel)] = "retain_flag"></ion-checkbox>
-  </ion-item>
-
-</ion-content>
-
+  </ion-item>-->
+<!--</ion-content>-->
 
 
-<!--<ion-row>
+
+<!--<ion-item>
+  <ion-input placeholder="아이디" [(ngModel)] = "user_id"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-input placeholder="비밀번호" type="password" [(ngModel)] = "user_pswd"></ion-input>
+</ion-item>-->
+
+
+<!--
+<ion-row>
   <ion-col col-12>
-    <ion-select placeholder="회사코드" [(ngModel)]="selCompanyCode" interface="popover">
+    <ion-select placeholder="회사코드" [(ngModel)] = "retain_flag">
       <ion-option value="{{c.company_code}}" *ngFor = "let c of companyInfo">{{c.company_name}}</ion-option>
     </ion-select>
   </ion-col>
 </ion-row>-->
-

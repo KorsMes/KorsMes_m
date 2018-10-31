@@ -41,9 +41,9 @@
 
   <ion-grid class="Card_Grid">
     <ion-row *ngIf="gubun_a">
-      <ion-col col-12 class="pdd02_grid">1. 당월 자재 투입집계</ion-col>
+      <ion-col col-12 class="pdd02_title">1. 당월 자재 투입집계</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" style="background-color: white;">
+    <ion-row *ngFor="let r of result; let i=index" class="pdd02_content">
       <ion-col col-6 *ngIf="r.GUBUN_GR === 'A'" class="t_left t_bold text_overflow">&nbsp;&nbsp;{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'A'" class="t_center">발주</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'A'" class="t_right">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT">원</span></ion-col>
@@ -58,9 +58,9 @@
     </ion-row>
     <!--{{r.CUR_YYMM_TO | commonfilter : r.GUBUN: 'pdd02_month': r.GUBUN_GR}}-->
     <ion-row *ngIf="gubun_b">
-      <ion-col col-12 class="pdd02_grid">2. 누적 자재 투입 집계</ion-col>
+      <ion-col col-12 class="pdd02_title">2. 누적 자재 투입 집계</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" style="background-color: white;">
+    <ion-row *ngFor="let r of result; let i=index" class="pdd02_content">
       <ion-col col-6 *ngIf="r.GUBUN_GR === 'B'" class="t_left t_bold text_overflow">&nbsp;&nbsp;{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'B'" class="t_center">발주</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'B'" class="t_right">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT">원</span></ion-col>
@@ -69,15 +69,15 @@
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'B'" class="t_center">할당</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'B'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.ALLO_AMT">원</span></ion-col>
 
-      <ion-col col-6 *ngIf="r.GUBUN_GR === 'B'" class="t_left" style="border-bottom: 1px solid gray;"></ion-col>
-      <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'B'" class="t_center" style="border-bottom: 1px solid gray;">합계</ion-col>
-      <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'B'" class="t_right" style="border-bottom: 1px solid gray;">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
+      <ion-col col-6 *ngIf="r.GUBUN_GR === 'B'" class="t_left Card_Grid2"></ion-col>
+      <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'B'" class="t_center Card_Grid2">합계</ion-col>
+      <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'B'" class="t_right Card_Grid2">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
     </ion-row>
 
     <ion-row *ngIf="gubun_c">
-      <ion-col col-12 class="pdd02_grid">3. Fail 발생 집계</ion-col>
+      <ion-col col-12 class="pdd02_title">3. Fail 발생 집계</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" style="background-color: white;">
+    <ion-row *ngFor="let r of result; let i=index" class="pdd02_content">
       <ion-col col-6 *ngIf="r.GUBUN_GR === 'C'" class="t_left t_bold text_overflow">&nbsp;&nbsp;{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'C'" class="t_center">발주</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'C'" class="t_right">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT">원</span></ion-col>
@@ -86,15 +86,15 @@
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'C'" class="t_center">할당</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'C'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.ALLO_AMT">원</span></ion-col>
 
-      <ion-col col-6 *ngIf="r.GUBUN_GR === 'C'" class="t_left" style="border-bottom: 1px solid gray;"></ion-col>
-      <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'C'" class="t_center" style="border-bottom: 1px solid gray;">합계</ion-col>
-      <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'C'" class="t_right" style="border-bottom: 1px solid gray;">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
+      <ion-col col-6 *ngIf="r.GUBUN_GR === 'C'" class="t_left Card_Grid2"></ion-col>
+      <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'C'" class="t_center Card_Grid2">합계</ion-col>
+      <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'C'" class="t_right Card_Grid2">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
     </ion-row>
 
     <ion-row *ngIf="gubun_d">
-      <ion-col col-12 class="pdd02_grid">4. 수주기준 투입비용 집계</ion-col>
+      <ion-col col-12 class="pdd02_title">4. 수주기준 투입비용 집계</ion-col>
     </ion-row>
-    <ion-row *ngFor="let r of result; let i=index" style="background-color: white;">
+    <ion-row *ngFor="let r of result; let i=index" class="pdd02_content">
       <ion-col col-6 *ngIf="r.GUBUN_GR === 'D'" class="t_left t_bold text_overflow">&nbsp;&nbsp;{{''| commonfilter : r.GUBUN: 'pdd02_gubun'}}</ion-col>
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'D'" class="t_center">발주</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'D'" class="t_right">{{'' | commonfilter : r.PUR_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT">원</span></ion-col>
@@ -103,21 +103,30 @@
       <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'D'" class="t_center">할당</ion-col>
       <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'D'">{{'' | commonfilter : r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.ALLO_AMT">원</span></ion-col>
 
-      <ion-col col-6 *ngIf="r.GUBUN_GR === 'D'" class="t_left" style="border-bottom: 1px solid gray;"></ion-col>
-      <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'D'" class="t_center" style="border-bottom: 1px solid gray;">합계</ion-col>
-      <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'D'" class="t_right" style="border-bottom: 1px solid gray;">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
+      <ion-col col-6 *ngIf="r.GUBUN_GR === 'D'" class="t_left Card_Grid2"></ion-col>
+      <ion-col col-1.5 *ngIf="r.GUBUN_GR === 'D'" class="t_center Card_Grid2">합계</ion-col>
+      <ion-col col-4.5 *ngIf="r.GUBUN_GR === 'D'" class="t_right Card_Grid2">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let r of result; let i=index" style="background-color: white;">
-      <ion-col col-6 class="t_left t_bold">합계금액</ion-col>
-      <ion-col col-6 class="t_right">{{'' | commonfilter : r.PUR_AMT + r.ALLO_AMT : 'money_filter'}}<span *ngIf="r.PUR_AMT + r.ALLO_AMT">원</span></ion-col>
+    <ion-row *ngIf="total_amt">
+      <ion-col col-6 class="t_left t_bold pdd02_title">합계금액</ion-col>
+      <ion-col col-6 class="t_right pdd02_title">{{'' | commonfilter : total_amt : 'money_filter'}}<span *ngIf="total_amt">원</span></ion-col>
     </ion-row>
 
+    <br>
 
-    <ion-row *ngFor="let r2 of result2; let i=index" >
-      <ion-col col-12>{{r2.PUR_YYMM_FR}}</ion-col>
-      <ion-col col-12>{{r2.PUR_AMT}}</ion-col>
-      <ion-col col-12>{{r2.PUR_AMT2}}</ion-col>
+    <ion-row *ngFor="let r2 of result2; let i=index">
+      <ion-col col-12 class="t_left t_bold pdd02_title">Stock Parts발주건({{r2.YYMMDD_FR}}년도)</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let r2 of result2; let i=index" class="pdd02_content Card_Grid2">
+      <ion-col col-6 class="t_left t_bold">당월</ion-col>
+      <ion-col col-6 class="t_right">{{'' | commonfilter : r2.PUR_AMT : 'money_filter'}}<span *ngIf="r2.PUR_AMT">원</span></ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let r2 of result2; let i=index" class="pdd02_content Card_Grid2">
+      <ion-col col-6 class="t_left t_bold">누적</ion-col>
+      <ion-col col-6 class="t_right">{{'' | commonfilter : r2.PUR_AMT2 : 'money_filter'}}<span *ngIf="r2.PUR_AMT2">원</span></ion-col>
     </ion-row>
   </ion-grid>
 

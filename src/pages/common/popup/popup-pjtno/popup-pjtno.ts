@@ -28,7 +28,7 @@ export class PopupPjtnoPage {
   public date = new Date();
 
   /*공통코드*/
-  public commonCode30; //견적상태
+  public commonCode10; //견적상태
 
   //조회조건
   public g_user;
@@ -77,7 +77,7 @@ export class PopupPjtnoPage {
                 });
 
                 //견적상태 가져오기
-                this.commonCode30 = this.commoncodeProvider.getCommonCode30();
+                this.commonCode10 = this.commoncodeProvider.getCommonCode10();
 
   }
 

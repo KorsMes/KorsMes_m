@@ -15,99 +15,37 @@
   <ion-grid class="detail_grid">
 
     <ion-row>
-      <ion-col col-6>프로젝트 번호</ion-col>
-      <ion-col col-6>발주번호</ion-col>
+      <ion-col col-12>업체명</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6>{{obj.PDTNO}}</ion-col>
-      <ion-col col-6>{{obj.PUR_NO}}</ion-col>
+      <ion-col col-12>{{obj.BY_NM}}</ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-12>프로젝트명</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{obj.PJTNO_NM}}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6>품목코드</ion-col>
-      <ion-col col-6>품목명칭</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{obj.ITEM}}</ion-col>
-      <ion-col col-6>{{obj.ITEM_NAME}}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6>발주일자</ion-col>
       <ion-col col-6>발주수량</ion-col>
+      <ion-col col-6>재고사용금액</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6>{{obj.PUR_DATE}}</ion-col>
       <ion-col col-6>{{obj.PUR_QTY}}</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.ALLO_AMT: 'money_filter'}}<span *ngIf="obj.ALLO_AMT">원</span></ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-6>단위</ion-col>
-      <ion-col col-6>조달구분</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{commonCode1 | commonfilter: obj.UOM: 'commonCode1'}}</ion-col>
-      <ion-col col-6>{{commonCode2 | commonfilter: obj.SUPL_CLASS: 'commonCode2'}}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6>순번</ion-col>
-      <ion-col col-6>납기일자</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{obj.PUR_SEQ}}</ion-col>
-      <ion-col col-6>{{obj.DELV_DATE}}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6>NEGO단가</ion-col>
+      <ion-col col-6>원발주금액</ion-col>
       <ion-col col-6>NEGO금액</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6>{{'' | commonfilter : obj.PUR_PRICE: 'money_filter'}}원</ion-col>
-      <ion-col col-6>{{'' | commonfilter : obj.PUR_AMT: 'money_filter'}}원</ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.NEGO_AMT: 'money_filter'}}<span *ngIf="obj.NEGO_AMT">원</span></ion-col>
+      <ion-col col-6>{{'' | commonfilter : obj.PUR_AMT: 'money_filter'}}<span *ngIf="obj.PUR_AMT">원</span></ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-6>규격</ion-col>
-      <ion-col col-6>차수</ion-col>
+      <ion-col col-12>비고</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-6>{{obj.NORM}}</ion-col>
-      <ion-col col-6>{{obj.DRSEQ}}</ion-col>
+      <ion-col col-12></ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col col-12>변경내역</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{obj.DRDSC}}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6>할당수량</ion-col>
-      <ion-col col-6>발주단가</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{obj.ALLO_QTY}}</ion-col>
-      <ion-col col-6>{{'' | commonfilter : obj.NEGO_PRICE: 'money_filter'}}원</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6>발주형태</ion-col>
-      <ion-col col-6>지불방법</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{commonCode20 | commonfilter: obj.PUR_TYPE: 'commonCode20'}}</ion-col>
-      <ion-col col-6>{{commonCode21 | commonfilter: obj.PAY_METHOD: 'commonCode21'}}</ion-col>
-    </ion-row>
 
   </ion-grid>
 </ion-content>

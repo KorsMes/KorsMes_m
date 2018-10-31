@@ -30,7 +30,7 @@ export class PopupItnbr2Page {
 
   public item_cd; //품번
   public jijic; //형명
-  public item_nm; //품명
+  public itnbr_nm; //품명
   public itcls_pro; //물품분류
   public spec1; //규격
   public jejos; //제조회사

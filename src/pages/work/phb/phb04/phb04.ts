@@ -51,7 +51,7 @@ export class PHB04 {
   public date1 = new Date().getUTCFullYear()+"-"+"01-01"; //검사일자 from
   public date2 = new Date().toISOString(); //검사일자 to
 
-  public task_cd; //공정코드
+  public task_cd = ""; //공정코드
   public task_nm; //공정명
 
   public pjtno; //불합격 PJT번호

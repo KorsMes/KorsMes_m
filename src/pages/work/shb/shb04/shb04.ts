@@ -122,6 +122,7 @@ export class SHB04 {
 
                 //입금구분 가져오기
                 this.commonCode18 = this.commoncodeProvider.getCommonCode18();
+
   }
 
   ionViewDidLoad() {

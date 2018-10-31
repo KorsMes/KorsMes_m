@@ -56,19 +56,24 @@
     <ion-card *ngFor="let r1 of result1" (click) = "openDetail('tab1', r1)" class="Card_Grid">
       <ion-grid>
         <ion-row>
-          <ion-col class="t_left">설계차수 {{r1.DRSEQ}}</ion-col>
-          <ion-col class="t_right">설계 {{r1.PL_QTY}}</ion-col>
+          <ion-col col-9 class="t_left">설계차수 {{r1.DRSEQ}}</ion-col>
+          <ion-col col-1.5 class="t_left t_black">설계</ion-col>
+          <ion-col col-1.5 class="t_right">{{r1.PL_QTY}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col class="t_left t_bold">{{r1.PJTNO}}</ion-col>
-          <ion-col class="t_right">발주 {{r1.PUR_QTY}}</ion-col>
+          <ion-col col-9 class="t_left t_bold">{{r1.PJTNO}}</ion-col>
+          <ion-col col-1.5 class="t_left t_black">발주</ion-col>
+          <ion-col col-1.5 class="t_right t_black">{{r1.PUR_QTY}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col class="t_left">{{r1.ITEM_NM}}</ion-col>
-          <ion-col class="t_right">입고 {{r1.DEPS_QTY}}</ion-col>
+          <ion-col col-9 class="t_left">{{r1.ITEM_NM}}</ion-col>
+          <ion-col col-1.5 class="t_left t_black">입고</ion-col>
+          <ion-col col-1.5 class="t_right t_black">{{r1.DEPS_QTY}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col class="t_right">출고 {{r1.OUT_QTY}}</ion-col>
+          <ion-col col-9 class="t_right"></ion-col>
+          <ion-col col-1.5 class="t_left t_black">출고</ion-col>
+          <ion-col col-1.5 class="t_right t_black">{{r1.OUT_QTY}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>

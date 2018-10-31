@@ -59,18 +59,107 @@
           <ion-col col-12 class="t_left">{{r1.SPEC1}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6 class="t_left">입고수량 {{r1.DEPS_QTY}}</ion-col>
-          <ion-col col-6 class="t_right">출고수량 {{r1.OUT_QTY}}</ion-col>
+          <ion-col col-2.5 class="t_left t_black">입고수량</ion-col>
+          <ion-col col-3 class="t_left t_black">{{r1.DEPS_QTY}}</ion-col>
+          <ion-col col-2.5 class="t_right t_black">입고금액</ion-col>
+          <ion-col col-3 class="t_right">{{'' | commonfilter : r1.DEPS_AMT : 'money_filter'}}<span *ngIf="r1.DEPS_AMT">원</span></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6 class="t_left">입고금액 {{'' | commonfilter : r1.DEPS_AMT : 'money_filter'}}<span *ngIf="r1.DEPS_AMT"></span></ion-col>
-          <ion-col col-6 class="t_right">출고금액 {{'' | commonfilter : r1.OUT_AMT : 'money_filter'}}<span *ngIf="r1.OUT_AMT"></span></ion-col>
+          <ion-col col-2.5 class="t_left t_black">출고수량</ion-col>
+          <ion-col col-3 class="t_left t_black">{{r1.OUT_QTY}}</ion-col>
+          <ion-col col-2.5 class="t_right t_black">출고금액</ion-col>
+          <ion-col col-3 class="t_right">{{'' | commonfilter : r1.OUT_AMT : 'money_filter'}}<span *ngIf="r1.OUT_AMT">원</span></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
   </div>
 
   <div *ngIf="Tab2">
+    <ion-card *ngFor="let r2 of result2; let i=index" (click) = "openDetail('tab2', r2)">
+      <ion-grid>
+        <ion-row class="Card_Grid">
+          <ion-col col-6 class="t_left t_black">기초금액</ion-col>
+          <ion-col col-6 class="t_right ">{{'' | commonfilter : r2.BASIC_AMT : 'money_filter'}}<span *ngIf="r2.BASIC_AMT">원</span></ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5 class="t_left"></ion-col>
+          <ion-col col-1.5 class="t_right t_black">금액</ion-col>
+          <ion-col col-5.5 class="t_right t_black">{{'' | commonfilter : r2.DEPS_AMT : 'money_filter'}}<span *ngIf="r2.DEPS_AMT">원</span></ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-5 class="t_left t_black">입고금액</ion-col>
+          <ion-col col-1.5 class="t_right t_black">VAT</ion-col>
+          <ion-col col-5.5 class="t_right t_black">{{'' | commonfilter : r2.VAT : 'money_filter'}}<span *ngIf="r2.VAT">원</span></ion-col>
+        </ion-row>
+
+        <ion-row class="Card_Grid2">
+          <ion-col col-5 class="t_left"></ion-col>
+          <ion-col col-1.5 class="t_right t_black">합계</ion-col>
+          <ion-col col-5.5 class="t_right t_black">{{'' | commonfilter : (r2.DEPS_AMT + r2.VAT) : 'money_filter'}}<span *ngIf="r2.DEPS_AMT + r2.VAT">원</span></ion-col>
+        </ion-row>
+
+        <ion-row class="Card_Grid2">
+          <ion-col class="t_left t_black">출고금액</ion-col>
+          <ion-col class="t_right t_black">{{'' | commonfilter : r2.OUT_AMT : 'money_filter'}}<span *ngIf="r2.OUT_AMT">원</span></ion-col>
+        </ion-row>
+
+        <ion-row class="Card_Grid2">
+          <ion-col class="t_left t_black">재고금액</ion-col>
+          <ion-col class="t_right t_black">{{'' | commonfilter : r2.DEPS_AMT - r2.OUT_AMT : 'money_filter'}}<span *ngIf="r2.DEPS_AMT - r2.OUT_AMT">원</span></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <div *ngIf="Tab3">
+    <ion-card *ngFor="let r3 of result3" (click) = "openDetail('tab3', r3)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="t_left t_bold text_overflow" col-6>{{r3.BY_NM}}</ion-col>
+          <ion-col class="t_right" col-3>입고금액</ion-col>
+          <ion-col class="t_right" col-3>{{'' | commonfilter : r3.TOT_1 : 'money_filter'}}<span *ngIf="r3.TOT_1">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="t_left" col-6>{{'' | commonfilter : r3.BU_CD : 'bucd_filter'}}</ion-col>
+          <ion-col class="t_right" col-3>VAT</ion-col>
+          <ion-col class="t_right" col-3>{{'' | commonfilter : r3.TOT_1_R : 'money_filter'}}<span *ngIf="r3.TOT_1_R">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6></ion-col>
+          <ion-col class="t_right" col-3>합계</ion-col>
+          <ion-col class="t_right" col-3>{{'' | commonfilter : r3.TOT_1 + r3.TOT_1_R : 'money_filter'}}<span *ngIf="r3.TOT_1 + r3.TOT_1_R">원</span></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <div *ngIf="Tab4">
+    <ion-card *ngFor="let r4 of result4" (click) = "openDetail('tab4', r4)" class="Card_Grid">
+      <ion-grid>
+        <ion-row>
+          <ion-col class="t_left t_bold text_overflow" col-6>{{r4.BY_NM}}</ion-col>
+          <ion-col class="t_right" col-3>입고금액</ion-col>
+          <ion-col class="t_right" col-3>{{'' | commonfilter : r4.TOT_1 + r4.TOT_2 : 'money_filter'}}<span *ngIf="r4.TOT_1 + r4.TOT_2">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="t_left" col-6>{{'' | commonfilter : r4.BU_CD : 'bucd_filter'}}</ion-col>
+          <ion-col class="t_right" col-3>VAT</ion-col>
+          <ion-col class="t_right" col-3>{{'' | commonfilter : r4.TOT_1_R : 'money_filter'}}<span *ngIf="r4.TOT_1_R">원</span></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6></ion-col>
+          <ion-col class="t_right" col-3>합계</ion-col>
+          <ion-col class="t_right" col-3>{{'' | commonfilter : r4.TOT_1 + r4.TOT_2 + r4.TOT_1_R : 'money_filter'}}<span *ngIf="r4.TOT_1 + r4.TOT_2 + r4.TOT_1_R">원</span></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
+
+ <!-- <div *ngIf="Tab2">
     <ion-grid *ngFor="let r2 of result2; let i=index" (click) = "openDetail('tab2', r2)">
       <ion-row class="Card_Grid">
         <ion-col col-6 class="t_left t_black">기초금액</ion-col>
@@ -105,84 +194,7 @@
         <ion-col class="t_right t_black">{{'' | commonfilter : r2.DEPS_AMT - r2.OUT_AMT : 'money_filter'}}<span *ngIf="r2.DEPS_AMT - r2.OUT_AMT">원</span></ion-col>
       </ion-row>
     </ion-grid>
-  </div>
-
-  <div *ngIf="Tab3">
-    <ion-card *ngFor="let r3 of result3" (click) = "openDetail('tab3', r3)" class="Card_Grid">
-      <ion-grid>
-        <ion-row>
-          <ion-col class="t_left t_bold">{{r3.SAA_BUYER_BY_NM}}</ion-col>
-          <ion-col class="t_letf">입고금액</ion-col>
-          <ion-col class="t_right">{{'' | commonfilter : r3.TOT_1 : 'money_filter'}}<span *ngIf="r3.TOT_1">원</span></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col class="t_left"></ion-col>
-          <ion-col class="t_letf">VAT</ion-col>
-          <ion-col class="t_right">{{'' | commonfilter : r3.TOT_1_R : 'money_filter'}}<span *ngIf="r3.TOT_1_R">원</span></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-          <ion-col class="t_letf">합계</ion-col>
-          <ion-col class="t_right">{{'' | commonfilter : r3.TOT_1 + r3.TOT_1_R : 'money_filter'}}<span *ngIf="r3.TOT_1 + r3.TOT_1_R">원</span></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-  </div>
-
-  <div *ngIf="Tab4">
-    <ion-card *ngFor="let r4 of result4" (click) = "openDetail('tab4', r4)" class="Card_Grid">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6 class="t_left t_bold">{{r4.SAA_BUYER_BY_NM}}</ion-col>
-          <ion-col col-6 class="t_right">입고금액 {{'' | commonfilter : r4.TOT_1 + r4.TOT_2 : 'money_filter'}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6 class="t_left" ></ion-col>
-          <ion-col col-6 class="t_right">VAT {{'' | commonfilter : r4.TOT_1_R : 'money_filter'}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6 class="t_left" >{{r4.SAA_BUYER_BU_CD}}</ion-col>
-          <ion-col col-6 class="t_left" class="t_right">합계 {{'' | commonfilter : r4.TOT_1 + r4.TOT_2 : 'money_filter'}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-  </div>
-
-  <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
-  <!--<ion-grid *ngIf="Tab1">
-    <ion-row>
-      <ion-col col-2>품번</ion-col>
-      <ion-col col-2>품명</ion-col>
-      <ion-col col-2>제조사</ion-col>
-      <ion-col col-2>이동평균단가</ion-col>
-      <ion-col col-2>이월수량</ion-col>
-      <ion-col col-2>입고수량</ion-col>
-      <ion-col col-2>출고수량</ion-col>
-      <ion-col col-2>재고수량</ion-col>
-      <ion-col col-2>재질/형명</ion-col>
-      <ion-col col-2>금액</ion-col>
-      <ion-col col-2>입고금액</ion-col>
-      <ion-col col-2>출고금액</ion-col>
-      <ion-col col-2>재고금액</ion-col>
-      <ion-col col-2>규격</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r1 of result1; let i=index" (click) = "openDetail('tab1', r1)">
-      <ion-col col-2>{{r1.ITEM}}</ion-col>
-      <ion-col col-2>{{r1.ITEM_NAME_K}}</ion-col>
-      <ion-col col-2>{{commonCode13 | commonfilter: r1.JEJOS : 'commonCode13'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : (r1.BASIC_AMT + r1.DEPS_AMT) / (r1.BASIC_QTY + r1.DEPS_QTY) : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{r1.BASIC_QTY}}</ion-col>
-      <ion-col col-2>{{r1.DEPS_QTY}}</ion-col>
-      <ion-col col-2>{{r1.OUT_QTY}}</ion-col>
-      <ion-col col-2>{{r1.STOCK_QTY}}</ion-col>
-      <ion-col col-2>{{r1.JIJIC}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r1.BASIC_AMT : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r1.DEPS_AMT : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r1.OUT_AMT : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{'' | commonfilter : r1.STOCK_AMT : 'money_filter'}}</ion-col>
-      <ion-col col-2>{{r1.SPEC1}}</ion-col>
-    </ion-row>
-  </ion-grid>-->
+  </div>-->
 
   <!--<ion-grid *ngIf="Tab2">
     <ion-row>

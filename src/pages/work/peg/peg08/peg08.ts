@@ -44,7 +44,7 @@ export class PEG08 {
   public m = Math.floor(new Date().getMonth()) + 1;
 
 
-  public yyyymm = new Date().getUTCFullYear(); //조회년월
+  public yyyymm = "";
   public yyyymm2 = new Date().toISOString(); //조회년월
 
   /* 조회결과 */
@@ -105,11 +105,10 @@ export class PEG08 {
                 //거래처 가져오기
                 this.commonCode13 = this.commoncodeProvider.getCommonCode13();
 
-                if(this.m < "10"){
-                  this.m = "0" + this.m;
+                if(this.m < 10){
+                  this.m = 0 + this.m;
                 }
-                console.log("qwefqwef : " + this.m);
-                this.yyyymm = this.yyyymm +"-"+ this.m + "-01"; //조회년월
+                this.yyyymm = new Date().getUTCFullYear() +"-"+ this.m + "-01"; //조회년월
   }
 
   ionViewDidLoad() {
@@ -119,7 +118,10 @@ export class PEG08 {
   //조회조건 전체 초기화
   condition_yn(yn){
     if(yn === ''){
-      this.yyyymm = new Date().toISOString();
+      if(this.m < 10){
+        this.m = 0 + this.m;
+      }
+      this.yyyymm = new Date().getUTCFullYear() +"-"+ this.m + "-01"; //조회년월
       this.yyyymm2 = new Date().toISOString();
     }
     this.searchCondition = yn;

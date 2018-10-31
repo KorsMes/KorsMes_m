@@ -43,6 +43,10 @@ export class PDD02 {
   public result;
   public result2;
 
+  public total_amt = 0; //합계금액
+  public SP_month = 0; // Stock Parts 발주건(조회년도) 당월
+  public SP_add = 0; // Stock Parts 발주건(조회년도) 누적
+
   /*보고내용 header*/
   public gubun_a; //당월 자재 투입 집계
   public gubun_b; //누적 자재 투입 집계
@@ -103,6 +107,10 @@ export class PDD02 {
     this.gubun_c = "";
     this.gubun_d = "";
 
+    this.total_amt = 0;
+    this.SP_month = 0;
+    this.SP_add = 0;
+
     /* 월말요약 보고서 헤더 조회 */
     let api_url1 = "/pdd/pdd02_list";
     let param1 = JSON.stringify({company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, plant_cd: this.plant_cd, yymm: this.yymm});
@@ -128,6 +136,11 @@ export class PDD02 {
           if(this.result[i].GUBUN_GR === "D"){
             this.gubun_d = "d";
           }
+
+          console.log("1 : " + Math.floor(this.total_amt));
+          console.log("2 : " + Math.floor(this.result[i].PUR_AMT));
+          console.log("3 : " + Math.floor(this.result[i].ALLO_AMT));
+          this.total_amt = Math.floor(this.total_amt) + Math.floor(Math.floor(this.result[i].PUR_AMT) + Math.floor(this.result[i].ALLO_AMT));
         }
       }
 

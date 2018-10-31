@@ -46,15 +46,18 @@
     <ion-grid>
       <ion-row>
         <ion-col col-7 class="t_left"><span class="pjt_status t_bold">{{commonCode27 | commonfilter : r.STEP_STATUS : 'commonCode27'}}</span> {{r.DEPS_DATE}}</ion-col>
-        <ion-col col-5 class="t_right">검사대기 {{r.IQC_DELAY}}</ion-col>
+        <ion-col col-3.5 class="t_right t_black">검사대기</ion-col>
+        <ion-col col-2.5 class="t_right t_black">{{r.IQC_DELAY}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-7 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
-        <ion-col col-5 class="t_right">입고대기 {{r.INC_DELAY}}</ion-col>
+        <ion-col col-3.5 class="t_right t_black">입고대기</ion-col>
+        <ion-col col-2.5 class="t_right t_black">{{r.INC_DELAY}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-7 class="t_left">{{r.NORM1}}</ion-col>
-        <ion-col col-5 class="t_right">입고수량 {{r.DEPS_QTY}}</ion-col>
+        <ion-col col-3.5 class="t_right t_black">입고수량</ion-col>
+        <ion-col col-2.5 class="t_right t_black">{{r.DEPS_QTY}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
