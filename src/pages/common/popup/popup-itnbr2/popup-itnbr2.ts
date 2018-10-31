@@ -110,14 +110,8 @@ export class PopupItnbr2Page {
     let api_url = "/common/popup/itnbr_list2";
     let param = JSON.stringify({
                                   company_cd: this.g_company[0].COMPANY,
-                                  item_cd: this.item_cd,
-                                  jijic: this.jijic,
-                                  item_nm: this.item_nm,
-                                  itcls_pro: this.itcls_pro,
+                                  item_nm: this.itnbr_nm,
                                   spec1: this.spec1,
-                                  jejos: this.jejos,
-                                  itcls_cd: this.itcls_cd,
-                                  mccod_cd: this.mccod_cd,
                                   itemtype_cd: this.itemtype_cd,
                                   c_code: this.g_user.c_code,
                                   page: this.page
