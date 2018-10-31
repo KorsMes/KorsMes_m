@@ -41,7 +41,10 @@ export class PEG08 {
 
   public plant_cd;//공장코드
 
-  public yyyymm = new Date().toISOString(); //조회년월
+  public m = Math.floor(new Date().getMonth()) + 1;
+
+
+  public yyyymm = new Date().getUTCFullYear(); //조회년월
   public yyyymm2 = new Date().toISOString(); //조회년월
 
   /* 조회결과 */
@@ -101,6 +104,12 @@ export class PEG08 {
 
                 //거래처 가져오기
                 this.commonCode13 = this.commoncodeProvider.getCommonCode13();
+
+                if(this.m < "10"){
+                  this.m = "0" + this.m;
+                }
+                console.log("qwefqwef : " + this.m);
+                this.yyyymm = this.yyyymm +"-"+ this.m + "-01"; //조회년월
   }
 
   ionViewDidLoad() {
