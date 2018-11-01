@@ -22,6 +22,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 export class PHA03 {
   @ViewChild(Content) content: Content;
 
+  public commonCode13; //업체명
+
   /* 프로그램 버튼 권한 */
   public acc_btn_add;
   public acc_btn_save;
@@ -79,6 +81,9 @@ export class PHA03 {
                 //공장코드 가져오기
                 this.g_plant = this.commoncodeProvider.getPlantInfo();
                 this.plant_cd = this.g_plant[0].PLANT;
+
+                //거래처 가져오기
+                this.commonCode13 = this.commoncodeProvider.getCommonCode13();
   }
 
   ionViewDidLoad() {

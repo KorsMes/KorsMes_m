@@ -24,6 +24,7 @@ export class Pdb13detail1Page {
   public commonCode2; //조달구분
   public commonCode20; //발주형태
   public commonCode21; //지불방법
+  public commonCode13; //업체명
 
   constructor(
                 public navCtrl: NavController,
@@ -41,6 +42,8 @@ export class Pdb13detail1Page {
                 this.commonCode20 = this.commoncodeProvider.getCommonCode20();
                 //지불방법 가져오기
                 this.commonCode21 = this.commoncodeProvider.getCommonCode21();
+                //업체명 가져오기
+                this.commonCode13 = this.commoncodeProvider.getCommonCode13();
 
   }
 

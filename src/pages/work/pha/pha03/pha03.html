@@ -44,27 +44,27 @@
     <ion-grid>
 
       <ion-row>
-        <ion-col col-5 class="t_left"></ion-col>
+        <ion-col col-8 class="t_left text_overflow">{{r.NAME}}</ion-col>
         <ion-col col-1.5 class="t_right t_black">의뢰</ion-col>
-        <ion-col col-5.5 class="t_right t_black">{{r.DELV_QTY}}</ion-col>
+        <ion-col col-2.5 class="t_center t_black">{{r.DELV_QTY}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-5 class="t_left t_bold">{{r.ITEM}}</ion-col>
+        <ion-col col-8 class="t_left t_bold text_overflow">{{r.INSP_DATE}} | {{commonCode13 | commonfilter: r.VENDOR_NAME: 'commonCode13'}}</ion-col>
         <ion-col col-1.5 class="t_right t_black">검사</ion-col>
-        <ion-col col-5.5 class="t_right t_black">{{r.INSP_QTY}}</ion-col>
+        <ion-col col-2.5 class="t_center t_black">{{r.INSP_QTY}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-5 class="t_left"></ion-col>
+        <ion-col col-8 class="t_left"></ion-col>
         <ion-col col-1.5 class="t_right t_black">합격</ion-col>
-        <ion-col col-5.5 class="t_right t_black">{{r.STOCK}}</ion-col>
+        <ion-col col-2.5 class="t_center t_black">{{r.IQC_QTY}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-5 class="t_left">{{r.INSP_DATE}} | {{r.VENDOR_NAME}}</ion-col>
+        <ion-col col-8 class="t_left"></ion-col>
         <ion-col col-1.5 class="t_right t_black">불량</ion-col>
-        <ion-col col-5.5 class="t_right t_black">{{r.ERR_QTY}}</ion-col>
+        <ion-col col-2.5 class="t_center t_black">{{r.ERR_QTY}}</ion-col>
       </ion-row>
 
     </ion-grid>

@@ -20,6 +20,8 @@ import { CommoncodeProvider } from '../../../../providers/commoncode';
 export class Pdb13detail4Page {
   public obj: any = {};
 
+  public commonCode1; //단위
+
   constructor(
                 public navCtrl: NavController,
                 public navParams: NavParams,
@@ -27,6 +29,9 @@ export class Pdb13detail4Page {
                 public alertProvider: AlertProvider,
                 public apiProvider: ApiProvider) {
                   this.obj = navParams.get('obj');
+
+                //단위 가져오기
+                this.commonCode1 = this.commoncodeProvider.getCommonCode1();
 
   }
 
