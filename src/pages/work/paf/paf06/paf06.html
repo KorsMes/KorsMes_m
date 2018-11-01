@@ -61,7 +61,7 @@
         <ion-col col-12 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-9 class="t_left">{{r.NORM1}} | {{r.VENDOR_NAME}}</ion-col>
+        <ion-col col-9 class="t_left text_overflow">{{r.NORM1}} | {{r.VENDOR_NAME}}</ion-col>
         <ion-col col-3 class="t_right t_bold ">{{'' | commonfilter : r.LAST_PRICE : 'money_filter'}}<span *ngIf="r.LAST_PRICE">원</span></ion-col>
       </ion-row>
     </ion-grid>
