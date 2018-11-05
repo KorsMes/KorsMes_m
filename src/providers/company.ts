@@ -19,22 +19,12 @@ export class CompanyProvider {
     return  [
               {
                 company_name: '(주)한성더스트킹',
-                company_code: 'c00000001',
-                bi_width: '270px',
-                bi_height: '35px'
+                company_code: 'c00000003'
               },
               {
                 company_name: '(주)한빛테크놀로지',
-                company_code: 'c00000002',
-                bi_width: '228px',
-                bi_height: '60px'
-              },
-              {
-                company_name: '(주)한성더스트킹(운영)',
-                company_code: 'c00000003',
-                bi_width: '270px',
-                bi_height: '35px'
-              },
+                company_code: 'c00000004'
+              }
             ]
   }
 

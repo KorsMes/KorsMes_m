@@ -58,8 +58,6 @@ export class MainPage {
 
   /* title img */
   public company_logo;
-  public bi_width;
-  public bi_height;
 
   constructor(
                 public navController: NavController,
@@ -85,13 +83,6 @@ export class MainPage {
                 this.companyInfo = this.companyProvider.getCompanyInfo();
 
                 this.company_logo = "../../../assets/imgs/company_logo/"+this.g_user.c_code+".png";
-
-                for(let n in this.companyInfo){
-                  if(this.companyInfo[n].company_code === this.g_user.c_code){
-                    this.bi_width = this.companyInfo[n].bi_width;
-                    this.bi_height = this.companyInfo[n].bi_height;
-                  }
-                }
 
                 let api_url = "/sea/sea02_list";
                 let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
