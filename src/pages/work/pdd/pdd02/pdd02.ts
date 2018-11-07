@@ -135,12 +135,8 @@ export class PDD02 {
           }
           if(this.result[i].GUBUN_GR === "D"){
             this.gubun_d = "d";
+            this.total_amt = Math.floor(this.total_amt) + Math.floor(this.result[i].PUR_AMT);
           }
-
-          console.log("1 : " + Math.floor(this.total_amt));
-          console.log("2 : " + Math.floor(this.result[i].PUR_AMT));
-          console.log("3 : " + Math.floor(this.result[i].ALLO_AMT));
-          this.total_amt = Math.floor(this.total_amt) + Math.floor(Math.floor(this.result[i].PUR_AMT) + Math.floor(this.result[i].ALLO_AMT));
         }
       }
 
@@ -154,6 +150,15 @@ export class PDD02 {
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+      }
+
+      for(let v in data){
+        if(data[v].PUR_AMT === 0){
+          data[v].PUR_AMT = '0';
+        }
+        if(data[v].PUR_AMT2 === 0){
+          data[v].PUR_AMT2 = '0';
+        }
       }
       this.result2 = data;
     });
