@@ -45,7 +45,7 @@ export class PAF06 {
   public commonCode3; //통화
 
   /* 조회결과 */
-  public result;
+  public result = [];
 
   /* infiniteScroll */
   public page = 1;
@@ -59,7 +59,6 @@ export class PAF06 {
 
   text_color1: string = "white";
   text_color2: string = "#D5D5D5";
-
 
 
   constructor(
@@ -159,17 +158,19 @@ export class PAF06 {
       }else{
         this.searchCondition = "";
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Math.floor(Math.floor(v)+1)){
+          this.result.push(data[v]);
+        }
+      }
     });
   }
 
   //로딩 스크롤
   loadMore(infiniteScroll) {
     this.page++;
-    this.content.scrollTo('0', '80%', 100);
     setTimeout(() =>{
       this.retrive();
-
       infiniteScroll.complete();
     }, 1000);
   };

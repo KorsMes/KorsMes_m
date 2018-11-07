@@ -44,7 +44,7 @@ export class PopupItnbr2Page {
   public searchyn;
 
   //조회결과
-  public result;
+  public result = [];
 
   /* infiniteScroll */
   public page = 1;
@@ -103,34 +103,32 @@ export class PopupItnbr2Page {
 
 
   //조회
-  retrive(infiniteScroll){
-    if(infiniteScroll === undefined){
-      this.page = 1;
-    }
+  retrive(){
     let api_url = "/common/popup/itnbr_list2";
     let param = JSON.stringify({ company_cd: this.g_company[0].COMPANY, item_nm: this.itnbr_nm, spec1: this.spec1, itemtype_cd: this.itemtype_cd, c_code: this.g_user.c_code,page: this.page});
-                              this.apiProvider.data_api(api_url, param)
-                              .then(data => {
-                                if(Object.keys(data).length === 0){
-                                  this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
-                                }else{
-                                  this.searchyn = "";
-                                }
-                                this.result = data;
-                                if (infiniteScroll) {
-                                  infiniteScroll.complete();
-                                }
-                              });
-
-                              //회사코드 가져오기
-                              this.g_company = this.commoncodeProvider.getCompanyInfo();
+    this.apiProvider.data_api(api_url, param)
+    .then(data => {
+      if(Object.keys(data).length === 0){
+        this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
+      }else{
+        this.searchyn = "";
+      }
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Math.floor(Math.floor(v)+1)){
+          this.result.push(data[v]);
+        }
+      }
+    });
   }
 
   //로딩 스크롤
   loadMore(infiniteScroll) {
     this.page++;
-    this.retrive(infiniteScroll);
-  }
+    setTimeout(() =>{
+      this.retrive();
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
   //리스트 선택 시
   selectItem(selData){

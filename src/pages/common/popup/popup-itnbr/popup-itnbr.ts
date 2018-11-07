@@ -33,7 +33,7 @@ export class PopupItnbrPage {
   public iform = ""; // 품목형태
 
   //품목코드 조회 결과 (리스트)
-  public result;
+  public result = [];
 
   /* infiniteScroll */
   public page = 1;
@@ -78,16 +78,19 @@ export class PopupItnbrPage {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Math.floor(Math.floor(v)+1)){
+          this.result.push(data[v]);
+        }
+      }
     });
   }
 
   //로딩 스크롤
-  doInfinite(infiniteScroll) {
+  loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() =>{
       this.retrive();
-
       infiniteScroll.complete();
     }, 1000);
   };
