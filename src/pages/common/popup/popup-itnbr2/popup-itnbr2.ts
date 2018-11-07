@@ -108,14 +108,7 @@ export class PopupItnbr2Page {
       this.page = 1;
     }
     let api_url = "/common/popup/itnbr_list2";
-    let param = JSON.stringify({
-                                  company_cd: this.g_company[0].COMPANY,
-                                  item_nm: this.itnbr_nm,
-                                  spec1: this.spec1,
-                                  itemtype_cd: this.itemtype_cd,
-                                  c_code: this.g_user.c_code,
-                                  page: this.page
-                               });
+    let param = JSON.stringify({ company_cd: this.g_company[0].COMPANY, item_nm: this.itnbr_nm, spec1: this.spec1, itemtype_cd: this.itemtype_cd, c_code: this.g_user.c_code,page: this.page});
                               this.apiProvider.data_api(api_url, param)
                               .then(data => {
                                 if(Object.keys(data).length === 0){

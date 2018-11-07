@@ -148,10 +148,7 @@ export class PAF06 {
   }
 
   //조회
-  retrive(infiniteScroll){
-    if(infiniteScroll === undefined){
-      this.page = 1;
-    }
+  retrive(){
     let api_url = "/paf/paf06_list";
     let param = JSON.stringify({itnbr: this.itnbr_cd, by_cd: this.cust_cd, company_cd:this.g_company[0].COMPANY, c_code: this.g_user.c_code, page: this.page});
 
@@ -163,17 +160,19 @@ export class PAF06 {
         this.searchCondition = "";
       }
       this.result = data;
-      if (infiniteScroll) {
-        infiniteScroll.complete();
-      }
     });
   }
 
   //로딩 스크롤
   loadMore(infiniteScroll) {
     this.page++;
-    this.retrive(infiniteScroll);
-  }
+    this.content.scrollTo('0', '80%', 100);
+    setTimeout(() =>{
+      this.retrive();
+
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
   //상세팝업
   openDetail(obj: any){
