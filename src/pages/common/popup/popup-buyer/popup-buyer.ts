@@ -55,6 +55,7 @@ export class PopupBuyerPage {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
     let api_url = "/common/popup/buyer";
     let param = JSON.stringify({by_cd: this.by_cd, by_nm: this.by_nm, bu_cd: this.bu_cd, by_prsn: this.by_prsn, ven_user: this.ven_user, use_gubun: this.use_gubun, c_code: this.g_user.c_code, page: this.page});

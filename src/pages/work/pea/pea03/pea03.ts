@@ -204,6 +204,7 @@ export class PEA03 {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
     let api_url = "/pea/pea03_list";
     let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, cust_cd: this.cust_cd, pjtno: this.pjtno, item1: this.item1, item2: this.item2, drseq: this.drseq, delv_date1: this.delv_date1, delv_date2: this.delv_date2, c_code: this.g_user.c_code, page: this.page});

@@ -145,6 +145,7 @@ export class PDA12 {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
     let api_url = "/pda/pda12_list";
     let param = JSON.stringify({c_code: this.g_user.c_code, cmpy_cd: this.g_company[0].COMPANY, act_unit: this.plant_cd, sabn: this.user_id, drf_date_fr: this.date_fr, drf_date_to: this.date_to, status: this.status_cd, exp_remarks: this.exp_remarks, cust_nm: this.cust_nm, ac_cd: this.acnt_cd, page: this.page});

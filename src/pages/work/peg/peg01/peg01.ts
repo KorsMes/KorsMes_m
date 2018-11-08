@@ -110,6 +110,7 @@ export class PEG01 {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
     let api_url = "/peg/peg01_list";
     let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, yymm: this.yymm, c_code: this.g_user.c_code, page: this.page});

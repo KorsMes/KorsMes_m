@@ -148,6 +148,7 @@ export class PHA03 {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
 
     //필수 조회조건 체크

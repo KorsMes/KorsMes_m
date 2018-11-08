@@ -108,6 +108,7 @@ export class PopupItnbr2Page {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
     let api_url = "/common/popup/itnbr_list2";
     let param = JSON.stringify({ company_cd: this.g_company[0].COMPANY, item_nm: this.itnbr_nm, spec1: this.spec1, itemtype_cd: this.itemtype_cd, c_code: this.g_user.c_code,page: this.page});

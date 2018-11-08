@@ -69,6 +69,7 @@ export class PopupPjtno2Page {
   retrive(flag){
     if(flag === 'search'){
       this.page = 1;
+      this.result = [];
     }
     //필수 조회조건 체크
     if(this.pjtno_fr > this.pjtno_to){
