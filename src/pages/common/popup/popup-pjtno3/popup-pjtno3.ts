@@ -32,8 +32,12 @@ export class PopupPjtno3Page {
   public ym_fr = new Date().getUTCFullYear()+"-"+"01-01"; //견적의뢰일자fr
   public ym_to = new Date().toISOString(); //견적의뢰일자to
 
-  //조회결과
-  public result;
+  /* 조회결과 */
+  public result = [];
+
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   constructor(
                 public navCtrl: NavController,
@@ -61,7 +65,10 @@ export class PopupPjtno3Page {
 
 
   //조회
-  retrive(){
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+    }
     //필수 조회조건 체크
     if(this.ym_fr > this.ym_to){
       this.alertProvider.call_alert("조회", "Q.C 검사일, 시작년월보다 종료년월이 작습니다.", "확인");
@@ -69,15 +76,34 @@ export class PopupPjtno3Page {
     }
 
     let api_url = "/common/popup/pjtno_list3";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, ym_fr: this.ym_fr, ym_to: this.ym_to, c_code: this.g_user.c_code});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, ym_fr: this.ym_fr, ym_to: this.ym_to, c_code: this.g_user.c_code, page: this.page});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+          this.result.push(data[v]);
+        }
+      }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
   }
+
+  //로딩 스크롤
+    loadMore(infiniteScroll) {
+      this.page++;
+      setTimeout(() =>{
+        this.retrive('false');
+        infiniteScroll.complete();
+      }, 1000);
+    };
 
   //리스트 선택 시
   selectItem(selData){

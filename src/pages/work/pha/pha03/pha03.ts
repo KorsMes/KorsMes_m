@@ -48,7 +48,11 @@ export class PHA03 {
   public date2 = new Date().toISOString(); //검사일자 to
 
   /* 조회결과 */
-  public result;
+  public result = [];
+
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   constructor(  public navCtrl: NavController,
                 public navParams: NavParams,
@@ -141,7 +145,10 @@ export class PHA03 {
   }
 
  //조회
-  retrive(){
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+    }
 
     //필수 조회조건 체크
     if(this.date1 > this.date2){
@@ -149,16 +156,35 @@ export class PHA03 {
       return;
     }
     let api_url = "/pha/pha03_list";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, insp_date_fr: this.date1, insp_date_to: this.date2, item1: this.itnbr_cd2, item2: this.itnbr_cd3, c_code: this.g_user.c_code});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, insp_date_fr: this.date1, insp_date_to: this.date2, item1: this.itnbr_cd2, item2: this.itnbr_cd3, c_code: this.g_user.c_code, page: this.page});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }else{
-        this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+          this.result.push(data[v]);
+        }
+      }
+
+    if(Object.keys(data).length < Math.floor(this.page * 30)){
+      this.showInfiniteScroll = false;
+    }else{
+      this.showInfiniteScroll = true;
+    }
       }
     });
   }
+
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    setTimeout(() =>{
+      this.retrive('false');
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
   scrollToTop() {
     this.content.scrollToTop();

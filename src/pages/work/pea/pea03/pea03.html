@@ -33,7 +33,7 @@
   <br>
 
   <div class="btn_div">
-    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
+    <button ion-button (click) = "retrive('search')" *ngIf="acc_btn_retrive" class="search_btn search_btn_margin">조회</button>
   </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
@@ -50,7 +50,7 @@
         <ion-col col-2.5 class="t_right t_black">{{r.IQC_DELAY}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-7 class="t_left t_bold">{{r.ITEM_NAME_K}}</ion-col>
+        <ion-col col-7 class="t_left t_bold text_overflow">{{r.ITEM_NAME_K}}</ion-col>
         <ion-col col-3.5 class="t_right t_black">입고대기</ion-col>
         <ion-col col-2.5 class="t_right t_black">{{r.INC_DELAY}}</ion-col>
       </ion-row>
@@ -61,6 +61,9 @@
       </ion-row>
     </ion-grid>
   </ion-card>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="showInfiniteScroll">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
 

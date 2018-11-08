@@ -63,8 +63,11 @@ export class PDA12 {
   text_color2: string = "#D5D5D5";
 
   /* 조회결과 */
-  public result;
+  public result = [];
 
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   constructor(
               public navCtrl: NavController,
@@ -139,9 +142,12 @@ export class PDA12 {
   }
 
   //조회
-  retrive(){
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+    }
     let api_url = "/pda/pda12_list";
-    let param = JSON.stringify({c_code: this.g_user.c_code, cmpy_cd: this.g_company[0].COMPANY, act_unit: this.plant_cd, sabn: this.user_id, drf_date_fr: this.date_fr, drf_date_to: this.date_to, status: this.status_cd, exp_remarks: this.exp_remarks, cust_nm: this.cust_nm, ac_cd: this.acnt_cd});
+    let param = JSON.stringify({c_code: this.g_user.c_code, cmpy_cd: this.g_company[0].COMPANY, act_unit: this.plant_cd, sabn: this.user_id, drf_date_fr: this.date_fr, drf_date_to: this.date_to, status: this.status_cd, exp_remarks: this.exp_remarks, cust_nm: this.cust_nm, ac_cd: this.acnt_cd, page: this.page});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
@@ -150,9 +156,28 @@ export class PDA12 {
       }else{
         this.searchCondition = "";
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+          this.result.push(data[v]);
+        }
+      }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
   }
+
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    setTimeout(() =>{
+      this.retrive('false');
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
   //상세팝업
   openDetail(obj: any){

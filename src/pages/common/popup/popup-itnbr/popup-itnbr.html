@@ -54,7 +54,7 @@
 
 
   <div class="btn_div">
-   <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+   <button ion-button (click) = "retrive('search')" class="search_btn">조회</button>
   </div>
   <br>
   <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
@@ -71,7 +71,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="showInfiniteScroll">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

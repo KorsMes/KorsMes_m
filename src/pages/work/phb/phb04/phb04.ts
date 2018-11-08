@@ -60,7 +60,11 @@ export class PHB04 {
   public lot_no; //Lot_No
 
   /* 조회결과 */
-  public result;
+  public result = [];
+
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   /* 전체 필터 색상*/
   borderColor1: string = '#007087';
@@ -179,24 +183,44 @@ export class PHB04 {
     modal.present();
   }
 
- //조회
-  retrive(){
-
+  //조회
+  retrive(flag){
+    if(flag === 'search'){
+    this.page = 1;
+    }
     //필수 조회조건 체크
     if(this.date1 > this.date2){
       this.alertProvider.call_alert("조회", "검사일자, 시작일보다 종료일이 작습니다.", "확인");
       return;
     }
     let api_url = "/phb/phb04_list";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.pjtno, task: this.task_cd, lot_no: this.lot_no, c_code: this.g_user.c_code});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, date1: this.date1, date2: this.date2, mo_no: this.pjtno, task: this.task_cd, lot_no: this.lot_no, c_code: this.g_user.c_code, page: this.page});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+        this.result.push(data[v]);
+        }
+      }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
   }
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    setTimeout(() =>{
+      this.retrive('false');
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
 
   //상세팝업

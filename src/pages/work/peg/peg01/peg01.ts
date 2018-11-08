@@ -46,7 +46,11 @@ export class PEG01 {
   public yymm = new Date().toISOString(); //조회년월
 
   /* 조회결과 */
-  public result;
+  public result = [];
+
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   constructor(
                 public navCtrl: NavController,
@@ -103,10 +107,12 @@ export class PEG01 {
 
 
   //조회
-  retrive(){
-
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+    }
     let api_url = "/peg/peg01_list";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, yymm: this.yymm, c_code: this.g_user.c_code});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, yymm: this.yymm, c_code: this.g_user.c_code, page: this.page});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
@@ -115,11 +121,29 @@ export class PEG01 {
       }else{
         this.searchCondition = "";
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+          this.result.push(data[v]);
+        }
+      }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
 
   }
 
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    setTimeout(() =>{
+      this.retrive('false');
+      infiniteScroll.complete();
+    }, 1000);
+  };
   //상세팝업
   openDetail(obj: any){
     this.modalController.create('Peg01detail1Page', {obj: obj}).present();

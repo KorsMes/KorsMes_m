@@ -27,27 +27,9 @@
   </ion-grid>
 
   <div class="btn_div">
-    <button ion-button (click) = "retrive()" class="search_btn">조회</button>
+    <button ion-button (click) = "retrive('search')" class="search_btn">조회</button>
   </div>
 
-<!--  <ion-grid>
-    <ion-row>
-      <ion-col col-2>PJT번호</ion-col>
-      <ion-col col-2>프로젝트명</ion-col>
-      <ion-col col-2>설계차수</ion-col>
-      <ion-col col-2>변경내역</ion-col>
-      <ion-col col-2>PJT BOM 확정일</ion-col>
-      <ion-col col-2>소요량생성일</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
-      <ion-col col-2>{{r.PDTNO}}</ion-col>
-      <ion-col col-2>{{r.PJTNO_NM}}</ion-col>
-      <ion-col col-2>{{r.DRSEQ}}</ion-col>
-      <ion-col col-2>{{r.DRDSC}}</ion-col>
-      <ion-col col-2>{{r.CONF_DATE}}</ion-col>
-      <ion-col col-2>{{r.SODAT}}</ion-col>
-    </ion-row>
-  </ion-grid>-->
   <br>
   <ion-card *ngFor="let r of result" (click) = "selectItem(r)" class="Card_Grid">
     <ion-grid>
@@ -69,4 +51,29 @@
       </ion-row>
     </ion-grid>
   </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="showInfiniteScroll">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+
+
+
+<!--  <ion-grid>
+    <ion-row>
+      <ion-col col-2>PJT번호</ion-col>
+      <ion-col col-2>프로젝트명</ion-col>
+      <ion-col col-2>설계차수</ion-col>
+      <ion-col col-2>변경내역</ion-col>
+      <ion-col col-2>PJT BOM 확정일</ion-col>
+      <ion-col col-2>소요량생성일</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let r of result" (click) = "selectItem(r)">
+      <ion-col col-2>{{r.PDTNO}}</ion-col>
+      <ion-col col-2>{{r.PJTNO_NM}}</ion-col>
+      <ion-col col-2>{{r.DRSEQ}}</ion-col>
+      <ion-col col-2>{{r.DRDSC}}</ion-col>
+      <ion-col col-2>{{r.CONF_DATE}}</ion-col>
+      <ion-col col-2>{{r.SODAT}}</ion-col>
+    </ion-row>
+  </ion-grid>-->

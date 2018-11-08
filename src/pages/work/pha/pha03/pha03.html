@@ -32,7 +32,7 @@
   <br>
 
   <div class="btn_div">
-    <button ion-button (click) = "retrive()" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
+    <button ion-button (click) = "retrive('search')" *ngIf="acc_btn_retrive" class="search_btn">조회</button>
   </div>
   <!--<button ion-button (click) = "add()" *ngIf="acc_btn_add">추가</button>
   <button ion-button (click) = "save()" *ngIf="acc_btn_save">저장</button>
@@ -69,6 +69,10 @@
 
     </ion-grid>
   </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="showInfiniteScroll">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../../assets/icon/top_button.png"></button></ion-fab>
 </ion-content>

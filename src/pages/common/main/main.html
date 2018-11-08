@@ -69,6 +69,9 @@
     </ion-grid>
   </ion-card>
 
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" *ngIf="showInfiniteScroll">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
   <ion-fab bottom right><button ion-fab [hideFabOnscroll]='content' (click) = "scrollToTop()" class="top_btn"><img alt="top" src="../../../assets/icon/top_button.png"></button></ion-fab>
 </ion-content>
 

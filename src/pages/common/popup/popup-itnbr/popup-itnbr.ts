@@ -37,6 +37,7 @@ export class PopupItnbrPage {
 
   /* infiniteScroll */
   public page = 1;
+  public showInfiniteScroll = true;
 
   constructor(
               public navCtrl: NavController,
@@ -70,7 +71,10 @@ export class PopupItnbrPage {
   }
 
   //조회
-  retrive(){
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+    }
     let api_url = "/common/popup/itnbr";
     let param = JSON.stringify({itnbr: this.itnbr, itnbr_nm: this.itnbr_nm, spec1: this.spec1, jijic: this.jijic, iform: this.iform, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code, page: this.page});
     this.apiProvider.data_api(api_url, param)
@@ -83,6 +87,12 @@ export class PopupItnbrPage {
           this.result.push(data[v]);
         }
       }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
   }
 
@@ -90,7 +100,7 @@ export class PopupItnbrPage {
   loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() =>{
-      this.retrive();
+      this.retrive('false');
       infiniteScroll.complete();
     }, 1000);
   };

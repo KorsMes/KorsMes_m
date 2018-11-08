@@ -140,11 +140,9 @@ export class SCB10 {
             var totamt=0;
             for(var j=0; j<Object.keys(data2).length; j++){
               if(this.result[i].GROUP_NO === data2[j].GROUP_NO){
-                console.log("chk : " + Math.floor(data2[j].SOWAMT1));
                 totamt = Math.floor(totamt) + Math.floor(data2[j].SOWAMT1);
               }
             }
-            console.log("total : " + totamt);
             data[i].SOWAMT1 = totamt;
           }
         })

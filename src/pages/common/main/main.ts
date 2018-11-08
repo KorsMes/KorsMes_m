@@ -54,7 +54,11 @@ export class MainPage {
   public commonCode44; //결재조건
 
   /* 조회결과 */
-  public result;
+  public result = [];
+
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   /* title img */
   public company_logo;
@@ -143,15 +147,39 @@ export class MainPage {
     });
   }
 
-  retrive(){
+  //조회
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+      this.result = [];
+    }
     let api_url = "/sea/sea02_list";
-    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code});
+    let param = JSON.stringify({company_cd: this.g_company[0].COMPANY, plant_cd: this.plant_cd, pjtno_fr: this.pjtno, pjtno_to: this.pjtno, status: this.status, fr_yymm: this.fr_yymm, to_yymm: this.to_yymm, c_code: this.g_user.c_code, page: this.page});
 
     this.apiProvider.data_api(api_url, param)
     .then(data => {
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+          this.result.push(data[v]);
+        }
+      }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
   }
+
+    //로딩 스크롤
+    loadMore(infiniteScroll) {
+      this.page++;
+      setTimeout(() =>{
+        this.retrive('false');
+        infiniteScroll.complete();
+      }, 1000);
+    };
 
   //상세팝업
   openDetail(obj: any){

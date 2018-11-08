@@ -179,7 +179,6 @@ export class PEB14 {
 
   //조회
   retrive(){
-
     //일자별 자재입고현황
     let api_url1 = "/peb/peb14_list1";
     let param1 = JSON.stringify({ company_cd: this.g_company[0].COMPANY,
@@ -189,7 +188,8 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code
+                                  c_code: this.g_user.c_code,
+                                  page: this.page1
                                 });
 
     this.apiProvider.data_api(api_url1, param1)
@@ -213,7 +213,8 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code
+                                  c_code: this.g_user.c_code,
+                                  page: this.page2
                                 });
 
     this.apiProvider.data_api(api_url2, param2)
@@ -237,7 +238,8 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code
+                                  c_code: this.g_user.c_code,
+                                  page: this.page3
                                 });
 
     this.apiProvider.data_api(api_url3, param3)
@@ -261,7 +263,8 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code
+                                  c_code: this.g_user.c_code,
+                                  page: this.page4
                                 });
 
     this.apiProvider.data_api(api_url4, param4)
@@ -273,10 +276,11 @@ export class PEB14 {
       }else{
         this.searchCondition = "";
       }
-    this.result4 = data;
+      this.result4 = data;
   });
 
 }
+
 
   //탭페이지 전환
   changeTab(showIdx){

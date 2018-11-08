@@ -46,8 +46,12 @@ export class PopupPjtnoPage {
   public tmp_status;
 
 
-  //조회결과
-  public result;
+  /* 조회결과 */
+  public result = [];
+
+  /* infiniteScroll */
+  public page = 1;
+  public showInfiniteScroll = true;
 
   //return 값
   public pjtno;
@@ -121,8 +125,10 @@ export class PopupPjtnoPage {
   }
 
   //조회
-  retrive(){
-
+  retrive(flag){
+    if(flag === 'search'){
+      this.page = 1;
+    }
     //필수 조회조건 체크
     if(this.date1 > this.date2){
       this.alertProvider.call_alert("조회", "견적의뢰일자, 시작일보다 종료일이 작습니다.", "확인");
@@ -136,15 +142,34 @@ export class PopupPjtnoPage {
     }
 
     let api_url = "/common/popup/pjtno_list";
-    let param = JSON.stringify({user: this.user, date1: this.date1, date2: this.date2, status: this.tmp_status, balju: this.balju, pjtno: this.cust_cd, pjtnm: this.cust_nm, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code});
+    let param = JSON.stringify({user: this.user, date1: this.date1, date2: this.date2, status: this.tmp_status, balju: this.balju, pjtno: this.cust_cd, pjtnm: this.cust_nm, company_cd: this.g_company[0].COMPANY, c_code: this.g_user.c_code, page: this.page});
     this.apiProvider.data_api(api_url, param)
     .then(data => {
       if(Object.keys(data).length === 0){
         this.alertProvider.call_alert("조회", "검색결과가 없습니다.", "확인");
       }
-      this.result = data;
+      for(let v in data){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+          this.result.push(data[v]);
+        }
+      }
+
+      if(Object.keys(data).length < Math.floor(this.page * 30)){
+        this.showInfiniteScroll = false;
+      }else{
+        this.showInfiniteScroll = true;
+      }
     });
   }
+
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    setTimeout(() =>{
+      this.retrive('false');
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
   //리스트 선택 시
   selectItem(selData){
