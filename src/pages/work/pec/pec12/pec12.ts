@@ -150,8 +150,8 @@ export class PEC12 {
   }
 
   //PJT번호1 팝업
-  PopupPdtno1(){
-    var modal = this.modalController.create('PopupPdtnoPage');
+  PopupPjtno2(){
+    var modal = this.modalController.create('PopupPjtno2Page');
     modal.onDidDismiss(data => {
       this.pdtno1 = data.pjtno;
       this.pdtnm1 = data.pjtnm;
@@ -160,8 +160,8 @@ export class PEC12 {
   }
 
   //PJT번호2 팝업
-  PopupPdtno2(){
-    var modal = this.modalController.create('PopupPdtnoPage');
+  PopupPjtno3(){
+    var modal = this.modalController.create('PopupPjtno2Page');
     modal.onDidDismiss(data => {
       this.pdtno2 = data.pjtno;
       this.pdtnm2 = data.pjtnm;

@@ -159,7 +159,7 @@ export class PAF06 {
         this.searchCondition = "";
       }
       for(let v in data){
-        if(Math.floor(30*Math.floor(this.page-1)) < Math.floor(Math.floor(v)+1)){
+        if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
           this.result.push(data[v]);
         }
       }
