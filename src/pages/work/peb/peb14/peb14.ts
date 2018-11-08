@@ -188,8 +188,7 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code,
-                                  page: this.page1
+                                  c_code: this.g_user.c_code
                                 });
 
     this.apiProvider.data_api(api_url1, param1)
@@ -213,8 +212,7 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code,
-                                  page: this.page2
+                                  c_code: this.g_user.c_code
                                 });
 
     this.apiProvider.data_api(api_url2, param2)
@@ -238,8 +236,7 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code,
-                                  page: this.page3
+                                  c_code: this.g_user.c_code
                                 });
 
     this.apiProvider.data_api(api_url3, param3)
@@ -263,8 +260,7 @@ export class PEB14 {
                                   cust_cd: this.cust_cd,
                                   item: this.item,
                                   item_type: this.item_type,
-                                  c_code: this.g_user.c_code,
-                                  page: this.page4
+                                  c_code: this.g_user.c_code
                                 });
 
     this.apiProvider.data_api(api_url4, param4)

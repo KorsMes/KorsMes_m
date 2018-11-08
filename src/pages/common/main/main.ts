@@ -93,31 +93,39 @@ export class MainPage {
 
                 this.apiProvider.data_api(api_url, param)
                 .then(data => {
-                  this.result = data;
+                  for(let v in data){
+                    if(Math.floor(30*Math.floor(this.page-1)) < Number(Number(v)+Number(1))){
+                      this.result.push(data[v]);
+                    }
+                  }
 
-                  return;
+                  if(Object.keys(data).length < Math.floor(this.page * 30)){
+                    this.showInfiniteScroll = false;
+                  }else{
+                    this.showInfiniteScroll = true;
+                  }
                 });
 
-                  //거래처 가져오기
-                  this.commonCode13 = this.commoncodeProvider.getCommonCode13();
-                  //영업부서 가져오기
-                  this.commonCode14 = this.commoncodeProvider.getCommonCode14();
-                  //영업담당 가져오기
-                  this.commonCode15 = this.commoncodeProvider.getCommonCode15();
-                  //설치지역 가져오기
-                  this.commonCode38 = this.commoncodeProvider.getCommonCode38();
-                  //생산구분 가져오기
-                  this.commonCode39 = this.commoncodeProvider.getCommonCode39();
-                  //주문구분 가져오기
-                  this.commonCode40 = this.commoncodeProvider.getCommonCode40();
-                  //계약유무 가져오기
-                  this.commonCode41 = this.commoncodeProvider.getCommonCode41();
-                  //수주구분 가져오기
-                  this.commonCode42 = this.commoncodeProvider.getCommonCode42();
-                  //사업구분 가져오기
-                  this.commonCode43 = this.commoncodeProvider.getCommonCode43();
-                  //결재조건 가져오기
-                  this.commonCode44 = this.commoncodeProvider.getCommonCode44();
+                //거래처 가져오기
+                this.commonCode13 = this.commoncodeProvider.getCommonCode13();
+                //영업부서 가져오기
+                this.commonCode14 = this.commoncodeProvider.getCommonCode14();
+                //영업담당 가져오기
+                this.commonCode15 = this.commoncodeProvider.getCommonCode15();
+                //설치지역 가져오기
+                this.commonCode38 = this.commoncodeProvider.getCommonCode38();
+                //생산구분 가져오기
+                this.commonCode39 = this.commoncodeProvider.getCommonCode39();
+                //주문구분 가져오기
+                this.commonCode40 = this.commoncodeProvider.getCommonCode40();
+                //계약유무 가져오기
+                this.commonCode41 = this.commoncodeProvider.getCommonCode41();
+                //수주구분 가져오기
+                this.commonCode42 = this.commoncodeProvider.getCommonCode42();
+                //사업구분 가져오기
+                this.commonCode43 = this.commoncodeProvider.getCommonCode43();
+                //결재조건 가져오기
+                this.commonCode44 = this.commoncodeProvider.getCommonCode44();
 
   }
 
@@ -172,14 +180,14 @@ export class MainPage {
     });
   }
 
-    //로딩 스크롤
-    loadMore(infiniteScroll) {
-      this.page++;
-      setTimeout(() =>{
-        this.retrive('false');
-        infiniteScroll.complete();
-      }, 1000);
-    };
+  //로딩 스크롤
+  loadMore(infiniteScroll) {
+    this.page++;
+    setTimeout(() =>{
+      this.retrive('false');
+      infiniteScroll.complete();
+    }, 1000);
+  };
 
   //상세팝업
   openDetail(obj: any){
