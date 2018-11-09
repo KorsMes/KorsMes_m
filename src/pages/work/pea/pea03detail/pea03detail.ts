@@ -47,7 +47,7 @@ export class Pea03detailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pea03detailPage');
+    //console.log('ionViewDidLoad Pea03detailPage');
   }
 
   //팝업 닫기

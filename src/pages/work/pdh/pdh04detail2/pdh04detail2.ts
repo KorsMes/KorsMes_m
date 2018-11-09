@@ -35,7 +35,7 @@ export class Pdh04detail2Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pdh04detail2Page');
+    //console.log('ionViewDidLoad Pdh04detail2Page');
   }
 
   //팝업 닫기

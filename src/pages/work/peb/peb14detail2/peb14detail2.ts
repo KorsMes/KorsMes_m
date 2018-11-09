@@ -19,7 +19,7 @@ export class Peb14detail2Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peb14detail2Page');
+    //console.log('ionViewDidLoad Peb14detail2Page');
   }
 
 }

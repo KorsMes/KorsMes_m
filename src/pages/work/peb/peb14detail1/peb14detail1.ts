@@ -57,7 +57,7 @@ export class Peb14detail1Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peb14detail1Page');
+    //console.log('ionViewDidLoad Peb14detail1Page');
   }
 
   //팝업 닫기

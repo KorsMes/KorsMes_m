@@ -111,7 +111,7 @@ export class PEA03 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pea03Page');
+    //console.log('ionViewDidLoad Pea03Page');
   }
 
 

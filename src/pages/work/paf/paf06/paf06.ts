@@ -99,7 +99,7 @@ export class PAF06 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Paf06Page');
+    //console.log('ionViewDidLoad Paf06Page');
   }
 
   //조회조건 전체 초기화

@@ -35,7 +35,7 @@ export class Peg08detail2Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peg08detail2Page');
+    //console.log('ionViewDidLoad Peg08detail2Page');
   }
 
   //팝업 닫기

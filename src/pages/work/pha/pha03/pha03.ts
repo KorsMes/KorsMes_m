@@ -91,7 +91,7 @@ export class PHA03 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pha03Page');
+    //console.log('ionViewDidLoad Pha03Page');
   }
 
 

@@ -82,7 +82,7 @@ export class SCB10 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Scb10Page');
+    //console.log('ionViewDidLoad Scb10Page');
   }
 
 

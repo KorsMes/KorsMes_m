@@ -93,7 +93,7 @@ export class PEG01 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peg01Page');
+    //console.log('ionViewDidLoad Peg01Page');
   }
 
 

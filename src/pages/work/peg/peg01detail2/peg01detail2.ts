@@ -19,7 +19,7 @@ export class Peg01detail2Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peg01detail2Page');
+    //console.log('ionViewDidLoad Peg01detail2Page');
   }
 
 }

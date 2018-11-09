@@ -48,7 +48,7 @@ export class PopupBuyerPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupBuyerPage');
+    //console.log('ionViewDidLoad PopupBuyerPage');
   }
 
   //조회

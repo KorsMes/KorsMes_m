@@ -109,7 +109,7 @@ export class PDA12 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pda12Page');
+    //console.log('ionViewDidLoad Pda12Page');
   }
 
   condition_yn(yn){

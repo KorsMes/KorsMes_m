@@ -98,7 +98,7 @@ export class PopupItnbr2Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupItnbr2Page');
+    //console.log('ionViewDidLoad PopupItnbr2Page');
   }
 
 

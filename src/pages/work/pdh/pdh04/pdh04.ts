@@ -97,7 +97,7 @@ export class PDH04 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pdh04Page');
+    //console.log('ionViewDidLoad Pdh04Page');
   }
 
   condition_yn(yn){

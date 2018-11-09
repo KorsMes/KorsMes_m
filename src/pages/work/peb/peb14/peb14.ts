@@ -126,7 +126,7 @@ export class PEB14 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peb14Page');
+    //console.log('ionViewDidLoad Peb14Page');
   }
 
 

@@ -38,7 +38,7 @@ export class PopupTaskPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupTaskPage');
+    //console.log('ionViewDidLoad PopupTaskPage');
   }
 
   //조회

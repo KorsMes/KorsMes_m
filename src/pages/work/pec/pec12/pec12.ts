@@ -103,7 +103,7 @@ export class PEC12 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pec12Page');
+    //console.log('ionViewDidLoad Pec12Page');
   }
 
 

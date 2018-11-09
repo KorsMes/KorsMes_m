@@ -35,7 +35,7 @@ export class Pec12detail2Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pec12detail2Page');
+    //console.log('ionViewDidLoad Pec12detail2Page');
   }
 
   //팝업 닫기

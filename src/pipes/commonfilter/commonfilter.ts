@@ -479,7 +479,7 @@ export class CommonfilterPipe implements PipeTransform {
 
     //PDD02  집계기간
     if(code === "pdd02_month"){
-      //console.log(code + " : " + value + " : " + items + " : " + value2);
+      ////console.log(code + " : " + value + " : " + items + " : " + value2);
       if(value === 'A1'){
         re = items.substring(6, 4)+"월";
       }else if(value === 'B1'){

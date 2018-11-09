@@ -126,7 +126,7 @@ export class SEA02 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Sea02Page');
+    //console.log('ionViewDidLoad Sea02Page');
   }
 
 

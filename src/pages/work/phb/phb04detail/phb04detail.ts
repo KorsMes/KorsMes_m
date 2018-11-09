@@ -60,7 +60,7 @@ export class Phb04detailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Phb04detailPage');
+    //console.log('ionViewDidLoad Phb04detailPage');
   }
 
   //팝업 닫기

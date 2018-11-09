@@ -112,7 +112,7 @@ export class PEG08 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Peg08Page');
+    //console.log('ionViewDidLoad Peg08Page');
   }
 
   //조회조건 전체 초기화

@@ -47,7 +47,7 @@ export class Shb04detail1Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Shb04detail1Page');
+    //console.log('ionViewDidLoad Shb04detail1Page');
   }
 
   //팝업 닫기

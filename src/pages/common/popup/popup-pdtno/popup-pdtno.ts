@@ -62,7 +62,7 @@ export class PopupPdtnoPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupPdtnoPage');
+    //console.log('ionViewDidLoad PopupPdtnoPage');
   }
 
 

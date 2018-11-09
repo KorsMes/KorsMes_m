@@ -60,7 +60,7 @@ export class PopupPjtno3Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupPjtno3Page');
+    //console.log('ionViewDidLoad PopupPjtno3Page');
   }
 
 

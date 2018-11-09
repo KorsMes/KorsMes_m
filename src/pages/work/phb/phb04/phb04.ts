@@ -131,7 +131,7 @@ export class PHB04 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Phb04Page');
+    //console.log('ionViewDidLoad Phb04Page');
   }
 
   //조회조건 전체 초기화

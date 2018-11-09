@@ -56,7 +56,7 @@ export class PopupPurnoPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupPurnoPage');
+    //console.log('ionViewDidLoad PopupPurnoPage');
   }
 
   //조회

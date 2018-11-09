@@ -41,7 +41,7 @@ export class PAF06DETAIL {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Paf06DetailPage');
+    //console.log('ionViewDidLoad Paf06DetailPage');
   }
 
   ionViewDidEnter(){

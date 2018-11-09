@@ -41,7 +41,7 @@ export class Sfa05detail1Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Sfa05detail1Page');
+    //console.log('ionViewDidLoad Sfa05detail1Page');
   }
 
   //팝업 닫기

@@ -41,7 +41,7 @@ export class Pda12detailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pda12detailPage');
+    //console.log('ionViewDidLoad Pda12detailPage');
   }
 
   //팝업 닫기

@@ -134,7 +134,7 @@ export class PDB13 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pdb13Page');
+    //console.log('ionViewDidLoad Pdb13Page');
   }
 
   //조회조건 전체 초기화

@@ -68,7 +68,7 @@ export class CommoncodeProvider {
 
 
   constructor(public http: HttpClient) {
-    console.log('Hello CommoncodeProvider Provider');
+    //console.log('Hello CommoncodeProvider Provider');
   }
 
   /* 공통모듈 SET START */
@@ -84,7 +84,7 @@ export class CommoncodeProvider {
 
   //회사
   setCompanyInfo(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/getCompanyInfo";
+    let SERVER_URL = "http://korsmes.co.kr/common/getCompanyInfo";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
@@ -92,14 +92,14 @@ export class CommoncodeProvider {
         this.companyInfo = res;
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //공장
   setPlantInfo(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/getPlantInfo";
+    let SERVER_URL = "http://korsmes.co.kr/common/getPlantInfo";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
@@ -107,711 +107,711 @@ export class CommoncodeProvider {
         this.plantInfo = res;
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //단위
   setCommonCode1(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode1";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode1";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode1 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //조달구분
   setCommonCode2(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode2";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode2";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode2 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //통화
   setCommonCode3(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode3";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode3";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode3 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //품목형태
   setCommonCode4(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode4";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode4";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode4 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //발의자
   setCommonCode5(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode5";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode5";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode5 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //계정과목
   setCommonCode6(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode6";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode6";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode6 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //증빙자료
   setCommonCode7(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode7";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode7";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode7 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //부서
   setCommonCode8(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode8";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode8";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode8 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //사업구분
   setCommonCode9(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode9";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode9";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode9 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //현재상태
   setCommonCode10(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode10";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode10";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode10 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //발주처
   setCommonCode11(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode11";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode11";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode11 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //담당자
   setCommonCode12(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode12";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode12";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode12 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //거래처
   setCommonCode13(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode13";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode13";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode13 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //영업부서
   setCommonCode14(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode14";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode14";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode14 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //영업담당
   setCommonCode15(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode15";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode15";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode15 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //제품코드
   setCommonCode16(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode16";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode16";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode16 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //수금구분
   setCommonCode17(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode17";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode17";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode17 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //입금구분
   setCommonCode18(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode18";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode18";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode18 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //지급처
   setCommonCode19(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode19";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode19";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode19 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //발주형태
   setCommonCode20(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode20";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode20";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode20 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //지불방법
   setCommonCode21(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode21";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode21";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode21 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //조달구분
   setCommonCode22(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode22";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode22";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode22 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //내외자
   setCommonCode23(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode23";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode23";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode23 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //품목형태
   setCommonCode24(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode24";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode24";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode24 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //제품군
   setCommonCode25(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode25";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode25";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode25 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //검사구분
   setCommonCode26(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode26";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode26";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode26 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //상태
   setCommonCode27(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode27";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode27";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode27 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //품목구분
   setCommonCode28(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode28";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode28";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode28 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //입고유형
   setCommonCode29(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode29";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode29";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode29 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //상태
   setCommonCode30(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode30";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode30";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode30 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //조치구분
   setCommonCode31(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode31";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode31";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode31 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //검사결과
   setCommonCode32(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode32";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode32";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode32 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //불량항목
   setCommonCode33(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode33";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode33";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode33 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //검사종류
   setCommonCode34(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode34";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode34";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode34 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //검사구분
   setCommonCode35(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode35";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode35";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode35 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //공정
   setCommonCode36(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode36";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode36";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode36 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //견적상태
   setCommonCode37(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode37";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode37";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode37 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //설치지역
   setCommonCode38(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode38";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode38";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode38 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //생산구분
   setCommonCode39(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode39";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode39";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode39 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //주문구분
   setCommonCode40(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode40";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode40";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode40 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //계약유무
   setCommonCode41(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode41";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode41";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode41 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //수주구분
   setCommonCode42(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode42";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode42";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode42 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //사업구분
   setCommonCode43(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode43";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode43";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode43 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }
 
   //결재조건
   setCommonCode44(code1){
-    let SERVER_URL = "http://192.168.0.18:3030/common/component/commonCode44";
+    let SERVER_URL = "http://korsmes.co.kr/common/component/commonCode44";
     let param = JSON.stringify({c_code: code1});
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         this.commonCode44 = res;
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
   }

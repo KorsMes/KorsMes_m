@@ -41,7 +41,7 @@ export class PopupUserPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupUserPage');
+    //console.log('ionViewDidLoad PopupUserPage');
   }
 
   //조회조건 부서코드 초기화

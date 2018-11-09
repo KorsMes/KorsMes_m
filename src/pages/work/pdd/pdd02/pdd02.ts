@@ -88,7 +88,7 @@ export class PDD02 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pdd02Page');
+    //console.log('ionViewDidLoad Pdd02Page');
   }
 
 

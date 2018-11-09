@@ -67,7 +67,7 @@ export class PopupItnbrPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupItnbrPage');
+    //console.log('ionViewDidLoad PopupItnbrPage');
   }
 
   //조회

@@ -82,7 +82,7 @@ export class Sea02detailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Sea02detailPage');
+    //console.log('ionViewDidLoad Sea02detailPage');
   }
 
   //팝업 닫기

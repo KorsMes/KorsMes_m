@@ -45,7 +45,7 @@ export class Pdb13detail6Page {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pdb13detail6Page');
+    //console.log('ionViewDidLoad Pdb13detail6Page');
   }
 
   //팝업 닫기

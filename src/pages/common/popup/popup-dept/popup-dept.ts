@@ -37,7 +37,7 @@ export class PopupDeptPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopupDeptPage');
+    //console.log('ionViewDidLoad PopupDeptPage');
   }
 
 

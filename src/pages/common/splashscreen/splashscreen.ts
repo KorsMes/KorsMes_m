@@ -34,7 +34,7 @@ export class SplashscreenPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SplashscreenPage');
+    //console.log('ionViewDidLoad SplashscreenPage');
   }
 
 }

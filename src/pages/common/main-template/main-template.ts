@@ -119,15 +119,15 @@ export class MainTemplatePage {
 
     for(var w in this.page_auth){
       if(page.component === this.page_auth[w].PGM_ID){
-        console.log(page.component + " ::: " +this.page_auth[w].PGM_ID);
+        //console.log(page.component + " ::: " +this.page_auth[w].PGM_ID);
         auth_check = true;
-        console.log(page.component + " : " + this.page_auth[w].PGM_ID);
+        //console.log(page.component + " : " + this.page_auth[w].PGM_ID);
       }
     }
 
     if(auth_check){
       //param : 프로그램 버튼 권한
-      console.log(page.component);
+      //console.log(page.component);
       this.nav.push(page.component);
     }else{
       this.alertProvider.call_alert("접근", page.title + "의 권한이 없습니다.", "확인");

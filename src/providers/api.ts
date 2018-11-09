@@ -13,19 +13,19 @@ export class ApiProvider {
   constructor(public http: HttpClient) {}
 
   data_api(api_url, param){
-    let SERVER_URL = "http://192.168.0.18:3030" + api_url;
+    let SERVER_URL = "http://korsmes.co.kr" + api_url;
 
 
-    console.log(SERVER_URL + param);
+    //console.log(SERVER_URL + param);
 
     return new Promise((resolve, reject) => {
       this.http.post(SERVER_URL, param)
       .subscribe(res => {
         resolve(res);
-        console.log(res);
+        //console.log(res);
       }, (err) =>{
         reject(err);
-        console.log(err);
+        //console.log(err);
       });
     });
 

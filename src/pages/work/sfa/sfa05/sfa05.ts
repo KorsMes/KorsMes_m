@@ -117,7 +117,7 @@ export class SFA05 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Sfa05Page');
+    //console.log('ionViewDidLoad Sfa05Page');
   }
 
   //조회조건 전체 초기화

@@ -126,7 +126,7 @@ export class SHB04 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Shb04Page');
+    //console.log('ionViewDidLoad Shb04Page');
   }
 
   //조회조건 전체 초기화

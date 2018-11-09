@@ -103,7 +103,7 @@ export class SEA12 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Sea12Page');
+    //console.log('ionViewDidLoad Sea12Page');
   }
 
   //조회조건 전체 초기화

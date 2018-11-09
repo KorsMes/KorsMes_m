@@ -117,7 +117,7 @@ export class PDD06 {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Pdd06Page');
+    //console.log('ionViewDidLoad Pdd06Page');
   }
 
 
